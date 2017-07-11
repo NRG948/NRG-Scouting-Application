@@ -5,23 +5,23 @@
         <item
             android:id="@+id/nav_match"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Match Scouting" />
+            android:title="About NRG" />
         <item
             android:id="@+id/nav_pit"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Pit Scouting" />
+            android:title="Rankings" />
         <item
             android:id="@+id/nav_spec"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Specialist Scouting" />
+            android:title="Match Scouting" />
         <item
             android:id="@+id/nav_rank"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Rankings" />
+            android:title="Pit Scouting" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_manage"
-            android:title="About" />
+            android:title="Specialist Scouting" />
     </group>
 
 </menu>
