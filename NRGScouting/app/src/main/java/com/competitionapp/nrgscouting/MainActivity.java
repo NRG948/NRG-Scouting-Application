@@ -86,19 +86,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-<<<<<<< HEAD
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_about) {
-
-=======
         if (id == R.id.nav_match) {
             MatchFragment matfragment = new MatchFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -139,7 +126,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
->>>>>>> origin/master
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
