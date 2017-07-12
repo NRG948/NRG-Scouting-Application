@@ -3,19 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_match"
             android:icon="@drawable/ic_menu_camera"
             android:title="Match Scouting" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_pit"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Pit Scouting" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_spec"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Specialist Scouting" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_rank"
             android:icon="@drawable/ic_menu_manage"
             android:title="Rankings" />
         <item
