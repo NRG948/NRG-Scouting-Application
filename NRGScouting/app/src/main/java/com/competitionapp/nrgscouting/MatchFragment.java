@@ -24,6 +24,7 @@ int[] teams={948,949,950};
     }
 
     public void search(View view){
+
         EditText textBox=(EditText)view.findViewById(R.id.editText2);
         for (int i:teams){
             if (Integer.toString(i).equals(textBox.getText()) ){
