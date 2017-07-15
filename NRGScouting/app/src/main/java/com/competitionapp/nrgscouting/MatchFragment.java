@@ -1,14 +1,13 @@
 package com.competitionapp.nrgscouting;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 /**
@@ -16,31 +15,46 @@ import android.widget.EditText;
  */
 public class MatchFragment extends Fragment {
 
-int[] teams={948,949,950};
+    ListView lv;
+    SearchView sv;
+    ArrayAdapter<String> adapter;
+    String[] teams = {"948", "492", "6905969", "Nipun is Awesome", "Acchin is awesome", "Valliappan is awesome", "Peyton is Awesome", "Nelson is Awesome", "Adam is Awesome", "Justin - I don't know"};
 
-    public MatchFragment(){
-     //Set the valid team numbers
-
+    public MatchFragment() {
+        // Required empty public constructor
     }
 
-    public void search(View view){
 
-        EditText textBox=(EditText)view.findViewById(R.id.editText2);
-        for (int i:teams){
-            if (Integer.toString(i).equals(textBox.getText()) ){
-                System.out.println("SUCCESS!");
-                //return true;
-            }
-        }
-        //if it gets to this point, it means that the search failed
-        System.out.println("FAILED!!");
-        //return false;
-    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_match, container, false);
 
-        return inflater.inflate(R.layout.fragment_match, container, false);
+        //List and Search view initializations
+        lv= (ListView)rootView.findViewById(R.id.teams_list);
+        sv = (SearchView)rootView.findViewById(R.id.searchView);
+
+        //ListView set up
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, teams);
+        lv.setAdapter(adapter);
+
+        //SearchView set up
+        sv.setQueryHint("Search...");
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return rootView;
     }
+
 
 }
