@@ -3,23 +3,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_match"
+            android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_camera"
             android:title="About NRG" />
         <item
-            android:id="@+id/nav_pit"
+            android:id="@+id/nav_rank"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Rankings" />
         <item
-            android:id="@+id/nav_spec"
+            android:id="@+id/nav_match"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Match Scouting" />
         <item
-            android:id="@+id/nav_rank"
+            android:id="@+id/nav_spec"
             android:icon="@drawable/ic_menu_manage"
             android:title="Pit Scouting" />
         <item
-            android:id="@+id/nav_about"
+            android:id="@+id/nav_pit"
             android:icon="@drawable/ic_menu_manage"
             android:title="Specialist Scouting" />
     </group>
