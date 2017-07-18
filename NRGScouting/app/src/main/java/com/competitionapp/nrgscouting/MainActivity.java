@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         //Set about frag initially when app opens
-        About abfragment = new About();
+        MatchFragment matchFragment = new MatchFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, abfragment);
+        fragmentTransaction.replace(R.id.fragment_container, matchFragment);
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
