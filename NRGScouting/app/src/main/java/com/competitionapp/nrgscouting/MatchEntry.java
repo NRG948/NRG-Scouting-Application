@@ -13,7 +13,7 @@ import android.view.ViewGroup;
  */
 public class MatchEntry extends Fragment {
 
-
+// hi dudes
     public MatchEntry() {
         // Required empty public constructor
     }
@@ -27,3 +27,4 @@ public class MatchEntry extends Fragment {
     }
 
 }
+//sup dudes
