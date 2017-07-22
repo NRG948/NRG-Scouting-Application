@@ -6,5 +6,21 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/meiIsBae"
+        android:inputtype="number"
+        android:ems="10"
+        android:hint="Match Number"
+        />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="200px"
+       android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80px" />
+
 
 </FrameLayout>
