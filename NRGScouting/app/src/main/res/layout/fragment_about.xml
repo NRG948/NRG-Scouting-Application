@@ -3,219 +3,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
     tools:context="com.competitionapp.nrgscouting.About">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NRG IT Team"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView4" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/acchindra_thev"
-        android:layout_marginTop="32dp"
-        android:id="@+id/imageView2"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Acchindra Thev:                                   Captain of Information Technology"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/nipun"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nipun Chhajed:                                     Backup Captain of I.T."
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="240dp" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/valliappan"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="325dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Valliappan Valliappan:                                     Software Programming Manager"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="455dp" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/peyton_lee"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="540dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Peyton Lee:                                         Software Design Manager"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="670dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/adam_nicewarner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="755dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adam Nicewarner:                                         Technical Support Manager"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="880dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/nelson"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="967dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nelson Fang:                                         Software Programmer"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="1090dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/tejas_rangole"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1180dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tejas Rangole:                                         Software Programmer"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="1305dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/justin_zeng"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1390dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Justin Zeng:                                         Software Designer"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="1515dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/sourish"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1600dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sourish Murthy:                                         Software Designer"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="1725dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/tim_meh"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1810dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timmy Yip:                                                   Technical Support Specialist"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="1940dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/jaxon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2025dp"
-        android:layout_below="@+id/imageView2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jaxon McClelland:                                         Technical Support Specialist"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="2155dp"/>
-    </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Newport Robotics IT Team"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+
+            />
+
+            <!--
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/acchindra_thev"
+            android:layout_marginTop="32dp"
+            android:id="@+id/imageView2"
+            android:layout_below="@+id/textView4"
+            android:layout_centerHorizontal="true" /> -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Captain of Information Technology"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acchindra Thev"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Backup Captain of I.T."
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nipun Chhajed"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Software Programming Manager"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valliappan Valliappan"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Software Programmers:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nelson Fang"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tejas Rangole"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Software Design Manager"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peyton Lee"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Software Designers:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Justin Zeng"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sourish Murthy"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Technical Support Manager"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adam Nicewarner"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Technical Support Specialists:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timmy Yip"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jaxon McClelland"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Who are we? NRG!"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="italic"
+
+            android:layout_margin="25dp"
+            />
+    </LinearLayout>
 
 </ScrollView>
