@@ -1,9 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -13,7 +11,6 @@ import android.widget.SearchView;
  */
 
 public class TeamSearchPop extends Activity {
-    Context c;
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
@@ -24,13 +21,26 @@ public class TeamSearchPop extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_team_search);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        lv = (ListView)findViewById(R.id.teams_list);
+        sv = (SearchView)findViewById(R.id.searchView);
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+        adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
+        lv.setAdapter(adapter);
 
-        getWindow().setLayout((int)(width*.8), (int)(height*.8));
-        
+        //SearchView set up
+        sv.setQueryHint("Search...");
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
     }
 }
