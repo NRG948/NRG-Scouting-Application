@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/meiIsBae"
-        android:inputtype="number"
         android:ems="10"
         android:hint="Match Number"
         />
@@ -18,6 +17,7 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="200px"
+<<<<<<< HEAD
         android:layout_height="80px"
         android:layout_marginTop="80px"
         android:entries="@arrays/spinnerItems"
@@ -36,6 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160px"
         android:text="Auto" />
+=======
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80px" />
+>>>>>>> origin/master
 
     <EditText
         android:id="@+id/ballsScored"
