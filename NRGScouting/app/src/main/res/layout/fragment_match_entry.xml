@@ -22,13 +22,6 @@
         android:entries="@array/spinnerItems"
         />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:layout_marginLeft="460px"
-        android:hint="Team number"/>
-
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
@@ -137,4 +130,12 @@
         android:layout_marginTop="700px"
         android:layout_marginLeft="400px"
         android:text="Back" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="460px"
+        android:ems="6"
+        android:hint="Team number" />
 </FrameLayout>
