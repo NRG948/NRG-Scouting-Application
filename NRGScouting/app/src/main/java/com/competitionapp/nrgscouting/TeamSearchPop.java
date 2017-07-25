@@ -1,43 +1,30 @@
 package com.competitionapp.nrgscouting;
 
-
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * Created by nipunchhajed on 7/22/17.
  */
-public class SpecFragment extends Fragment {
 
+public class TeamSearchPop extends Activity {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
     String[] teams = {"948", "492", "6905969", "Nipun is Awesome", "Acchin is awesome", "Valliappan is awesome", "Peyton is Awesome", "Nelson is Awesome", "Adam is Awesome", "Justin - I don't know"};
 
-    public SpecFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_match, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_team_search);
 
-        //List and Search view initializations
-        lv= (ListView)rootView.findViewById(R.id.teams_list);
-        sv = (SearchView)rootView.findViewById(R.id.searchView);
+        lv = (ListView)findViewById(R.id.teams_list);
+        sv = (SearchView)findViewById(R.id.searchView);
 
-        //ListView set up
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, teams);
+        adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
 
         //SearchView set up
@@ -55,7 +42,5 @@ public class SpecFragment extends Fragment {
             }
         });
 
-        return rootView;
     }
 }
-

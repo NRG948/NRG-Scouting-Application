@@ -1,0 +1,140 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.competitionapp.nrgscouting.MatchEntry">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/meiIsBae"
+        android:ems="10"
+        android:hint="Match Number"
+        />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="200px"
+        android:layout_height="80px"
+        android:layout_marginTop="80px"
+        android:entries="@arrays/spinnerItems"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:layout_marginLeft="460px"
+        android:hint="Team number"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160px"
+        android:text="Auto" />
+<EditText
+        android:id="@+id/ballsScored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80px"
+        android:layout_marginLeft="340px"
+        android:ems="5"
+        android:hint="Balls shot"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="80px"
+        android:layout_marginLeft="250px"
+        android:text="-" />
+    <Button
+        android:id="@+id/minus"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="80px"
+        android:layout_marginLeft="560px"
+        android:text="+" />
+    <EditText
+        android:id="@+id/totalBallsShot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250px"
+        android:layout_marginLeft="90px"
+        android:ems="7"
+        android:hint="Total balls shot"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/plus1"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="250px"
+        android:text="-" />
+    <Button
+        android:id="@+id/minus1"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="250px"
+        android:layout_marginLeft="395px"
+        android:text="+" />
+    <EditText
+        android:id="@+id/gearsRetrieved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360px"
+        android:layout_marginLeft="90px"
+        android:ems="7"
+        android:hint="Gears retrieved"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/plus2"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="360px"
+        android:text="-" />
+    <Button
+        android:id="@+id/minus2"
+        android:layout_width="90px"
+        android:layout_height="90px"
+        android:layout_marginTop="360px"
+        android:layout_marginLeft="395px"
+        android:text="+" />
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450px"
+        android:text="Climbs rope" />
+
+    <RatingBar
+        android:id="@+id/sportsManShip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="520px"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="640px"
+        android:text="Death"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="700px"
+        android:layout_marginLeft="200px"
+        android:text="Save" />
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="700px"
+        android:layout_marginLeft="400px"
+        android:text="Back" />
+</FrameLayout>
