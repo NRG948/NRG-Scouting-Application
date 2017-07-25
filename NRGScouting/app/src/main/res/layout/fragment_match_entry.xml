@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,12 +8,12 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
+        android:id="@+id/meiIsBae"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/meiIsBae"
         android:ems="10"
         android:hint="Match Number"
-        />
+        android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -27,7 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160px"
-        android:text="Auto" />
+        android:text="Auto"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
 <EditText
         android:id="@+id/ballsScored"
         android:layout_width="wrap_content"
@@ -42,94 +45,139 @@
         android:id="@+id/plus"
         android:layout_width="90px"
         android:layout_height="90px"
-        android:layout_marginTop="80px"
         android:layout_marginLeft="250px"
-        android:text="-" />
+        android:layout_marginTop="80px"
+        android:backgroundTint="@color/colorAccent"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/minus"
         android:layout_width="90px"
         android:layout_height="90px"
-        android:layout_marginTop="80px"
         android:layout_marginLeft="560px"
-        android:text="+" />
+        android:layout_marginTop="80px"
+        android:backgroundTint="@color/colorAccent"
+        android:text="-"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/totalBallsShot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250px"
         android:layout_marginLeft="90px"
+        android:layout_marginTop="250px"
         android:ems="7"
         android:hint="Total balls shot"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/plus1"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginTop="250px"
-        android:text="-" />
+        android:backgroundTint="@color/colorAccent"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/minus1"
         android:layout_width="90px"
         android:layout_height="90px"
-        android:layout_marginTop="250px"
         android:layout_marginLeft="395px"
-        android:text="+" />
+        android:layout_marginTop="250px"
+        android:backgroundTint="@color/colorAccent"
+        android:text="-"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/gearsRetrieved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="360px"
         android:layout_marginLeft="90px"
+        android:layout_marginTop="360px"
         android:ems="7"
         android:hint="Gears retrieved"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/plus2"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginTop="360px"
-        android:text="-" />
+        android:backgroundTint="@color/colorAccent"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/minus2"
         android:layout_width="90px"
         android:layout_height="90px"
-        android:layout_marginTop="360px"
         android:layout_marginLeft="395px"
-        android:text="+" />
+        android:layout_marginTop="360px"
+        android:backgroundTint="@color/colorAccent"
+        android:text="-"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="450px"
-        android:text="Climbs rope" />
+        android:checked="false"
+        android:text="Climbs rope"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
 
     <RatingBar
         android:id="@+id/sportsManShip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520px"/>
+        android:layout_marginTop="520px"
+        android:rating="2.5"
+        android:stepSize="0.5" />
+
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="640px"
-        android:text="Death"/>
+        android:text="Death"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700px"
         android:layout_marginLeft="200px"
-        android:text="Save" />
+        android:layout_marginTop="700px"
+
+        android:backgroundTint="@color/colorAccent"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700px"
         android:layout_marginLeft="400px"
-        android:text="Back" />
+        android:layout_marginTop="700px"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Back"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editText"
@@ -137,5 +185,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="460px"
         android:ems="6"
-        android:hint="Team number" />
+        android:hint="Team number"
+        android:textColor="@color/colorPrimaryDark" />
 </FrameLayout>
