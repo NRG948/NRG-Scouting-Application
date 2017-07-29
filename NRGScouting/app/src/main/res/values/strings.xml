@@ -8,7 +8,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="Pilot_Skill">Pilot Skill</string>
+    <string name="Driver_Skill">Driver Skill</string>
+    <string name="Driver_Attitudes">Driver Attitudes</string>
     <string-array name="spinnerItems">
         <item name="red1">Red 1</item>
         <item name="red2">Red 2</item>

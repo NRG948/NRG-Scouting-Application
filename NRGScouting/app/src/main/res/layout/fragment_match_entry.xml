@@ -157,18 +157,6 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200px"
-        android:layout_marginTop="700px"
-
-        android:backgroundTint="@color/colorAccent"
-        android:text="Save"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,4 +175,16 @@
         android:ems="6"
         android:hint="Team number"
         android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200px"
+        android:layout_marginTop="700px"
+
+        android:backgroundTint="@color/colorAccent"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 </FrameLayout>
