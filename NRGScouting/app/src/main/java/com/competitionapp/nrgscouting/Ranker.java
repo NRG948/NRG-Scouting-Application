@@ -57,11 +57,11 @@ public class Ranker {
                 ((team.totalBallsScoredBlue3Auto/team.expectedTotalBallsScoredAuto[5])*ballsScoredWeightAuto[5])+
                 ((team.totalCrossesBaseLineMatches/team.totalMatchesPlayedInAllPositions)*crossedBaseLineWeight)+
                 ((team.totalGearsOnHookAutoMatchesRed1/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[0])+
-                ((team.totalGearsOnHookAutoMatchesRed2/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[1])+
-                ((team.totalGearsOnHookAutoMatchesRed3/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[2])+
-                ((team.totalGearsOnHookAutoMatchesBlue1/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[3])+
-                ((team.totalGearsOnHookAutoMatchesBlue2/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[4])+
-                ((team.totalGearsOnHookAutoMatchesBlue3/team.totalMatchesPlayedInRed1)*gearsOnHookWeightAuto[5])+
+                ((team.totalGearsOnHookAutoMatchesRed2/team.totalMatchesPlayedInRed2)*gearsOnHookWeightAuto[1])+
+                ((team.totalGearsOnHookAutoMatchesRed3/team.totalMatchesPlayedInRed3)*gearsOnHookWeightAuto[2])+
+                ((team.totalGearsOnHookAutoMatchesBlue1/team.totalMatchesPlayedInBlue1)*gearsOnHookWeightAuto[3])+
+                ((team.totalGearsOnHookAutoMatchesBlue2/team.totalMatchesPlayedInBlue2)*gearsOnHookWeightAuto[4])+
+                ((team.totalGearsOnHookAutoMatchesBlue3/team.totalMatchesPlayedInBlue3)*gearsOnHookWeightAuto[5])+
                 ((team.totalDeathsAutoMatches/team.totalMatchesPlayedInAllPositions)*totalDeathsWeightAuto);
     }
     public double teleopScore(Team team){

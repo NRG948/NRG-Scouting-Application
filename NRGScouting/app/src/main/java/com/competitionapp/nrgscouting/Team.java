@@ -5,7 +5,6 @@ package com.competitionapp.nrgscouting;
  */
 
 public class Team {
-    int maxTotalPointsPossiblePerMatch;
     String name;
     int totalMatchesPlayedInAllPositions;
     int totalMatchesPlayedInRed1;

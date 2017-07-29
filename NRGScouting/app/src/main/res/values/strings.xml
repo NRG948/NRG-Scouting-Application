@@ -8,4 +8,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="spinnerItems">
+        <item name="red1">Red 1</item>
+        <item name="red2">Red 2</item>
+        <item name="red3">Red 3</item>
+        <item name="blue1">Blue 1</item>
+        <item name="blue2">Blue 2</item>
+        <item name="blue3">Blue 3</item>
+    </string-array>
 </resources>
