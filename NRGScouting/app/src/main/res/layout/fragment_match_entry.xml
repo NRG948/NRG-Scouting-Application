@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="8"
-                android:hint="Total gears retrieved"
+                android:hint="Auto: # Gears"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -88,7 +88,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:ems="7"
-               android:hint="Total balls shot"
+               android:hint="Auto: # Balls"
                android:inputType="numberDecimal"
                android:textColor="@color/colorPrimaryDark" />
 
@@ -124,7 +124,7 @@
                 android:ems="8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Auto total balls shot"
+                android:hint="Tele-Op: # Gears"
                 android:inputType="numberDecimal"
                 />
 
@@ -158,7 +158,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Total gears retrieved"
+                android:hint="Tele-Op: # Balls"
                 android:inputType="numberDecimal"
                 android:ems="8"/>
             <Button
