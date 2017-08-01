@@ -232,10 +232,10 @@
         </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner1"
         android:layout_width="200px"
         android:layout_height="80px"
         android:layout_marginTop="80px"
@@ -250,7 +250,7 @@
         android:text="Auto"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
-<EditText
+    <EditText
         android:id="@+id/ballsScored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
         android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/plus"
+        android:id="@+id/plusBS"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginLeft="250px"
@@ -273,7 +273,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/minus"
+        android:id="@+id/minusBS"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginLeft="560px"
@@ -285,7 +285,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/totalBallsShot"
+        android:id="@+id/TeleOPtotalBallsShot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="90px"
@@ -294,9 +294,9 @@
         android:hint="Total balls shot"
         android:inputType="numberDecimal"
         android:textColor="@color/colorPrimaryDark" />
-
+//TTBS=teleop total balls shot
     <Button
-        android:id="@+id/plus1"
+        android:id="@+id/plus1TTBS"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginTop="250px"
@@ -306,7 +306,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/minus1"
+        android:id="@+id/minus1TTBS"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginLeft="395px"
@@ -318,7 +318,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/gearsRetrieved"
+        android:id="@+id/gearsRetrieved1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="90px"
@@ -329,7 +329,7 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
-        android:id="@+id/plus2"
+        android:id="@+id/plus2GR"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginTop="360px"
@@ -339,7 +339,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/minus2"
+        android:id="@+id/minus2GR"
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginLeft="395px"
@@ -351,7 +351,7 @@
         android:textStyle="bold" />
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkBoxClimbsRope"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="450px"
@@ -361,7 +361,7 @@
         android:textSize="16sp" />
 
     <RatingBar
-        android:id="@+id/sportsManShip"
+        android:id="@+id/sportsManShipStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="520px"
@@ -376,7 +376,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="400px"
@@ -396,7 +396,7 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200px"
@@ -406,4 +406,5 @@
         android:text="Save"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
-    />
+
+</ScrollView>
