@@ -1,31 +1,7 @@
-/**
- * THIS CLASS WILL NOT BE USED AS WE HAVE DECIDED TO SWITCH TO ACTIVITIES INSTEAD OF FRAGMENTS
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package com.competitionapp.nrgscouting;
 
-
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,25 +10,18 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MatchEntry extends Fragment {
+//REPLACEMENT OF MATCHENTRY CLASS
+public class MatchScoutingEntry extends AppCompatActivity {
     private EditText editText, editText1, editText2, editText3, editText4;
     private Button button, button1, button2, button3, button4, button5, button6, button7;
     private Spinner spinner;
     private CheckBox checkBox1, checkBox2, checkBox3;
     private RatingBar ratingBar;
 
-// hi dudes
-    public MatchEntry() {
+    // hi dudes
+    public MatchScoutingEntry() {
         // Required empty public constructor
     }
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -60,4 +29,3 @@ public class MatchEntry extends Fragment {
     }
 
 }
-//sup dudes

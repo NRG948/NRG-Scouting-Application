@@ -1,3 +1,6 @@
+/**
+ * THIS CLASS WILL NOT BE USED AS WE HAVE DECIDED TO SWITCH TO ACTIVITIES INSTEAD OF FRAGMENTS
+ */
 package com.competitionapp.nrgscouting;
 
 import android.os.Bundle;

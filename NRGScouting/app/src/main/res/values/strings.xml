@@ -19,4 +19,5 @@
         <item name="blue2">Blue 2</item>
         <item name="blue3">Blue 3</item>
     </string-array>
+    <string name="title_activity_match">MatchActivity</string>
 </resources>
