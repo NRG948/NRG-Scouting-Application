@@ -3,6 +3,7 @@
  */
 package com.competitionapp.nrgscouting;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -18,9 +19,9 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class MatchFragment extends Fragment {
-
+    Context c;
     ListView lv;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter1;
     String[] entries = {"NRG entry", "Titans entry", "Totem Robotics entry"};
 
     public MatchFragment() {
@@ -34,11 +35,11 @@ public class MatchFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_match, container, false);
 
         //List and Search view initializations
-        lv= (ListView)rootView.findViewById(R.id.teams_list);
+        lv= (ListView)rootView.findViewById(R.id.teams);
 
         //ListView set up
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, entries);
-        lv.setAdapter(adapter);
+        adapter1 = new ArrayAdapter<String>(c, android.R.layout.simple_list_item_1, entries);
+        lv.setAdapter(adapter1);
 
 
         return rootView;
