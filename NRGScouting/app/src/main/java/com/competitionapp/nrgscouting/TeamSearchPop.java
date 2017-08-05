@@ -14,7 +14,7 @@ public class TeamSearchPop extends Activity {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
-    String[] teams = {"948", "492", "6905969", "Nipun is Awesome", "Acchin is awesome", "Valliappan is awesome", "Peyton is Awesome", "Nelson is Awesome", "Adam is Awesome", "Justin - I don't know"};
+    String[] teams = {"948", "492", "6905969"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

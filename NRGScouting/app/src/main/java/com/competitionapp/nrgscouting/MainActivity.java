@@ -88,22 +88,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_match) {
-            MatchFragment matFragment = new MatchFragment();
+            MatchFragment matchFragment = new MatchFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, matFragment);
+            fragmentTransaction.replace(R.id.fragment_container, matchFragment);
             fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-        } else if (id == R.id.nav_pit) {
+        } /*else if (id == R.id.nav_pit) {
             PitFragment pitFragment = new PitFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, pitFragment);
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-        } else if (id == R.id.nav_spec) {
+            setSupportActionBar(toolbar);*/
+        /*} else if (id == R.id.nav_spec) {
             SpecFragment specfragment = new SpecFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-        } else if (id == R.id.nav_rank) {
+        }*/ else if (id == R.id.nav_rank) {
             Ranking rankfragment = new Ranking();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
