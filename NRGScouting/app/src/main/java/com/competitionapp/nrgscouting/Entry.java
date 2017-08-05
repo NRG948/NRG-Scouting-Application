@@ -6,22 +6,26 @@ import java.io.PrintStream;
 
 /**
  * Created by valli on 8/2/17.
+ * Represents a Entry that can be written to the memory card
  */
 
 public class Entry {
+    enum Position{RED1,RED2,RED3,BLUE1,BLUE2,BLUE3};
+    Position position;
     String teamName;
     int matchNumber;
     int gearsRetrieved;
     int ballsShot;
     int autoGearsRetrieved;
     int autoBallsShot;
-    int rating;
+    double rating;
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
     public void writeEntry(File entries) throws FileNotFoundException {
         PrintStream printStream=new PrintStream(entries);
         printStream.print("match:"+matchNumber+"\t");
+        printStream.print("position:"+position);
         printStream.print("gearsRet:"+gearsRetrieved+"\t");
         printStream.print("autoGearsRet:"+autoGearsRetrieved+"\t");
         printStream.print("ballsShot:"+ballsShot+"\t");
@@ -31,9 +35,9 @@ public class Entry {
         printStream.print("crossedBaseline:"+crossedBaseline+"\t");
         printStream.print("climbsRope:"+climbsRope+"\t");
         printStream.print("name:"+teamName+"\t");
-        printStream.println();
+        printStream.println();//One entry per line
     }
-    public Entry(String name,int match,int gears,int balls,int autoG,int autoB,int rating,boolean death,boolean crossedBaseline,boolean rope){
+    public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope){
         matchNumber=match;
         ballsShot=balls;
         gearsRetrieved=gears;
@@ -44,6 +48,7 @@ public class Entry {
         this.crossedBaseline=crossedBaseline;
         climbsRope=rope;
         teamName=name;
+        position=pos;
     }
     public Entry(){
 

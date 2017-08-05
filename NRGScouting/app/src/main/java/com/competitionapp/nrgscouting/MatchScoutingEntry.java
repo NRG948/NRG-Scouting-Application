@@ -17,11 +17,20 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 //REPLACEMENT OF MATCHENTRY CLASS
 public class MatchScoutingEntry extends AppCompatActivity {
-    private EditText editText, editText1, editText2, editText3, editText4;
-    private Button button, button1, button2, button3, button4, button5, button6, button7;
-    private Spinner spinner;
-    private CheckBox checkBox1, checkBox2, checkBox3;
-    private RatingBar ratingBar;
+    private EditText matchNumber=(EditText)(findViewById(R.id.matchNumber));
+    private Spinner position=(Spinner)(findViewById(R.id.teamPosition));
+    private Button plusGears=(Button)(findViewById(R.id.plusGears));
+    private Button minusGears=(Button)(findViewById(R.id.minusGears));
+    private EditText gears=(EditText)(findViewById(R.id.gearsRetrieved));
+    private EditText balls=(EditText)(findViewById(R.id.totalBallsScored));
+    private Button plusBalls=(Button)(findViewById(R.id.plusBallsScored));
+    private Button minusBalls=(Button)(findViewById(R.id.minusBallsScored));
+    private RatingBar rating=(RatingBar)(findViewById(R.id.sportsmanship));
+    private CheckBox death=(CheckBox)(findViewById((R.id.death)));
+    private CheckBox baseline=(CheckBox)(findViewById(R.id.baseline));
+    private CheckBox ropeClimb=(CheckBox)(findViewById((R.id.ropeClimb)));
+    private Button save=(Button)(findViewById(R.id.save));
+    private Button back=(Button)(findViewById(R.id.back));
     private ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     // hi dudes
     public MatchScoutingEntry() {

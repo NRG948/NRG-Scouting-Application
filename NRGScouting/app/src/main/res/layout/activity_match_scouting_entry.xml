@@ -173,6 +173,7 @@
 
         <CheckBox
             android:layout_width="match_parent"
+            android:id="@+id/death"
             android:layout_height="wrap_content"
             android:text="Death"
             android:textSize="16sp"
@@ -183,6 +184,7 @@
 
         <CheckBox
             android:text="Crossed baseline"
+            android:id="@+id/baseline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
@@ -190,7 +192,7 @@
             />
 
         <CheckBox
-            android:id="@+id/checkBox1"
+            android:id="@+id/ropeClimb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
