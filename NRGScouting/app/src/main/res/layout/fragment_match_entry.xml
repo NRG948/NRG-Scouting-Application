@@ -229,7 +229,7 @@
         </LinearLayout>
     </LinearLayout>
 
-<<<<<<< HEAD
+
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="200px"
@@ -405,6 +405,3 @@
 
 </ScrollView>
 
-=======
-</ScrollView>
->>>>>>> origin/master
