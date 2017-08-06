@@ -226,7 +226,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Technical Support Specialists:"
+            android:text="Technical Support Specialist:"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -234,17 +234,7 @@
             android:layout_marginTop="5dp"
 
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Timmy Yip"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:gravity="center"
 
-            android:layout_margin="0dp"
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -254,7 +244,7 @@
             android:textAlignment="center"
             android:gravity="center"
 
-            android:layout_margin="0dp"
+            android:layout_margin="5dp"
             />
 
         <TextView
