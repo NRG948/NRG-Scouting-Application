@@ -111,15 +111,8 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-        }*/ else if (id == R.id.nav_rank) {
-            Ranking rankfragment = new Ranking();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, rankfragment);
-            fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-        } else if (id == R.id.nav_about) {
+        }*/
+         else if (id == R.id.nav_about) {
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
