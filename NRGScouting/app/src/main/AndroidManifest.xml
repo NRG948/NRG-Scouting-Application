@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".TeamSearchPop"></activity>
-        <activity android:name=".MatchScoutingEntry" />
     </application>
 
 </manifest>
