@@ -1,7 +1,8 @@
 package com.competitionapp.nrgscouting;
-
+import java.io.File;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchActivity extends MainActivity {
@@ -22,10 +24,17 @@ public class MatchActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match);
-
-        listView = (ListView)findViewById(R.id.list_team);
         teamAdapter = new ArrayAdapter<String>(MatchActivity.this, android.R.layout.simple_list_item_1, matchTeams);
+        setContentView(R.layout.activity_match);
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File externalStoreDir = Environment.getExternalStorageDirectory();
+            File entries = new File(externalStoreDir,"Entries.txt");
+            ArrayList<Entry> list=MatchEntry.getAllEntriesInFileIntoObjectForm(entries);
+            for(Entry a:list){
+                teamAdapter.add("Match:"+a.matchNumber+"   Team:"+a.teamName);
+            }
+        }
+        listView = (ListView)findViewById(R.id.list_team);
         listView.setAdapter(teamAdapter);
     }
 }

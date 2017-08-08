@@ -35,7 +35,7 @@ public class MatchEntry extends Fragment {
     private CheckBox baseline=(CheckBox)(getView().findViewById(R.id.baseline));
     private CheckBox ropeClimb=(CheckBox)(getView().findViewById((R.id.ropeClimb)));
     private EditText teamName=(EditText)(getView().findViewById(R.id.team));
-    private ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
+    private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     public MatchEntry() {
         // Required empty public constructor
     }
@@ -65,7 +65,7 @@ public class MatchEntry extends Fragment {
             //Inform the user that there is no SD card or is undetected
         }
     }
-    public void getAllEntriesInFileIntoObjectForm(File entries){
+    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
         Scanner fileScanner;
         try{
             String fileText="";
@@ -101,6 +101,7 @@ public class MatchEntry extends Fragment {
                 //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
                 listOfEntriesInFile.add(newEntry);
             }
+            return listOfEntriesInFile;
         }
         catch(FileNotFoundException e) {
             System.out.println("The file does not exist");
