@@ -17,7 +17,7 @@ import java.util.List;
 public class MatchActivity extends MainActivity {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
-    String[] matchTeams = {"948", "492", "6905969"};
+    String[] matchTeams = {"948", "492",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
