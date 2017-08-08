@@ -106,6 +106,7 @@ public class MatchEntry extends Fragment {
         catch(FileNotFoundException e) {
             System.out.println("The file does not exist");
         }
+        return null;
     }
     public Entry.Position getPosition(int row){
         if(row == 0)
