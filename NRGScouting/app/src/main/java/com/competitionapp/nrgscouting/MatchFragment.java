@@ -38,17 +38,16 @@ public class MatchFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_match, container, false);
 
-        //List and Search view initializations
+        //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
 
         //ListView set up
-        super.onCreate(savedInstanceState);
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             File externalStoreDir = Environment.getExternalStorageDirectory();
             File entries = new File(externalStoreDir,"Entries.txt");
             ArrayList<Entry> list=MatchEntry.getAllEntriesInFileIntoObjectForm(entries);
             matchTeams=new String[list.size()];
-            teamAdapter = new ArrayAdapter<String>(MatchFragment.this, android.R.layout.simple_list_item_1, matchTeams);
+            teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
             for(int i=0;i<=matchTeams.length;i++){
                 matchTeams[i]="Match:"+list.get(i).matchNumber+"   Team:"+list.get(i).teamName;
             }
@@ -56,7 +55,6 @@ public class MatchFragment extends Fragment {
         else{
             System.out.println("File not found...");
         }
-        listView = (ListView)findViewById(R.id.list_team);
         listView.setAdapter(teamAdapter);
 
 
