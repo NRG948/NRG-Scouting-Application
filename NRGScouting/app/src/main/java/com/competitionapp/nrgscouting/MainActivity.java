@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            fab.show();
         } /*else if (id == R.id.nav_pit) {
             PitFragment pitFragment = new PitFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
