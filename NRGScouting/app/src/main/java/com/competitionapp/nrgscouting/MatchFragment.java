@@ -60,6 +60,4 @@ public class MatchFragment extends Fragment {
 
         return rootView;
     }
-
-
 }

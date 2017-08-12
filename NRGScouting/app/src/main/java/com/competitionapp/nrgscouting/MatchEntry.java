@@ -65,7 +65,7 @@ public class MatchEntry extends Fragment {
             //Inform the user that there is no SD card or is undetected
         //}
     //}
-    //public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
+    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
       //  Scanner fileScanner;
         //try{
           //  String fileText="";
@@ -107,8 +107,8 @@ public class MatchEntry extends Fragment {
           //  System.out.println("The file does not exist");
         //}
 
-        //return null;
-    //}
+        return null;
+    }
     //public Entry.Position getPosition(int row){
       //  if(row == 0)
         //    return Entry.Position.RED1;
