@@ -133,7 +133,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tejas Rangole"
+            android:text="Sourish Murthy"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -190,7 +190,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sourish Murthy"
+            android:text="Tejas Rangole"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
