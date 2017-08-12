@@ -10,7 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-
+import android.widget.Toast;
+import android.app.FragmentManager;
 import static com.competitionapp.nrgscouting.R.id.toolbar;
 
 /**
@@ -34,14 +35,19 @@ public class TeamSearchPop extends Activity {
 
         adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MatchEntry matchEntry = new MatchEntry();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction().add(R.id.fragment_container,matchEntry);
-            }
-        });
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                                            long id) {
+                        Toast.makeText(TeamSearchPop.this, "Its working...",
+                                Toast.LENGTH_LONG).show();
+                        MatchEntry fr = new MatchEntry();
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.matchEntry, fr);
+                        fragmentTransaction.commit();
+                    }
+                });
 
         //SearchView set up
         sv.setQueryHint("Search...");
