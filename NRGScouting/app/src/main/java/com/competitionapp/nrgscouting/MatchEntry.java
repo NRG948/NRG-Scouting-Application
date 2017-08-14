@@ -39,6 +39,13 @@ public class MatchEntry extends Fragment {
     public MatchEntry() {
         // Required empty public constructor
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_match_entry, container, false);
+    }
     //public void saveEntry(View view){
         //Check if the device has an external storage
         //media mounted is the state that indicates that there is a memory card that is detected
@@ -122,12 +129,6 @@ public class MatchEntry extends Fragment {
           //  return Entry.Position.BLUE2;
         //return Entry.Position.BLUE3;
     //}
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match_entry, container, false);
-    }
 
 }
 //nipun get back to work.

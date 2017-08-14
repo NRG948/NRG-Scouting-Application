@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,13 +13,15 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 import android.app.FragmentManager;
+
+import static com.competitionapp.nrgscouting.R.id.matchEntry;
 import static com.competitionapp.nrgscouting.R.id.toolbar;
 
 /**
  * Created by nipunchhajed on 7/22/17.
  */
 
-public class TeamSearchPop extends Activity {
+public class TeamSearchPop extends AppCompatActivity {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
@@ -37,14 +40,11 @@ public class TeamSearchPop extends Activity {
         lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position,
-                                            long id) {
-                        Toast.makeText(TeamSearchPop.this, "Its working...",
-                                Toast.LENGTH_LONG).show();
-                        MatchEntry fr = new MatchEntry();
-                        FragmentManager fm = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                        fragmentTransaction.replace(R.id.matchEntry, fr);
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        MatchEntry matchEntry = new MatchEntry();
+                        FragmentTransaction fragmentTransaction =
+                                getFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.special_container, matchEntry);
                         fragmentTransaction.commit();
                     }
                 });
