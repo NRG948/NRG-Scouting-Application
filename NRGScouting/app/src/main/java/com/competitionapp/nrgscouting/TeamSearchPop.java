@@ -1,22 +1,14 @@
 package com.competitionapp.nrgscouting;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.Toast;
-import android.app.FragmentManager;
 
-import static com.competitionapp.nrgscouting.R.id.matchEntry;
-import static com.competitionapp.nrgscouting.R.id.toolbar;
 
 /**
  * Created by nipunchhajed NO on 7/22/17.
