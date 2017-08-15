@@ -30,6 +30,7 @@ public class MatchFragment extends Fragment {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams={"98","948"};
+    public static FloatingActionButton fab;
 
     public MatchFragment() {
         // Required empty public constructor
@@ -43,6 +44,15 @@ public class MatchFragment extends Fragment {
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
+        fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity().getApplicationContext(), TeamSearchPop.class));
+            }
+        });
+
 
 
         //Memory card code
