@@ -1,13 +1,17 @@
 package com.competitionapp.nrgscouting;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import static com.competitionapp.nrgscouting.R.id.fab;
 
 
 /**
@@ -17,6 +21,7 @@ public class SpecialistFragment extends Fragment {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams={"98","948"};
+    public FloatingActionButton fab1;
 
     public SpecialistFragment() {
         // Required empty public constructor
@@ -29,8 +34,14 @@ public class SpecialistFragment extends Fragment {
 
             //List initializations
             listView = (ListView)rootView.findViewById(R.id.teams);
+            //fab1 = (FloatingActionButton) getActivity().findViewById(R.id.fab1);
 
-
+            //fab1.setOnClickListener(new View.OnClickListener() {
+               // @Override
+                //public void onClick(View view) {
+                    //startActivity(new Intent(getActivity().getApplicationContext(), TeamSearchPopSpec.class));
+               // }
+            //});
             //Memory card code
             //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //File externalStoreDir = Environment.getExternalStorageDirectory();
