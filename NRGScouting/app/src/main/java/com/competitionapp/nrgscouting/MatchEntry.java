@@ -12,7 +12,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-
+import android.widget.Button;
+import android.widget.Toast;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,17 +25,18 @@ import java.util.Scanner;
  * A simple {@link Fragment} subclass.
  */
 public class MatchEntry extends Fragment {
-    private EditText matchNumber=(EditText)(getView().findViewById(R.id.matchNumber));
-    private Spinner position=(Spinner)(getView().findViewById(R.id.teamPosition));
-    private EditText gears=(EditText)(getView().findViewById(R.id.gearsRetrieved));
-    private EditText balls=(EditText)(getView().findViewById(R.id.ballsShot));
-    private EditText autoGears=(EditText)(getView().findViewById(R.id.autoGearsRetrieved));
-    private EditText autoBalls=(EditText)(getView().findViewById(R.id.autoBallsShot));
-    private RatingBar rating=(RatingBar)(getView().findViewById(R.id.sportsmanship));
-    private CheckBox death=(CheckBox)(getView().findViewById((R.id.death)));
-    private CheckBox baseline=(CheckBox)(getView().findViewById(R.id.baseline));
-    private CheckBox ropeClimb=(CheckBox)(getView().findViewById((R.id.ropeClimb)));
+    private EditText matchNumber;
+    private Spinner position;
+    private EditText gears;
+    private EditText balls;
+    private EditText autoGears;
+    private EditText autoBalls;
+    private RatingBar rating;
+    private CheckBox death;
+    private CheckBox baseline;
+    private CheckBox ropeClimb;
     private String teamName="";
+    private Button save;
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     public MatchEntry() {
         // Required empty public constructor
@@ -44,14 +46,14 @@ public class MatchEntry extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-    public void saveEntry(View view) throws IOException{
+    public void saveEntry() throws IOException{
         //Check if the device has an external storage
         //media mounted is the state that indicates that there is a memory card that is detected
+        Toast.makeText(getActivity(), "It works...I guess",
+                Toast.LENGTH_LONG).show();
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            //Get the external storage directory
             File externalStoreDir=Environment.getExternalStorageDirectory();
             if(new File(externalStoreDir,"Entries.txt").exists()) {
                 getAllEntriesInFileIntoObjectForm(new File(externalStoreDir, "Entries.txt"));//loading entry into the array list
@@ -143,4 +145,30 @@ public class MatchEntry extends Fragment {
         return Entry.Position.BLUE3;
     }
 
+    @Override
+    public void onStart() {
+        matchNumber=(EditText)(getView().findViewById(R.id.matchNumber));
+        position=(Spinner)(getView().findViewById(R.id.teamPosition));
+        gears=(EditText)(getView().findViewById(R.id.gearsRetrieved));
+        balls=(EditText)(getView().findViewById(R.id.ballsShot));
+        autoGears=(EditText)(getView().findViewById(R.id.autoGearsRetrieved));
+        autoBalls=(EditText)(getView().findViewById(R.id.autoBallsShot));
+        ropeClimb=(CheckBox)(getView().findViewById((R.id.ropeClimb)));
+        baseline=(CheckBox)(getView().findViewById(R.id.baseline));
+        death=(CheckBox)(getView().findViewById((R.id.death)));
+        rating=(RatingBar)(getView().findViewById(R.id.sportsmanship));
+        save=(Button)(getView().findViewById(R.id.save));
+        save.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                try {
+                    saveEntry();
+
+                }
+                catch (IOException e){
+                    //Just crash and do nothing
+                }
+            }
+        });
+        super.onStart();
+    }
 }

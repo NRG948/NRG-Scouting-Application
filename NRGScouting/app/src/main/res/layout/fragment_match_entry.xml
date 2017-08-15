@@ -238,7 +238,8 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:text="Save"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:onClick="saveEntry"/>
+            android:clickable="true"
+            android:onClick="s"/>
 
         <Button
             android:id="@+id/back"
