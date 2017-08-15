@@ -5,7 +5,11 @@
         <item
             android:id="@+id/nav_match"
             android:icon="@drawable/ic_assignment"
-            android:title="Scouting" />
+            android:title="Match Scouting" />
+        <item
+            android:id="@+id/nav_spec"
+            android:icon="@drawable/ic_assignment"
+            android:title="Specialist Scouting" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"
