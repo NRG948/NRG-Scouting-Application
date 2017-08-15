@@ -23,17 +23,6 @@
         android:entries="@array/spinnerItems"
         />
 
-    <!--
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/Pilot_Foul"
-        android:layout_marginTop="15dp"
-        />
-    -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,7 +104,7 @@
         android:stepSize="0.5" />
 
 
-    <LinearLayout
+    <LinearLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -174,13 +163,6 @@
         android:ems="10"
         android:hint="Comments"
         android:inputType="textPersonName" />
-=======
-        android:layout_height="wrap_content"
-        android:text="Auto Gear Retrieval"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        />
     <EditText
         android:id="@+id/CommentsAboutAuto"
         android:layout_width="wrap_content"
@@ -189,18 +171,12 @@
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimaryDark"
         android:text="Comments" />
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Time to Rope Drop" />
-=======
-        android:text="Time to Rope Drop:"
-        android:layout_marginTop="15dp"
-        android:textSize="16sp" />
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -224,8 +200,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1">
-=======
-        android:orientation="horizontal">
         <Button
             android:id="@+id/StartButton"
             android:layout_width="wrap_content"
@@ -243,7 +217,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_height="wrap_content" />
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
+
 
         <Button
             android:id="@+id/Start_Button"
@@ -253,13 +227,6 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="0dp"
             android:text="Start" />
-=======
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Stop" />
-
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
         <Button
             android:id="@+id/Puase_Button"
@@ -275,7 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:text="Reset" />
-=======
+
     <EditText
         android:id="@+id/editText4"
         android:layout_width="match_parent"
