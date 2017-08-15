@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 import android.app.FragmentManager;
@@ -18,7 +19,7 @@ import static com.competitionapp.nrgscouting.R.id.matchEntry;
 import static com.competitionapp.nrgscouting.R.id.toolbar;
 
 /**
- * Created by nipunchhajed on 7/22/17.
+ * Created by nipunchhajed NO on 7/22/17.
  */
 
 public class TeamSearchPop extends AppCompatActivity {
@@ -26,7 +27,6 @@ public class TeamSearchPop extends AppCompatActivity {
     SearchView sv;
     ArrayAdapter<String> adapter;
     String[] teams = {"948", "492", "6905969"};
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class TeamSearchPop extends AppCompatActivity {
         lv = (ListView)findViewById(R.id.teams_list);
         sv = (SearchView)findViewById(R.id.searchView);
 
+
         adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,8 +45,10 @@ public class TeamSearchPop extends AppCompatActivity {
                         MatchEntry matchEntry = new MatchEntry();
                         FragmentTransaction fragmentTransaction =
                                 getFragmentManager().beginTransaction();
-                        fragmentTransaction.add(R.id.special_container, matchEntry);
+                        fragmentTransaction.replace(R.id.special_container, matchEntry);
                         fragmentTransaction.commit();
+                        lv.setVisibility(View.GONE);
+                        sv.setVisibility(View.GONE);
                     }
                 });
 
