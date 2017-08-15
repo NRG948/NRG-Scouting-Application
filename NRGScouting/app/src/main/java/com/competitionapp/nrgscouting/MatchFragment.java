@@ -39,7 +39,7 @@ public class MatchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_match, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_specialist, container, false);
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);

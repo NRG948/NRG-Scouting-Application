@@ -95,8 +95,7 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.show();
-        }
-         else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_about) {
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -105,6 +104,15 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.hide();
+        } else if(id == R.id.nav_spec) {
+            SpecialistFragment specFragment = new SpecialistFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, specFragment);
+            fragmentTransaction.commit();
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            fab.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
