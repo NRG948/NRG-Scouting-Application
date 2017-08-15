@@ -23,9 +23,7 @@ public class SpecialistEntry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mStartButton = (Button) getView().findViewById (R.id.Start_Button);
         mPuaseButton = (Button) getView().findViewById (R.id.Puase_Button);
-        mResetButton = (Button) getView().findViewById (R.id.Start_Button);
         mchronometer = (Chronometer) getView().findViewById(R.id.chronometer3);
 
         mStartButton.setOnClickListener(new View.OnClickListener(){
