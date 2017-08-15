@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Backup Captain of I.T."
+            android:text="Backup Captain of Information Technology"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -122,7 +122,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nelson Fang"
+            android:text="Woo Young Kim"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -190,7 +190,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tejas Rangole"
+            android:text="Nelson Fang"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -226,7 +226,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Technical Support Specialist:"
+            android:text="Technical Support Specialists:"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -244,7 +244,19 @@
             android:textAlignment="center"
             android:gravity="center"
 
-            android:layout_margin="5dp"
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tejas Rangole"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
             />
 
         <TextView

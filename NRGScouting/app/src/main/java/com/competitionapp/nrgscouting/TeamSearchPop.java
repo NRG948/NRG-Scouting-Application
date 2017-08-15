@@ -1,30 +1,24 @@
 package com.competitionapp.nrgscouting;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
-import android.app.FragmentManager;
 
-import static com.competitionapp.nrgscouting.R.id.matchEntry;
-import static com.competitionapp.nrgscouting.R.id.toolbar;
 
 /**
- * Created by nipunchhajed on 7/22/17.
+ * Created by nipunchhajed NO on 7/22/17.
  */
 
 public class TeamSearchPop extends AppCompatActivity {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
+<<<<<<< HEAD
     String[] teams = {"360 - The Revolution", "488 - Team XBot", "492 - Titan Robotics Club", "568 - Nerds of the North",
             "753 - High Desert Droids", "847 - PHRED", "948 - NRG (Newport Robotics Group)", "949 - Wolverine Robotics",
             "955 - CV Robotics", "957 - SWARM", "997 - Spartan Robotics", "1258 - SeaBot", "1294 - Top Gun", "1318 - Issaquah Robotics Society",
@@ -61,6 +55,9 @@ public class TeamSearchPop extends AppCompatActivity {
             "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics"};
 
     Toolbar toolbar;
+=======
+    String[] teams = {"948", "492", "6905969"};
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +67,7 @@ public class TeamSearchPop extends AppCompatActivity {
         lv = (ListView)findViewById(R.id.teams_list);
         sv = (SearchView)findViewById(R.id.searchView);
 
+
         adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,8 +76,10 @@ public class TeamSearchPop extends AppCompatActivity {
                         MatchEntry matchEntry = new MatchEntry();
                         FragmentTransaction fragmentTransaction =
                                 getFragmentManager().beginTransaction();
-                        fragmentTransaction.add(R.id.special_container, matchEntry);
+                        fragmentTransaction.replace(R.id.special_container, matchEntry);
                         fragmentTransaction.commit();
+                        lv.setVisibility(View.GONE);
+                        sv.setVisibility(View.GONE);
                     }
                 });
 
