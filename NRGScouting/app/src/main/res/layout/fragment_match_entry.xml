@@ -11,7 +11,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     android:orientation="vertical"
     android:layout_marginLeft="10sp"
     >
-
     <EditText
         android:id="@+id/matchNumber"
         android:layout_width="wrap_content"
@@ -26,14 +25,11 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_height="wrap_content"
         android:entries="@array/spinnerItems"
         />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-
         <Button
             android:id="@+id/plusGears"
             android:layout_width="40dp"
@@ -65,7 +61,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-
             />
         </LinearLayout>
         <LinearLayout
@@ -73,7 +68,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-
             <Button
                 android:id="@+id/plusAutoGears"
                 android:layout_width="40dp"
@@ -243,7 +237,8 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:backgroundTint="@color/colorAccent"
             android:text="Save"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:onClick="saveEntry"/>
 
         <Button
             android:id="@+id/back"
