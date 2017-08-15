@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.competitionapp.nrgscouting.TeamSearchPop">
+    tools:context="com.competitionapp.nrgscouting.TeamSearchPop"
+    android:id="@+id/main_team">
+
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -15,14 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"/>
+
         <ListView
             android:id="@+id/teams_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/special_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent">
+    </FrameLayout>
+
 </RelativeLayout>
