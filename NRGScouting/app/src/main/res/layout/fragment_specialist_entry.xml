@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-<<<<<<< HEAD
+
         <CheckBox
             android:id="@+id/GearInAuto"
             android:layout_width="wrap_content"
@@ -105,10 +105,7 @@
             android:inputType="textPersonName"
             android:text="Gear auto commentary" />
     </LinearLayout>
-=======
-        android:textSize="16sp"
-        android:text="Gracious Professionalism:" />
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
+
 
     <RatingBar
         android:id="@+id/GraciousProfessionalismRatingBar"
@@ -117,9 +114,9 @@
         android:rating="0"
         android:stepSize="0.5" />
 
-<<<<<<< HEAD
+
     <LinearLayout
-=======
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -129,7 +126,6 @@
 
     <RatingBar
         android:id="@+id/ReliabilityRatingBar"
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="0"
@@ -174,7 +170,6 @@
     <CheckBox
         android:id="@+id/GearInAuto"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="62dp"
         android:ems="10"
         android:hint="Comments"
@@ -200,7 +195,6 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:text="Time to Rope Drop" />
 =======
         android:text="Time to Rope Drop:"
@@ -211,7 +205,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -256,7 +249,7 @@
             android:id="@+id/Start_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
+
             android:layout_marginLeft="80dp"
             android:layout_marginTop="0dp"
             android:text="Start" />
@@ -275,7 +268,7 @@
             android:text="Puase" />
     </LinearLayout>
 
-<<<<<<< HEAD
+
     <Button
         android:id="@+id/Reset_Button"
         android:layout_width="wrap_content"
@@ -320,5 +313,5 @@
 
     </LinearLayout>
 
->>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
+
 </LinearLayout>
