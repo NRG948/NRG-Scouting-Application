@@ -3,17 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginLeft="10sp"
     tools:context="com.competitionapp.nrgscouting.SpecialistEntry">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/specialistMatchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Match Number"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Spinner
+        android:id="@+id/specialistTeamPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems"
+        />
+
+    <!--
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Pilot_Foul" />
+        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/Pilot_Foul"
+        android:layout_marginTop="15dp"
+        />
+    -->
 
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -30,8 +52,7 @@
             android:id="@+id/NumberPilotFouls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="7"
-            android:hint="Number of Pilot Fouls"
+            android:hint="Pilot Fouls"
             android:inputType="numberDecimal"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -53,21 +74,23 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
         android:text="@string/Driver_Skill" />
 
     <RatingBar
         android:id="@+id/SkillOfDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rating="2.5"
+        android:rating="0"
         android:stepSize="0.5" />
 
-
-    <LinearLayout
-        android:layout_width="280dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
+<<<<<<< HEAD
         <CheckBox
             android:id="@+id/GearInAuto"
             android:layout_width="wrap_content"
@@ -82,74 +105,113 @@
             android:inputType="textPersonName"
             android:text="Gear auto commentary" />
     </LinearLayout>
+=======
+        android:textSize="16sp"
+        android:text="Gracious Professionalism:" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
+    <RatingBar
+        android:id="@+id/GraciousProfessionalismRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="0"
+        android:stepSize="0.5" />
+
+<<<<<<< HEAD
+    <LinearLayout
+=======
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Reliability" />
+
+    <RatingBar
+        android:id="@+id/ReliabilityRatingBar"
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="0"
+        android:stepSize="0.5" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Intentional Fouls" />
+            android:textSize="16sp"
+            android:text="Intentional Fouls: " />
 
         <EditText
             android:id="@+id/editText5"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
+            android:hint="0"
+            android:ems="5"
             android:inputType="number" />
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/Antagonism"
+    <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="antagonism" />
+        android:text="Antagonism:"
+        android:textSize="16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RatingBar
+        android:id="@+id/AntagonismRatingBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:rating="0"
+        android:stepSize="0.5" />
 
 
-        <CheckBox
-            android:id="@+id/GraciousProfessionalism"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Gracious Professionalism" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Reliability" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/editText4"
+    <CheckBox
+        android:id="@+id/GearInAuto"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="62dp"
         android:ems="10"
         android:hint="Comments"
         android:inputType="textPersonName" />
+=======
+        android:layout_height="wrap_content"
+        android:text="Auto Gear Retrieval"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/CommentsAboutAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Comments" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="Time to Rope Drop" />
+=======
+        android:text="Time to Rope Drop:"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -169,14 +231,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1">
+=======
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/StartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Start" />
+
+        <Chronometer
+            android:id="@+id/chronometer3"
+            android:layout_width="90dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
         <Button
             android:id="@+id/Start_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_marginLeft="80dp"
             android:layout_marginTop="0dp"
             android:text="Start" />
+=======
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Stop" />
+
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
         <Button
             android:id="@+id/Puase_Button"
@@ -185,10 +275,50 @@
             android:text="Puase" />
     </LinearLayout>
 
+<<<<<<< HEAD
     <Button
         android:id="@+id/Reset_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:text="Reset" />
+=======
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Additional Comments"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Save"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Back"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 </LinearLayout>
