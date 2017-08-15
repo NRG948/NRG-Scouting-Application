@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_match"
             android:icon="@drawable/ic_assignment"
-            android:title="NRG Scouting" />
+            android:title="Scouting" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"

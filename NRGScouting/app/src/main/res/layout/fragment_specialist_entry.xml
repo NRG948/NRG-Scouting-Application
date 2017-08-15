@@ -3,21 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="layout.specialist_entry">
+    tools:context="com.competitionapp.nrgscouting.SpecialistEntry">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Pilot_Skill" />
+        android:text="@string/Pilot_Foul" />
 
-    <RatingBar
-        android:id="@+id/SkillOfPilot"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:rating="2.5"
-        android:stepSize="0.5" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusPilotFouls"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/NumberPilotFouls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="7"
+            android:hint="Number of Pilot Fouls"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusPilotFouls"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -29,17 +60,28 @@
         android:layout_height="wrap_content"
         android:rating="2.5"
         android:stepSize="0.5" />
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="@string/Driver_Attitudes" />
-    <RatingBar
-        android:id="@+id/AttitudeOfDriver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:rating="2.5"
-        android:stepSize="0.5" />
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/GearInAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gear " />
+        <EditText
+            android:id="@+id/CommentsAboutAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Gear auto commentary" />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -96,6 +138,35 @@
         android:layout_height="120dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Comments" />
+        android:hint="Comments"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time to Rope Drop" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/StartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start" />
+
+        <Chronometer
+            android:id="@+id/chronometer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/StopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

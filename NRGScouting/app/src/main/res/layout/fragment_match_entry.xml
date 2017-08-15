@@ -1,133 +1,78 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/matchEntry"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.competitionapp.nrgscouting.MatchEntry">
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.competitionapp.nrgscouting.MatchEntry">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="10sp"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/matchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Match Number"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Spinner
+        android:id="@+id/teamPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems"
+        />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="10sp"
+        android:orientation="horizontal"
         >
 
-        <EditText
-            android:id="@+id/matchNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Match Number"
-            android:textColor="@color/colorPrimaryDark" />
-        <EditText
-            android:id="@+id/team"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Team"
-            android:ems="3"
-            android:inputType="numberDecimal"/>
-        <Spinner
-            android:id="@+id/teamPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/spinnerItems"
+        <Button
+            android:id="@+id/plusGears"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
             />
 
-        <CheckBox
-            android:id="@+id/autoCheckBox"
+        <EditText
+            android:id="@+id/gearsRetrieved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Auto"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
+            android:ems="8"
+            android:hint="Gears Retrieved"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
 
+        <Button
+            android:id="@+id/minusGears"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
 
-
+            />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-
-            <Button
-                android:id="@+id/plusGears"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <EditText
-                android:id="@+id/gearsRetrieved"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="8"
-                android:hint="Gears Retrieved"
-                android:inputType="numberDecimal"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <Button
-                android:id="@+id/minusGears"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-
-                />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/plusBallsShot"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/totalBallsShot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"
-                android:hint="Balls Shot"
-                android:inputType="numberDecimal"
-                android:textColor="@color/colorPrimaryDark" />
-
-
-            <Button
-                android:id="@+id/minusBallsShot"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/plusAutoGears"
@@ -136,17 +81,19 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="+"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
 
             <EditText
-                android:id="@+id/autoGears"
+                android:id="@+id/autoGearsRetrieved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="9"
+                android:ems="8"
                 android:hint="Auto gears retrieved"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorPrimaryDark" />
-
 
             <Button
                 android:id="@+id/minusAutoGears"
@@ -156,295 +103,158 @@
                 android:text="-"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_gravity="center"
 
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/plusAutoBallsShot"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/autoBalls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"
-                android:hint="Auto Balls Shot"
-                android:inputType="numberDecimal"
-                android:textColor="@color/colorPrimaryDark" />
-
-
-            <Button
-                android:id="@+id/minusAutoBallsShot"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sportsmanship Rating:"
-            android:textSize="16sp"
-            android:layout_marginTop="15dp"
-            android:textStyle="normal"
-            android:textColor="@color/colorPrimaryDark"
-            />
-
-        <RatingBar
-            android:id="@+id/sportsmanship"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rating="2.5"
-            android:stepSize="0.5" />
-
-        <CheckBox
-            android:layout_width="match_parent"
-            android:id="@+id/death"
-            android:layout_height="wrap_content"
-            android:text="Death"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
-            />
-
-
-
-        <CheckBox
-            android:text="Crossed baseline"
-            android:id="@+id/baseline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
-            />
-
-        <CheckBox
-            android:id="@+id/ropeClimb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Climbs rope"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:backgroundTint="@color/colorAccent"
-                android:text="Save"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:backgroundTint="@color/colorAccent"
-                android:text="Back"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+                />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="200px"
-        android:layout_height="80px"
-        android:layout_marginTop="80px"
-        android:entries="@array/spinnerItems"
+        <Button
+            android:id="@+id/plusBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/ballsShot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="7"
+            android:hint="Balls shot"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusAutoBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/autoBallsShot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="7"
+            android:hint="Auto Balls Shot"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusAutoBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sportsmanship Rating:"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"
+        android:textStyle="normal"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <RatingBar
+        android:id="@+id/sportsmanship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="2.5"
+        android:stepSize="0.5" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:id="@+id/death"
+        android:layout_height="wrap_content"
+        android:text="Death"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+
+
+    <CheckBox
+        android:text="Crossed baseline"
+        android:id="@+id/baseline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
         />
 
     <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
+        android:id="@+id/ropeClimb"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160px"
-        android:text="Auto"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp" />
-    <EditText
-        android:id="@+id/ballsScored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80px"
-        android:layout_marginLeft="340px"
-        android:ems="5"
-        android:hint="Balls shot"
-        android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/plusBS"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginLeft="250px"
-        android:layout_marginTop="80px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="+"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/minusBS"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginLeft="560px"
-        android:layout_marginTop="80px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="-"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/TeleOPtotalBallsShot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="90px"
-        android:layout_marginTop="250px"
-        android:ems="7"
-        android:hint="Total balls shot"
-        android:inputType="numberDecimal"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <Button
-        android:id="@+id/plus1TTBS"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginTop="250px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="+"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/minus1TTBS"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginLeft="395px"
-        android:layout_marginTop="250px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="-"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/gearsRetrieved1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="90px"
-        android:layout_marginTop="360px"
-        android:ems="7"
-        android:hint="Gears retrieved"
-        android:inputType="numberDecimal"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <Button
-        android:id="@+id/plus2GR"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginTop="360px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="+"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/minus2GR"
-        android:layout_width="90px"
-        android:layout_height="90px"
-        android:layout_marginLeft="395px"
-        android:layout_marginTop="360px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="-"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <CheckBox
-        android:id="@+id/checkBoxClimbsRope"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450px"
         android:checked="false"
         android:text="Climbs rope"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
-    <RatingBar
-        android:id="@+id/sportsManShipStars"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520px"
-        android:rating="2.5"
-        android:stepSize="0.5" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="640px"
-        android:text="Death"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Save"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="400px"
-        android:layout_marginTop="700px"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Back"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Back"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="460px"
-        android:ems="6"
-        android:hint="Team number"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200px"
-        android:layout_marginTop="700px"
-
-        android:backgroundTint="@color/colorAccent"
-        android:text="Save"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
+    </LinearLayout>
+</LinearLayout>
 </ScrollView>
-

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        
     }
 
     @Override
@@ -94,23 +95,7 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.show();
-        } /*else if (id == R.id.nav_pit) {
-            PitFragment pitFragment = new PitFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, pitFragment);
-            fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);*/
-        /*} else if (id == R.id.nav_spec) {
-            SpecFragment specfragment = new SpecFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, specfragment);
-            fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-        }*/
+        }
          else if (id == R.id.nav_about) {
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -126,6 +111,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }
