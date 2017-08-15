@@ -18,7 +18,6 @@ public class TeamSearchPop extends AppCompatActivity {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
-<<<<<<< HEAD
     String[] teams = {"360 - The Revolution", "488 - Team XBot", "492 - Titan Robotics Club", "568 - Nerds of the North",
             "753 - High Desert Droids", "847 - PHRED", "948 - NRG (Newport Robotics Group)", "949 - Wolverine Robotics",
             "955 - CV Robotics", "957 - SWARM", "997 - Spartan Robotics", "1258 - SeaBot", "1294 - Top Gun", "1318 - Issaquah Robotics Society",
@@ -53,11 +52,6 @@ public class TeamSearchPop extends AppCompatActivity {
             "6076 - Mustangs", "6129 - Shadle Park", "6343 - Steel Ridge Robotics", "6350 - The Enumclaw Hornets",
             "6437 - The Pacific Quakers", "6442 - Modern Americans", "6443 - Falcons", "6445 - CTEC Robotics",
             "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics"};
-
-    Toolbar toolbar;
-=======
-    String[] teams = {"948", "492", "6905969"};
->>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
