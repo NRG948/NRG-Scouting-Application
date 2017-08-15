@@ -90,8 +90,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+<<<<<<< HEAD
+        <CheckBox
+            android:id="@+id/GearInAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gear " />
+
+        <EditText
+            android:id="@+id/CommentsAboutAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Gear auto commentary" />
+    </LinearLayout>
+=======
         android:textSize="16sp"
         android:text="Gracious Professionalism:" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <RatingBar
         android:id="@+id/GraciousProfessionalismRatingBar"
@@ -100,6 +117,9 @@
         android:rating="0"
         android:stepSize="0.5" />
 
+<<<<<<< HEAD
+    <LinearLayout
+=======
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -109,6 +129,7 @@
 
     <RatingBar
         android:id="@+id/ReliabilityRatingBar"
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="0"
@@ -153,6 +174,12 @@
     <CheckBox
         android:id="@+id/GearInAuto"
         android:layout_width="match_parent"
+<<<<<<< HEAD
+        android:layout_height="62dp"
+        android:ems="10"
+        android:hint="Comments"
+        android:inputType="textPersonName" />
+=======
         android:layout_height="wrap_content"
         android:text="Auto Gear Retrieval"
         android:textColor="@color/colorPrimaryDark"
@@ -167,18 +194,44 @@
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimaryDark"
         android:text="Comments" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:text="Time to Rope Drop" />
+=======
         android:text="Time to Rope Drop:"
         android:layout_marginTop="15dp"
         android:textSize="16sp" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <Chronometer
+            android:id="@+id/chronometer3"
+            android:layout_width="45dp"
+            android:layout_height="37dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="150dp"
+            android:textColor="#4169E1"
+            android:textSize="32dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+=======
         android:orientation="horizontal">
         <Button
             android:id="@+id/StartButton"
@@ -197,19 +250,39 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_height="wrap_content" />
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
         <Button
-            android:id="@+id/StopButton"
+            android:id="@+id/Start_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="0dp"
+            android:text="Start" />
+=======
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:backgroundTint="@color/colorAccent"
             android:text="Stop" />
 
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 
+        <Button
+            android:id="@+id/Puase_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puase" />
     </LinearLayout>
 
+<<<<<<< HEAD
+    <Button
+        android:id="@+id/Reset_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:text="Reset" />
+=======
     <EditText
         android:id="@+id/editText4"
         android:layout_width="match_parent"
@@ -247,4 +320,5 @@
 
     </LinearLayout>
 
+>>>>>>> f5b1806907975eec7969b08fe7abc84b58bc863c
 </LinearLayout>
