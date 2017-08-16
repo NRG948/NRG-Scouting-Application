@@ -51,12 +51,10 @@ public class MatchEntry extends Fragment {
     public void saveEntry() throws IOException{
         //Check if the device has an external storage
         //media mounted is the state that indicates that there is a memory card that is detected
-        Toast.makeText(getActivity(), "It works...I guess",
-                Toast.LENGTH_LONG).show();
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             File externalStoreDir=Environment.getExternalStorageDirectory();
-            if(new File(externalStoreDir,"Entries.txt").exists()) {
-                getAllEntriesInFileIntoObjectForm(new File(externalStoreDir, "Entries.txt"));//loading entry into the array list
+            if(new File("/sdcard/Entries.txt").exists()) {
+                getAllEntriesInFileIntoObjectForm(new File("/sdcard/Entries.txt"));//loading entry into the array list
                 //CREATE THE ENTRY OBJECT USING THE UI ELEMENTS ABOVE AND ALSO USING THE CUSTOM INITIALIZER
                 Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                         Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
@@ -64,15 +62,22 @@ public class MatchEntry extends Fragment {
                         Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                         ropeClimb.isChecked());
                 //CHECK IF THE MATCH NUMBERS OF ANY OBJECT IN THE ARRAYLIST MATCH
+                File entryFile=new File("/sdcard/Entries.txt");
+                entryFile.createNewFile();
                 for (Entry a : listOfEntriesInFile) {
                     if (a.matchNumber == newOne.matchNumber) {
                         listOfEntriesInFile.remove(a);
                     }
+                    else{
+                        a.writeEntry(entryFile);
+                    }
                 }
                 listOfEntriesInFile.add(newOne);
+                newOne.writeEntry(entryFile);
+
             }
             else{//File doesn't exist
-                File entryFile=new File(externalStoreDir,"Entries.txt");
+                File entryFile=new File("/sdcard/Entries.txt");
                 entryFile.createNewFile();
                 Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                         Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
