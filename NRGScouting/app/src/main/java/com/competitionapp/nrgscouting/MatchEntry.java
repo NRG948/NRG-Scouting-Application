@@ -37,6 +37,10 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     private String teamName="";
     private Button save;
+    private Button plusGears;
+    private Button minusGears;
+    private Button plusAutoGears;
+    private Button minusAutoGears;
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     public MatchEntry() {
         // Required empty public constructor
@@ -91,6 +95,7 @@ public class MatchEntry extends Fragment {
         else{
             //Inform the user that there is no SD card or is undetected
         }
+
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
         Scanner fileScanner;
@@ -163,6 +168,10 @@ public class MatchEntry extends Fragment {
         death=(CheckBox)(getView().findViewById((R.id.death)));
         rating=(RatingBar)(getView().findViewById(R.id.sportsmanship));
         save=(Button)(getView().findViewById(R.id.save));
+        plusGears = (Button) (getView().findViewById(R.id.plusGears));
+        minusGears = (Button) (getView().findViewById(R.id.minusGears));
+        plusAutoGears = (Button) (getView().findViewById(R.id.plusAutoGears));
+        minusAutoGears = (Button) (getView().findViewById(R.id.minusAutoGears));
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 try {
@@ -171,6 +180,54 @@ public class MatchEntry extends Fragment {
                 }
                 catch (IOException e){
                     //Just crash and do nothing
+                }
+            }
+        });
+        plusGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(gears.getText().toString().equals("")){
+                    gears.setText("1");
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(gears.getText()));
+                    gears1++;
+                    gears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        minusGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(gears.getText().toString().equals("")){
+
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(gears.getText()));
+                    gears1--;
+                    gears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        plusAutoGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(autoGears.getText().toString().equals("")){
+                    autoGears.setText("1");
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(autoGears.getText()));
+                    gears1++;
+                    autoGears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        minusAutoGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(autoGears.getText().toString().equals("")){
+
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(autoGears.getText()));
+                    gears1--;
+                    autoGears.setText(String.valueOf(gears1));
                 }
             }
         });
