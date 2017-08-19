@@ -34,14 +34,7 @@ public class SpecialistFragment extends Fragment {
 
             //List initializations
             listView = (ListView)rootView.findViewById(R.id.teams);
-            //fab1 = (FloatingActionButton) getActivity().findViewById(R.id.fab1);
-
-            //fab1.setOnClickListener(new View.OnClickListener() {
-               // @Override
-                //public void onClick(View view) {
-                    //startActivity(new Intent(getActivity().getApplicationContext(), TeamSearchPopSpec.class));
-               // }
-            //});
+        
             //Memory card code
             //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //File externalStoreDir = Environment.getExternalStorageDirectory();
