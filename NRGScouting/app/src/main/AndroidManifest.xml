@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeamSearchPop"></activity>
-        <activity android:name=".TeamSearchPopSpec"></activity>
+        <activity
+            android:name=".TeamSearchPop"
+            android:label="Match Scout Team Search"></activity>
+        <activity
+            android:name=".TeamSearchPopSpec"
+            android:label="Specialist Scout Team Search"></activity>
     </application>
 </manifest>
