@@ -23,8 +23,11 @@ public class SpecialistEntry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mPuaseButton = (Button) getView().findViewById (R.id.Puase_Button);
-        mchronometer = (Chronometer) getView().findViewById(R.id.chronometer3);
+        View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
+        mPuaseButton = (Button) rootView.findViewById (R.id.Puase_Button);
+        mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
+        mStartButton = (Button) rootView.findViewById(R.id.StartButton);
+        mResetButton = (Button) rootView.findViewById(R.id.Reset_Button);
 
         mStartButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -63,6 +66,6 @@ public class SpecialistEntry extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_specialist_entry, container, false);
+        return rootView;
     }
 }

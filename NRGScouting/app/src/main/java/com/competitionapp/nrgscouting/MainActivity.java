@@ -19,11 +19,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar = null;
     FloatingActionButton fab;
+    FloatingActionButton fab2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
 
         //Set about frag initially when app opens
         final MatchFragment matchFragment = new MatchFragment();
@@ -33,8 +37,22 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fab2.hide();
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TeamSearchPop.class));
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TeamSearchPopSpec.class));
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -90,6 +108,7 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.show();
+            fab2.hide();
 
         } else if (id == R.id.nav_about) {
             About abfragment = new About();
@@ -100,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.hide();
+            fab2.hide();
 
 
         } else if(id == R.id.nav_spec) {
@@ -110,7 +130,8 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            fab.show();
+            fab2.show();
+            fab.hide();
 
         }
 
