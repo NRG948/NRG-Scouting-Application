@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 
 /**
  * Created by valli on 8/12/17.
@@ -17,21 +18,28 @@ public class SpecialistEntry extends Fragment {
     private Button mStartButton;
     private Button mPuaseButton;
     private Button mResetButton;
+    private Button PlusButton;
+    private Button MinusButton;
     private Chronometer mchronometer;
+    private EditText PilotFouls;
 
     private long lastPuase;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mPuaseButton = (Button) getView().findViewById (R.id.Puase_Button);
-        mchronometer = (Chronometer) getView().findViewById(R.id.chronometer3);
+        View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
+        mPuaseButton = (Button) rootView.findViewById(R.id.Puase_Button);
+        mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
+        mStartButton = (Button) rootView.findViewById(R.id.StartButton);
+        mResetButton = (Button) rootView.findViewById(R.id.Reset_Button);
 
-        mStartButton.setOnClickListener(new View.OnClickListener(){
+        mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                if(lastPuase != 0){
+            public void onClick(View view) {
+                if (lastPuase != 0) {
                     mchronometer.setBase(mchronometer.getBase() + SystemClock.elapsedRealtime() - lastPuase);
-                }else{
+                } else {
                     mchronometer.setBase(SystemClock.elapsedRealtime());
                 }
                 mchronometer.start();
@@ -62,7 +70,30 @@ public class SpecialistEntry extends Fragment {
         });
 
 
-
-        return inflater.inflate(R.layout.fragment_specialist_entry, container, false);
+        return rootView;
     }
+
+    @Override
+    public void onStart() {
+
+        PilotFouls=(EditText)(getView().findViewById(R.id.NumberPilotFouls));
+        PlusButton = (Button)(getView().findViewById(R.id.save));
+        MinusButton = (Button)(getView().findViewById(R.id.save));
+
+        MinusButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (PilotFouls.getText().toString().equals("")){
+                    PilotFouls.setText("1");
+                }
+                else {
+                    int PilotFouls1=Integer.parseInt(String.valueOf(PilotFouls.getText()));
+                    PilotFouls1++;
+                    PilotFouls.setText(String.valueOf(PilotFouls1));
+                }
+            }
+
+        }
+
+    }
+
 }

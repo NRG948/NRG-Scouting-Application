@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NRG Scouting</string>
+    <string name="app_name">Squire 948</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,6 +7,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_blurb">Created by NRG-948</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Pilot_Skill">Pilot Skill</string>
     <string name="Pilot_Foul">Pilot Fouls</string>

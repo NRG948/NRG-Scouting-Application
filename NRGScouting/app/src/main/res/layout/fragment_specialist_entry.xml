@@ -49,7 +49,9 @@
             android:layout_height="wrap_content"
             android:hint="Pilot Fouls"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+
+            />
 
 
         <Button
