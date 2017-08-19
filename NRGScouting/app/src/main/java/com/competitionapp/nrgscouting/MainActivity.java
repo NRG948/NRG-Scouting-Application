@@ -18,6 +18,7 @@ import com.competitionapp.nrgscouting.MatchFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar = null;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fab = (FloatingActionButton)findViewById(R.id.fab);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
+            fab.show();
 
         } else if (id == R.id.nav_about) {
             About abfragment = new About();
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            fab.hide();
 
 
         } else if(id == R.id.nav_spec) {
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            fab.show();
 
         }
 
