@@ -6,6 +6,6 @@ This is the android application we are making for our team to be able to rank te
 The app is currently being made, functionality is basically complete, all connections are working.
 
 # Changelog
-The app is currently being made.
+Beta (for now being made).
 
 For more information contact nrg948infotech@gmail.com!
