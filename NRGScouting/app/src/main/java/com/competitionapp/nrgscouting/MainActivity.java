@@ -62,7 +62,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setActionBarTitle("Match Scouting");
         
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -94,6 +100,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -110,6 +117,8 @@ public class MainActivity extends AppCompatActivity
             fab.show();
             fab2.hide();
 
+            setActionBarTitle("Match Scouting");
+
         } else if (id == R.id.nav_about) {
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -120,6 +129,8 @@ public class MainActivity extends AppCompatActivity
             setSupportActionBar(toolbar);
             fab.hide();
             fab2.hide();
+
+            setActionBarTitle("About");
 
 
         } else if(id == R.id.nav_spec) {
@@ -132,6 +143,8 @@ public class MainActivity extends AppCompatActivity
             setSupportActionBar(toolbar);
             fab2.show();
             fab.hide();
+
+            setActionBarTitle("Specialist Scouting");
 
         }
 
