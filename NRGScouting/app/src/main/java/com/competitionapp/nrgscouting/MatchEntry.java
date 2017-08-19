@@ -64,7 +64,7 @@ public class MatchEntry extends Fragment {
                 //CREATE THE ENTRY OBJECT USING THE UI ELEMENTS ABOVE AND ALSO USING THE CUSTOM INITIALIZER
 
                 //CHECK IF THE MATCH NUMBERS OF ANY OBJECT IN THE ARRAYLIST MATCH
-                entryFile.createNewFile();
+                entryFile.mkdirs();
                 for (Entry a : listOfEntriesInFile) {
                     if (a.matchNumber != newOne.matchNumber) {
                         a.writeEntry(entryFile);
@@ -72,7 +72,7 @@ public class MatchEntry extends Fragment {
                 }
             }
             else{//File doesn't exist
-                entryFile.createNewFile();
+                entryFile.mkdirs();
             }
             newOne.writeEntry(entryFile);
         }
