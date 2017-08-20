@@ -4,12 +4,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_home"
-            android:title="Home"
-            android:icon="@drawable/ic_home"
-            />
-
-        <item
             android:id="@+id/nav_match"
             android:icon="@drawable/ic_match"
             android:title="Match Scouting" />
