@@ -49,7 +49,9 @@
             android:layout_height="wrap_content"
             android:hint="Pilot Fouls"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+
+            />
 
 
         <Button
@@ -84,13 +86,7 @@
         />
 
 
-        <CheckBox
-            android:id="@+id/GearInAuto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gear " />
-
-        <EditText
+    <EditText
             android:id="@+id/CommentsAboutAuto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +115,14 @@
         android:layout_height="wrap_content"
         android:rating="0"
         android:stepSize="0.5" />
-<LinearLayout
+
+    <CheckBox
+        android:id="@+id/GearInAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gear " />
+
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
         <TextView

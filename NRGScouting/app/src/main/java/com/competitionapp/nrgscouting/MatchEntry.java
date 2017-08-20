@@ -37,6 +37,10 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     private String teamName="";
     private Button save;
+    private Button plusGears;
+    private Button minusGears;
+    private Button plusAutoGears;
+    private Button minusAutoGears;
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     public MatchEntry() {
         // Required empty public constructor
@@ -51,46 +55,35 @@ public class MatchEntry extends Fragment {
     public void saveEntry() throws IOException{
         //Check if the device has an external storage
         //media mounted is the state that indicates that there is a memory card that is detected
+        File entryFile=new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "Entries.txt");
+        Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                ropeClimb.isChecked());
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            File externalStoreDir=Environment.getExternalStorageDirectory();
-            if(new File("/sdcard/Entries.txt").exists()) {
-                getAllEntriesInFileIntoObjectForm(new File("/sdcard/Entries.txt"));//loading entry into the array list
+            if(entryFile.exists()) {
+                getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
                 //CREATE THE ENTRY OBJECT USING THE UI ELEMENTS ABOVE AND ALSO USING THE CUSTOM INITIALIZER
-                Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                        Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                        Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                        Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                        ropeClimb.isChecked());
+
                 //CHECK IF THE MATCH NUMBERS OF ANY OBJECT IN THE ARRAYLIST MATCH
-                File entryFile=new File("/sdcard/Entries.txt");
-                entryFile.createNewFile();
+                entryFile.mkdirs();
                 for (Entry a : listOfEntriesInFile) {
-                    if (a.matchNumber == newOne.matchNumber) {
-                        listOfEntriesInFile.remove(a);
-                    }
-                    else{
+                    if (a.matchNumber != newOne.matchNumber) {
                         a.writeEntry(entryFile);
                     }
                 }
-                listOfEntriesInFile.add(newOne);
-                newOne.writeEntry(entryFile);
-
             }
             else{//File doesn't exist
-                File entryFile=new File("/sdcard/Entries.txt");
-                entryFile.createNewFile();
-                Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                        Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                        Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                        Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                        ropeClimb.isChecked());
-                listOfEntriesInFile.add(newOne);
-                newOne.writeEntry(entryFile);
+                entryFile.mkdirs();
             }
+            newOne.writeEntry(entryFile);
         }
         else{
             //Inform the user that there is no SD card or is undetected
         }
+
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
         Scanner fileScanner;
@@ -163,6 +156,10 @@ public class MatchEntry extends Fragment {
         death=(CheckBox)(getView().findViewById((R.id.death)));
         rating=(RatingBar)(getView().findViewById(R.id.sportsmanship));
         save=(Button)(getView().findViewById(R.id.save));
+        plusGears = (Button) (getView().findViewById(R.id.plusGears));
+        minusGears = (Button) (getView().findViewById(R.id.minusGears));
+        plusAutoGears = (Button) (getView().findViewById(R.id.plusAutoGears));
+        minusAutoGears = (Button) (getView().findViewById(R.id.minusAutoGears));
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 try {
@@ -171,6 +168,54 @@ public class MatchEntry extends Fragment {
                 }
                 catch (IOException e){
                     //Just crash and do nothing
+                }
+            }
+        });
+        plusGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(gears.getText().toString().equals("")){
+                    gears.setText("1");
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(gears.getText()));
+                    gears1++;
+                    gears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        minusGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(gears.getText().toString().equals("")){
+
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(gears.getText()));
+                    gears1--;
+                    gears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        plusAutoGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(autoGears.getText().toString().equals("")){
+                    autoGears.setText("1");
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(autoGears.getText()));
+                    gears1++;
+                    autoGears.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        minusAutoGears.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if(autoGears.getText().toString().equals("")){
+
+                }else{
+                    int gears1 = Integer.parseInt(String.valueOf(autoGears.getText()));
+                    gears1--;
+                    autoGears.setText(String.valueOf(gears1));
                 }
             }
         });
