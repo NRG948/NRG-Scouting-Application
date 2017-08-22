@@ -66,6 +66,8 @@ public class MatchFragment extends Fragment {
 
         teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
         listView.setAdapter(teamAdapter);
+        listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+
         return rootView;
     }
 }
