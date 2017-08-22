@@ -5,15 +5,43 @@
     android:layout_height="match_parent"
     tools:context="com.competitionapp.nrgscouting.MatchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/teams"
+    <ListView
+        android:id="@+id/teams"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="20dp">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:layout_marginTop="90dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorLightGray"
+            android:textAlignment="center"
+            android:text=":("
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorLightGray"
+            android:textAlignment="center"
+            android:text="Sorry, there's nothing here yet! Try adding an entry first!"
+            />
+
+
 
     </LinearLayout>
 
