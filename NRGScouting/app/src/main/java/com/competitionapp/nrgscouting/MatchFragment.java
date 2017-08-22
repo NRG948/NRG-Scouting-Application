@@ -29,7 +29,7 @@ import android.widget.ListView;
 public class MatchFragment extends Fragment {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
-    String[] matchTeams={"98","948"};
+    String[] matchTeams={};
 
     public MatchFragment() {
         // Required empty public constructor
