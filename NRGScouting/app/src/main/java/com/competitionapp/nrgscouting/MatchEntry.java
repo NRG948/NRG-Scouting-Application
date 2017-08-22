@@ -247,7 +247,7 @@ public class MatchEntry extends Fragment {
 
                 }else{
                     int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
-                    gears1--;
+                    gears1++;
                     ballsShot.setText(String.valueOf(gears1));
                 }
             }
@@ -258,21 +258,21 @@ public class MatchEntry extends Fragment {
                 if(autoBallsShot.getText().toString().equals("")){
 
                 }else{
-                    int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
-                    gears1--;
-                    ballsShot.setText(String.valueOf(gears1));
+                    int gears1 = Integer.parseInt(String.valueOf(autoBallsShot.getText()));
+                    gears1++;
+                    autoBallsShot.setText(String.valueOf(gears1));
                 }
             }
         });
         minusAutoBallsShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if(ballsShot.getText().toString().equals("")){
+                if(autoBallsShot.getText().toString().equals("")){
 
                 }else{
-                    int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
+                    int gears1 = Integer.parseInt(String.valueOf(autoBallsShot.getText()));
                     gears1--;
-                    ballsShot.setText(String.valueOf(gears1));
+                    autoBallsShot.setText(String.valueOf(gears1));
                 }
             }
         });
