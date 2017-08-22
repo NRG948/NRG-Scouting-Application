@@ -12,10 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
-
 import com.competitionapp.nrgscouting.MatchFragment;
-
 
 
 public class MainActivity extends AppCompatActivity
@@ -67,8 +64,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setActionBarTitle("Match Scouting");
-        ListView listview = (ListView) findViewById(R.id.teams);
-        //listview.setEmptyView(findViewById(R.id.@android_id/empty));
+        
     }
 
     public void setActionBarTitle(String title) {
@@ -149,6 +145,7 @@ public class MainActivity extends AppCompatActivity
             fab.hide();
 
             setActionBarTitle("Specialist Scouting");
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
