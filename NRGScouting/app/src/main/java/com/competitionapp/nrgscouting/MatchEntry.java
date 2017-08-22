@@ -28,9 +28,9 @@ public class MatchEntry extends Fragment {
     private EditText matchNumber;
     private Spinner position;
     private EditText gears;
-    private EditText ballsShot;
+    private EditText balls;
     private EditText autoGears;
-    private EditText autoBallsShot;
+    private EditText autoBalls;
     private RatingBar rating;
     private CheckBox death;
     private CheckBox baseline;
@@ -41,10 +41,6 @@ public class MatchEntry extends Fragment {
     private Button minusGears;
     private Button plusAutoGears;
     private Button minusAutoGears;
-    private Button plusBallsShot;
-    private Button minusBallsShot;
-    private Button plusAutoBallsShot;
-    private Button minusAutoBallsShot;
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     public MatchEntry() {
         // Required empty public constructor
@@ -81,8 +77,8 @@ public class MatchEntry extends Fragment {
                 Environment.DIRECTORY_PICTURES), "Entries.txt");
         Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (entryFile.exists()) {
@@ -167,6 +163,7 @@ public class MatchEntry extends Fragment {
             return Entry.Position.BLUE3;
         }
 
+<<<<<<< HEAD
         @Override
         public void onStart () {
             matchNumber = (EditText) (getView().findViewById(R.id.matchNumber));
@@ -193,6 +190,29 @@ public class MatchEntry extends Fragment {
                 public void onClick(View v) {
                     try {
                         saveEntry();
+=======
+    @Override
+    public void onStart() {
+        matchNumber=(EditText)(getView().findViewById(R.id.matchNumber));
+        position=(Spinner)(getView().findViewById(R.id.teamPosition));
+        gears=(EditText)(getView().findViewById(R.id.gearsRetrieved));
+        balls=(EditText)(getView().findViewById(R.id.ballsShot));
+        autoGears=(EditText)(getView().findViewById(R.id.autoGearsRetrieved));
+        autoBalls=(EditText)(getView().findViewById(R.id.autoBallsShot));
+        ropeClimb=(CheckBox)(getView().findViewById((R.id.ropeClimb)));
+        baseline=(CheckBox)(getView().findViewById(R.id.baseline));
+        death=(CheckBox)(getView().findViewById((R.id.death)));
+        rating=(RatingBar)(getView().findViewById(R.id.sportsmanship));
+        save=(Button)(getView().findViewById(R.id.save));
+        plusGears = (Button) (getView().findViewById(R.id.plusGears));
+        minusGears = (Button) (getView().findViewById(R.id.minusGears));
+        plusAutoGears = (Button) (getView().findViewById(R.id.plusAutoGears));
+        minusAutoGears = (Button) (getView().findViewById(R.id.minusAutoGears));
+        save.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                try {
+                    saveEntry();
+>>>>>>> origin/master
 
                     } catch (IOException e) {
                         //Just crash and do nothing
@@ -246,6 +266,7 @@ public class MatchEntry extends Fragment {
                         autoGears.setText(String.valueOf(gears1));
                     }
                 }
+<<<<<<< HEAD
             });
             minusBallsShot.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -298,3 +319,10 @@ public class MatchEntry extends Fragment {
             super.onStart();
         }
     }
+=======
+            }
+        });
+        super.onStart();
+    }
+}
+>>>>>>> origin/master
