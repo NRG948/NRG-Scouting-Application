@@ -163,16 +163,14 @@ public class MatchEntry extends Fragment {
                 return Entry.Position.BLUE2;
             return Entry.Position.BLUE3;
         }
-
-<<<<<<< HEAD
         @Override
         public void onStart () {
             matchNumber = (EditText) (getView().findViewById(R.id.matchNumber));
             position = (Spinner) (getView().findViewById(R.id.teamPosition));
             gears = (EditText) (getView().findViewById(R.id.gearsRetrieved));
-            ballsShot = (EditText) (getView().findViewById(R.id.ballsShot));
+            balls = (EditText) (getView().findViewById(R.id.ballsShot));
             autoGears = (EditText) (getView().findViewById(R.id.autoGearsRetrieved));
-            autoBallsShot = (EditText) (getView().findViewById(R.id.autoBallsShot));
+            autoBalls = (EditText) (getView().findViewById(R.id.autoBallsShot));
             ropeClimb = (CheckBox) (getView().findViewById((R.id.ropeClimb)));
             baseline = (CheckBox) (getView().findViewById(R.id.baseline));
             death = (CheckBox) (getView().findViewById((R.id.death)));
@@ -191,7 +189,10 @@ public class MatchEntry extends Fragment {
                 public void onClick(View v) {
                     try {
                         saveEntry();
-=======
+                    } catch (Exception e) {
+                    }
+                }
+            }
     @Override
     public void onStart() {
         matchNumber=(EditText)(getView().findViewById(R.id.matchNumber));
@@ -213,7 +214,6 @@ public class MatchEntry extends Fragment {
             public void onClick(View v) {
                 try {
                     saveEntry();
->>>>>>> origin/master
 
                     } catch (IOException e) {
                         //Just crash and do nothing
@@ -267,24 +267,23 @@ public class MatchEntry extends Fragment {
                         autoGears.setText(String.valueOf(gears1));
                     }
                 }
-<<<<<<< HEAD
             });
             minusBallsShot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (ballsShot.getText().toString().equals("")) {
+                    if (balls.getText().toString().equals("")) {
 
                     } else {
-                        int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
+                        int gears1 = Integer.parseInt(String.valueOf(balls.getText()));
                         gears1--;
-                        ballsShot.setText(String.valueOf(gears1));
+                        balls.setText(String.valueOf(gears1));
                     }
                 }
             });
             plusBallsShot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (ballsShot.getText().toString().equals("")) {
+                    if (balls.getText().toString().equals("")) {
 
 <<<<<<< HEAD
                 }else{
@@ -293,9 +292,9 @@ public class MatchEntry extends Fragment {
                     ballsShot.setText(String.valueOf(gears1));
 =======
                     } else {
-                        int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
+                        int gears1 = Integer.parseInt(String.valueOf(balls.getText()));
                         gears1--;
-                        ballsShot.setText(String.valueOf(gears1));
+                        balls.setText(String.valueOf(gears1));
                     }
 >>>>>>> a09904f960d82d7448f02e259ad5a04199b59e64
                 }
@@ -324,21 +323,21 @@ public class MatchEntry extends Fragment {
                     autoBallsShot.setText(String.valueOf(gears1));
 =======
                     } else {
-                        int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
+                        int gears1 = Integer.parseInt(String.valueOf(balls.getText()));
                         gears1--;
-                        ballsShot.setText(String.valueOf(gears1));
+                        balls.setText(String.valueOf(gears1));
                     }
                 }
             });
             minusAutoBallsShot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (ballsShot.getText().toString().equals("")) {
+                    if (balls.getText().toString().equals("")) {
 
                     } else {
-                        int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
+                        int gears1 = Integer.parseInt(String.valueOf(balls.getText()));
                         gears1--;
-                        ballsShot.setText(String.valueOf(gears1));
+                        balls.setText(String.valueOf(gears1));
                     }
 >>>>>>> a09904f960d82d7448f02e259ad5a04199b59e64
                 }
@@ -346,10 +345,5 @@ public class MatchEntry extends Fragment {
             super.onStart();
         }
     }
-=======
-            }
-        });
-        super.onStart();
-    }
 }
->>>>>>> origin/master
+
