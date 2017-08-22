@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
-import android.widget.Toast;
+import java.io.FileOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,34 +55,40 @@ public class MatchEntry extends Fragment {
     public void saveEntry() throws IOException{
         //Check if the device has an external storage
         //media mounted is the state that indicates that there is a memory card that is detected
-        File entryFile=new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "Entries.txt");
-        Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            if(entryFile.exists()) {
-                getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
+        try {
+            final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/cool/");
+            final File myFile = new File(dir, "Entries" + ".txt");
+            myFile.createNewFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                //Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                //Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                //Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                //ropeClimb.isChecked());
+        //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+          //  if(entryFile.exists()) {
+            //    getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
                 //CREATE THE ENTRY OBJECT USING THE UI ELEMENTS ABOVE AND ALSO USING THE CUSTOM INITIALIZER
 
                 //CHECK IF THE MATCH NUMBERS OF ANY OBJECT IN THE ARRAYLIST MATCH
-                entryFile.mkdirs();
-                for (Entry a : listOfEntriesInFile) {
-                    if (a.matchNumber != newOne.matchNumber) {
-                        a.writeEntry(entryFile);
-                    }
-                }
-            }
-            else{//File doesn't exist
-                entryFile.mkdirs();
-            }
-            newOne.writeEntry(entryFile);
-        }
-        else{
+              //  entryFile.mkdirs();
+                //for (Entry a : listOfEntriesInFile) {
+                  //  if (a.matchNumber != newOne.matchNumber) {
+                    //    a.writeEntry(entryFile);
+                    //}
+                //}
+            //}
+            //else{//File doesn't exist
+              //  entryFile.mkdirs();
+            //}
+            //newOne.writeEntry(entryFile);
+        //}
+        //else{
             //Inform the user that there is no SD card or is undetected
-        }
+        //}
 
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries){
