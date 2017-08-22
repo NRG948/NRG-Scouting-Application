@@ -15,16 +15,12 @@
     <LinearLayout
         android:id="@+id/emptyView"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="match_parent"
         android:paddingTop="10dp"
-        >
-=======
-        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
-        android:layout_margin="20dp">
->>>>>>> parent of 3de1cbd... Revert "A surprise!"
+        android:layout_margin="20dp"
+        >
 
         <TextView
             android:layout_width="match_parent"

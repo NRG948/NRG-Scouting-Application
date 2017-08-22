@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setActionBarTitle("Match Scouting");
-        ListView listview = (ListView) findViewById(R.id.teams);
-        //listview.setEmptyView(findViewById(R.id.@android_id/empty));
     }
 
     public void setActionBarTitle(String title) {
