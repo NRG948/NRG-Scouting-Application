@@ -21,7 +21,6 @@ public class SpecialistFragment extends Fragment {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams={"98","948"};
-    public FloatingActionButton fab1;
 
     public SpecialistFragment() {
         // Required empty public constructor
