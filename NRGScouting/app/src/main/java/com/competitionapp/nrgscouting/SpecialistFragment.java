@@ -20,7 +20,7 @@ import static com.competitionapp.nrgscouting.R.id.fab;
 public class SpecialistFragment extends Fragment {
     ListView listView;
     ArrayAdapter<String> teamAdapter;
-    String[] matchTeams={"98","948"};
+    String[] matchTeams={};
 
     public SpecialistFragment() {
         // Required empty public constructor
