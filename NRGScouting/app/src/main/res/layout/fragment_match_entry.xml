@@ -17,6 +17,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Match Number"
+        android:inputType="number"
         android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
