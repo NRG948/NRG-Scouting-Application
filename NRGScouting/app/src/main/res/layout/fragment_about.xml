@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Backup Captain of Information Technology"
+            android:text="Co-Backup Captains of Information Technology"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -84,11 +84,22 @@
             android:layout_margin="0dp"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valliappan Valliappan"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Software Programming Manager"
+            android:text="Software Program Manager"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -96,10 +107,35 @@
             android:layout_marginTop="25dp"
 
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valliappan Valliappan"
+            android:text="Sourish Murthy"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deputy of Software Program:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adam Nicewarner"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -119,6 +155,7 @@
             android:layout_marginTop="8dp"
 
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,10 +167,11 @@
 
             android:layout_margin="0dp"
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sourish Murthy"
+            android:text="Tejas Rangole"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -168,25 +206,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Software Designers:"
+            android:text="Deputy of Software Design:"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
             android:gravity="center"
             android:layout_marginTop="5dp"
-
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Justin Zeng"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:gravity="center"
 
-            android:layout_margin="0dp"
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,58 +226,33 @@
             android:layout_margin="0dp"
             />
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Technical Support Manager"
+            android:text="Software Designers:"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
             android:gravity="center"
-            android:layout_marginTop="25dp"
-
+            android:layout_marginTop="5dp"
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adam Nicewarner"
+            android:text="Justin Zeng"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
             android:gravity="center"
 
             android:layout_margin="0dp"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Technical Support Specialists:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15sp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Jaxon McClelland"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:gravity="center"
-
-            android:layout_margin="0dp"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tejas Rangole"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
