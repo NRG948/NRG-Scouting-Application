@@ -57,58 +57,30 @@ public class MatchEntry extends Fragment {
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
     public void saveEntry() throws IOException{
-        //Check if the device has an external storage
-        //media mounted is the state that indicates that there is a memory card that is detected
-
-        try {
-            final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/cool/");
-            final File myFile = new File(dir, "Entries" + ".txt");
-            myFile.createNewFile();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        //Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                //Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                //Integer.parseInt(String.valueOf(balls.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                //Integer.parseInt(String.valueOf(autoBalls.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                //ropeClimb.isChecked());
-        //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-          //  if(entryFile.exists()) {
-            //    getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
-
-        File entryFile=new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "Entries.txt");
-        Entry newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+        Entry newOne=new Entry();
+        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
+        dir.mkdirs();
+        final File entryFile = new File(dir,"Entries.txt");
+        newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (entryFile.exists()) {
                 getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
 
-                //CREATE THE ENTRY OBJECT USING THE UI ELEMENTS ABOVE AND ALSO USING THE CUSTOM INITIALIZER
-
-                //CHECK IF THE MATCH NUMBERS OF ANY OBJECT IN THE ARRAYLIST MATCH
-                //  entryFile.mkdirs();
-                //for (Entry a : listOfEntriesInFile) {
-                //  if (a.matchNumber != newOne.matchNumber) {
-                //    a.writeEntry(entryFile);
-                //}
-                //}
-                //}
-                //else{//File doesn't exist
-                //  entryFile.mkdirs();
-                //}
-                //newOne.writeEntry(entryFile);
-                //}
-                //else{
-                //Inform the user that there is no SD card or is undetected
-                //}
+                        entryFile.createNewFile();
+                        for (Entry a : listOfEntriesInFile) {
+                          if (a.matchNumber != newOne.matchNumber) {
+                            a.writeEntry(entryFile);
+                        }
+                        }
+                        }
+            else{//File doesn't exist
+                 entryFile.createNewFile();
             }
+            newOne.writeEntry(entryFile);
         }
-            }
             public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries){
                 Scanner fileScanner;
                 try {
