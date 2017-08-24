@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Co-Backup Captains of Information Technology"
+            android:text="Backup Captain of Information Technology"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -76,18 +76,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nipun Chhajed"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:gravity="center"
-
-            android:layout_margin="0dp"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valliappan Valliappan"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -111,7 +99,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sourish Murthy"
+            android:text="Valliappan Valliappan"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -120,10 +108,11 @@
             android:layout_margin="0dp"
             />
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Deputy of Software Program:"
+            android:text="Deputies of Software Program:"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textAlignment="center"
@@ -136,6 +125,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Adam Nicewarner"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sourish Murthy"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             android:textAlignment="center"
