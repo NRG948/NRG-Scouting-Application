@@ -76,9 +76,9 @@ public class SpecialistEntry extends Fragment {
     @Override
     public void onStart() {
 
-        PilotFouls=(EditText)(getView().findViewById(R.id.NumberPilotFouls));
-        PlusButton = (Button)(getView().findViewById(R.id.save));
-        MinusButton = (Button)(getView().findViewById(R.id.save));
+        PilotFouls=(EditText)(getView().findViewById(R.id.pilotFouls));
+        PlusButton = (Button)(getView().findViewById(R.id.plusPilotFouls));
+        MinusButton = (Button)(getView().findViewById(R.id.minusPilotFouls));
         MinusButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (PilotFouls.getText().toString().equals("")){
@@ -91,7 +91,7 @@ public class SpecialistEntry extends Fragment {
                         PilotFouls.setText(String.valueOf(PilotFouls1));
                     }
                     else{
-                        PilotFouls.setText("0");
+                        PilotFouls.setText(String.valueOf(PilotFouls1));
                     }
                 }
             }
@@ -110,6 +110,7 @@ public class SpecialistEntry extends Fragment {
             }
 
         });
+
         super.onStart();
     }
 
