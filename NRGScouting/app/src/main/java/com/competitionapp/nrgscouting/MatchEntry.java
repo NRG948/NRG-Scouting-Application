@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
-import java.io.FileOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -138,6 +137,7 @@ public class MatchEntry extends Fragment {
                 return Entry.Position.BLUE2;
             return Entry.Position.BLUE3;
         }
+
         @Override
         public void onStart () {
             matchNumber = (EditText) (getView().findViewById(R.id.matchNumber));
@@ -164,9 +164,27 @@ public class MatchEntry extends Fragment {
                 public void onClick(View v) {
                     try {
                         saveEntry();
+
                     } catch (Exception e) {
+
                     }
                 }
+            });
+
+
+        save.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                try {
+                    saveEntry();
+
+
+
+
+                    } catch (IOException e) {
+                        //Just crash and do nothing
+                    }
+                }
+
             });
 
             plusGears.setOnClickListener(new View.OnClickListener() {
@@ -270,4 +288,6 @@ public class MatchEntry extends Fragment {
         }
 
     }
+
+
 
