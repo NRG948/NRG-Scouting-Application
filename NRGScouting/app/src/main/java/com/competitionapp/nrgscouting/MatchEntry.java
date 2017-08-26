@@ -251,7 +251,7 @@ public class MatchEntry extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (ballsShot.getText().toString().equals("")) {
-
+                        ballsShot.setText("1");
                     } else {
                         int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
                         gears1++;
@@ -263,7 +263,7 @@ public class MatchEntry extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (autoBallsShot.getText().toString().equals("")) {
-
+                        autoBallsShot.setText("1");
                     } else {
                         int gears1 = Integer.parseInt(String.valueOf(autoBallsShot.getText()));
                         gears1++;
