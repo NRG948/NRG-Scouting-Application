@@ -166,7 +166,7 @@
     <Chronometer
         android:id="@+id/chronometer3"
         android:layout_width="105dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="125dp"
         android:textColor="#4169E1"
