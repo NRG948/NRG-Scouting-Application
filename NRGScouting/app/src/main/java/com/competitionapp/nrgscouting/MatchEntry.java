@@ -1,10 +1,9 @@
-
 package com.competitionapp.nrgscouting;
-
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Fragment;
+import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,20 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
-import java.io.FileOutputStream;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MatchEntry extends Fragment {
     private EditText matchNumber;
+    static int i = 0;
     private Spinner position;
     private EditText gears;
     private EditText ballsShot;
@@ -35,7 +35,7 @@ public class MatchEntry extends Fragment {
     private CheckBox death;
     private CheckBox baseline;
     private CheckBox ropeClimb;
-    private String teamName="";
+    protected String teamName="";
     private Button save;
     private Button plusGears;
     private Button minusGears;
@@ -46,50 +46,39 @@ public class MatchEntry extends Fragment {
     private Button plusAutoBallsShot;
     private Button minusAutoBallsShot;
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
-    public MatchEntry() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-    public void saveEntry() throws IOException{
-        Entry newOne=new Entry();
-        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        dir.mkdirs();
-        final File entryFile = new File(dir,"Entries.txt");
-        newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
-            if (entryFile.exists()) {
-                getAllEntriesInFileIntoObjectForm(entryFile);//loading entry into the array list
-
-                        entryFile.createNewFile();
-                        for (Entry a : listOfEntriesInFile) {
-                          if (a.matchNumber != newOne.matchNumber) {
-                            a.writeEntry(entryFile);
-                        }
-                        }
-                        }
-            else{//File doesn't exist
-                 entryFile.createNewFile();
-            }
-            newOne.writeEntry(entryFile);
-        }
-            public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries){
-                Scanner fileScanner;
-                try {
-                    String fileText = "";
-                    fileScanner = new Scanner(entries);
-                    ArrayList<String> lines = new ArrayList<String>();
-                    while (fileScanner.hasNextLine()) {
-                        lines.add(fileScanner.nextLine());
+    public void saveEntry() throws IOException {
+        Entry newOne = new Entry();
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "/NRGScouting/");
+        File entryFile = new File(dir, "Entries.txt");
+        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
+                newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                        Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                        Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                        Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                        ropeClimb.isChecked());
+                PrintStream printer = new PrintStream(entryFile);
+                for (Entry a : listOfEntriesInFile) {
+                    if (a.matchNumber == newOne.matchNumber) {
+                        listOfEntriesInFile.remove(a);
                     }
+                }
+                entryFile.createNewFile();
+                listOfEntriesInFile.add(newOne);
+                for (Entry a : listOfEntriesInFile) {
+                    printer.println(a.toString());
+                }
+    }
+            public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
+                ArrayList<Entry> entryList=new ArrayList<Entry>();
+                    String fileText = "";
+                    fileText = getFileContent(entries);
+                    String[] lines = fileText.split("\n");
                     for (String line : lines) {
                         String[] properties = line.split("\t");
                         Entry newEntry = new Entry();
@@ -105,7 +94,7 @@ public class MatchEntry extends Fragment {
                         String[] autoBalls = properties[4].split(":");
                         newEntry.autoBallsShot = Integer.parseInt(autoBalls[1]);
                         String[] rating = properties[5].split(":");
-                        newEntry.rating = Integer.parseInt(rating[1]);
+                        newEntry.rating = Integer.parseInt(rating[1].replaceAll(".0",""));
                         String[] death = properties[6].split(":");
                         newEntry.death = Boolean.getBoolean(death[1]);
                         String[] baseline = properties[7].split(":");
@@ -114,18 +103,16 @@ public class MatchEntry extends Fragment {
                         newEntry.climbsRope = Boolean.getBoolean(rope[1]);
                         String[] name = properties[9].split(":");
                         newEntry.teamName = name[1];
+                        String[] position = properties[10].split(":");
+                        newEntry.position = getPosition(position[1]);
                         //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
-                        listOfEntriesInFile.add(newEntry);
+                        entryList.add(newEntry);
                     }
-                    return listOfEntriesInFile;
-                } catch (FileNotFoundException e) {
-                    System.out.println("The file does not exist");
-                }
-
-                return null;
+                    i=-1;
+                    return entryList;
             }
 
-        public Entry.Position getPosition ( int row){
+        public Entry.Position getPosition (int row){
             if (row == 0)
                 return Entry.Position.RED1;
             else if (row == 1)
@@ -135,6 +122,19 @@ public class MatchEntry extends Fragment {
             else if (row == 3)
                 return Entry.Position.BLUE1;
             else if (row == 4)
+                return Entry.Position.BLUE2;
+            return Entry.Position.BLUE3;
+        }
+        public static Entry.Position getPosition(String str){
+            if (str.equals("RED1"))
+                return Entry.Position.RED1;
+            else if (str.equals("RED2"))
+                return Entry.Position.RED2;
+            else if (str.equals("RED3"))
+                return Entry.Position.RED3;
+            else if (str.equals("BLUE1"))
+                return Entry.Position.BLUE1;
+            else if (str.equals("BLUE2"))
                 return Entry.Position.BLUE2;
             return Entry.Position.BLUE3;
         }
@@ -264,10 +264,26 @@ public class MatchEntry extends Fragment {
                     }
                 }
             });
-
-
             super.onStart();
         }
+    public static String getFileContent(File file) throws FileNotFoundException{
+        try{
+        FileInputStream fis = new FileInputStream(file);
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);
+        StringBuilder result = new StringBuilder();
+        String oneLine="";
+        while((oneLine = br.readLine()) != null){
+            result.append(oneLine);
+        }
+        br.close();
+        fis.close();
+        isr.close();
+        return result.toString();
+        }
+        catch (IOException e){
 
+        }
+        return null;
+}
     }
-

@@ -68,6 +68,7 @@ public class TeamSearchPop extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         MatchEntry matchEntry = new MatchEntry();
+                        matchEntry.teamName=teams[position];
                         FragmentTransaction fragmentTransaction =
                                 getFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.special_container, matchEntry);
