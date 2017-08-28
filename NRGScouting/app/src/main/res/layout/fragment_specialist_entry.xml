@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/plusPilotFouls"
             android:layout_width="40dp"
@@ -44,7 +45,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/NumberPilotFouls"
+            android:id="@+id/pilotFouls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Pilot Fouls"
@@ -162,15 +163,16 @@
         android:text="Time to Rope Drop" />
 
 
-        <Chronometer
-            android:id="@+id/chronometer3"
-            android:layout_width="45dp"
-            android:layout_height="37dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="150dp"
-            android:textColor="#4169E1"
-            android:textSize="32dp" />
-        <LinearLayout
+    <Chronometer
+        android:id="@+id/chronometer3"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="125dp"
+        android:textColor="#4169E1"
+        android:textSize="32dp" />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <Button
@@ -199,7 +201,7 @@
     <EditText
         android:id="@+id/editText4"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Additional Comments"/>

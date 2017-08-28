@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,11 +20,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MatchEntry extends Fragment {
     private EditText matchNumber;
-    static int i = 0;
     private Spinner position;
     private EditText gears;
     private EditText ballsShot;
@@ -56,30 +53,37 @@ public class MatchEntry extends Fragment {
         Entry newOne = new Entry();
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "/NRGScouting/");
         File entryFile = new File(dir, "Entries.txt");
+        newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                ropeClimb.isChecked());
         listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
-                newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                        Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                        Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                        Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                        ropeClimb.isChecked());
-                PrintStream printer = new PrintStream(entryFile);
-                for (Entry a : listOfEntriesInFile) {
-                    if (a.matchNumber == newOne.matchNumber) {
-                        listOfEntriesInFile.remove(a);
-                    }
-                }
+        PrintStream printer = new PrintStream(entryFile);
+        for (Entry a : listOfEntriesInFile) {
+            if (a.matchNumber == newOne.matchNumber) {
+                listOfEntriesInFile.remove(a);
+            }
+        }
+                dir.mkdirs();
                 entryFile.createNewFile();
                 listOfEntriesInFile.add(newOne);
                 for (Entry a : listOfEntriesInFile) {
-                    printer.println(a.toString());
+                    printer.print(a.toString());
                 }
     }
             public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
-                ArrayList<Entry> entryList=new ArrayList<Entry>();
+                    listOfEntriesInFile = new ArrayList<Entry>();
                     String fileText = "";
                     fileText = getFileContent(entries);
-                    String[] lines = fileText.split("\n");
-                    for (String line : lines) {
+                    String[] lines = fileText.split("\tn");
+                    ArrayList<String> lineList = new ArrayList<String>();
+                    for(String a:lines){
+                        if(!a.equals("")){
+                            lineList.add(a);
+                        }
+                    }
+                    for (String line : lineList) {
                         String[] properties = line.split("\t");
                         Entry newEntry = new Entry();
                         //USE AN INITIALIZER TO DO THE THING DONE BELOW USING A LOOP AND WITH A LOT LESS CODE
@@ -106,10 +110,9 @@ public class MatchEntry extends Fragment {
                         String[] position = properties[10].split(":");
                         newEntry.position = getPosition(position[1]);
                         //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
-                        entryList.add(newEntry);
+                        listOfEntriesInFile.add(newEntry);
                     }
-                    i=-1;
-                    return entryList;
+                    return listOfEntriesInFile;
             }
 
         public Entry.Position getPosition (int row){
@@ -164,9 +167,27 @@ public class MatchEntry extends Fragment {
                 public void onClick(View v) {
                     try {
                         saveEntry();
+
                     } catch (Exception e) {
+
                     }
                 }
+            });
+
+
+        save.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                try {
+                    saveEntry();
+
+
+
+
+                    } catch (IOException e) {
+                        //Just crash and do nothing
+                    }
+                }
+
             });
 
             plusGears.setOnClickListener(new View.OnClickListener() {
@@ -233,7 +254,7 @@ public class MatchEntry extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (ballsShot.getText().toString().equals("")) {
-
+                        ballsShot.setText("1");
                     } else {
                         int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
                         gears1++;
@@ -245,7 +266,7 @@ public class MatchEntry extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (autoBallsShot.getText().toString().equals("")) {
-
+                        autoBallsShot.setText("1");
                     } else {
                         int gears1 = Integer.parseInt(String.valueOf(autoBallsShot.getText()));
                         gears1++;

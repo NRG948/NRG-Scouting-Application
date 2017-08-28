@@ -26,7 +26,7 @@ public class Entry {
     boolean climbsRope;
     @Override
     public String toString(){
-        return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"+"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"+"climbsRope:"+climbsRope+"\t"+"name:"+teamName+"\t"+"position:"+position+"\t"+"\n";
+        return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"+"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"+"climbsRope:"+climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"n";
     }
     public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope){
         matchNumber=match;
