@@ -101,7 +101,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
     public void onBackPressed() {
         if(lv.getVisibility()==View.GONE) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Discard Entry?");
+            builder.setTitle("Discard Entry");
             builder.setCancelable(true);
             builder.setMessage("Are you sure you want to delete this entry's data?");
             builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {

@@ -35,6 +35,7 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     protected String teamName="";
     private Button save;
+    private Button back;
     private Button plusGears;
     private Button minusGears;
     private Button plusAutoGears;
@@ -175,6 +176,7 @@ public class MatchEntry extends Fragment {
             death = (CheckBox) (getView().findViewById((R.id.death)));
             rating = (RatingBar) (getView().findViewById(R.id.sportsmanship));
             save = (Button) (getView().findViewById(R.id.save));
+            back = (Button) (getView().findViewById(R.id.back));
             plusGears = (Button) (getView().findViewById(R.id.plusGears));
             minusGears = (Button) (getView().findViewById(R.id.minusGears));
             plusAutoGears = (Button) (getView().findViewById(R.id.plusAutoGears));
@@ -195,6 +197,11 @@ public class MatchEntry extends Fragment {
                 }
             });
 
+            back.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    getActivity().onBackPressed();
+                }
+            });
 
 
             plusGears.setOnClickListener(new View.OnClickListener() {
