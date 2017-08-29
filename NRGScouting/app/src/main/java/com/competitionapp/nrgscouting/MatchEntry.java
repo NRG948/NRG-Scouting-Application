@@ -56,7 +56,7 @@ public class MatchEntry extends Fragment {
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
     public void saveEntry() throws IOException{
-        Entry newOne=new Entry();
+        Entry newOne;
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         dir.mkdirs();
         final File entryFile = new File(dir,"Entries.txt");
