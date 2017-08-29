@@ -61,7 +61,15 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
+        /**
+         * Process 1 should run before Process 2
+         */
+        //Start of process 1
         listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
+        //End of process 1
+
+
+        //Start of process 2
         PrintStream printer = new PrintStream(entryFile);
         for (Entry a : listOfEntriesInFile) {
             if (a.matchNumber == newOne.matchNumber) {
@@ -74,6 +82,9 @@ public class MatchEntry extends Fragment {
                 for (Entry a : listOfEntriesInFile) {
                     printer.print(a.toString());
                 }
+        //End of process 2
+
+
     }
             public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
                     listOfEntriesInFile = new ArrayList<Entry>();
