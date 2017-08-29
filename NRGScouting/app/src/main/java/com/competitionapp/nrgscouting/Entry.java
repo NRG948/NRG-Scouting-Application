@@ -24,20 +24,9 @@ public class Entry {
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
-    public void writeEntry(File entries) throws FileNotFoundException {
-        PrintStream printStream=new PrintStream(entries);
-        printStream.print("match:"+matchNumber+"\t");
-        printStream.print("position:"+position);
-        printStream.print("gearsRet:"+gearsRetrieved+"\t");
-        printStream.print("autoGearsRet:"+autoGearsRetrieved+"\t");
-        printStream.print("ballsShot:"+ballsShot+"\t");
-        printStream.print("autoBallsShot:"+autoBallsShot+"\t");
-        printStream.print("rating:"+rating+"\t");
-        printStream.print("death:"+death+"\t");
-        printStream.print("crossedBaseline:"+crossedBaseline+"\t");
-        printStream.print("climbsRope:"+climbsRope+"\t");
-        printStream.print("name:"+teamName+"\t");
-        printStream.println();//One entry per line
+    @Override
+    public String toString(){
+        return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"+"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"+"climbsRope:"+climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"n";
     }
     public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope){
         matchNumber=match;
