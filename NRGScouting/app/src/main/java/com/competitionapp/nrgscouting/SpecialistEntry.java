@@ -30,7 +30,7 @@ public class SpecialistEntry extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
 
-        //((ActivityUtility) getActivity()).setActionBarTitle(teamName);
+        ((ActivityUtility) getActivity()).setActionBarTitle("Team Name");
 
         mPuaseButton = (Button) rootView.findViewById(R.id.Puase_Button);
         mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);

@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.app.Fragment;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,8 @@ public class MatchEntry extends Fragment {
 
 
     }
+
+
 
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
