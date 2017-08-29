@@ -22,13 +22,18 @@ public class SpecialistEntry extends Fragment {
     private Button MinusButton;
     private Chronometer mchronometer;
     private EditText PilotFouls;
+    private Button back;
 
-    private long lastPuase;
+    private long lastPause;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
+
+        ((ActivityUtility) getActivity()).setActionBarTitle("Team Name");
+
+        back = (Button) rootView.findViewById(R.id.back);
         mPuaseButton = (Button) rootView.findViewById(R.id.Puase_Button);
         mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
         mStartButton = (Button) rootView.findViewById(R.id.StartButton);
@@ -37,8 +42,8 @@ public class SpecialistEntry extends Fragment {
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (lastPuase != 0) {
-                    mchronometer.setBase(mchronometer.getBase() + SystemClock.elapsedRealtime() - lastPuase);
+                if (lastPause != 0) {
+                    mchronometer.setBase(mchronometer.getBase() + SystemClock.elapsedRealtime() - lastPause);
                 } else {
                     mchronometer.setBase(SystemClock.elapsedRealtime());
                 }
@@ -52,7 +57,7 @@ public class SpecialistEntry extends Fragment {
         mPuaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastPuase = SystemClock.elapsedRealtime();
+                lastPause = SystemClock.elapsedRealtime();
                 mchronometer.stop();
                 mPuaseButton.setEnabled(false);
                 mStartButton.setEnabled(true);
@@ -63,9 +68,16 @@ public class SpecialistEntry extends Fragment {
             @Override
             public void onClick(View v) {
                 mchronometer.setBase(SystemClock.elapsedRealtime());
-                lastPuase = 0;
+                lastPause = 0;
                 mStartButton.setEnabled(true);
                 mPuaseButton.setEnabled(false);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
 
