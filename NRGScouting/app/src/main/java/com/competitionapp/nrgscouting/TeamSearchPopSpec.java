@@ -14,7 +14,7 @@ import android.widget.SearchView;
  * Created by nipunchhajed on 8/14/17.
  */
 
-public class TeamSearchPopSpec extends AppCompatActivity {
+public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtility{
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
@@ -92,5 +92,9 @@ public class TeamSearchPopSpec extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }

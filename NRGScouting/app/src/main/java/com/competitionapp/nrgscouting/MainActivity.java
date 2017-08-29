@@ -19,7 +19,7 @@ import com.competitionapp.nrgscouting.MatchFragment;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
     FloatingActionButton fab;
     FloatingActionButton fab2;

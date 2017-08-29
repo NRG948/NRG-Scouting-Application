@@ -46,6 +46,9 @@ public class MatchEntry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ((ActivityUtility) getActivity()).setActionBarTitle(teamName);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
@@ -75,48 +78,49 @@ public class MatchEntry extends Fragment {
                     printer.print(a.toString());
                 }
     }
-            public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
-                    listOfEntriesInFile = new ArrayList<Entry>();
-                    String fileText = "";
-                    fileText = getFileContent(entries);
-                    String[] lines = fileText.split("\tn");
-                    ArrayList<String> lineList = new ArrayList<String>();
-                    for(String a:lines){
-                        if(!a.equals("")){
-                            lineList.add(a);
-                        }
-                    }
-                    for (String line : lineList) {
-                        String[] properties = line.split("\t");
-                        Entry newEntry = new Entry();
-                        //USE AN INITIALIZER TO DO THE THING DONE BELOW USING A LOOP AND WITH A LOT LESS CODE
-                        String[] matchNum = properties[0].split(":");
-                        newEntry.matchNumber = Integer.parseInt(matchNum[1]);
-                        String[] gears = properties[1].split(":");
-                        newEntry.gearsRetrieved = Integer.parseInt(gears[1]);
-                        String[] autoGears = properties[2].split(":");
-                        newEntry.autoGearsRetrieved = Integer.parseInt(autoGears[1]);
-                        String[] balls = properties[3].split(":");
-                        newEntry.ballsShot = Integer.parseInt(balls[1]);
-                        String[] autoBalls = properties[4].split(":");
-                        newEntry.autoBallsShot = Integer.parseInt(autoBalls[1]);
-                        String[] rating = properties[5].split(":");
-                        newEntry.rating = Integer.parseInt(rating[1].replaceAll(".0",""));
-                        String[] death = properties[6].split(":");
-                        newEntry.death = Boolean.getBoolean(death[1]);
-                        String[] baseline = properties[7].split(":");
-                        newEntry.crossedBaseline = Boolean.getBoolean(baseline[1]);
-                        String[] rope = properties[8].split(":");
-                        newEntry.climbsRope = Boolean.getBoolean(rope[1]);
-                        String[] name = properties[9].split(":");
-                        newEntry.teamName = name[1];
-                        String[] position = properties[10].split(":");
-                        newEntry.position = getPosition(position[1]);
-                        //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
-                        listOfEntriesInFile.add(newEntry);
-                    }
-                    return listOfEntriesInFile;
+
+    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
+            listOfEntriesInFile = new ArrayList<Entry>();
+            String fileText = "";
+            fileText = getFileContent(entries);
+            String[] lines = fileText.split("\tn");
+            ArrayList<String> lineList = new ArrayList<String>();
+            for(String a:lines){
+                if(!a.equals("")){
+                    lineList.add(a);
+                }
             }
+            for (String line : lineList) {
+                String[] properties = line.split("\t");
+                Entry newEntry = new Entry();
+                //USE AN INITIALIZER TO DO THE THING DONE BELOW USING A LOOP AND WITH A LOT LESS CODE
+                String[] matchNum = properties[0].split(":");
+                newEntry.matchNumber = Integer.parseInt(matchNum[1]);
+                String[] gears = properties[1].split(":");
+                newEntry.gearsRetrieved = Integer.parseInt(gears[1]);
+                String[] autoGears = properties[2].split(":");
+                newEntry.autoGearsRetrieved = Integer.parseInt(autoGears[1]);
+                String[] balls = properties[3].split(":");
+                newEntry.ballsShot = Integer.parseInt(balls[1]);
+                String[] autoBalls = properties[4].split(":");
+                newEntry.autoBallsShot = Integer.parseInt(autoBalls[1]);
+                String[] rating = properties[5].split(":");
+                newEntry.rating = Integer.parseInt(rating[1].replaceAll(".0",""));
+                String[] death = properties[6].split(":");
+                newEntry.death = Boolean.getBoolean(death[1]);
+                String[] baseline = properties[7].split(":");
+                newEntry.crossedBaseline = Boolean.getBoolean(baseline[1]);
+                String[] rope = properties[8].split(":");
+                newEntry.climbsRope = Boolean.getBoolean(rope[1]);
+                String[] name = properties[9].split(":");
+                newEntry.teamName = name[1];
+                String[] position = properties[10].split(":");
+                newEntry.position = getPosition(position[1]);
+                //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
+                listOfEntriesInFile.add(newEntry);
+            }
+            return listOfEntriesInFile;
+    }
 
         public Entry.Position getPosition (int row){
             if (row == 0)
