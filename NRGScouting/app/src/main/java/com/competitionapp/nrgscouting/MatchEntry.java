@@ -49,18 +49,13 @@ public class MatchEntry extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-<<<<<<< HEAD
+
     public void saveEntry() throws IOException{
         Entry newOne;
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         dir.mkdirs();
         final File entryFile = new File(dir,"Entries.txt");
-=======
-    public void saveEntry() throws IOException {
-        Entry newOne = new Entry();
-        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "/NRGScouting/");
-        File entryFile = new File(dir, "Entries.txt");
->>>>>>> origin/master
+        
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
@@ -183,20 +178,6 @@ public class MatchEntry extends Fragment {
             });
 
 
-        save.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                try {
-                    saveEntry();
-
-
-
-
-                    } catch (IOException e) {
-                        //Just crash and do nothing
-                    }
-                }
-
-            });
 
             plusGears.setOnClickListener(new View.OnClickListener() {
                 @Override
