@@ -2,8 +2,6 @@ package com.competitionapp.nrgscouting;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Fragment;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +14,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class MatchEntry extends Fragment {
+    public static String fileText="";
     private EditText matchNumber;
     private Spinner position;
     private EditText gears;
@@ -52,48 +52,54 @@ public class MatchEntry extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-
+    public void initialCheck()throws IOException{
+        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
+        final File entryFile = new File(dir,"Entries.txt");
+        try{
+            FileInputStream fis = new FileInputStream(entryFile);
+        }
+        catch(FileNotFoundException h){
+            dir.mkdir();
+            entryFile.createNewFile();
+        }
+        fileText=getFileContent(entryFile);
+        saveEntry();
+    }
     public void saveEntry() throws IOException{
         Entry newOne;
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        dir.mkdirs();
         final File entryFile = new File(dir,"Entries.txt");
-        
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
-        /**
-         * Process 1 should run before Process 2
-         */
-        //Start of process 1
-        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
-        //End of process 1
-
-
-        //Start of process 2
         PrintStream printer = new PrintStream(entryFile);
-        for (Entry a : listOfEntriesInFile) {
-            if (a.matchNumber == newOne.matchNumber) {
-                listOfEntriesInFile.remove(a);
-            }
-        }
-                dir.mkdirs();
-                entryFile.createNewFile();
-                listOfEntriesInFile.add(newOne);
-                for (Entry a : listOfEntriesInFile) {
-                    printer.print(a.toString());
-                }
-        //End of process 2
+            /**
+             * Process 1 should run before Process 2
+             */
+            //Start of process 1
+            listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
+            //End of process 1
 
+
+            //Start of process 2
+
+            for (Entry a : listOfEntriesInFile) {
+                if (a.matchNumber == newOne.matchNumber) {
+                    listOfEntriesInFile.remove(a);
+                }
+            }
+            listOfEntriesInFile.add(newOne);
+            for (Entry a : listOfEntriesInFile) {
+                printer.println(a.toString());
+            }
+            //End of process 2
 
     }
 
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
-            String fileText = "";
-            fileText = getFileContent(entries);
             String[] lines = fileText.split("\tn");
             ArrayList<String> lineList = new ArrayList<String>();
             for(String a:lines){
@@ -184,8 +190,7 @@ public class MatchEntry extends Fragment {
             save.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-                        saveEntry();
-
+                        initialCheck();
                     } catch (Exception e) {
 
                     }
@@ -307,8 +312,7 @@ public class MatchEntry extends Fragment {
         return result.toString();
         }
         catch (IOException e){
-
+         return null;
         }
-        return null;
 }
     }
