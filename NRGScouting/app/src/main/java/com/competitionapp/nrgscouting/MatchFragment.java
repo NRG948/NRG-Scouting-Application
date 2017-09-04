@@ -19,6 +19,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 import java.io.File;
 import android.os.Environment;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -43,30 +45,33 @@ public class MatchFragment extends Fragment {
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
+        File entryFile = new File(dir,"Entries.txt");
+        ArrayList<Entry> list = new ArrayList<Entry>();
+        try {
+            String fileText=MatchEntry.getFileContent(entryFile);
+            list = MatchEntry.getAllEntriesInFileIntoObjectForm(entryFile,fileText);
+        }
+        catch(FileNotFoundException e){
+            //Do nothing
+        }
+        if(list.size()>0) {
+            matchTeams = new String[list.size()];
 
-
-
-        //Memory card code
-        //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            //File externalStoreDir = Environment.getExternalStorageDirectory();
-            //File entries = new File(externalStoreDir,"Entries.txt");
-            //ArrayList<Entry> list=MatchEntry.getAllEntriesInFileIntoObjectForm(entries);
-            //matchTeams=new String[list.size()];
-
-            //for(int i=0;i<=matchTeams.length;i++){
-            //    matchTeams[i]="Match:"+list.get(i).matchNumber+"   Team:"+list.get(i).teamName;
-          //  }
-        //}
-        //else{
-          //  System.out.println("File not found...");
-        //}
-
+            for (int i = 0; i < matchTeams.length; i++) {
+                matchTeams[i] = "Match:" + list.get(i).matchNumber + "   Team:" + list.get(i).teamName;
+            }
+            teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
+            listView.setAdapter(teamAdapter);
+        }
+        else{
+            matchTeams= new String[]{};
+            listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+        }
         //End of memory card code
-
-
-        teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
-        listView.setAdapter(teamAdapter);
-        listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+        //teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
+        //listView.setAdapter(teamAdapter);
+        //listView.setEmptyView(rootView.findViewById(R.id.emptyView));
         return rootView;
     }
 }

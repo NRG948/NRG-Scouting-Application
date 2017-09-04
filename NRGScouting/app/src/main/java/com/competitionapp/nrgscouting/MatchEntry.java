@@ -80,7 +80,7 @@ public class MatchEntry extends Fragment {
             /**
              * Process 1 should run before Process 2
              */
-        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
+        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile,fileText);
         for (Entry a : listOfEntriesInFile) {
             if (a.matchNumber != newOne.matchNumber) {
                 listToWrite.add(a);
@@ -91,7 +91,7 @@ public class MatchEntry extends Fragment {
             printer.println(a.toString());
         }
     }
-    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
+    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
             String[] lines = fileText.split("\tn");
             ArrayList<String> lineList = new ArrayList<String>();
