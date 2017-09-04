@@ -2,12 +2,7 @@ package com.competitionapp.nrgscouting;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Fragment;
-<<<<<<< HEAD
-=======
-import android.renderscript.ScriptGroup;
-import android.util.Log;
-import android.view.KeyEvent;
->>>>>>> origin/master
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-
 public class MatchEntry extends Fragment {
     public static String fileText="";
     private EditText matchNumber;
@@ -73,7 +67,8 @@ public class MatchEntry extends Fragment {
         saveEntry();
     }
     public void saveEntry() throws IOException{
-        Entry newOne;
+        final Entry newOne;
+        ArrayList<Entry> listToWrite=new ArrayList<Entry>();
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         final File entryFile = new File(dir,"Entries.txt");
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
@@ -81,32 +76,21 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
-        PrintStream printer = new PrintStream(entryFile);
+        final PrintStream printer = new PrintStream(entryFile);
             /**
              * Process 1 should run before Process 2
              */
-            //Start of process 1
-            listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
-            //End of process 1
-
-
-            //Start of process 2
-
-            for (Entry a : listOfEntriesInFile) {
-                if (a.matchNumber == newOne.matchNumber) {
-                    listOfEntriesInFile.remove(a);
-                }
+        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile);
+        for (Entry a : listOfEntriesInFile) {
+            if (a.matchNumber != newOne.matchNumber) {
+                listToWrite.add(a);
             }
-            listOfEntriesInFile.add(newOne);
-            for (Entry a : listOfEntriesInFile) {
-                printer.println(a.toString());
-            }
-            //End of process 2
-
+        }
+        listToWrite.add(newOne);
+        for (Entry a : listToWrite) {
+            printer.println(a.toString());
+        }
     }
-
-
-
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
             String[] lines = fileText.split("\tn");
