@@ -16,12 +16,13 @@ import android.widget.EditText;
 
 public class SpecialistEntry extends Fragment {
     private Button mStartButton;
-    private Button mPuaseButton;
+    private Button mPauseButton;
     private Button mResetButton;
     private Button PlusButton;
     private Button MinusButton;
     private Chronometer mchronometer;
     private EditText PilotFouls;
+    private Button back;
 
     private long lastPause;
 
@@ -30,9 +31,10 @@ public class SpecialistEntry extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
 
-        //((ActivityUtility) getActivity()).setActionBarTitle(teamName);
+        ((ActivityUtility) getActivity()).setActionBarTitle("Team Name Here");
 
-        mPuaseButton = (Button) rootView.findViewById(R.id.Puase_Button);
+        back = (Button) rootView.findViewById(R.id.back);
+        mPauseButton = (Button) rootView.findViewById(R.id.Pause_Button);
         mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
         mStartButton = (Button) rootView.findViewById(R.id.StartButton);
         mResetButton = (Button) rootView.findViewById(R.id.Reset_Button);
@@ -47,17 +49,17 @@ public class SpecialistEntry extends Fragment {
                 }
                 mchronometer.start();
                 mStartButton.setEnabled(false);
-                mPuaseButton.setEnabled(true);
+                mPauseButton.setEnabled(true);
             }
 
         });
 
-        mPuaseButton.setOnClickListener(new View.OnClickListener() {
+        mPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lastPause = SystemClock.elapsedRealtime();
                 mchronometer.stop();
-                mPuaseButton.setEnabled(false);
+                mPauseButton.setEnabled(false);
                 mStartButton.setEnabled(true);
             }
         });
@@ -68,7 +70,14 @@ public class SpecialistEntry extends Fragment {
                 mchronometer.setBase(SystemClock.elapsedRealtime());
                 lastPause = 0;
                 mStartButton.setEnabled(true);
-                mPuaseButton.setEnabled(false);
+                mPauseButton.setEnabled(false);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
 

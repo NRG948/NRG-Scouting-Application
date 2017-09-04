@@ -1,7 +1,9 @@
 package com.competitionapp.nrgscouting;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -93,6 +95,33 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(lv.getVisibility()==View.GONE) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Discard Entry");
+            builder.setCancelable(true);
+            builder.setMessage("Are you sure you want to delete this entry's data?");
+            builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    TeamSearchPop.this.finish();
+                }
+            });
+
+            AlertDialog ad = builder.create();
+            ad.show();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void setActionBarTitle(String title) {

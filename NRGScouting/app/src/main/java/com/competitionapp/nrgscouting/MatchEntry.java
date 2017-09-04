@@ -2,6 +2,12 @@ package com.competitionapp.nrgscouting;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Fragment;
+<<<<<<< HEAD
+=======
+import android.renderscript.ScriptGroup;
+import android.util.Log;
+import android.view.KeyEvent;
+>>>>>>> origin/master
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +40,7 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     protected String teamName="";
     private Button save;
+    private Button back;
     private Button plusGears;
     private Button minusGears;
     private Button plusAutoGears;
@@ -97,6 +104,8 @@ public class MatchEntry extends Fragment {
             //End of process 2
 
     }
+
+
 
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
@@ -178,6 +187,7 @@ public class MatchEntry extends Fragment {
             death = (CheckBox) (getView().findViewById((R.id.death)));
             rating = (RatingBar) (getView().findViewById(R.id.sportsmanship));
             save = (Button) (getView().findViewById(R.id.save));
+            back = (Button) (getView().findViewById(R.id.back));
             plusGears = (Button) (getView().findViewById(R.id.plusGears));
             minusGears = (Button) (getView().findViewById(R.id.minusGears));
             plusAutoGears = (Button) (getView().findViewById(R.id.plusAutoGears));
@@ -197,6 +207,11 @@ public class MatchEntry extends Fragment {
                 }
             });
 
+            back.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    getActivity().onBackPressed();
+                }
+            });
 
 
             plusGears.setOnClickListener(new View.OnClickListener() {
