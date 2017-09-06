@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.os.Looper;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,10 +91,6 @@ public class MatchEntry extends Fragment {
         for (Entry a : listToWrite) {
             printer.println(a.toString());
         }
-        MatchFragment matchFragment = new MatchFragment();
-        getChildFragmentManager()
-                .beginTransaction().replace(R.id.fragment_container, matchFragment)
-                .commit();
 
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
@@ -190,6 +187,12 @@ public class MatchEntry extends Fragment {
                 public void onClick(View v) {
                     try {
                         initialCheck();
+
+                        MatchFragment matchFragment = new MatchFragment();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                                getChildFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, matchFragment);
+                        fragmentTransaction.commit();
                     } catch (Exception e) {
 
                     }
