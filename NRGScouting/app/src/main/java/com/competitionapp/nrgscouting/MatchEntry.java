@@ -1,8 +1,9 @@
 package com.competitionapp.nrgscouting;
 import android.os.Bundle;
 import android.os.Environment;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Looper;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,8 @@ public class MatchEntry extends Fragment {
         for (Entry a : listToWrite) {
             printer.println(a.toString());
         }
+        MatchFragment matchFragment = new MatchFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, matchFragment);
 
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
