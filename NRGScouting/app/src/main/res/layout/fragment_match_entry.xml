@@ -11,14 +11,34 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     android:orientation="vertical"
     android:layout_marginLeft="10sp"
     >
-    <EditText
-        android:id="@+id/matchNumber"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Match Number"
-        android:inputType="number"
-        android:textColor="@color/colorPrimaryDark" />
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match Number: "
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            />
+
+        <EditText
+            android:id="@+id/matchNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:hint="(Type here)"
+            android:inputType="number"
+
+            android:textColor="@color/colorPrimaryDark" />
+
+    </LinearLayout>
 
     <Spinner
         android:id="@+id/teamPosition"
@@ -26,6 +46,15 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_height="wrap_content"
         android:entries="@array/spinnerItems"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gears Retrieved:"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,9 +76,10 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:id="@+id/gearsRetrieved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="8"
-            android:hint="Gears Retrieved"
+            android:ems="4"
+            android:text="0"
             android:inputType="number"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
@@ -64,6 +94,15 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:layout_gravity="center"
             />
         </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto Gears Retrieved:"
+        android:textSize="16sp"
+        android:layout_marginTop="0dp"
+        />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,9 +124,10 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
                 android:id="@+id/autoGearsRetrieved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="8"
-                android:hint="Auto gears retrieved"
+                android:ems="4"
+                android:text="0"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
             <Button
@@ -103,6 +143,14 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
 
                 />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balls Shot:"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,8 +170,9 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:id="@+id/ballsShot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="7"
-            android:hint="Balls shot"
+            android:ems="4"
+            android:textAlignment="center"
+            android:text="0"
             android:inputType="numberDecimal"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -140,6 +189,14 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
 
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto Balls Shot:"
+        android:textSize="16sp"
+        android:layout_marginTop="0dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,8 +217,9 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:id="@+id/autoBallsShot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="7"
-            android:hint="Auto Balls Shot"
+            android:ems="4"
+            android:textAlignment="center"
+            android:text="0"
             android:inputType="numberDecimal"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -186,7 +244,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:textSize="16sp"
         android:layout_marginTop="15dp"
         android:textStyle="normal"
-        android:textColor="@color/colorPrimaryDark"
         />
 
     <RatingBar
