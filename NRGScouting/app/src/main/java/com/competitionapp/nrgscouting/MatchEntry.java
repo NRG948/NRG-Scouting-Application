@@ -91,7 +91,9 @@ public class MatchEntry extends Fragment {
             printer.println(a.toString());
         }
         MatchFragment matchFragment = new MatchFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, matchFragment).commit();
+        getChildFragmentManager()
+                .beginTransaction().replace(R.id.fragment_container, matchFragment)
+                .commit();
 
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
