@@ -6,24 +6,23 @@ import java.util.ArrayList;
 
 public class Ranker {
 	ArrayList<Team> sortedListOfTeams = new ArrayList<Team>();
-	// Auto                        [Red1,Red2,Red3,Blue1,Blue2,Blue3]
+	// Auto [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	int[] expectedTotalBallsScoredAuto = { 2, 3, 4, 5, 6, 7 };// Our expectation
 																// for
 																// them(Currently
 																// random
 																// numbers)
-	int expectedTotalBallsScoredTeleop;// Our expectation for them
+	int[] expectedTotalGearsAuto = { 4, 5, 6, 7, 8, 9 };
+	int expectedTotalBallsScoredTeleop = 40;// Our expectation for them
+	int expectedTotalGearsTeleop = 40;
 	double[] ballsScoredWeightAuto = { 1, 2, 3, 4, 20, 10 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	double[] gearsOnHookWeightAuto = { 5, 5, 5, 1, 2, 2 };
-	double crossedBaseLineWeight = 20;
-	double totalDeathsWeightAuto = -10;
+	double crossedBaseLineWeight = 0.20;
+
 	// TELEOP WEIGHTAGES
-	double totalDeathsWeightTeleop = -10;
 	double ballsScoredWeightTeleop = 40;
-	double totalYellowOrRedCardWeight = -10;
-	double noConflictWeight = 10;
-	double shooterbotWeight = 30;
-	double gearScoringbotWeight = 20;
+	double gearsWeightTeleop = 60;
+	double totalDeathsWeight = -10;
 	// FINAL WEIGHTAGES
 	double teleopScoreWeight = 60;
 	double autonomousScoreWeight = 40;
@@ -43,18 +42,18 @@ public class Ranker {
 			teleopScore = teleopScore(team);
 			team.rankScore = rankScore(teleopScore, autoScore);
 		}
-		ArrayList<Team> sorted = new ArrayList<Team>();
 		for (int i = 0; i < teamsToRank.size(); i++) {
-			int maxIndex = 0;
-			for (int j = 0; j < teamsToRank.size(); j++) {
-				if (teamsToRank.get(maxIndex).rankScore < teamsToRank.get(j).rankScore) {
-					maxIndex = j;
+			int maxIndex = i;
+			for (Team a : teamsToRank) {
+				if (a.rankScore > teamsToRank.get(maxIndex).rankScore) {
+					maxIndex=teamsToRank.indexOf(a);
 				}
 			}
-			sorted.add(teamsToRank.get(maxIndex));
-			teamsToRank.remove(teamsToRank.remove(maxIndex));
+			Team oneOfTheBest=teamsToRank.get(maxIndex);
+			teamsToRank.remove(maxIndex);
+			teamsToRank.add(0, oneOfTheBest);
 		}
-		sortedListOfTeams = sorted;
+		sortedListOfTeams=teamsToRank;
 	}
 
 	public double autonomousScore(Team team) {
@@ -65,21 +64,25 @@ public class Ranker {
 				+ ((team.totalBallsScoredBlue2Auto / expectedTotalBallsScoredAuto[4]) * ballsScoredWeightAuto[4])
 				+ ((team.totalBallsScoredBlue3Auto / expectedTotalBallsScoredAuto[5]) * ballsScoredWeightAuto[5])
 				+ ((team.totalCrossesBaseLineMatches / team.totalMatchesPlayedInAllPositions) * crossedBaseLineWeight)
-				+ ((team.totalGearsOnHookAutoMatchesRed1 / team.totalMatchesPlayedInRed1) * gearsOnHookWeightAuto[0])
-				+ ((team.totalGearsOnHookAutoMatchesRed2 / team.totalMatchesPlayedInRed2) * gearsOnHookWeightAuto[1])
-				+ ((team.totalGearsOnHookAutoMatchesRed3 / team.totalMatchesPlayedInRed3) * gearsOnHookWeightAuto[2])
-				+ ((team.totalGearsOnHookAutoMatchesBlue1 / team.totalMatchesPlayedInBlue1) * gearsOnHookWeightAuto[3])
-				+ ((team.totalGearsOnHookAutoMatchesBlue2 / team.totalMatchesPlayedInBlue2) * gearsOnHookWeightAuto[4])
-				+ ((team.totalGearsOnHookAutoMatchesBlue3 / team.totalMatchesPlayedInBlue3) * gearsOnHookWeightAuto[5])
-				+ ((team.totalDeathsAutoMatches / team.totalMatchesPlayedInAllPositions) * totalDeathsWeightAuto);
+				+ autoGears(team);
 	}
 
 	public double teleopScore(Team team) {
-		return ((team.totalDeaths / team.totalMatchesPlayedInAllPositions) * totalDeathsWeightTeleop)
-				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop);
+		return ((team.totalDeaths / team.totalMatchesPlayedInAllPositions) * totalDeathsWeight)
+				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
+				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop);
+	}
+
+	public double autoGears(Team team) {
+		return ((team.totalGearsOnHookAutoMatchesRed1 / expectedTotalGearsAuto[0]) * gearsOnHookWeightAuto[0])
+				+ ((team.totalGearsOnHookAutoMatchesRed2 / expectedTotalGearsAuto[1]) * gearsOnHookWeightAuto[1])
+				+ ((team.totalGearsOnHookAutoMatchesRed3 / expectedTotalGearsAuto[2]) * gearsOnHookWeightAuto[2])
+				+ ((team.totalGearsOnHookAutoMatchesBlue1 / expectedTotalGearsAuto[3]) * gearsOnHookWeightAuto[3])
+				+ ((team.totalGearsOnHookAutoMatchesBlue2 / expectedTotalGearsAuto[4]) * gearsOnHookWeightAuto[4])
+				+ ((team.totalGearsOnHookAutoMatchesBlue3 / expectedTotalGearsAuto[5]) * gearsOnHookWeightAuto[5]);
 	}
 
 	public double rankScore(double teleopScore, double autonomousScore) {
-		return (teleopScore * teleopScoreWeight) + (autonomousScore * autonomousScoreWeight);
+		return ((teleopScore/100.0) * teleopScoreWeight) + ((autonomousScore/100.0) * autonomousScoreWeight);
 	}
 }
