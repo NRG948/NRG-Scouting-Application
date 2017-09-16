@@ -21,8 +21,8 @@ public class Team {
     int totalGearsOnHookAutoMatchesBlue1;
     int totalGearsOnHookAutoMatchesBlue2;
     int totalGearsOnHookAutoMatchesBlue3;
-    int totalDeathsAutoMatches;
     //Tele-operated
     int totalDeaths;
     int totalBallsScoredTeleop;
+    int totalGearsRetrievedTeleop;
 }
