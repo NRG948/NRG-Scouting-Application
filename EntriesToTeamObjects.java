@@ -6,21 +6,9 @@ import java.util.Scanner;
 public class EntriesToTeamObjects {
 	static ArrayList<Entry> listOfEntriesInFile;
 	static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
-	public static void main(String[] args) {
-		/**
-		 * The path for the folder that is storing all Entries text files goes in the next line of code
-		 */
-		File folder = new File("/Users/valli/Desktop/Useless activities");
-		File[] list = folder.listFiles();//List of files with Entries
-		for (File i : list) {
-			Scanner fileScanner=new Scanner(System.in);
-			
-		}
-	}
 
-	public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm(File entries, String fileText)
+	public static void getAllEntriesInFileIntoObjectForm(File entries, String fileText)
 			throws FileNotFoundException {
-		listOfEntriesInFile = new ArrayList<Entry>();
 		String[] lines = fileText.split("\tn");
 		ArrayList<String> lineList = new ArrayList<String>();
 		for (String a : lines) {
@@ -59,7 +47,7 @@ public class EntriesToTeamObjects {
 			// OBJECT
 			listOfEntriesInFile.add(newEntry);
 		}
-		return listOfEntriesInFile;
+		combineTeams();
 	}
 
 	public static Entry.Position getPosition(String str) {
@@ -96,23 +84,31 @@ public class EntriesToTeamObjects {
 		if (a.position == Entry.Position.BLUE1) {
 			b.totalBallsScoredBlue1Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesBlue1 += a.gearsRetrieved;
+			b.totalMatchesPlayedInBlue1+=1;
 		} else if (a.position == Entry.Position.BLUE2) {
 			b.totalBallsScoredBlue2Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesBlue2 += a.gearsRetrieved;
+			b.totalMatchesPlayedInBlue2+=1;
 		} else if (a.position == Entry.Position.BLUE3) {
 			b.totalBallsScoredBlue3Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesBlue3 += a.gearsRetrieved;
+			b.totalMatchesPlayedInBlue3+=1;
 		} else if (a.position == Entry.Position.RED1) {
 			b.totalBallsScoredRed1Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesRed1 += a.gearsRetrieved;
+			b.totalMatchesPlayedInRed1+=1;
 		} else if (a.position == Entry.Position.RED2) {
 			b.totalBallsScoredRed2Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesRed2 += a.gearsRetrieved;
+			b.totalMatchesPlayedInRed2+=1;
 		} else if (a.position == Entry.Position.RED3) {
 			b.totalBallsScoredRed3Auto += a.autoBallsShot;
 			b.totalGearsOnHookAutoMatchesRed3 += a.gearsRetrieved;
+			b.totalMatchesPlayedInRed3+=1;
 		}
+		b.totalMatchesPlayedInAllPositions+=1;
 		b.totalBallsScoredTeleop += a.ballsShot;
+		b.totalGearsRetrievedTeleop+=a.gearsRetrieved;
 		b.totalDeaths += (a.death == true) ? 1 : 0;
 		b.totalCrossesBaseLineMatches += (a.crossedBaseline == true) ? 1 : 0;
 	}
@@ -123,5 +119,13 @@ public class EntriesToTeamObjects {
 			}
 		}
 		return null;
+	}
+	public static String readFile(File entries) throws FileNotFoundException{
+		String fileText="";
+		Scanner scanner=new Scanner(entries);
+		while(scanner.hasNextLine()){
+			fileText+=scanner.nextLine();
+		}
+		return fileText;
 	}
 }
