@@ -1,28 +1,35 @@
-public class Team {
-    String name;
-    int totalMatchesPlayedInAllPositions;
-    int totalMatchesPlayedInRed1;
-    int totalMatchesPlayedInRed2;
-    int totalMatchesPlayedInRed3;
-    int totalMatchesPlayedInBlue1;
-    int totalMatchesPlayedInBlue2;
-    int totalMatchesPlayedInBlue3;
-    double rankScore;
-    int totalBallsScoredRed1Auto;
-    int totalBallsScoredRed2Auto;
-    int totalBallsScoredRed3Auto;
-    int totalBallsScoredBlue1Auto;
-    int totalBallsScoredBlue2Auto;
-    int totalBallsScoredBlue3Auto;
-    int totalCrossesBaseLineMatches;
-    int totalGearsOnHookAutoMatchesRed1;
-    int totalGearsOnHookAutoMatchesRed2;
-    int totalGearsOnHookAutoMatchesRed3;
-    int totalGearsOnHookAutoMatchesBlue1;
-    int totalGearsOnHookAutoMatchesBlue2;
-    int totalGearsOnHookAutoMatchesBlue3;
-    //Tele-operated
-    int totalDeaths;
-    int totalBallsScoredTeleop;
-    int totalGearsRetrievedTeleop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
+public class RankingProcess {
+
+	public static void main(String[] args) {
+		/**
+		 * The path for the folder that is storing all Entries text files goes
+		 * in the next line of code
+		 */
+		File folder = new File("/Users/valli/Desktop/WorldOfEntries");
+		File[] list = folder.listFiles();// List of files with Entries
+		list[0] = new File("");
+		EntriesToTeamObjects.listOfEntriesInFile = new ArrayList<Entry>();
+		for (File i : list) {
+			try {// For the sake of satisfying compiler
+				EntriesToTeamObjects.getAllEntriesInFileIntoObjectForm(i, EntriesToTeamObjects.readFile(i));
+			} catch (FileNotFoundException e) {
+				// Do nothing
+			}
+		}
+		Ranker ranker = new Ranker(EntriesToTeamObjects.teams);
+		/**
+		 * THE SORTED LIST IS THE ONE THAT IS PRINTED
+		 */
+		for (Team team : ranker.sortedListOfTeams) {
+			System.out.println("Score: " + team.rankScore + " Name:" + team.name);
+		}
+		/**
+		 * 
+		 */
+	}
+
 }
