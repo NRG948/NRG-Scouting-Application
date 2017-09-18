@@ -189,7 +189,7 @@ public class MatchEntry extends Fragment {
                         initialCheck();
 
                         MatchFragment matchFragment = new MatchFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                        FragmentTransaction fragmentTransaction =
                                 getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, matchFragment);
                         fragmentTransaction.commit();
