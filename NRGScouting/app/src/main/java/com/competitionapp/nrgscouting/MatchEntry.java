@@ -93,7 +93,7 @@ public class MatchEntry extends Fragment {
             /**
              * Process 1 should run before Process 2
              */
-        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(entryFile,fileText);
+        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(fileText);
         for (Entry a : listOfEntriesInFile) {
             if (a.matchNumber != newOne.matchNumber) {
                 listToWrite.add(a);
@@ -122,27 +122,27 @@ public class MatchEntry extends Fragment {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        String keyName = entry.teamName + ":" + entry.matchNumber;
+        String keyName = "match:"+entry.teamName + ":" + entry.matchNumber;
 
-        if (sharedPref.contains("entryList")){
+        if (sharedPref.contains("MatchEntryList")){
             Set<String> entryList = sharedPref.getStringSet("entryList", null);
             entryList.add(keyName);
-            editor.putStringSet("entryList", entryList);
+            editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
 
         } else {
             Set<String> entryList =  new HashSet<String>(Arrays.asList(new String[] {keyName}));
-            editor.putStringSet("entryList", entryList);
+            editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
         }
 
-        Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
 
         editor.apply();
 
     }
 
-    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
+    public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (String fileText){
             listOfEntriesInFile = new ArrayList<Entry>();
             String[] lines = fileText.split("\tn");
             ArrayList<String> lineList = new ArrayList<String>();

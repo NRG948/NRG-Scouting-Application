@@ -4,7 +4,9 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -55,23 +57,39 @@ public class MatchFragment extends Fragment {
         //catch(FileNotFoundException e){
             //Do nothing
         //}
-        //if(list.size()>0) {
-            //matchTeams = new String[list.size()];
-
-           // for (int i = 0; i < matchTeams.length; i++) {
-           //     matchTeams[i] = "Match:" + list.get(i).matchNumber + "   Team:" + list.get(i).teamName;
-           // }
-          //  teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
-         //   listView.setAdapter(teamAdapter);
-        //}
-        //else{
-            //matchTeams= new String[]{};
-          //  listView.setEmptyView(rootView.findViewById(R.id.emptyView));
-        //}
         //End of memory card code
+
         teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
-        listView.setAdapter(teamAdapter);
         listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+
+        refreshEntryList();
+
         return rootView;
+    }
+
+    public void refreshEntryList () {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        if(!sharedPref.contains("MatchEntryList")) { return; }
+
+        String matchString = "";
+
+        for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
+            if(sharedPref.contains(x)) {
+                matchString += sharedPref.getString(x, "");
+            }
+        }
+
+        ArrayList<Entry> matchEntries = MatchEntry.getAllEntriesInFileIntoObjectForm(matchString);
+
+        if(matchEntries.size()>0) {
+            matchTeams = new String[matchEntries.size()];
+
+            for (int i = 0; i < matchTeams.length; i++) {
+                matchTeams[i] =  matchEntries.get(i).teamName + " | Match " + matchEntries.get(i).matchNumber;
+            }
+
+            teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
+            listView.setAdapter(teamAdapter);
+        }
     }
 }

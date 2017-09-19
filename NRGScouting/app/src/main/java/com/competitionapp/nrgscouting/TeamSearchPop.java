@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 
 /**
@@ -117,6 +118,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(TeamSearchPop.this, "Entry discarded.", Toast.LENGTH_SHORT).show();
                     TeamSearchPop.this.finish();
                 }
             });

@@ -15,5 +15,12 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         android:icon="@mipmap/ic_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_clearMemory"
+        android:orderInCategory="90"
+        android:title="Clear All Entries"
+        app:showAsAction="never"
+        />
 </menu>
