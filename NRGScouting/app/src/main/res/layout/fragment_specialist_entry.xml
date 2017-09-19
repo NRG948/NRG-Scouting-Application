@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
     <EditText
-        android:id="@+id/specialistMatchNumber"
+        android:id="@+id/specMatchNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -25,7 +25,7 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
-        android:id="@+id/specialistTeamPosition"
+        android:id="@+id/specTeamPos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/spinnerItems"
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/pilotFoulsDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -88,7 +88,7 @@
             android:text="Intentional Fouls: " />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/intFouls"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:hint="0"
@@ -98,7 +98,7 @@
         </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/driveSkillDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -113,7 +113,7 @@
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/autoGearComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -121,7 +121,7 @@
         android:text="Gear Auto Commentary:" />
 
     <CheckBox
-        android:id="@+id/GearInAuto"
+        android:id="@+id/GearsInAuto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDark"
@@ -146,14 +146,14 @@
         android:text="Gracious Professionalism:" />
 
     <RatingBar
-        android:id="@+id/GraciousProfessionalismRatingBar"
+        android:id="@+id/GPBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="0"
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ReliabilityComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -167,14 +167,14 @@
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/ant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Antagonism:"
         android:textSize="16sp" />
 
     <RatingBar
-        android:id="@+id/AntagonismRatingBar"
+        android:id="@+id/AntRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="0"
@@ -182,7 +182,7 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/ropeDropTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
