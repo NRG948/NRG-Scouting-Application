@@ -192,7 +192,7 @@ public class MatchEntry extends Fragment {
                         FragmentTransaction fragmentTransaction =
                                 getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.add(R.id.fragment_container, matchFragment);
-                        fragmentTransaction.commit();
+                        fragmentTransaction.commit(); //lol
                     } catch (Exception e) {
 
                     }
