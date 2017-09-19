@@ -53,9 +53,6 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab2.hide();
-        
-        /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
-        mat.refreshEntryList();*/
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +172,8 @@ public class MainActivity extends AppCompatActivity
                             Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
                         }
 
+                        MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
+                        if(mat != null) { mat.refreshEntryList();}
                     }
                 });
                 builder.show();
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity
             MatchFragment matchFragment = new MatchFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, matchFragment);
+            fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
