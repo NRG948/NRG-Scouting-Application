@@ -23,7 +23,7 @@ public class SpecialistEntry extends Fragment {
     private Chronometer mchronometer;
     private EditText PilotFouls;
     private Button back;
-
+    private Button save;
     private long lastPause;
 
     @Override
@@ -34,6 +34,7 @@ public class SpecialistEntry extends Fragment {
         ((ActivityUtility) getActivity()).setActionBarTitle("Team Name Here");
 
         back = (Button) rootView.findViewById(R.id.back);
+        save = (Button) rootView.findViewById(R.id.save);
         mPauseButton = (Button) rootView.findViewById(R.id.Pause_Button);
         mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
         mStartButton = (Button) rootView.findViewById(R.id.StartButton);
@@ -121,6 +122,32 @@ public class SpecialistEntry extends Fragment {
                 }
             }
 
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+
+
+
+                    //initialCheck();
+
+                    ((TeamSearchPopSpec) getActivity()).definiteBackPressed();
+
+                       /* MatchFragment matchFragment = new MatchFragment();
+                        FragmentTransaction fragmentTransaction =
+                                getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.fragment_container, matchFragment);
+                        fragmentTransaction.commit(); */ //lol
+                } catch (Exception e) {
+
+                }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
         });
 
         super.onStart();

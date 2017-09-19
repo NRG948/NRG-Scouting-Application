@@ -96,6 +96,11 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
 
     }
 
+    public void definiteBackPressed() {
+        super.onBackPressed();
+    }
+
+
     @Override
     public void onBackPressed() {
         if(lv.getVisibility()==View.GONE) {
