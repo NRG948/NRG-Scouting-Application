@@ -1,8 +1,12 @@
 package com.competitionapp.nrgscouting;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Scroller;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.competitionapp.nrgscouting.MatchFragment;
 
@@ -97,9 +104,65 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        switch (item.getItemId()) {
+            case R.id.action_export:
+                //Toast.makeText(MainActivity.this, (String) "help", Toast.LENGTH_SHORT).show();
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Export Entries")
+                        .setMessage(RetrieveDataFromPrefs())
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(R.drawable.ic_download_yellow)
+                        .setNegativeButton("Copy to Clipboard", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                copyToClipboard("I did it!");
+
+                                Toast.makeText(MainActivity.this, "Entries copied to clipboard.", Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+                TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+                textView.setScroller(new Scroller(this));
+                textView.setVerticalScrollBarEnabled(true);
+                textView.setTextIsSelectable(true);
+                textView.setMovementMethod(new ScrollingMovementMethod());
+                return true;
+            case R.id.action_settings:
+                Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
+        }
+
         //noinspection SimplifiableIfStatement
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String RetrieveDataFromPrefs() {
+        
+        return "";
+    }
+
+    public void copyToClipboard(String copy) {
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if(sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(copy);
+        } else {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("?", copy);
+            clipboard.setPrimaryClip(clip);
+        }
     }
 
 
