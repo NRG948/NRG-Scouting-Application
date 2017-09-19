@@ -122,7 +122,7 @@ public class MatchEntry extends Fragment {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        String keyName = "match:"+entry.teamName + ":" + entry.matchNumber;
+        String keyName = getKeyName(entry);
 
         if (sharedPref.contains("MatchEntryList")){
             Set<String> entryList = sharedPref.getStringSet("entryList", null);
@@ -140,6 +140,10 @@ public class MatchEntry extends Fragment {
 
         editor.apply();
 
+    }
+
+    public static String getKeyName(Entry entry) {
+        return "match:"+entry.teamName + ":" + entry.matchNumber;
     }
 
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (String fileText){
