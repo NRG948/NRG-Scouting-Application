@@ -91,6 +91,11 @@ public class MatchEntry extends Fragment {
         for (Entry a : listToWrite) {
             printer.println(a.toString());
         }
+        MatchFragment matchFragment = new MatchFragment();
+        FragmentTransaction fragmentTransaction =
+                getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, matchFragment);
+        fragmentTransaction.commit();
 
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
@@ -188,11 +193,11 @@ public class MatchEntry extends Fragment {
                     try {
                         initialCheck();
 
-                        MatchFragment matchFragment = new MatchFragment();
+                       /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =
                                 getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.add(R.id.fragment_container, matchFragment);
-                        fragmentTransaction.commit(); //lol
+                        fragmentTransaction.commit(); */ //lol
                     } catch (Exception e) {
 
                     }
