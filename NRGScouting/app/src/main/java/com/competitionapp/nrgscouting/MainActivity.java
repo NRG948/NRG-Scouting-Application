@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab2.hide();
+        
+        /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
+        mat.refreshEntryList();*/
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, TeamSearchPopSpec.class));
             }
         });
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
