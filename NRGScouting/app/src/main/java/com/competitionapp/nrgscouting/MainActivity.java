@@ -3,7 +3,9 @@ package com.competitionapp.nrgscouting;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
@@ -23,6 +25,9 @@ import android.widget.Toast;
 
 import com.competitionapp.nrgscouting.MatchFragment;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                copyToClipboard("I did it!");
+                                copyToClipboard(RetrieveDataFromPrefs());
 
                                 Toast.makeText(MainActivity.this, "Entries copied to clipboard.", Toast.LENGTH_SHORT)
                                         .show();
@@ -149,8 +154,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String RetrieveDataFromPrefs() {
-        
-        return "";
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        if(sharedPref.contains("entryList")) {
+            String printList = "";
+
+            for(String x : sharedPref.getStringSet("entryList", null)) {
+                if(sharedPref.contains(x)) {
+                    printList += sharedPref.getString(x, "");
+                }
+            }
+
+            return printList;
+        } else {
+            return "(No data found.)";
+        }
     }
 
     public void copyToClipboard(String copy) {

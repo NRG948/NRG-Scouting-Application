@@ -97,6 +97,10 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
     }
 
+    public void definiteBackPressed() {
+        super.onBackPressed();
+    }
+
     @Override
     public void onBackPressed() {
         if(lv.getVisibility()==View.GONE) {

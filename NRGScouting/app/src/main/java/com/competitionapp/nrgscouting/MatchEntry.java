@@ -1,6 +1,10 @@
 package com.competitionapp.nrgscouting;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Looper;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +17,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +27,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 public class MatchEntry extends Fragment {
     public static String fileText="";
     private EditText matchNumber;
@@ -91,6 +103,7 @@ public class MatchEntry extends Fragment {
         for (Entry a : listToWrite) {
             printer.println(a.toString());
         }
+
         MatchFragment matchFragment = new MatchFragment();
         FragmentTransaction fragmentTransaction =
                 getActivity().getSupportFragmentManager().beginTransaction();
@@ -98,6 +111,37 @@ public class MatchEntry extends Fragment {
         fragmentTransaction.commit();
 
     }
+
+    public void SaveNewEntryToPrefs() {
+
+        Entry entry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                ropeClimb.isChecked());
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String keyName = entry.teamName + ":" + entry.matchNumber;
+
+        if (sharedPref.contains("entryList")){
+            Set<String> entryList = sharedPref.getStringSet("entryList", null);
+            entryList.add(keyName);
+            editor.putStringSet("entryList", entryList);
+            editor.putString(keyName, entry.toString());
+
+        } else {
+            Set<String> entryList =  new HashSet<String>(Arrays.asList(new String[] {keyName}));
+            editor.putStringSet("entryList", entryList);
+            editor.putString(keyName, entry.toString());
+        }
+
+        Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_SHORT).show();
+
+        editor.apply();
+
+    }
+
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (File entries , String fileText) throws FileNotFoundException{
             listOfEntriesInFile = new ArrayList<Entry>();
             String[] lines = fileText.split("\tn");
@@ -191,7 +235,12 @@ public class MatchEntry extends Fragment {
             save.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-                        initialCheck();
+
+                        SaveNewEntryToPrefs();
+
+                        //initialCheck();
+
+                        ((TeamSearchPop) getActivity()).definiteBackPressed();
 
                        /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =
