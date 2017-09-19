@@ -146,6 +146,35 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_settings:
                 Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
+            case R.id.action_clearMemory:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Delete ALL stored match entries?");
+                builder.setMessage("Warning: This cannot be undone!");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if(sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove("MatchEntryList");
+                            editor.commit();
+                            Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+                builder.show();
+
         }
 
         //noinspection SimplifiableIfStatement

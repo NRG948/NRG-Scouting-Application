@@ -67,6 +67,8 @@ public class MatchFragment extends Fragment {
         return rootView;
     }
 
+
+
     public void refreshEntryList () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         if(!sharedPref.contains("MatchEntryList")) { return; }
