@@ -19,6 +19,7 @@ import android.widget.TextView;
  */
 
 public class SpecialistEntry extends Fragment {
+    public String teamName="";
     private Button mStartButton;
     private Button mPauseButton;
     private Button mResetButton;
@@ -46,7 +47,7 @@ public class SpecialistEntry extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_specialist_entry, container, false);
 
-        ((ActivityUtility) getActivity()).setActionBarTitle("Team Name Here");
+        ((ActivityUtility) getActivity()).setActionBarTitle(teamName);
 
         back = (Button) rootView.findViewById(R.id.back);
         save = (Button) rootView.findViewById(R.id.save);

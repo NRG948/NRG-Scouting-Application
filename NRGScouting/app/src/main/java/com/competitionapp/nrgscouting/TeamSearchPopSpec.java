@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -71,6 +72,7 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpecialistEntry specialistEntry = new SpecialistEntry();
+                specialistEntry.teamName=(String)((AppCompatTextView)(view)).getText();
                 FragmentTransaction fragmentTransaction =
                         getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.special_container, specialistEntry);
