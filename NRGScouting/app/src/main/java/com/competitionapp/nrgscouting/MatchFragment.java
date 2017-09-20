@@ -32,6 +32,8 @@ import java.util.Set;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import static android.view.View.GONE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -40,6 +42,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams = new String[0];
     ArrayList<Entry> matchEntries;
+    View rootView;
 
     public MatchFragment() {
         // Required empty public constructor
@@ -49,7 +52,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_match, container, false);
+        rootView = inflater.inflate(R.layout.fragment_match, container, false);
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
@@ -108,7 +111,13 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                     if(entryList.contains(keyName)) {
                                                         entryList.remove(keyName);
                                                     }
-                                                    editor.putStringSet("MatchEntryList", entryList);
+
+                                                    if(entryList.isEmpty()) {
+                                                        editor.remove("MatchEntryList");
+                                                    } else {
+                                                        editor.putStringSet("MatchEntryList", entryList);
+                                                    }
+
                                                     editor.commit();
                                                     Toast.makeText(getActivity(), (String) "Deleted entry '" + MatchEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                                     refreshFragment();
@@ -151,7 +160,14 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
     public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        if(!sharedPref.contains("MatchEntryList")) { return; }
+        if(!sharedPref.contains("MatchEntryList") || sharedPref.getStringSet("MatchEntryList", null) == null) {
+            listView.setVisibility(View.GONE);
+            rootView.findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
+            return;
+        }
+
+        listView.setVisibility(View.VISIBLE);
+        rootView.findViewById(R.id.emptyView).setVisibility(View.GONE);
 
         String matchString = "";
 
