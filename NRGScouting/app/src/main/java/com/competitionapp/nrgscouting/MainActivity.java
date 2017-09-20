@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_settings:
                 Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.action_clearMemory:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete ALL stored match entries?");
@@ -179,6 +180,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 builder.show();
+                return true;
 
         }
 
