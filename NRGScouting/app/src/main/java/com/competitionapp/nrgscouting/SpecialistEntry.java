@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 /**
  * Created by valli on 8/12/17.
@@ -22,6 +26,17 @@ public class SpecialistEntry extends Fragment {
     private Button MinusButton;
     private Chronometer mchronometer;
     private EditText PilotFouls;
+    private ScrollView positions;
+    private EditText specMatchNum;
+    private EditText intentionalFouls;
+    private RatingBar driverSkill;
+    private CheckBox autoGears;
+    private TextView autoComments;
+    private RatingBar GPRating;
+    private RatingBar reliabilityBar;
+    private RatingBar antagonism;
+    private Chronometer timer;
+    private TextView speed;
     private Button back;
     private Button save;
     private long lastPause;
@@ -36,7 +51,7 @@ public class SpecialistEntry extends Fragment {
         back = (Button) rootView.findViewById(R.id.back);
         save = (Button) rootView.findViewById(R.id.save);
         mPauseButton = (Button) rootView.findViewById(R.id.Pause_Button);
-        mchronometer = (Chronometer) rootView.findViewById(R.id.chronometer3);
+        mchronometer = (Chronometer) rootView.findViewById(R.id.timer);
         mStartButton = (Button) rootView.findViewById(R.id.StartButton);
         mResetButton = (Button) rootView.findViewById(R.id.Reset_Button);
 
