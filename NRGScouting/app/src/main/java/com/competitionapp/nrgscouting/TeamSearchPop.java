@@ -1,6 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -98,8 +99,10 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
     }
 
-    public void definiteBackPressed() {
-        super.onBackPressed();
+    public void finishActivity() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent );
+        finish();
     }
 
     @Override
@@ -119,14 +122,14 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText(TeamSearchPop.this, "Entry discarded.", Toast.LENGTH_SHORT).show();
-                    TeamSearchPop.this.finish();
+                    finishActivity();
                 }
             });
 
             AlertDialog ad = builder.create();
             ad.show();
         } else {
-            super.onBackPressed();
+            finishActivity();
         }
     }
 

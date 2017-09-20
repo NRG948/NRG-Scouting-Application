@@ -124,8 +124,8 @@ public class MatchEntry extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         String keyName = getKeyName(entry);
 
-        if (sharedPref.contains("MatchEntryList")){
-            Set<String> entryList = sharedPref.getStringSet("entryList", null);
+        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null){
+            Set<String> entryList = sharedPref.getStringSet("MatchEntryList", null);
             entryList.add(keyName);
             editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
@@ -239,12 +239,12 @@ public class MatchEntry extends Fragment {
             save.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-
+                        Toast.makeText(getActivity(), "Trying to save...", Toast.LENGTH_SHORT);
                         SaveNewEntryToPrefs();
 
                         //initialCheck();
-
-                        ((TeamSearchPop) getActivity()).definiteBackPressed();
+                        Toast.makeText(getActivity(), "Trying to exit...", Toast.LENGTH_SHORT);
+                        ((TeamSearchPop) getActivity()).finishActivity();
 
                        /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =

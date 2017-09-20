@@ -2,6 +2,7 @@ package com.competitionapp.nrgscouting;
 
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -96,8 +97,10 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
 
     }
 
-    public void definiteBackPressed() {
-        super.onBackPressed();
+    public void finishActivity() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent );
+        finish();
     }
 
 
@@ -117,14 +120,14 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
             builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    TeamSearchPopSpec.this.finish();
+                    finishActivity();
                 }
             });
 
             AlertDialog ad = builder.create();
             ad.show();
         } else {
-            super.onBackPressed();
+            finishActivity();
         }
     }
 

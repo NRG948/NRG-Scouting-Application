@@ -132,7 +132,7 @@ public class SpecialistEntry extends Fragment {
 
                     //initialCheck();
 
-                    ((TeamSearchPopSpec) getActivity()).definiteBackPressed();
+                    ((TeamSearchPopSpec) getActivity()).finishActivity();
 
                        /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =

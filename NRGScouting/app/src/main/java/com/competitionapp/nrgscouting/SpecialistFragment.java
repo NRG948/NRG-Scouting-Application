@@ -17,7 +17,7 @@ import static com.competitionapp.nrgscouting.R.id.fab;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SpecialistFragment extends Fragment {
+public class SpecialistFragment extends Fragment implements RefreshableFragment{
     ListView listView;
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams={};
@@ -59,4 +59,8 @@ public class SpecialistFragment extends Fragment {
             return rootView;
     }
 
+    @Override
+    public void refreshFragment() {
+        return;
+    }
 }

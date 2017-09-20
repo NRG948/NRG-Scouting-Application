@@ -35,7 +35,7 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MatchFragment extends Fragment {
+public class MatchFragment extends Fragment implements RefreshableFragment{
     ListView listView;
     ArrayAdapter<String> teamAdapter;
     String[] matchTeams = new String[0];
@@ -111,7 +111,7 @@ public class MatchFragment extends Fragment {
                                                     editor.putStringSet("MatchEntryList", entryList);
                                                     editor.commit();
                                                     Toast.makeText(getActivity(), (String) "Deleted entry '" + MatchEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
-                                                    refreshEntryList();
+                                                    refreshFragment();
                                                     dialog.dismiss();
                                                 }
                                             }
@@ -132,7 +132,7 @@ public class MatchFragment extends Fragment {
             }
         });
 
-        refreshEntryList();
+        refreshFragment();
 
         return rootView;
     }
@@ -149,7 +149,7 @@ public class MatchFragment extends Fragment {
         }
     }
 
-    public void refreshEntryList () {
+    public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         if(!sharedPref.contains("MatchEntryList")) { return; }
 

@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     FloatingActionButton fab2;
 
+    RefreshableFragment currentFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         //Set about frag initially when app opens
         final MatchFragment matchFragment = new MatchFragment();
+        currentFragment = matchFragment;
         final android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
@@ -57,14 +60,14 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeamSearchPop.class));
+                startActivityForResult(new Intent(MainActivity.this, TeamSearchPop.class), 0);
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeamSearchPopSpec.class));
+                startActivityForResult(new Intent(MainActivity.this, TeamSearchPopSpec.class), 0);
             }
         });
 
@@ -165,15 +168,14 @@ public class MainActivity extends AppCompatActivity
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         if(sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove("MatchEntryList");
+                            editor.putStringSet("MatchEntryList", null);
                             editor.commit();
                             Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
                         }
 
-                        MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
-                        if(mat != null) { mat.refreshEntryList();}
+                        currentFragment.refreshFragment();
                     }
                 });
                 builder.show();
@@ -188,7 +190,7 @@ public class MainActivity extends AppCompatActivity
     public String RetrieveDataFromPrefs() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if(sharedPref.contains("MatchEntryList")) {
+        if(sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
             String printList = "";
 
             for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
@@ -215,6 +217,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(currentFragment != null) {
+            currentFragment.refreshFragment();
+        }
+
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -225,6 +238,7 @@ public class MainActivity extends AppCompatActivity
             MatchFragment matchFragment = new MatchFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
+            currentFragment = matchFragment;
             fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -241,6 +255,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_about) {
+
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -260,6 +275,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if(id == R.id.nav_spec) {
             SpecialistFragment specFragment = new SpecialistFragment();
+            currentFragment = specFragment;
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, specFragment, "spec");
