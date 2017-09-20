@@ -78,7 +78,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(matchTeams[position])
-                        .setMessage(matchEntries.get(position).toString())
+                        .setMessage(entryToReadableString(matchEntries.get(position)))
                         .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -146,6 +146,29 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         return rootView;
     }
 
+    public static String entryToReadableString(Entry entry) {
+
+        //
+        //First big chance for a setting! Either as printed (see here) or as source
+        //
+
+        return "Team: " + entry.teamName +
+                "\nMatch: " + entry.matchNumber +
+                "\nGears Retrieved: " + entry.gearsRetrieved +
+                "\nAuto Gears Retrieved : " + entry.autoGearsRetrieved +
+                "\nBalls Shot: " + entry.ballsShot +
+                "\nAuto Balls Shot: " + entry.autoBallsShot +
+                "\nSportsmanship Rating: " + entry.rating + "/5.0" +
+                "\nDeath: " + boolToString(entry.death) +
+                "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
+                "\nClimbs Rope: " + boolToString(entry.climbsRope);
+    }
+
+    public static String boolToString(boolean bool) {
+        if(bool) { return "Yes"; }
+        else { return "No"; }
+    }
+
     public void copyToClipboard(String copy) {
         int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
@@ -183,7 +206,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             matchTeams = new String[matchEntries.size()];
 
             for (int i = 0; i < matchTeams.length; i++) {
-                matchTeams[i] =  matchEntries.get(i).teamName + " | Match " + matchEntries.get(i).matchNumber;
+                matchTeams[i] =  matchEntries.get(i).teamName + "\nMatch " + matchEntries.get(i).matchNumber;
             }
 
             teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
