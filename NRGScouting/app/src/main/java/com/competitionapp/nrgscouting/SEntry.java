@@ -14,12 +14,12 @@ public class SEntry {
     int intentFouls;
     double driverSkill;
     boolean autoGear;
-    String autoGearComment;
+    String autoGearComment = "";
     double GPRating;
     double reliability;
     double antagonism;
     double ropeDropTime;
-    String specComments;
+    String specComments = "";
 
     public SEntry(Position pos, String name, int match, int pFouls, int iFouls, double dSkill,
                   boolean aGear, String aGearComment, double GPRating, double reliability,
@@ -58,12 +58,21 @@ public class SEntry {
         entry.intentFouls = Integer.parseInt(properties[4].split(":")[1]);
         entry.driverSkill = Double.parseDouble(properties[5].split(":")[1]);
         entry.autoGear = Boolean.parseBoolean(properties[6].split(":")[1]);
-        entry.autoGearComment = properties[7].split(":")[1];
+        //if no string is found, the app crashes
+        if(properties[7].split(":")[0].length() < properties[7].length() - 1) {
+            entry.autoGearComment = String.valueOf(properties[7].split(":")[1]);
+        } else {
+            entry.autoGearComment = "";
+        }
         entry.GPRating = Double.parseDouble(properties[8].split(":")[1]);
         entry.reliability = Double.parseDouble(properties[9].split(":")[1]);
         entry.antagonism = Double.parseDouble(properties[10].split(":")[1]);
         entry.ropeDropTime = Double.parseDouble(properties[11].split(":")[1]);
-        entry.specComments = properties[12].split(":")[1];
+        if(properties[12].split(":")[0].length() < properties[12].length() - 1) {
+            entry.specComments = String.valueOf(properties[12].split(":")[1]);
+        } else {
+            entry.specComments = "";
+        }
 
         return entry;
     }

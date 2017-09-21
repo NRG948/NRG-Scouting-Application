@@ -91,7 +91,7 @@
             android:id="@+id/intFouls"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:hint="0"
+            android:text = "0"
             android:textAlignment="center"
             android:ems="2"
             android:inputType="number" />
