@@ -252,7 +252,7 @@
         />
 
     <EditText
-        android:id="@+id/speed"
+        android:id="@+id/SpecComments"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:ems="10"

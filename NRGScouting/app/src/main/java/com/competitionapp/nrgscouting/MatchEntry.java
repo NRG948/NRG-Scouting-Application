@@ -200,6 +200,7 @@ public class MatchEntry extends Fragment {
                 return Entry.Position.BLUE2;
             return Entry.Position.BLUE3;
         }
+
         public static Entry.Position getPosition(String str){
             if (str.equals("RED1"))
                 return Entry.Position.RED1;
