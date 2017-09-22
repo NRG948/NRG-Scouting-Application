@@ -199,7 +199,12 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 matchString += sharedPref.getString(x, "");
             }
         }
-
+        //try {
+            //MainActivity.cacheSaver(matchString);
+        //}
+        //catch(FileNotFoundException e){
+            //Do nothing
+        //}
         matchEntries = MatchEntry.getAllEntriesInFileIntoObjectForm(matchString);
 
         if(matchEntries.size()>0) {
