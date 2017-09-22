@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -79,18 +80,20 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setActionBarTitle("Match Scouting");
-        cacheDir=getCacheDir();
+        cacheDir=getBaseContext().getCacheDir();
     }
     public static void cacheSaver(String fileString) throws FileNotFoundException{
-        File cacheFile=new File(cacheDir,"CLASSIFIED.txt");
+        File cacheFile=new File(cacheDir.getAbsolutePath(),"CLASSIFIED.txt");
         try {
-            cacheFile.createNewFile();
+            if(!cacheFile.exists()) {
+                cacheFile.createNewFile();
+            }
+            FileWriter writer = new FileWriter(cacheFile);
+            writer.write(fileString);
         }
         catch(IOException IO){
             //oops
         }
-        PrintStream writer=new PrintStream(cacheFile);
-        writer.print(fileString);
     }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
