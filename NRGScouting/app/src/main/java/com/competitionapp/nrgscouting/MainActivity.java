@@ -21,12 +21,18 @@ import android.view.MenuItem;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
     FloatingActionButton fab;
     FloatingActionButton fab2;
-
+    static File cacheDir;
     RefreshableFragment currentFragment;
     FragmentType currentType;
 
@@ -70,13 +76,22 @@ public class MainActivity extends AppCompatActivity
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         setActionBarTitle("Match Scouting");
+        cacheDir=getCacheDir();
     }
-
+    public static void cacheSaver(String fileString) throws FileNotFoundException{
+        File cacheFile=new File(cacheDir,"CLASSIFIED.txt");
+        try {
+            cacheFile.createNewFile();
+        }
+        catch(IOException IO){
+            //oops
+        }
+        PrintStream writer=new PrintStream(cacheFile);
+        writer.print(fileString);
+    }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
