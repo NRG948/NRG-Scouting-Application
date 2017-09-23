@@ -10,6 +10,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    signingConfigs {
+        release {
+            storeFile file("myreleasekey.keystore")
+            storePassword "password"
+            keyAlias "MyReleaseKey"
+            keyPassword "password"
+            v2SigningEnabled false
+        }
     }
     buildTypes {
         release {
