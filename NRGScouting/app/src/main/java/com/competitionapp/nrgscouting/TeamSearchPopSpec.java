@@ -2,9 +2,11 @@ package com.competitionapp.nrgscouting;
 
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,6 +72,7 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpecialistEntry specialistEntry = new SpecialistEntry();
+                specialistEntry.teamName=(String)((AppCompatTextView)(view)).getText();
                 FragmentTransaction fragmentTransaction =
                         getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.special_container, specialistEntry);
@@ -96,8 +99,10 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
 
     }
 
-    public void definiteBackPressed() {
-        super.onBackPressed();
+    public void finishActivity() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent );
+        finish();
     }
 
 
@@ -117,14 +122,14 @@ public class TeamSearchPopSpec extends AppCompatActivity implements ActivityUtil
             builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    TeamSearchPopSpec.this.finish();
+                    finishActivity();
                 }
             });
 
             AlertDialog ad = builder.create();
             ad.show();
         } else {
-            super.onBackPressed();
+            finishActivity();
         }
     }
 

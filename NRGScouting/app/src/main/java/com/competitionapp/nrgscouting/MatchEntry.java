@@ -117,15 +117,15 @@ public class MatchEntry extends Fragment {
         Entry entry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked());
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        String keyName = "match:"+entry.teamName + ":" + entry.matchNumber;
+        String keyName = getKeyName(entry);
 
-        if (sharedPref.contains("MatchEntryList")){
-            Set<String> entryList = sharedPref.getStringSet("entryList", null);
+        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null){
+            Set<String> entryList = sharedPref.getStringSet("MatchEntryList", null);
             entryList.add(keyName);
             editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
@@ -140,6 +140,10 @@ public class MatchEntry extends Fragment {
 
         editor.apply();
 
+    }
+
+    public static String getKeyName(Entry entry) {
+        return "match:"+entry.teamName + ":" + entry.matchNumber;
     }
 
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (String fileText){
@@ -166,7 +170,7 @@ public class MatchEntry extends Fragment {
                 String[] autoBalls = properties[4].split(":");
                 newEntry.autoBallsShot = Integer.parseInt(autoBalls[1]);
                 String[] rating = properties[5].split(":");
-                newEntry.rating = Integer.parseInt(rating[1].replaceAll(".0",""));
+                newEntry.rating = Double.parseDouble(rating[1].replaceAll(".0",""));
                 String[] death = properties[6].split(":");
                 newEntry.death = Boolean.getBoolean(death[1]);
                 String[] baseline = properties[7].split(":");
@@ -196,6 +200,7 @@ public class MatchEntry extends Fragment {
                 return Entry.Position.BLUE2;
             return Entry.Position.BLUE3;
         }
+
         public static Entry.Position getPosition(String str){
             if (str.equals("RED1"))
                 return Entry.Position.RED1;
@@ -235,12 +240,12 @@ public class MatchEntry extends Fragment {
             save.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-
+                        Toast.makeText(getActivity(), "Trying to save...", Toast.LENGTH_SHORT);
                         SaveNewEntryToPrefs();
 
                         //initialCheck();
-
-                        ((TeamSearchPop) getActivity()).definiteBackPressed();
+                        Toast.makeText(getActivity(), "Trying to exit...", Toast.LENGTH_SHORT);
+                        ((TeamSearchPop) getActivity()).finishActivity();
 
                        /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =

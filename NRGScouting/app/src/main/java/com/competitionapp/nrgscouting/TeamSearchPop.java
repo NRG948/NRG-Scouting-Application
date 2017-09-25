@@ -1,10 +1,12 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -71,7 +73,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         MatchEntry matchEntry = new MatchEntry();
-                        matchEntry.teamName=teams[position];
+                        matchEntry.teamName=(String)((AppCompatTextView)(view)).getText();
                         android.support.v4.app.FragmentTransaction fragmentTransaction =
                                 getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.special_container, matchEntry);
@@ -98,8 +100,10 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
     }
 
-    public void definiteBackPressed() {
-        super.onBackPressed();
+    public void finishActivity() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent );
+        finish();
     }
 
     @Override
@@ -119,14 +123,14 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText(TeamSearchPop.this, "Entry discarded.", Toast.LENGTH_SHORT).show();
-                    TeamSearchPop.this.finish();
+                    finishActivity();
                 }
             });
 
             AlertDialog ad = builder.create();
             ad.show();
         } else {
-            super.onBackPressed();
+            finishActivity();
         }
     }
 

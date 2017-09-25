@@ -18,23 +18,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.competitionapp.nrgscouting.MatchFragment;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
     FloatingActionButton fab;
     FloatingActionButton fab2;
+    RefreshableFragment currentFragment;
+    FragmentType currentType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity
 
         //Set about frag initially when app opens
         final MatchFragment matchFragment = new MatchFragment();
+
+        currentFragment = matchFragment;
+        currentType = FragmentType.MATCH;
+
         final android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
@@ -53,38 +58,50 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab2.hide();
+<<<<<<< HEAD
 
         /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
         mat.refreshEntryList();*/
+=======
+>>>>>>> origin/master
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeamSearchPop.class));
+                startActivityForResult(new Intent(MainActivity.this, TeamSearchPop.class), 0);
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeamSearchPopSpec.class));
+                startActivityForResult(new Intent(MainActivity.this, TeamSearchPopSpec.class), 0);
             }
         });
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         setActionBarTitle("Match Scouting");
     }
-
+    public static void cacheSaver(String fileString) throws FileNotFoundException{
+        File cacheDir=new File("/storage/emulated/0/Hi");
+        cacheDir.mkdirs();
+        File cacheFile=new File(cacheDir.getPath()+File.separator+"CLASSIFIED.txt");
+        try {
+            if(!cacheFile.exists()) {
+                cacheFile.createNewFile();
+            }
+            PrintStream printer=new PrintStream(cacheFile);
+            printer.print(fileString);
+        }
+        catch(IOException IO){
+            //oops
+        }
+    }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
@@ -150,34 +167,69 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_settings:
                 Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.action_clearMemory:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Delete ALL stored match entries?");
-                builder.setMessage("Warning: This cannot be undone!");
-                builder.setCancelable(true);
-                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        if(sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove("MatchEntryList");
-                            editor.commit();
-                            Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
+                if(currentType.equals(FragmentType.MATCH)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Delete ALL stored match entries?");
+                    builder.setMessage("Warning: This cannot be undone!");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
                         }
+                    });
+                    builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                builder.show();
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            if (sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putStringSet("MatchEntryList", null);
+                                editor.commit();
+                                Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
+                            }
+
+                            currentFragment.refreshFragment();
+                        }
+                    });
+                    builder.show();
+                    return true;
+                } else if (currentType.equals(FragmentType.SPECIALIST)){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Delete ALL stored specialist entries?");
+                    builder.setMessage("Warning: This cannot be undone!");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            if (sharedPreferences.contains("SpecialistEntryList") && sharedPreferences.getStringSet("SpecialistEntryList", null) != null) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putStringSet("SpecialistEntryList", null);
+                                editor.commit();
+                                Toast.makeText(MainActivity.this, (String) "Cleared all stored specialist entries.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, (String) "No stored specialist entries found.", Toast.LENGTH_LONG).show();
+                            }
+
+                            currentFragment.refreshFragment();
+                        }
+                    });
+                    builder.show();
+                    return true;
+                }
 
         }
 
@@ -189,19 +241,33 @@ public class MainActivity extends AppCompatActivity
     public String RetrieveDataFromPrefs() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if(sharedPref.contains("MatchEntryList")) {
-            String printList = "";
+        if(currentType.equals(FragmentType.MATCH)) {
+            if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+                String printList = "";
 
-            for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
-                if(sharedPref.contains(x)) {
-                    printList += sharedPref.getString(x, "");
+                for (String x : sharedPref.getStringSet("MatchEntryList", null)) {
+                    if (sharedPref.contains(x)) {
+                        printList += sharedPref.getString(x, "");
+                    }
                 }
-            }
 
-            return printList;
-        } else {
-            return "(No data found.)";
+                return printList;
+            }
+        } else if (currentType.equals(FragmentType.SPECIALIST)){
+            if (sharedPref.contains("SpecialistEntryList") && sharedPref.getStringSet("SpecialistEntryList", null) != null) {
+                String printList = "";
+
+                for (String x : sharedPref.getStringSet("SpecialistEntryList", null)) {
+                    if (sharedPref.contains(x)) {
+                        printList += sharedPref.getString(x, "");
+                    }
+                }
+
+                return printList;
+            }
         }
+
+        return "(No data found.)";
     }
 
     public void copyToClipboard(String copy) {
@@ -216,6 +282,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(currentFragment != null) {
+            currentFragment.refreshFragment();
+        }
+
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -226,7 +303,11 @@ public class MainActivity extends AppCompatActivity
             MatchFragment matchFragment = new MatchFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, matchFragment);
+
+            currentFragment = matchFragment;
+            currentType = FragmentType.MATCH;
+
+            fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -242,6 +323,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_about) {
+
             About abfragment = new About();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -261,6 +343,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if(id == R.id.nav_spec) {
             SpecialistFragment specFragment = new SpecialistFragment();
+
+            currentFragment = specFragment;
+            currentType = FragmentType.SPECIALIST;
+
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, specFragment, "spec");
