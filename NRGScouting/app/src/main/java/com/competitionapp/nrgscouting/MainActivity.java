@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab2.hide();
-        
+
         /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
         mat.refreshEntryList();*/
 
