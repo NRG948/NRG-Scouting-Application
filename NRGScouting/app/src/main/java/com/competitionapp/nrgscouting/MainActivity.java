@@ -58,12 +58,8 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fab2.hide();
-<<<<<<< HEAD
-
         /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
         mat.refreshEntryList();*/
-=======
->>>>>>> origin/master
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

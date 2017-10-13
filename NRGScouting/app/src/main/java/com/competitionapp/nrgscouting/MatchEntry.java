@@ -35,6 +35,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.Exchanger;
 
 public class MatchEntry extends Fragment {
     public static String fileText="";
@@ -106,7 +107,6 @@ public class MatchEntry extends Fragment {
         for (Entry a : listToWrite) {
             printer.println(a.toString());
         }
-
         MatchFragment matchFragment = new MatchFragment();
         FragmentTransaction fragmentTransaction =
                 getActivity().getSupportFragmentManager().beginTransaction();
@@ -116,7 +116,29 @@ public class MatchEntry extends Fragment {
     }
 
     public void SaveNewEntryToPrefs() {
+        displayQRCode(new Entry());
+    }
+    public void displayQRCode(Entry entry){
+        //GENERATING CODE HERE
+        String code="Hundred";//Hundred is a test code
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View view = factory.inflate(R.layout.qr, null);
+        ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
+        alertadd.setView(view);
+        alertadd.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int nothing) {
+                mainSave();
+                ((TeamSearchPop) getActivity()).finishActivity();
+            }
+        });
 
+        alertadd.show();
+    }
+    public static String getKeyName(Entry entry) {
+        return "match:"+entry.teamName + ":" + entry.matchNumber;
+    }
+    public void mainSave() {
         Entry entry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
@@ -127,14 +149,14 @@ public class MatchEntry extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         String keyName = getKeyName(entry);
 
-        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null){
+        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
             Set<String> entryList = sharedPref.getStringSet("MatchEntryList", null);
             entryList.add(keyName);
             editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
 
         } else {
-            Set<String> entryList =  new HashSet<String>(Arrays.asList(new String[] {keyName}));
+            Set<String> entryList = new HashSet<String>(Arrays.asList(new String[]{keyName}));
             editor.putStringSet("MatchEntryList", entryList);
             editor.putString(keyName, entry.toString());
         }
@@ -142,13 +164,7 @@ public class MatchEntry extends Fragment {
         Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
 
         editor.apply();
-
     }
-
-    public static String getKeyName(Entry entry) {
-        return "match:"+entry.teamName + ":" + entry.matchNumber;
-    }
-
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (String fileText){
             listOfEntriesInFile = new ArrayList<Entry>();
             String[] lines = fileText.split("\tn");
@@ -248,7 +264,6 @@ public class MatchEntry extends Fragment {
 
                         //initialCheck();
                         Toast.makeText(getActivity(), "Trying to exit...", Toast.LENGTH_SHORT);
-                        ((TeamSearchPop) getActivity()).finishActivity();
 
                        /* MatchFragment matchFragment = new MatchFragment();
                         FragmentTransaction fragmentTransaction =
@@ -365,22 +380,7 @@ public class MatchEntry extends Fragment {
             });
             super.onStart();
         }
-    public void displayQRCode(Entry entry){
-        //GENERATING CODE HERE
-        String code="Hundred";//Hundred is a test code
-        AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
-        LayoutInflater factory = LayoutInflater.from(getContext());
-        final View view = factory.inflate(R.layout.qr, null);
-        ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
-        alertadd.setView(view);
-        alertadd.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dlg, int nothing) {
 
-            }
-        });
-
-        alertadd.show();
-    }
     public static String getFileContent(File file) throws FileNotFoundException{
         try{
         FileInputStream fis = new FileInputStream(file);
