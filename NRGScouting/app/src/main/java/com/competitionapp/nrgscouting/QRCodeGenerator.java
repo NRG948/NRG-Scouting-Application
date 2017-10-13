@@ -16,7 +16,7 @@ public class QRCodeGenerator {
     public static Bitmap qrCodeMapFor(String content) {
         MultiFormatWriter writer = new MultiFormatWriter();
         try {
-            BitMatrix matrix = writer.encode("text2Qr", BarcodeFormat.QR_CODE, 1000, 1000);
+            BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE, 1000, 1000);
             BarcodeEncoder encoder = new BarcodeEncoder();
             return encoder.createBitmap(matrix);
 

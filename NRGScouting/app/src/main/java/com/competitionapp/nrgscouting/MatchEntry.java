@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Looper;
@@ -50,6 +51,7 @@ public class MatchEntry extends Fragment {
     private CheckBox baseline;
     private CheckBox ropeClimb;
     protected String teamName="";
+    Entry newEntry=null;
     private Button save;
     private Button back;
     private Button plusGears;
@@ -116,11 +118,16 @@ public class MatchEntry extends Fragment {
     }
 
     public void SaveNewEntryToPrefs() {
-        displayQRCode(new Entry());
+        newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
+                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
+                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
+                ropeClimb.isChecked());
+        displayQRCode(newEntry);
     }
     public void displayQRCode(Entry entry){
         //GENERATING CODE HERE
-        String code="Hundred";//Hundred is a test code
+        String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
         LayoutInflater factory = LayoutInflater.from(getContext());
         final View view = factory.inflate(R.layout.qr, null);
@@ -135,30 +142,41 @@ public class MatchEntry extends Fragment {
 
         alertadd.show();
     }
+    public String getCode(Entry a){
+        return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
+                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+rating.getRating()+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F");
+    }
+    public String twoDigitization(int number){
+        return (Integer.toString(number).length()==2)?(Integer.toString(number)):("0"+number);
+    }
+    public String teamAndMatchNumber(String number){
+        int zeroesToAdd=5-(number.length());
+        String team="";
+        for(int i=0;i<zeroesToAdd;i++){
+            team+="0";
+        }
+        return team+=number;
+    }
     public static String getKeyName(Entry entry) {
         return "match:"+entry.teamName + ":" + entry.matchNumber;
     }
     public void mainSave() {
-        Entry entry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
+
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        String keyName = getKeyName(entry);
+        String keyName = getKeyName(newEntry);
 
         if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
             Set<String> entryList = sharedPref.getStringSet("MatchEntryList", null);
             entryList.add(keyName);
             editor.putStringSet("MatchEntryList", entryList);
-            editor.putString(keyName, entry.toString());
+            editor.putString(keyName, newEntry.toString());
 
         } else {
             Set<String> entryList = new HashSet<String>(Arrays.asList(new String[]{keyName}));
             editor.putStringSet("MatchEntryList", entryList);
-            editor.putString(keyName, entry.toString());
+            editor.putString(keyName, newEntry.toString());
         }
 
         Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
