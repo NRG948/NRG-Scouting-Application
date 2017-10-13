@@ -65,6 +65,12 @@ public class SpecialistEntry extends Fragment {
         mStartButton = (Button) rootView.findViewById(R.id.StartButton);
         mResetButton = (Button) rootView.findViewById(R.id.Reset_Button);
         positions = (Spinner) rootView.findViewById(R.id.specTeamPos);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        if(sharedPref.contains("DefaultTeamPosition")) {
+            positions.setSelection(sharedPref.getInt("DefaultTeamPosition", 0));
+        }
+
         specMatchNum = (EditText)  rootView.findViewById(R.id.specMatchNum);
         intentionalFouls = (EditText) rootView.findViewById(R.id.intFouls);
         driverSkill = (RatingBar) rootView.findViewById(R.id.SkillOfDriver);
@@ -244,6 +250,8 @@ public class SpecialistEntry extends Fragment {
         }
 
         Toast.makeText(getActivity().getApplicationContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
+
+        editor.putInt("DefaultTeamPosition", positions.getSelectedItemPosition());
 
         editor.apply();
 

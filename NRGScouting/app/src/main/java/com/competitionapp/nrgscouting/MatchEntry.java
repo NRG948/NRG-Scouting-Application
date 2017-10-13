@@ -181,6 +181,8 @@ public class MatchEntry extends Fragment {
 
         Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
 
+        editor.putInt("DefaultTeamPosition", position.getSelectedItemPosition());
+
         editor.apply();
     }
     public static ArrayList<Entry> getAllEntriesInFileIntoObjectForm (String fileText){
@@ -255,6 +257,13 @@ public class MatchEntry extends Fragment {
         public void onStart () {
             matchNumber = (EditText) (getView().findViewById(R.id.matchNumber));
             position = (Spinner) (getView().findViewById(R.id.teamPosition));
+
+            //Get Current Default Position
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+            if(sharedPref.contains("DefaultTeamPosition")) {
+                position.setSelection(sharedPref.getInt("DefaultTeamPosition", 0));
+            }
+
             gears = (EditText) (getView().findViewById(R.id.gearsRetrieved));
             ballsShot = (EditText) (getView().findViewById(R.id.ballsShot));
             autoGears = (EditText) (getView().findViewById(R.id.autoGearsRetrieved));
