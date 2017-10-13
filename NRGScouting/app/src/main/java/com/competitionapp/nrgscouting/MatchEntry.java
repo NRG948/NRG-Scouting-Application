@@ -1,5 +1,6 @@
 package com.competitionapp.nrgscouting;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
@@ -9,11 +10,13 @@ import android.support.v4.app.Fragment;
 import android.os.Looper;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
@@ -362,6 +365,22 @@ public class MatchEntry extends Fragment {
             });
             super.onStart();
         }
+    public void displayQRCode(Entry entry){
+        //GENERATING CODE HERE
+        String code="Hundred";//Hundred is a test code
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View view = factory.inflate(R.layout.qr, null);
+        ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
+        alertadd.setView(view);
+        alertadd.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int nothing) {
+
+            }
+        });
+
+        alertadd.show();
+    }
     public static String getFileContent(File file) throws FileNotFoundException{
         try{
         FileInputStream fis = new FileInputStream(file);
