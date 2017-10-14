@@ -56,18 +56,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
-        //File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        //File entryFile = new File(dir,"Entries.txt");
-        //ArrayList<Entry> list = new ArrayList<Entry>();
-        //try {
-        //    String fileText=MatchEntry.getFileContent(entryFile);
-        //    list = MatchEntry.getAllEntriesInFileIntoObjectForm(entryFile,fileText);
-        //}
-        //catch(FileNotFoundException e){
-            //Do nothing
-        //}
-        //End of memory card code
-
         teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
         listView.setEmptyView(rootView.findViewById(R.id.emptyView));
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

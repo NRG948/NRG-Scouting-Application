@@ -72,50 +72,6 @@ public class MatchEntry extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-    public void initialCheck()throws IOException{
-        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        final File entryFile = new File(dir,"Entries.txt");
-        try{
-            FileInputStream fis = new FileInputStream(entryFile);
-        }
-        catch(FileNotFoundException h){
-            dir.mkdir();
-            entryFile.createNewFile();
-        }
-        fileText=getFileContent(entryFile);
-        saveEntry();
-    }
-    public void saveEntry() throws IOException{
-        final Entry newOne;
-        ArrayList<Entry> listToWrite=new ArrayList<Entry>();
-        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        final File entryFile = new File(dir,"Entries.txt");
-        newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
-                Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
-                Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
-        final PrintStream printer = new PrintStream(entryFile);
-            /**
-             * Process 1 should run before Process 2
-             */
-        listOfEntriesInFile = getAllEntriesInFileIntoObjectForm(fileText);
-        for (Entry a : listOfEntriesInFile) {
-            if (a.matchNumber != newOne.matchNumber) {
-                listToWrite.add(a);
-            }
-        }
-        listToWrite.add(newOne);
-        for (Entry a : listToWrite) {
-            printer.println(a.toString());
-        }
-        MatchFragment matchFragment = new MatchFragment();
-        FragmentTransaction fragmentTransaction =
-                getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, matchFragment);
-        fragmentTransaction.commit();
-
-    }
 
     public void SaveNewEntryToPrefs() {
         newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
@@ -126,7 +82,7 @@ public class MatchEntry extends Fragment {
         displayQRCode(newEntry);
     }
     public void displayQRCode(Entry entry){
-        //GENERATING CODE HERE
+        mainSave();
         String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
         LayoutInflater factory = LayoutInflater.from(getContext());
@@ -135,7 +91,6 @@ public class MatchEntry extends Fragment {
         alertadd.setView(view);
         alertadd.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dlg, int nothing) {
-                mainSave();
                 ((TeamSearchPop) getActivity()).finishActivity();
             }
         });
