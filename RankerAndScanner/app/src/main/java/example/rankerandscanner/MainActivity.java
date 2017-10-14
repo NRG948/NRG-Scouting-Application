@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void rank(View v){
         EntriesToTeamObjects.combineTeams();
+        Ranker ranker=new Ranker();
+        for(Team a:EntriesToTeamObjects.teams){
+            a.rankScore=ranker.rankScore(ranker.teleopScore(a),ranker.autonomousScore(a));
+        }
         Collections.sort(EntriesToTeamObjects.teams);
         String toDisplay="";
         for(Team a:EntriesToTeamObjects.teams){

@@ -36,27 +36,6 @@ public class Ranker {
 	// objects
 	// Autonomous and telop scores are calculated using weightages and rank
 	// score is calculated by assigning a weightage to both of those scores
-	Ranker(ArrayList<Team> teamsToRank) {
-		double autoScore = 0;
-		double teleopScore = 0;
-		for (Team team : teamsToRank) {
-			autoScore = autonomousScore(team);
-			teleopScore = teleopScore(team);
-			team.rankScore = rankScore(teleopScore, autoScore);
-		}
-		for (int i = 0; i < teamsToRank.size(); i++) {
-			int maxIndex = i;
-			for (Team a : teamsToRank) {
-				if (a.rankScore > teamsToRank.get(maxIndex).rankScore) {
-					maxIndex=teamsToRank.indexOf(a);
-				}
-			}
-			Team oneOfTheBest=teamsToRank.get(maxIndex);
-			teamsToRank.remove(maxIndex);
-			teamsToRank.add(0, oneOfTheBest);
-		}
-		sortedListOfTeams=teamsToRank;
-	}
 
 	public double autonomousScore(Team team) {
 		return ((team.totalBallsScoredRed1Auto / expectedTotalBallsScoredAuto[0]) * ballsScoredWeightAuto[0])
