@@ -76,8 +76,7 @@ public class MatchEntry extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
-<<<<<<< HEAD
-
+    
     @Override
     public void onStart () {
         matchNumber = (EditText) (getView().findViewById(R.id.matchNumber));
