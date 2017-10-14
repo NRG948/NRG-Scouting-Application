@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 import static com.competitionapp.nrgscouting.R.id.fab;
@@ -39,108 +40,113 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
     }
 
     @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            rootView = inflater.inflate(R.layout.fragment_specialist, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_specialist, container, false);
 
-            //List initializations
-            listView = (ListView)rootView.findViewById(R.id.teams);
-        
-            //Memory card code
-            //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            //File externalStoreDir = Environment.getExternalStorageDirectory();
-            //File entries = new File(externalStoreDir,"Entries.txt");
-            //ArrayList<Entry> list=MatchEntry.getAllEntriesInFileIntoObjectForm(entries);
-            //matchTeams=new String[list.size()];
+        //List initializations
+        listView = (ListView)rootView.findViewById(R.id.teams);
 
-            //for(int i=0;i<=matchTeams.length;i++){
-            //    matchTeams[i]="Match:"+list.get(i).matchNumber+"   Team:"+list.get(i).teamName;
-            //  }
-            //}
-            //else{
-            //  System.out.println("File not found...");
-            //}
+        //Memory card code
+        //if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        //File externalStoreDir = Environment.getExternalStorageDirectory();
+        //File entries = new File(externalStoreDir,"Entries.txt");
+        //ArrayList<Entry> list=MatchEntry.getAllEntriesInFileIntoObjectForm(entries);
+        //matchTeams=new String[list.size()];
 
-            //End of memory card code
+        //for(int i=0;i<=matchTeams.length;i++){
+        //    matchTeams[i]="Match:"+list.get(i).matchNumber+"   Team:"+list.get(i).teamName;
+        //  }
+        //}
+        //else{
+        //  System.out.println("File not found...");
+        //}
+
+        //End of memory card code
 
 
-            teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, specialistTeams);
-            listView.setAdapter(teamAdapter);
-            listView.setEmptyView(rootView.findViewById(R.id.emptyView));
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, specialistTeams);
+        listView.setAdapter(teamAdapter);
+        listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                final int pos = position;
+            final int pos = position;
 
-                AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle(specialistTeams[position])
-                    .setMessage(entryToReadableString(specialistEntries.get(position)))
-                    .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        }
-                    })
-                    .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+            AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setTitle(specialistTeams[position])
+                .setMessage(entryToReadableString(specialistEntries.get(position)))
+                .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                        AlertDialog adBuilder = new AlertDialog.Builder(getActivity())
-                                .setCancelable(true)
-                                .setTitle("Confirm Deletion")
-                                .setMessage("Are you sure you want to delete this entry?")
-                                .setPositiveButton("No", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                })
-                                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        SEntry entry = specialistEntries.get(pos);
-                                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-                                        if(sharedPreferences.contains("SpecialistEntryList")) {
-                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                                            Set<String> entryList = sharedPreferences.getStringSet("SpecialistEntryList",null);
-                                            String keyName = SpecialistEntry.getKeyName(entry);
+                    AlertDialog adBuilder = new AlertDialog.Builder(getActivity())
+                        .setCancelable(true)
+                        .setTitle("Confirm Deletion")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            SEntry entry = specialistEntries.get(pos);
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                            if(sharedPreferences.contains("SpecialistEntryList")) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                Set<String> entryList = sharedPreferences.getStringSet("SpecialistEntryList",null);
+                                String keyName = SpecialistEntry.getKeyName(entry);
 
-                                            if(entryList.contains(keyName)) {
-                                                entryList.remove(keyName);
-                                            }
+                                if(entryList.contains(keyName)) {
+                                    entryList.remove(keyName);
+                                }
 
-                                            if(entryList.isEmpty()) {
-                                                editor.remove("SpecialistEntryList");
-                                            } else {
-                                                editor.putStringSet("SpecialistEntryList", entryList);
-                                            }
+                                if(entryList.isEmpty()) {
+                                    editor.remove("SpecialistEntryList");
+                                } else {
+                                    editor.putStringSet("SpecialistEntryList", entryList);
+                                }
 
-                                            editor.commit();
-                                            Toast.makeText(getActivity(), (String) "Deleted entry '" + SpecialistEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
-                                            refreshFragment();
-                                            dialog.dismiss();
-                                        }
-                                    }
-                                }).show();
-                        }
-                    })
-                    .setNeutralButton("Copy", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                                for (int i = pos + 1; i < specialistEntries.size(); i++) {
+                                    editor.putInt(SpecialistEntry.getKeyName(specialistEntries.get(i)) + ":index",
+                                            i - 1);
+                                }
 
-                            copyToClipboard(specialistEntries.get(pos).toString());
-                            Toast.makeText(getContext(), "Copied to Clipboard.", Toast.LENGTH_SHORT);
-                        }
-                    })
-                    .show();
+                                editor.commit();
+                                Toast.makeText(getActivity(), (String) "Deleted entry '" + SpecialistEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
+                                refreshFragment();
+                                dialog.dismiss();
+                            }
+                            }
+                        }).show();
+                    }
+                })
+                .setNeutralButton("Copy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                return false;
-                }
-            });
+                        copyToClipboard(specialistEntries.get(pos).toString());
+                        Toast.makeText(getContext(), "Copied to Clipboard.", Toast.LENGTH_SHORT);
+                    }
+                })
+                .show();
 
-            refreshFragment();
+            return false;
+            }
+        });
 
-            return rootView;
+        refreshFragment();
+
+        return rootView;
     }
 
     public void copyToClipboard(String copy) {
@@ -191,7 +197,7 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
             }
         }
 
-        specialistEntries = SpecialistEntry.getAllEntriesInFileIntoObjectForm(specialistString);
+        specialistEntries = sortEntries(SpecialistEntry.getAllEntriesInFileIntoObjectForm(specialistString));
 
         if(specialistEntries.size()>0) {
             specialistTeams = new String[specialistEntries.size()];
@@ -207,5 +213,42 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
         return;
     }
 
+    public ArrayList<SEntry> sortEntries(ArrayList<SEntry> originalEntries) {
+        ArrayList<SEntry> sortedEntries = new ArrayList<SEntry>();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        ArrayList<SEntry> indexlessEntries = new ArrayList<SEntry>();
+
+        for(int i = originalEntries.size(); i > 0; i--) {
+            sortedEntries.add(null);
+        }
+
+        for (SEntry x : originalEntries) {
+            if(sharedPref.contains(SpecialistEntry.getKeyName(x) + ":index")) {
+                int index = sharedPref.getInt(SpecialistEntry.getKeyName(x) + ":index", 0);
+                if(index < sortedEntries.size() && sortedEntries.get(index) == null) {
+                    sortedEntries.set(index, x);
+                } else {
+                    indexlessEntries.add(x);
+                }
+            } else {
+                indexlessEntries.add(x);
+            }
+        }
+
+        if(!indexlessEntries.isEmpty()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            for(int i = sortedEntries.size() - 1; i >= 0; i--) {
+                if(!indexlessEntries.isEmpty() && sortedEntries.get(i) == null) {
+                    int unsortedIndex = indexlessEntries.size() - 1;
+                    sortedEntries.set(i, indexlessEntries.get(unsortedIndex));
+                    editor.putInt(SpecialistEntry.getKeyName(indexlessEntries.get(unsortedIndex)) + ":index", i);
+                    indexlessEntries.remove(unsortedIndex);
+                }
+            }
+            editor.apply();
+        }
+        Collections.reverse(sortedEntries);
+        return sortedEntries;
+    }
 
 }

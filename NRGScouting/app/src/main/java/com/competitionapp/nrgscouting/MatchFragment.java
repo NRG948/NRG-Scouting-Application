@@ -28,6 +28,7 @@ import android.os.Environment;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 import android.widget.ArrayAdapter;
@@ -118,6 +119,11 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                         editor.putStringSet("MatchEntryList", entryList);
                                                     }
 
+                                                    for (int i = pos + 1; i < matchEntries.size(); i++) {
+                                                        editor.putInt(MatchEntry.getKeyName(matchEntries.get(i)) + ":index",
+                                                                i - 1);
+                                                    }
+
                                                     editor.commit();
                                                     Toast.makeText(getActivity(), (String) "Deleted entry '" + MatchEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                                     refreshFragment();
@@ -205,7 +211,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         catch(FileNotFoundException e){
             //Do nothing
         }
-        matchEntries = MatchEntry.getAllEntriesInFileIntoObjectForm(matchString);
+
+        matchEntries = sortEntries(MatchEntry.getAllEntriesInFileIntoObjectForm(matchString));
 
         if(matchEntries.size()>0) {
             matchTeams = new String[matchEntries.size()];
@@ -217,5 +224,45 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
             listView.setAdapter(teamAdapter);
         }
+    }
+
+
+    public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
+        ArrayList<Entry> sortedEntries = new ArrayList<Entry>();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        ArrayList<Entry> indexlessEntries = new ArrayList<Entry>();
+
+        for(int i = originalEntries.size(); i > 0; i--) {
+            sortedEntries.add(null);
+        }
+
+        for (Entry x : originalEntries) {
+            if(sharedPref.contains(MatchEntry.getKeyName(x) + ":index")) {
+                int index = sharedPref.getInt(MatchEntry.getKeyName(x) + ":index", 0);
+                if(index < sortedEntries.size() && index >= 0 && sortedEntries.get(index) == null) {
+                    sortedEntries.set(index, x);
+                } else {
+                    indexlessEntries.add(x);
+                }
+            } else {
+                indexlessEntries.add(x);
+            }
+        }
+
+        if(!indexlessEntries.isEmpty()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            for(int i = sortedEntries.size() - 1; i >= 0; i--) {
+                if(!indexlessEntries.isEmpty() && sortedEntries.get(i) == null) {
+                    int unsortedIndex = indexlessEntries.size() - 1;
+                    sortedEntries.set(i, indexlessEntries.get(unsortedIndex));
+                    editor.putInt(MatchEntry.getKeyName(indexlessEntries.get(unsortedIndex)) + ":index", i);
+
+                    indexlessEntries.remove(unsortedIndex);
+                }
+            }
+            editor.apply();
+        }
+        Collections.reverse(sortedEntries);
+        return sortedEntries;
     }
 }

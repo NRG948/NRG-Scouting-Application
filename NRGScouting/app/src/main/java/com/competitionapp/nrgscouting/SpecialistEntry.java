@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -236,18 +237,21 @@ public class SpecialistEntry extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         String keyName = getKeyName(entry);
 
+        Set<String> entryList;
+
         if (sharedPref.contains("SpecialistEntryList") &&
                 sharedPref.getStringSet("SpecialistEntryList", null) != null){
-            Set<String> entryList = sharedPref.getStringSet("SpecialistEntryList", null);
+            entryList = sharedPref.getStringSet("SpecialistEntryList", null);
             entryList.add(keyName);
-            editor.putStringSet("SpecialistEntryList", entryList);
-            editor.putString(keyName, entry.toString());
 
         } else {
-            Set<String> entryList =  new HashSet<String>(Arrays.asList(new String[] {keyName}));
-            editor.putStringSet("SpecialistEntryList", entryList);
-            editor.putString(keyName, entry.toString());
+            entryList =  new HashSet<String>(Arrays.asList(new String[] {keyName}));
         }
+
+        editor.putStringSet("SpecialistEntryList", entryList);
+        editor.putString(keyName, entry.toString());
+        editor.putInt(keyName + ":index", entryList.size() - 1);
+        editor.putInt("DefaultTeamPosition", positions.getSelectedItemPosition());
 
         Toast.makeText(getActivity().getApplicationContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
 
