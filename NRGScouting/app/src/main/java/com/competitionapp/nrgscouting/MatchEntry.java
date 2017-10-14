@@ -76,6 +76,7 @@ public class MatchEntry extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_entry, container, false);
     }
+<<<<<<< HEAD
 
     @Override
     public void onStart () {
@@ -312,7 +313,7 @@ public class MatchEntry extends Fragment {
 
 
     public void displayQRCode(Entry entry){
-        //GENERATING CODE HERE
+        mainSave();
         String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
         LayoutInflater factory = LayoutInflater.from(getContext());
@@ -321,7 +322,6 @@ public class MatchEntry extends Fragment {
         alertadd.setView(view);
         alertadd.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dlg, int nothing) {
-                mainSave();
                 ((TeamSearchPop) getActivity()).finishActivity();
             }
         });
