@@ -20,6 +20,7 @@ public class Team implements Comparable<Team>{
     int totalBallsScoredBlue2Auto;
     int totalBallsScoredBlue3Auto;
     int totalCrossesBaseLineMatches;
+    int totalClimbsRopeMatches;
     int totalGearsOnHookAutoMatchesRed1;
     int totalGearsOnHookAutoMatchesRed2;
     int totalGearsOnHookAutoMatchesRed3;
@@ -30,6 +31,8 @@ public class Team implements Comparable<Team>{
     int totalDeaths;
     int totalBallsScoredTeleop;
     int totalGearsRetrievedTeleop;
+    int totalYelloOrRedCards;
+
 
     @Override
     public int compareTo(@NonNull Team team) {

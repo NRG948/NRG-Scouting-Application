@@ -20,12 +20,13 @@ public class Ranker {
 	double[] ballsScoredWeightAuto = { 5, 5, 5, 5, 5, 5 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	double[] gearsOnHookWeightAuto = { 10, 10, 10, 10, 10, 10};
 	double crossedBaseLineWeight = 5;
-
+    double climbsRopeWeight = 5;
 	// TELEOP WEIGHTAGES
 	double ratingWeight=25;
 	double ballsScoredWeightTeleop = 30;
 	double gearsWeightTeleop = 50;
 	double totalDeathsWeight = -5;
+	double totalRedOrYellowCardsWeight = -5;
 	// FINAL WEIGHTAGES
 	double teleopScoreWeight = 85;
 	double autonomousScoreWeight = 15;
@@ -50,6 +51,8 @@ public class Ranker {
 
 	public double teleopScore(Team team) {
 		return ((team.totalDeaths / team.totalMatchesPlayedInAllPositions) * totalDeathsWeight)
+                +((team.totalClimbsRopeMatches / team.totalMatchesPlayedInAllPositions)*climbsRopeWeight)
+				+ ((team.totalYelloOrRedCards / team.totalMatchesPlayedInAllPositions) * totalRedOrYellowCardsWeight)
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
 				+ ((team.totalRating / (5.0 * team.totalMatchesPlayedInAllPositions)) * ratingWeight);
