@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EntriesToTeamObjects {
-    static ArrayList<Entry> listOfEntriesInFile;
+    static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
     static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
     private static int leftOffAtIndex = 0;
 
