@@ -34,11 +34,6 @@ public class EntriesToTeamObjects {
         entry.death = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
         entry.yellowOrRedCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
-        for(Entry a:listOfEntriesInFile){
-            if(a.matchNumber==entry.matchNumber){
-                listOfEntriesInFile.remove(a);
-            }
-        }
         listOfEntriesInFile.add(entry);
     }
 
