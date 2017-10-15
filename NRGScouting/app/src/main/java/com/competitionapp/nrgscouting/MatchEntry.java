@@ -53,6 +53,7 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     protected String teamName="";
     Entry newEntry=null;
+    private CheckBox card;
     private Button save;
     private Button back;
     private Button plusGears;
@@ -106,7 +107,7 @@ public class MatchEntry extends Fragment {
         plusBallsShot = (Button) (getView().findViewById(R.id.plusBallsShot));
         plusAutoBallsShot = (Button) (getView().findViewById(R.id.plusAutoBallsShot));
         minusAutoBallsShot = (Button) (getView().findViewById(R.id.minusAutoBallsShot));
-
+        card = (CheckBox)(getView().findViewById(R.id.cards));
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -254,7 +255,7 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
+                ropeClimb.isChecked(),card.isChecked());
         final PrintStream printer = new PrintStream(entryFile);
             /**
              * Process 1 should run before Process 2
@@ -282,7 +283,7 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked());
+                ropeClimb.isChecked(),card.isChecked());
         displayQRCode(newEntry);
     }
 
@@ -331,7 +332,8 @@ public class MatchEntry extends Fragment {
 
     public String getCode(Entry a){
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
-                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+rating.getRating()+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F");
+                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+rating.getRating()+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
+                +(a.death?"T":"F")+(a.yellowOrRedCard?"T":"F");
     }
 
 
@@ -391,6 +393,8 @@ public class MatchEntry extends Fragment {
             newEntry.teamName = name[1];
             String[] position = properties[10].split(":");
             newEntry.position = getPosition(position[1]);
+            String[] cards = properties[11].split(":");
+            newEntry.yellowOrRedCard=Boolean.getBoolean(cards[1]);
             //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
             listOfEntriesInFile.add(newEntry);
         }

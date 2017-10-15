@@ -30,6 +30,10 @@ public class EntriesToTeamObjects {
         entry.crossedBaseline = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex += 1;
         entry.climbsRope = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex += 1;
+        entry.death=(QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex+=1;
+        entry.yellowOrRedCard=(QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         listOfEntriesInFile.add(entry);
     }
 

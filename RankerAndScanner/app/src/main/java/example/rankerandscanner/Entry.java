@@ -13,4 +13,5 @@ public class Entry {
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
+    boolean yellowOrRedCard;
 }

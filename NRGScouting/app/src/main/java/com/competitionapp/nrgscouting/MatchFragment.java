@@ -155,7 +155,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 "\nSportsmanship Rating: " + entry.rating + "/5.0" +
                 "\nDeath: " + boolToString(entry.death) +
                 "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
-                "\nClimbs Rope: " + boolToString(entry.climbsRope);
+                "\nClimbs Rope: " + boolToString(entry.climbsRope)+
+                "\nRed or yellow card: "+ boolToString(entry.yellowOrRedCard);
     }
 
     public static String boolToString(boolean bool) {
