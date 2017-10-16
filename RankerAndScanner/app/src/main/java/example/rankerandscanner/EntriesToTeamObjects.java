@@ -34,7 +34,15 @@ public class EntriesToTeamObjects {
         entry.death = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
         entry.yellowOrRedCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        for(Entry a:listOfEntriesInFile){
+            if(a.matchNumber==entry.matchNumber && a.teamName.equals(entry.teamName)){
+                listOfEntriesInFile.remove(a);
+                break;
+            }
+        }
         listOfEntriesInFile.add(entry);
+        teams=new ArrayList<>();
+        combineTeams();
     }
 
     public static String getPositionFromCode(String QRString) {

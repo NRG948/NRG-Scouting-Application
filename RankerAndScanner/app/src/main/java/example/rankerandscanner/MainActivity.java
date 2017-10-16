@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.android.gms.vision.text.Text;
 import com.google.zxing.Result;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -43,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void rank(View v){
         textView=(TextView)findViewById(R.id.text_view);
+        EntriesToTeamObjects.teams=new ArrayList<>();
         EntriesToTeamObjects.combineTeams();
         Ranker ranker=new Ranker();
         for(Team a:EntriesToTeamObjects.teams){
             a.rankScore=ranker.rankScore(ranker.teleopScore(a),ranker.autonomousScore(a));
         }
-        System.out.print(EntriesToTeamObjects.teams);
         Collections.sort(EntriesToTeamObjects.teams);
         String toDisplay="";
         for(Team a:EntriesToTeamObjects.teams){
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         public void handleResult(Result result) {
             EntriesToTeamObjects.addEntry(result.getText());
             Toast.makeText(MainActivity.this,"Saved",Toast.LENGTH_LONG).show();
-            EntriesToTeamObjects.combineTeams();
             setContentView(R.layout.activity_main);
             scannerView.stopCamera();
         }
