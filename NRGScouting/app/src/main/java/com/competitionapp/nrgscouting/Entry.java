@@ -24,13 +24,14 @@ public class Entry {
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
+    boolean yellowOrRedCard;
     @Override
     public String toString(){
         return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"
                 +"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"+"climbsRope:"
-                +climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"n";
+                +climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"yellowOrRedCard:"+yellowOrRedCard+"\t"+"n";
     }
-    public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope){
+    public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope,boolean card){
         matchNumber=match;
         ballsShot=balls;
         gearsRetrieved=gears;
@@ -42,6 +43,7 @@ public class Entry {
         climbsRope=rope;
         teamName=name;
         position=pos;
+        yellowOrRedCard=card;
     }
     public Entry(){
 

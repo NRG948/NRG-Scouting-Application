@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import android.os.Environment;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 import android.widget.ArrayAdapter;
@@ -48,7 +50,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,18 +57,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
-        //File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
-        //File entryFile = new File(dir,"Entries.txt");
-        //ArrayList<Entry> list = new ArrayList<Entry>();
-        //try {
-        //    String fileText=MatchEntry.getFileContent(entryFile);
-        //    list = MatchEntry.getAllEntriesInFileIntoObjectForm(entryFile,fileText);
-        //}
-        //catch(FileNotFoundException e){
-            //Do nothing
-        //}
-        //End of memory card code
-
         teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
         listView.setEmptyView(rootView.findViewById(R.id.emptyView));
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -118,6 +107,11 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                         editor.putStringSet("MatchEntryList", entryList);
                                                     }
 
+                                                    for (int i = pos + 1; i < matchEntries.size(); i++) {
+                                                        editor.putInt(MatchEntry.getKeyName(matchEntries.get(i)) + ":index",
+                                                                i - 1);
+                                                    }
+
                                                     editor.commit();
                                                     Toast.makeText(getActivity(), (String) "Deleted entry '" + MatchEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                                     refreshFragment();
@@ -161,7 +155,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 "\nSportsmanship Rating: " + entry.rating + "/5.0" +
                 "\nDeath: " + boolToString(entry.death) +
                 "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
-                "\nClimbs Rope: " + boolToString(entry.climbsRope);
+                "\nClimbs Rope: " + boolToString(entry.climbsRope)+
+                "\nRed or yellow card: "+ boolToString(entry.yellowOrRedCard);
     }
 
     public static String boolToString(boolean bool) {
@@ -205,7 +200,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         catch(FileNotFoundException e){
             //Do nothing
         }
-        matchEntries = MatchEntry.getAllEntriesInFileIntoObjectForm(matchString);
+
+        matchEntries = sortEntries(MatchEntry.getAllEntriesInFileIntoObjectForm(matchString));
 
         if(matchEntries.size()>0) {
             matchTeams = new String[matchEntries.size()];
@@ -217,5 +213,45 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
             listView.setAdapter(teamAdapter);
         }
+    }
+
+
+    public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
+        ArrayList<Entry> sortedEntries = new ArrayList<Entry>();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        ArrayList<Entry> indexlessEntries = new ArrayList<Entry>();
+
+        for(int i = originalEntries.size(); i > 0; i--) {
+            sortedEntries.add(null);
+        }
+
+        for (Entry x : originalEntries) {
+            if(sharedPref.contains(MatchEntry.getKeyName(x) + ":index")) {
+                int index = sharedPref.getInt(MatchEntry.getKeyName(x) + ":index", 0);
+                if(index < sortedEntries.size() && index >= 0 && sortedEntries.get(index) == null) {
+                    sortedEntries.set(index, x);
+                } else {
+                    indexlessEntries.add(x);
+                }
+            } else {
+                indexlessEntries.add(x);
+            }
+        }
+
+        if(!indexlessEntries.isEmpty()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            for(int i = sortedEntries.size() - 1; i >= 0; i--) {
+                if(!indexlessEntries.isEmpty() && sortedEntries.get(i) == null) {
+                    int unsortedIndex = indexlessEntries.size() - 1;
+                    sortedEntries.set(i, indexlessEntries.get(unsortedIndex));
+                    editor.putInt(MatchEntry.getKeyName(indexlessEntries.get(unsortedIndex)) + ":index", i);
+
+                    indexlessEntries.remove(unsortedIndex);
+                }
+            }
+            editor.apply();
+        }
+        Collections.reverse(sortedEntries);
+        return sortedEntries;
     }
 }
