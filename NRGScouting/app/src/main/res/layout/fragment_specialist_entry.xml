@@ -24,12 +24,12 @@
         android:hint="Match Number"
         android:textColor="@color/colorPrimaryDark" />
 
-    <Spinner
-        android:id="@+id/specTeamPos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnerItems"
-        />
+        <Spinner
+            android:id="@+id/specTeamPos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:entries="@array/spinnerItems" />
     </LinearLayout>
 
     <TextView
