@@ -50,54 +50,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gears Retrieved:"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Button
-            android:id="@+id/plusGears"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="+"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            />
-
-        <EditText
-            android:id="@+id/gearsRetrieved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="4"
-            android:text="0"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark" />
-
-        <Button
-            android:id="@+id/minusGears"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="-"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            />
-        </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Auto Gears Retrieved:"
         android:textSize="16sp"
         android:layout_marginTop="0dp"
@@ -145,12 +97,104 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Balls Shot:"
-        android:textSize="16sp"
+        android:layout_marginTop="0dp"
+        android:text="KiloPascals in Auto:"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusAutoBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:elevation="0dp"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/autoBallsShot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:inputType="numberDecimal"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusAutoBallsShot"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        />
+        android:text="Gears Retrieved:"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusGears"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/gearsRetrieved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:inputType="number"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/minusGears"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="KiloPascals:"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -179,53 +223,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
 
         <Button
             android:id="@+id/minusBallsShot"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="-"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Auto Balls Shot:"
-        android:textSize="16sp"
-        android:layout_marginTop="0dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/plusAutoBallsShot"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/colorAccent"
-            android:elevation="0dp"
-            android:text="+"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/autoBallsShot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="4"
-            android:textAlignment="center"
-            android:text="0"
-            android:inputType="numberDecimal"
-            android:textColor="@color/colorPrimaryDark" />
-
-
-        <Button
-            android:id="@+id/minusAutoBallsShot"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/colorAccent"

@@ -24,12 +24,12 @@
         android:hint="Match Number"
         android:textColor="@color/colorPrimaryDark" />
 
-    <Spinner
-        android:id="@+id/specTeamPos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnerItems"
-        />
+        <Spinner
+            android:id="@+id/specTeamPos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:entries="@array/spinnerItems" />
     </LinearLayout>
 
     <TextView
@@ -180,6 +180,19 @@
         android:rating="0"
         android:stepSize="0.5" />
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilot Skill:" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="0"
+        android:stepSize="0.5" />
 
     <TextView
         android:id="@+id/ropeDropTime"
