@@ -148,15 +148,16 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
         return "Team: " + entry.teamName +
                 "\nMatch: " + entry.matchNumber +
-                "\nGears Retrieved: " + entry.gearsRetrieved +
                 "\nAuto Gears Retrieved : " + entry.autoGearsRetrieved +
-                "\nBalls Shot: " + entry.ballsShot +
-                "\nAuto Balls Shot: " + entry.autoBallsShot +
-                "\nSportsmanship Rating: " + entry.rating + "/5.0" +
-                "\nDeath: " + boolToString(entry.death) +
-                "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
-                "\nClimbs Rope: " + boolToString(entry.climbsRope)+
-                "\nRed or yellow card: "+ boolToString(entry.yellowOrRedCard);
+                "\nKiloPascals of Balls Scored in Auto: " + entry.autoBallsShot +
+                "\nTele-Op Gears Retrieved: " + entry.gearsRetrieved +
+                "\nKiloPascals of Balls Scored in Tele-Op: " + entry.ballsShot +
+                "\nGracious Playstyle Rating: " + entry.rating + "/5.0" +
+                "\nStrong Defensive Strategy" + boolToString(entry.defense)+
+                "\nDeath?: " + boolToString(entry.death) +
+                "\nCrossed Baseline?: " + boolToString(entry.crossedBaseline) +
+                "\nClimbs Rope?: " + boolToString(entry.climbsRope)+
+                "\nRed or Yellow card?: "+ boolToString(entry.yellowOrRedCard);
     }
 
     public static String boolToString(boolean bool) {
