@@ -153,7 +153,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 "\nTele-Op Gears Retrieved: " + entry.gearsRetrieved +
                 "\nKiloPascals of Balls Scored in Tele-Op: " + entry.ballsShot +
                 "\nGracious Playstyle Rating: " + entry.rating + "/5.0" +
-                "\nStrong Defensive Strategy" + boolToString(entry.defense)+
                 "\nDeath?: " + boolToString(entry.death) +
                 "\nCrossed Baseline?: " + boolToString(entry.crossedBaseline) +
                 "\nClimbs Rope?: " + boolToString(entry.climbsRope)+
