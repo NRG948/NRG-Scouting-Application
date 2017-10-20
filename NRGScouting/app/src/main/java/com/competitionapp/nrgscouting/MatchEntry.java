@@ -308,6 +308,7 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
+        mainSave();
         displayQRCode(newEntry);
     }
 
@@ -337,7 +338,6 @@ public class MatchEntry extends Fragment {
 
 
     public void displayQRCode(Entry entry){
-        mainSave();
         String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
         LayoutInflater factory = LayoutInflater.from(getContext());
