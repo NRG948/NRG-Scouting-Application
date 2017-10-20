@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="example.rankerandscanner.MainActivity">
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,25 +13,30 @@
 
     <TextView
         android:id="@+id/text_view"
-        android:layout_width="800dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:text="Hello Scout! Press rank in the end"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:text="Instructions for using this app:\n 1. Navigate to Settings on your android device.\n 2. Scroll down until you see the tab named Apps.\n 3. Click on the tab and navigate to RankerAndScanner.\n 4. Click on the tab and click on Permissions.\n 5. Give permission for the app to access the camera.\n 6. Go back to the RankerAndScanner app, and hit scan. A camera will pop-up and scan your QR Code.\n 7. Hit Rank after scanning and you are done!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorWhite"/>
+
     <Button
         android:id="@+id/Rank"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Rank"
-        android:onClick="rank"/>
+        android:onClick="rank"
+        android:layout_marginTop="0dp"/>
+
     <Button
-    android:id="@+id/button2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="scanCode"
-    android:text="Scan"
-    tools:layout_editor_absoluteX="166dp"
-    tools:layout_editor_absoluteY="442dp" />
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="scanCode"
+        android:text="Scan"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="442dp" />
+
 </LinearLayout>
 
 </ScrollView>
