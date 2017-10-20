@@ -267,11 +267,14 @@ public class MatchEntry extends Fragment {
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         final File entryFile = new File(dir,"Entries.txt");
 
+        View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
+        int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
+
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         final PrintStream printer = new PrintStream(entryFile);
             /**
@@ -296,11 +299,14 @@ public class MatchEntry extends Fragment {
     }
 
     public void SaveNewEntryToPrefs() {
+        View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
+        int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
+
         newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         displayQRCode(newEntry);
     }
