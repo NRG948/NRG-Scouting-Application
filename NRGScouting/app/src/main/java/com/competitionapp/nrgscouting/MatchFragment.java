@@ -151,9 +151,10 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         final View view = factory.inflate(R.layout.qr, null);
         ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
         alertadd.setView(view);
-        alertadd.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dlg, int nothing) {
-                ((TeamSearchPop) getActivity()).finishActivity();
+        alertadd.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
 
