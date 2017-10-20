@@ -149,14 +149,19 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         return "Team: " + entry.teamName +
                 "\nMatch: " + entry.matchNumber +
                 "\nAuto Gears Retrieved : " + entry.autoGearsRetrieved +
-                "\nKiloPascals of Balls Scored in Auto: " + entry.autoBallsShot +
+                "\nAuto Balls Scored: " + entry.autoBallsShot +
                 "\nTele-Op Gears Retrieved: " + entry.gearsRetrieved +
-                "\nKiloPascals of Balls Scored in Tele-Op: " + entry.ballsShot +
-                "\nGracious Playstyle Rating: " + entry.rating + "/5.0" +
-                "\nDeath?: " + boolToString(entry.death) +
-                "\nCrossed Baseline?: " + boolToString(entry.crossedBaseline) +
-                "\nClimbs Rope?: " + boolToString(entry.climbsRope)+
-                "\nRed or Yellow card?: "+ boolToString(entry.yellowOrRedCard);
+                "\nTele-Op Balls Scored: " + entry.ballsShot +
+                "\nGracious Playstyle: " + entry.rating + "/5.0" +
+                "\nDefensive Strategy: " + MatchEntry.strategyStrengthFromInt(entry.defensiveStrategy) +
+                "\nDeath: " + boolToString(entry.death) +
+                "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
+                "\nClimbs Rope: " + boolToString(entry.climbsRope)+
+                "\nYellow Card: "+ boolToString(entry.yellowCard) +
+                "\nRed Card: " + boolToString(entry.redCard) +
+                "\nChain Problems: " + boolToString(entry.chainProblems) +
+                "\nDisconnectivity: " + boolToString(entry.disconnectivity) +
+                "\nOther Problems: " + boolToString(entry.otherProblems);
     }
 
     public static String boolToString(boolean bool) {

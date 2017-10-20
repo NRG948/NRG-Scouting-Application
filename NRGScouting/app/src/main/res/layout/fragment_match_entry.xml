@@ -50,7 +50,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Offensive Section"
+        android:text="Offensive Strategy"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:textAlignment="center"
@@ -63,7 +63,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:id="@+id/baseline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crossed Baseline?"
+        android:text="Crossed Baseline"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
         android:layout_marginTop="15dp"/>
@@ -273,7 +273,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Defensive Section"
+        android:text="Defensive Strategy"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:textAlignment="center"
@@ -282,35 +282,56 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_marginTop="15dp"
         />
 
-    <CheckBox
-        android:id="@+id/defense"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Strong Defensive Strategy (Best)"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:layout_marginTop="5dp"/>
-
-    <CheckBox
-        android:id="@+id/defensetwo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Average Defensive Strategy (Average)"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        android:text="Defensive Strategy Strength:"
         android:textSize="16sp" />
-
-    <CheckBox
-        android:id="@+id/defensethree"
+    
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weak Defensive Strategy (Weakest)"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp" />
+        android:id="@+id/defensiveStrategyStrength"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        >
+
+        <RadioButton
+            android:id="@+id/defensiveStrategyWeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weak"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            />
+        
+        <RadioButton
+            android:id="@+id/defensiveStrategyAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            />
+
+        <RadioButton
+            android:id="@+id/defensiveStrategyStrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Strong"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            />
+        
+    </RadioGroup>
+
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="End-Game Section"
+        android:text="End-Game"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:textAlignment="center"
@@ -323,7 +344,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:id="@+id/death"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Death?"
+        android:text="Death"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
         android:layout_marginTop="5dp"/>
@@ -333,15 +354,15 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="false"
-        android:text="Climbs rope?"
+        android:text="Climbed rope"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
     <CheckBox
-        android:id="@+id/cards"
+        android:id="@+id/cardyellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Yellow Card?"
+        android:text="Received Yellow Card"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
@@ -349,14 +370,14 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:id="@+id/cardred"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Red Card?"
+        android:text="Received Red Card"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Robot Malfunctions Section"
+        android:text="Robot Malfunctions"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:textAlignment="center"
@@ -375,7 +396,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_marginTop="5dp"/>
 
     <CheckBox
-        android:id="@+id/connection"
+        android:id="@+id/disconnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Disconnectivity"
@@ -384,7 +405,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_marginTop="5dp"/>
 
     <CheckBox
-        android:id="@+id/other"
+        android:id="@+id/otherProblems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Other"

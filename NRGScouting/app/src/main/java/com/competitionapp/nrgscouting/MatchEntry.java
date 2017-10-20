@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
@@ -53,7 +55,8 @@ public class MatchEntry extends Fragment {
     private CheckBox ropeClimb;
     protected String teamName="";
     Entry newEntry=null;
-    private CheckBox card;
+    private CheckBox yellowCard;
+    private CheckBox redCard;
     private Button save;
     private Button back;
     private Button plusGears;
@@ -64,6 +67,12 @@ public class MatchEntry extends Fragment {
     private Button plusBallsShot;
     private Button plusAutoBallsShot;
     private Button minusAutoBallsShot;
+
+    private RadioGroup defensiveStrategy;
+    private CheckBox chainProblems;
+    private CheckBox disconnectivity;
+    private CheckBox otherProblems;
+
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
 
 
@@ -107,7 +116,13 @@ public class MatchEntry extends Fragment {
         plusBallsShot = (Button) (getView().findViewById(R.id.plusBallsShot));
         plusAutoBallsShot = (Button) (getView().findViewById(R.id.plusAutoBallsShot));
         minusAutoBallsShot = (Button) (getView().findViewById(R.id.minusAutoBallsShot));
-        card = (CheckBox)(getView().findViewById(R.id.cards));
+        yellowCard = (CheckBox)(getView().findViewById(R.id.cardyellow));
+        redCard = (CheckBox) (getView().findViewById(R.id.cardred));
+        defensiveStrategy = (RadioGroup) (getView().findViewById(R.id.defensiveStrategyStrength));
+        chainProblems = (CheckBox) (getView().findViewById(R.id.chain));
+        disconnectivity = (CheckBox) (getView().findViewById(R.id.disconnection));
+        otherProblems = (CheckBox) (getView().findViewById(R.id.otherProblems));
+
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -251,11 +266,13 @@ public class MatchEntry extends Fragment {
         ArrayList<Entry> listToWrite=new ArrayList<Entry>();
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         final File entryFile = new File(dir,"Entries.txt");
+
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),card.isChecked());
+                ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         final PrintStream printer = new PrintStream(entryFile);
             /**
              * Process 1 should run before Process 2
@@ -283,7 +300,8 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),card.isChecked());
+                ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         displayQRCode(newEntry);
     }
 
@@ -333,7 +351,7 @@ public class MatchEntry extends Fragment {
     public String getCode(Entry a){
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+rating.getRating()+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
-                +(a.death?"T":"F")+(a.yellowOrRedCard?"T":"F");
+                +(a.death?"T":"F")+(a.yellowCard?"T":"F");
     }
 
 
@@ -393,14 +411,30 @@ public class MatchEntry extends Fragment {
             newEntry.teamName = name[1];
             String[] position = properties[10].split(":");
             newEntry.position = getPosition(position[1]);
-            String[] cards = properties[11].split(":");
-            newEntry.yellowOrRedCard=Boolean.getBoolean(cards[1]);
+            String[] ycard = properties[11].split(":");
+            newEntry.yellowCard=Boolean.getBoolean(ycard[1]);
+
+            String[] rcard = properties[12].split(":");
+            newEntry.redCard=Boolean.getBoolean(rcard[1]);
+            String[] dStrategy = properties[13].split(":");
+            newEntry.defensiveStrategy=Integer.parseInt(dStrategy[1]);
+            String[] chain = properties[14].split(":");
+            newEntry.chainProblems=Boolean.getBoolean(chain[1]);
+            String[] disconnectivity = properties[15].split(":");
+            newEntry.disconnectivity=Boolean.getBoolean(disconnectivity[1]);
+            String[] other = properties[16].split(":");
+            newEntry.otherProblems=Boolean.getBoolean(other[1]);
             //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
             listOfEntriesInFile.add(newEntry);
         }
         return listOfEntriesInFile;
     }
 
+    public static String strategyStrengthFromInt(int strength) {
+        if(strength <= 0 ) { return "Weak"; }
+        else if (strength == 1) {return "Average"; }
+        else { return "Strong";}
+    }
 
     public Entry.Position getPosition (int row){
         if (row == 0)

@@ -24,14 +24,26 @@ public class Entry {
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
-    boolean yellowOrRedCard;
+    boolean yellowCard;
+    boolean redCard;
+    //0 is weak, 1 is average, 2 is strong.
+    int defensiveStrategy;
+    boolean chainProblems;
+    boolean disconnectivity;
+    boolean otherProblems;
+
     @Override
     public String toString(){
         return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"
-                +"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"+"climbsRope:"
-                +climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"yellowOrRedCard:"+yellowOrRedCard+"\t"+"n";
+                +"autoBallsShot:"+autoBallsShot+"\t"+"rating:"+rating+"\t"+"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"
+                +"climbsRope:"+climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"yellowCard:"+yellowCard+ "\t"
+                + "redCard:" + redCard + "\t" + "defensiveStrategy:" + defensiveStrategy + "\t"
+                + "chainProblems:" + chainProblems + "\t" + "disconnectivity:" + disconnectivity + "\t"
+                + "otherProblems:" + otherProblems + "\t" + "n";
     }
-    public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,boolean death,boolean crossedBaseline,boolean rope,boolean card){
+    public Entry(Position pos,String name,int match,int gears,int balls,int autoG,int autoB,double rating,
+                 boolean death,boolean crossedBaseline,boolean rope,boolean yCard, boolean rCard, int dStrategy,
+                 boolean chains, boolean disconnect, boolean other){
         matchNumber=match;
         ballsShot=balls;
         gearsRetrieved=gears;
@@ -43,7 +55,12 @@ public class Entry {
         climbsRope=rope;
         teamName=name;
         position=pos;
-        yellowOrRedCard=card;
+        yellowCard=yCard;
+        redCard = rCard;
+        defensiveStrategy=dStrategy;
+        chainProblems = chains;
+        disconnectivity = disconnect;
+        otherProblems = other;
     }
     public Entry(){
 
