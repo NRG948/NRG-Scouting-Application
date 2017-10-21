@@ -267,11 +267,14 @@ public class MatchEntry extends Fragment {
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"/NRGScouting/");
         final File entryFile = new File(dir,"Entries.txt");
 
+        View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
+        int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
+
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         final PrintStream printer = new PrintStream(entryFile);
             /**
@@ -296,12 +299,16 @@ public class MatchEntry extends Fragment {
     }
 
     public void SaveNewEntryToPrefs() {
+        View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
+        int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
+
         newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
                 Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
-                ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), defensiveStrategy.getCheckedRadioButtonId(),
+                ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
+        mainSave();
         displayQRCode(newEntry);
     }
 
@@ -331,7 +338,6 @@ public class MatchEntry extends Fragment {
 
 
     public void displayQRCode(Entry entry){
-        mainSave();
         String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
         LayoutInflater factory = LayoutInflater.from(getContext());
@@ -402,28 +408,28 @@ public class MatchEntry extends Fragment {
             String[] rating = properties[5].split(":");
             newEntry.rating = Double.parseDouble(rating[1].replaceAll(".0",""));
             String[] death = properties[6].split(":");
-            newEntry.death = Boolean.getBoolean(death[1]);
+            newEntry.death = Boolean.parseBoolean(death[1]);
             String[] baseline = properties[7].split(":");
-            newEntry.crossedBaseline = Boolean.getBoolean(baseline[1]);
+            newEntry.crossedBaseline = Boolean.parseBoolean(baseline[1]);
             String[] rope = properties[8].split(":");
-            newEntry.climbsRope = Boolean.getBoolean(rope[1]);
+            newEntry.climbsRope = Boolean.parseBoolean(rope[1]);
             String[] name = properties[9].split(":");
             newEntry.teamName = name[1];
             String[] position = properties[10].split(":");
             newEntry.position = getPosition(position[1]);
             String[] ycard = properties[11].split(":");
-            newEntry.yellowCard=Boolean.getBoolean(ycard[1]);
+            newEntry.yellowCard=Boolean.parseBoolean(ycard[1]);
 
             String[] rcard = properties[12].split(":");
-            newEntry.redCard=Boolean.getBoolean(rcard[1]);
+            newEntry.redCard=Boolean.parseBoolean(rcard[1]);
             String[] dStrategy = properties[13].split(":");
             newEntry.defensiveStrategy=Integer.parseInt(dStrategy[1]);
             String[] chain = properties[14].split(":");
-            newEntry.chainProblems=Boolean.getBoolean(chain[1]);
+            newEntry.chainProblems=Boolean.parseBoolean(chain[1]);
             String[] disconnectivity = properties[15].split(":");
-            newEntry.disconnectivity=Boolean.getBoolean(disconnectivity[1]);
+            newEntry.disconnectivity=Boolean.parseBoolean(disconnectivity[1]);
             String[] other = properties[16].split(":");
-            newEntry.otherProblems=Boolean.getBoolean(other[1]);
+            newEntry.otherProblems=Boolean.parseBoolean(other[1]);
             //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
             listOfEntriesInFile.add(newEntry);
         }

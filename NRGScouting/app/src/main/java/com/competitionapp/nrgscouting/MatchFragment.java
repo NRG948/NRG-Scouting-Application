@@ -121,12 +121,16 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                         }).show();
                             }
                         })
-                        .setNeutralButton("Copy", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Show QR Code", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                /*
                                 copyToClipboard(matchEntries.get(pos).toString());
                                 Toast.makeText(getContext(), "Copied to Clipboard.", Toast.LENGTH_SHORT);
+                                */
+
+                                displayQRCode(matchEntries.get(pos));
+
                             }
                         })
                         .show();
@@ -138,6 +142,43 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         refreshFragment();
 
         return rootView;
+    }
+
+    public void displayQRCode(Entry entry){
+        String code=getCode(entry);
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View view = factory.inflate(R.layout.qr, null);
+        ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
+        alertadd.setView(view);
+        alertadd.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertadd.show();
+    }
+
+    public String getCode(Entry a){
+        return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
+                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+a.rating+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
+                +(a.death?"T":"F")+(a.yellowCard?"T":"F");
+    }
+
+    public String twoDigitization(int number){
+        return (Integer.toString(number).length()==2)?(Integer.toString(number)):("0"+number);
+    }
+
+
+    public String teamAndMatchNumber(String number){
+        int zeroesToAdd=5-(number.length());
+        String team="";
+        for(int i=0;i<zeroesToAdd;i++){
+            team+="0";
+        }
+        return team+=number;
     }
 
     public static String entryToReadableString(Entry entry) {
