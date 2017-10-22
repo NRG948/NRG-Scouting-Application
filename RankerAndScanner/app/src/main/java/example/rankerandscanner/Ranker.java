@@ -26,7 +26,8 @@ public class Ranker {
 	double ballsScoredWeightTeleop = 30;
 	double gearsWeightTeleop = 50;
 	double totalDeathsWeight = -5;
-	double totalRedOrYellowCardsWeight = -5;
+	double totalYellowCardsWeight = -5;
+	double totalRedCardsWeight = -10;
 	int totalDefenseWeight = 5;
 	double totalChainProblemsWeight = -5;
 	double totalDisconnectivityWeight = -10;
@@ -56,7 +57,8 @@ public class Ranker {
 	public double teleopScore(Team team) {
 		return ((team.totalDeaths / team.getTotalMatchesPlayedInAllPositions()) * totalDeathsWeight)
 				+ ((team.totalClimbsRopeMatches / team.getTotalMatchesPlayedInAllPositions()) * climbsRopeWeight)
-				+ ((team.totalYelloOrRedCards / team.getTotalMatchesPlayedInAllPositions()) * totalRedOrYellowCardsWeight)
+				+ ((team.totalYellowCards / team.getTotalMatchesPlayedInAllPositions()) * totalYellowCardsWeight)
+				+ ((team.totalRedCards / team.getTotalMatchesPlayedInAllPositions()) * totalRedCardsWeight)
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
 				+ ((team.totalRating / (5.0 * team.getTotalMatchesPlayedInAllPositions())) * ratingWeight)

@@ -13,7 +13,8 @@ public class Entry {
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;
-    boolean yellowOrRedCard;
+    boolean yellowCard;
+    boolean redCard;
     boolean chainProblems;
     boolean disconnectivity;
     boolean otherProblems;
