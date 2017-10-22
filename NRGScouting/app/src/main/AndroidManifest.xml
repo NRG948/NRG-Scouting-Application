@@ -13,9 +13,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,13 +22,9 @@
         </activity>
         <activity
             android:name=".TeamSearchPop"
-            android:label="Match Scout Team Search"
-            android:screenOrientation="portrait">
-        </activity>
+            android:label="Match Scout Team Search"></activity>
         <activity
             android:name=".TeamSearchPopSpec"
-            android:label="Specialist Scout Team Search"
-            android:screenOrientation="portrait">
-        </activity>
+            android:label="Specialist Scout Team Search"></activity>
     </application>
 </manifest>
