@@ -9,6 +9,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:screenOrientation="portrait"
     android:layout_marginLeft="10sp"
     >
 
@@ -16,12 +17,14 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:screenOrientation="portrait"
         android:layout_marginTop="15dp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:screenOrientation="portrait"
             android:text="Match Number: "
             android:layout_gravity="center_vertical"
             android:textSize="18sp"
