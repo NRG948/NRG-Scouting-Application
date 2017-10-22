@@ -33,6 +33,9 @@ public class Team implements Comparable<Team>{
     int totalGearsRetrievedTeleop;
     int totalYelloOrRedCards;
     int totalDefense;
+    int totalChainProblems;
+    int totalDisconnectivity;
+    int totalOtherProblems;
 
 
     @Override

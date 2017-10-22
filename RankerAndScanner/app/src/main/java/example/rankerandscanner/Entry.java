@@ -14,6 +14,9 @@ public class Entry {
     boolean crossedBaseline;
     boolean climbsRope;
     boolean yellowOrRedCard;
+    boolean chainProblems;
+    boolean disconnectivity;
+    boolean otherProblems;
     int defensiveStrategy;
 
 }

@@ -32,8 +32,15 @@ public class EntriesToTeamObjects {
         leftOffAtIndex+=1;
         entry.yellowOrRedCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
+        entry.chainProblems = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex+=1;
+        entry.disconnectivity = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex+=1;
+        entry.otherProblems = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex+=1;
         entry.defensiveStrategy = Integer.parseInt(QRString.substring(leftOffAtIndex, leftOffAtIndex + 2));
         leftOffAtIndex+=1;
+
 
         for(Entry a:listOfEntriesInFile){
             if(a.matchNumber==entry.matchNumber && a.teamName.equals(entry.teamName)){
@@ -122,7 +129,9 @@ public class EntriesToTeamObjects {
         b.totalClimbsRopeMatches += (a.climbsRope)?1:0;
         b.totalYelloOrRedCards += (a.yellowOrRedCard)? 1 : 0;
         b.totalDefense += a.defensiveStrategy;
-
+        b.totalChainProblems += (a.chainProblems)? 1 : 0;
+        b.totalDisconnectivity += (a.disconnectivity)? 1 : 0;
+        b.totalOtherProblems += (a.otherProblems)? 1 : 0;
     }
 
     public static Team teamNameThatMatches(Entry a) {

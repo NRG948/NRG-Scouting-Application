@@ -28,6 +28,9 @@ public class Ranker {
 	double totalDeathsWeight = -5;
 	double totalRedOrYellowCardsWeight = -5;
 	int totalDefenseWeight = 5;
+	double totalChainProblemsWeight = -5;
+	double totalDisconnectivityWeight = -10;
+	double totalOtherProblemsWeight = -5;
 	// FINAL WEIGHTAGES
 	double teleopScoreWeight = 85;
 	double autonomousScoreWeight = 15;
@@ -57,9 +60,10 @@ public class Ranker {
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
 				+ ((team.totalRating / (5.0 * team.getTotalMatchesPlayedInAllPositions())) * ratingWeight)
-				+ ((team.totalDefense / team.getTotalMatchesPlayedInAllPositions()) * totalDefenseWeight);
-
-
+				+ ((team.totalDefense / team.getTotalMatchesPlayedInAllPositions()) * totalDefenseWeight)
+				+ ((team.totalChainProblems / team.getTotalMatchesPlayedInAllPositions()) * totalChainProblemsWeight)
+				+ ((team.totalDisconnectivity/ team.getTotalMatchesPlayedInAllPositions()) * totalDisconnectivityWeight)
+				+ ((team.totalOtherProblems / team.getTotalMatchesPlayedInAllPositions()) * totalOtherProblemsWeight);
 	}
 
 	public double autoGears(Team team) {

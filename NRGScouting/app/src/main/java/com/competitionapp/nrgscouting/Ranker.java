@@ -21,6 +21,7 @@ public class Ranker {
     double shooterbotWeight=30;
     double gearScoringbotWeight=20;
     double totalDefenseWeight = 5;
+    double totalChainProblemsWeight = -5;
     //FINAL WEIGHTAGES
     double teleopScoreWeight=60;
     double autonomousScoreWeight=40;
@@ -71,7 +72,8 @@ public class Ranker {
                 ((team.totalDefenseMatches / team.totalMatchesPlayedInAllPositions) * totalDefenseWeight)+
                 ((team.totalRedOrYellowCardsMatches / team.totalMatchesPlayedInAllPositions) * totalYellowOrRedCardWeight) +
                 ((team.noConflictBetweenTeams) * noConflictWeight) + (team.shooterRobot * shooterbotWeight) +
-                (team.gearScoringRobot * gearScoringbotWeight);
+                (team.gearScoringRobot * gearScoringbotWeight)+ ((team.totalChainProblemsMatches / team.totalMatchesPlayedInAllPositions) * totalChainProblemsWeight);
+
     }
     public double rankScore(double teleopScore,double autonomousScore){
         return (teleopScore*teleopScoreWeight)+(autonomousScore*autonomousScoreWeight);
