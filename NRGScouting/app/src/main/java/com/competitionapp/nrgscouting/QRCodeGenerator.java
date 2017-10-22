@@ -9,7 +9,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 /**
- * Created by valli on 10/12/17.
+ * Created by valli on 10/12/17. Approved by Acchin 10/22/17.
  */
 
 public class QRCodeGenerator {

@@ -3,7 +3,7 @@ package example.rankerandscanner;
 import java.util.ArrayList;
 
 /**
- * Created by valli on 7/19/17.
+ * Created by valli on 7/19/17. Revised/Approved by Acchin 10/22/17
  */
 
 public class Ranker {
@@ -14,27 +14,27 @@ public class Ranker {
 																// them(Currently
 																// random
 																// numbers)
-	int[] expectedTotalGearsAuto = { 6, 6, 6, 6, 6, 6 };
+	int[] expectedTotalGearsAuto = { 1, 1, 1, 1, 1, 1 };
 	int expectedTotalBallsScoredTeleop = 40;// Our expectation for them
-	int expectedTotalGearsTeleop = 8;
-	double[] ballsScoredWeightAuto = { 5, 5, 5, 5, 5, 5 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
+	int expectedTotalGearsTeleop = 5;
+	double[] ballsScoredWeightAuto = { 2, 2, 2, 2, 2, 2 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	double[] gearsOnHookWeightAuto = { 10, 10, 10, 10, 10, 10};
 	double crossedBaseLineWeight = 5;
-    double climbsRopeWeight = 5;
+    double climbsRopeWeight = 20;
 	// TELEOP WEIGHTAGES
-	double ratingWeight=25;
+	double ratingWeight=15;
 	double ballsScoredWeightTeleop = 30;
 	double gearsWeightTeleop = 50;
-	double totalDeathsWeight = -5;
+	double totalDeathsWeight = -20;
 	double totalYellowCardsWeight = -5;
-	double totalRedCardsWeight = -10;
-	int totalDefenseWeight = 5;
+	double totalRedCardsWeight = -20;
+	int totalDefenseWeight = 15;
 	double totalChainProblemsWeight = -5;
 	double totalDisconnectivityWeight = -10;
 	double totalOtherProblemsWeight = -5;
 	// FINAL WEIGHTAGES
-	double teleopScoreWeight = 85;
-	double autonomousScoreWeight = 15;
+	double teleopScoreWeight = 70;
+	double autonomousScoreWeight = 30;
 
 	// Weightages for each aspect of the comparison to see how much percent are
 	// they a good match for us
