@@ -15,7 +15,7 @@
         android:layout_width="800dp"
         android:layout_height="300dp"
         android:scrollbars="vertical"
-        android:text="Hello Scout! Press rank in the end"
+        android:text="     Welcome to NRG Team Rankings!"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <Button
         android:id="@+id/Rank"

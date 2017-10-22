@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 public class Team implements Comparable<Team>{
     String name;
-    int totalMatchesPlayedInAllPositions;
+    private int totalMatchesPlayedInAllPositions;
     int totalMatchesPlayedInRed1;
     int totalMatchesPlayedInRed2;
     int totalMatchesPlayedInRed3;
@@ -32,10 +32,15 @@ public class Team implements Comparable<Team>{
     int totalBallsScoredTeleop;
     int totalGearsRetrievedTeleop;
     int totalYelloOrRedCards;
+    int totalDefense;
 
 
     @Override
     public int compareTo(@NonNull Team team) {
         return (int)(team.rankScore-this.rankScore);
     }
-}
+public int getTotalMatchesPlayedInAllPositions() {
+    return totalMatchesPlayedInAllPositions;
+}public void setTotalMatchesPlayedInAllPositions(int totalMatchesPlayedInAllPositions) {
+    this.totalMatchesPlayedInAllPositions = totalMatchesPlayedInAllPositions;
+}}

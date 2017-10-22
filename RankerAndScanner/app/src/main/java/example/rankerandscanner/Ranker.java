@@ -27,6 +27,7 @@ public class Ranker {
 	double gearsWeightTeleop = 50;
 	double totalDeathsWeight = -5;
 	double totalRedOrYellowCardsWeight = -5;
+	int totalDefenseWeight = 5;
 	// FINAL WEIGHTAGES
 	double teleopScoreWeight = 85;
 	double autonomousScoreWeight = 15;
@@ -45,17 +46,20 @@ public class Ranker {
 				+ ((team.totalBallsScoredBlue1Auto / expectedTotalBallsScoredAuto[3]) * ballsScoredWeightAuto[3])
 				+ ((team.totalBallsScoredBlue2Auto / expectedTotalBallsScoredAuto[4]) * ballsScoredWeightAuto[4])
 				+ ((team.totalBallsScoredBlue3Auto / expectedTotalBallsScoredAuto[5]) * ballsScoredWeightAuto[5])
-				+ ((team.totalCrossesBaseLineMatches / team.totalMatchesPlayedInAllPositions) * crossedBaseLineWeight)
+				+ ((team.totalCrossesBaseLineMatches / team.getTotalMatchesPlayedInAllPositions()) * crossedBaseLineWeight)
 				+ autoGears(team);
 	}
 
 	public double teleopScore(Team team) {
-		return ((team.totalDeaths / team.totalMatchesPlayedInAllPositions) * totalDeathsWeight)
-                +((team.totalClimbsRopeMatches / team.totalMatchesPlayedInAllPositions)*climbsRopeWeight)
-				+ ((team.totalYelloOrRedCards / team.totalMatchesPlayedInAllPositions) * totalRedOrYellowCardsWeight)
+		return ((team.totalDeaths / team.getTotalMatchesPlayedInAllPositions()) * totalDeathsWeight)
+				+ ((team.totalClimbsRopeMatches / team.getTotalMatchesPlayedInAllPositions()) * climbsRopeWeight)
+				+ ((team.totalYelloOrRedCards / team.getTotalMatchesPlayedInAllPositions()) * totalRedOrYellowCardsWeight)
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
-				+ ((team.totalRating / (5.0 * team.totalMatchesPlayedInAllPositions)) * ratingWeight);
+				+ ((team.totalRating / (5.0 * team.getTotalMatchesPlayedInAllPositions())) * ratingWeight)
+				+ ((team.totalDefense / team.getTotalMatchesPlayedInAllPositions()) * totalDefenseWeight);
+
+
 	}
 
 	public double autoGears(Team team) {

@@ -35,6 +35,7 @@ public class Team {
     int expectedTotalBallsScoredTeleop;//Our expectation for them
     int totalBallsScoredTeleop;
     int totalRedOrYellowCardsMatches;
+    int totalDefenseMatches;
     int noConflictBetweenTeams;//1 or 0(True or false)
     int shooterRobot;//1 or 0(True or false)
     int gearScoringRobot;//1 or 0(True or false)

@@ -1,9 +1,6 @@
 package example.rankerandscanner;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class EntriesToTeamObjects {
     static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
@@ -34,6 +31,10 @@ public class EntriesToTeamObjects {
         entry.death = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
         entry.yellowOrRedCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
+        leftOffAtIndex+=1;
+        entry.defensiveStrategy = Integer.parseInt(QRString.substring(leftOffAtIndex, leftOffAtIndex + 2));
+        leftOffAtIndex+=1;
+
         for(Entry a:listOfEntriesInFile){
             if(a.matchNumber==entry.matchNumber && a.teamName.equals(entry.teamName)){
                 listOfEntriesInFile.remove(a);
@@ -113,13 +114,15 @@ public class EntriesToTeamObjects {
             b.totalMatchesPlayedInRed3 += 1;
         }
         b.totalRating += a.rating;
-        b.totalMatchesPlayedInAllPositions += 1;
+        b.setTotalMatchesPlayedInAllPositions(b.getTotalMatchesPlayedInAllPositions()+1);
         b.totalBallsScoredTeleop += a.ballsShot;
         b.totalGearsRetrievedTeleop += a.gearsRetrieved;
         b.totalDeaths += (a.death) ? 1 : 0;
         b.totalCrossesBaseLineMatches += (a.crossedBaseline) ? 1 : 0;
         b.totalClimbsRopeMatches += (a.climbsRope)?1:0;
         b.totalYelloOrRedCards += (a.yellowOrRedCard)? 1 : 0;
+        b.totalDefense += a.defensiveStrategy;
+
     }
 
     public static Team teamNameThatMatches(Entry a) {
