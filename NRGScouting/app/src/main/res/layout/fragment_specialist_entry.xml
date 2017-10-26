@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:textSize="16sp"
-        android:text="Gracious Professionalism:" />
+        android:text="Gracious Playstyle:" />
 
     <RatingBar
         android:id="@+id/GPBar"
@@ -245,6 +245,60 @@
         android:maxLength="2000"
         android:inputType="textCapSentences|textMultiLine"
         android:hint="ex: Extremely fast, very deft handling."/>
+
+    <TextView
+        android:id="@+id/YellowReason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reason for Yellow Card:"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/Yellow"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:maxLines="4"
+        android:maxLength="2000"
+        android:inputType="textCapSentences|textMultiLine"
+        android:hint="Leave blank if no yellow card received!"/>
+
+    <TextView
+        android:id="@+id/RedReason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reason for Red Card:"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/Red"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:maxLines="4"
+        android:maxLength="2000"
+        android:inputType="textCapSentences|textMultiLine"
+        android:hint="Leave blank if no red card received!"/>
+
+    <TextView
+        android:id="@+id/DeathReason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reason for Death:"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/Death"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:maxLines="4"
+        android:maxLength="2000"
+        android:inputType="textCapSentences|textMultiLine"
+        android:hint="Leave blank if no death!"/>
 
     <LinearLayout
         android:layout_width="match_parent"

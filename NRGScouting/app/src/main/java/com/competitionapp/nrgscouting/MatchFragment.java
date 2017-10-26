@@ -163,7 +163,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
     public String getCode(Entry a){
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
-                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+a.rating+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
+                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
                 +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.redCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
     }
 

@@ -22,8 +22,6 @@ public class EntriesToTeamObjects {
         leftOffAtIndex += 2;
         entry.autoBallsShot = Integer.parseInt(QRString.substring(leftOffAtIndex, leftOffAtIndex + 2));
         leftOffAtIndex += 2;
-        entry.rating = Double.parseDouble(QRString.substring(leftOffAtIndex, leftOffAtIndex + 3));
-        leftOffAtIndex += 3;
         entry.crossedBaseline = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex += 1;
         entry.climbsRope = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
@@ -122,7 +120,6 @@ public class EntriesToTeamObjects {
             b.totalGearsOnHookAutoMatchesRed3 += a.autoGearsRetrieved;
             b.totalMatchesPlayedInRed3 += 1;
         }
-        b.totalRating += a.rating;
         b.setTotalMatchesPlayedInAllPositions(b.getTotalMatchesPlayedInAllPositions()+1);
         b.totalBallsScoredTeleop += a.ballsShot;
         b.totalGearsRetrievedTeleop += a.gearsRetrieved;

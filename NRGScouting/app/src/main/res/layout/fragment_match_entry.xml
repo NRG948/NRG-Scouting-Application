@@ -122,7 +122,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:text="KiloPascals of Balls Scored in Auto:"
+        android:text="Balls Scored in Auto (Scoreboard):"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -214,7 +214,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="KiloPascals of Balls Scored in Tele-Op:"
+        android:text="Balls Scored in Tele-Op (Scoreboard):"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -256,19 +256,51 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Gracious Playstyle Rating:"
-        android:textSize="16sp"
-        android:textStyle="normal" />
-
-    <RatingBar
-        android:id="@+id/sportsmanship"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rating="2.5"
-        android:stepSize="0.5" />
+        android:layout_marginTop="10dp"
+        android:text="Foul Points Rewarded:"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusFoulPoints"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/foulPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:textAlignment="center"
+            android:text="0"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusFoulPoints"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
 
     <TextView
         android:layout_width="match_parent"
