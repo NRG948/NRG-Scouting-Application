@@ -46,7 +46,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             "4104 - Blackhawks", "4110 - DEEP SPACE NINERS", "4120 - Jagwires", "4125 - Confidential", "4127 - LoggerBots",
             "4131 - Iron Patriots", "4132 - Scotbots", "4173 - Bulldogs", "4180 - Iron Riders", "4205 - ROBOCUBS",
             "4309 - 4-H Botsmiths", "4450 - Olympia Robotics Federation", "4461 - Ramen", "4469 - R.A.I.D. (Raider Artificial Intelligence Division)",
-            "4488 - Shockwave", "4495 - Kittitas County Robotics/ Team...", "4512 - BEARbots", "4513 - Circuit Breakers",
+            "4488 - Shockwave", "4495 - Kittitas County Robotics/ Team Haywire", "4512 - BEARbots", "4513 - Circuit Breakers",
             "4579 - RoboEagles", "4608 - Duct Tape Warriors", "4662 - Byte Sized Robotics", "4681 - Murphy's law",
             "4682 - BraveBots", "4683 - Full-metal Robotics", "4692 - Metal Mallards", "4726 - Robo Dynasty",
             "4911 - CyberKnights", "4915 - Spartronics", "4918 - The Roboctopi", "4980 - Canine Crusaders", "5085 - LakerBots",
