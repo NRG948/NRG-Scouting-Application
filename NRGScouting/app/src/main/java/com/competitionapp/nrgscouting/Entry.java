@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- * Created by valli on 8/2/17. 
+ * Created by valli on 8/2/17. Read/Approved by Acchindra.
  * Represents a Entry that can be written to the memory card
  */
 
