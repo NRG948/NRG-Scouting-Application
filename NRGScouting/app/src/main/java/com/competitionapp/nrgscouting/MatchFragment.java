@@ -224,7 +224,36 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
     public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        if(!sharedPref.contains("MatchEntryList") || sharedPref.getStringSet("MatchEntryList", null) == null) {
+
+        if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && Math.abs(sharedPref.getFloat("SAVED_VERSION", 0f) - MainActivity.CURRENT_VERSION) > 0.001f)) {
+            if(sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
+                        .setTitle("Uh Oh!")
+                        .setMessage("Your entries are saved in a format from an older version. Clear entries?")
+                        .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.clear();
+                                editor.commit();
+                                editor.putFloat("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+                                editor.commit();
+                            }
+                        })
+                        .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                getActivity().finish();
+                            }
+                        });
+                dialog.show();
+                return;
+            }
+        }
+
+        if (!sharedPref.contains("MatchEntryList") || sharedPref.getStringSet("MatchEntryList", null) == null) {
             listView.setVisibility(View.GONE);
             rootView.findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
             return;

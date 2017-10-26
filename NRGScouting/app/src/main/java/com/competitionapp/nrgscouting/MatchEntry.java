@@ -331,6 +331,8 @@ public class MatchEntry extends Fragment {
         editor.putInt(keyName + ":index", entryList.size() - 1);
         editor.putInt("DefaultTeamPosition", position.getSelectedItemPosition());
 
+        editor.putFloat("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+
         editor.apply();
         Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
     }
