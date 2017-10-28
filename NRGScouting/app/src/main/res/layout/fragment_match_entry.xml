@@ -260,18 +260,46 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Foul Points Rewarded:"
-        android:textSize="16sp"
-        android:layout_gravity="center_vertical"/>
+        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/foulPoints"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="5"
-        android:hint="(Enter Here)"
-        android:inputType="numberDecimal"
-        android:textColor="@color/colorPrimaryDark"
-        android:textAlignment="center"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/plusFoulPoints"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="+"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/foulPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:textAlignment="center"
+            android:text="0"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+        <Button
+            android:id="@+id/minusFoulPoints"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
 
 
     <TextView
