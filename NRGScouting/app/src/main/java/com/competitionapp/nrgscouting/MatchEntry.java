@@ -65,6 +65,8 @@ public class MatchEntry extends Fragment {
     private Button plusBallsShot;
     private Button plusAutoBallsShot;
     private Button minusAutoBallsShot;
+    private Button plusFoulPoints;
+    private Button minusFoulPoints;
 
     private RadioGroup defensiveStrategy;
     private CheckBox chainProblems;
@@ -115,6 +117,8 @@ public class MatchEntry extends Fragment {
         plusBallsShot = (Button) (getView().findViewById(R.id.plusBallsShot));
         plusAutoBallsShot = (Button) (getView().findViewById(R.id.plusAutoBallsShot));
         minusAutoBallsShot = (Button) (getView().findViewById(R.id.minusAutoBallsShot));
+        plusFoulPoints = (Button) (getView().findViewById(R.id.plusFoulPoints));
+        minusFoulPoints = (Button) (getView().findViewById(R.id.minusFoulPoints));
         yellowCard = (CheckBox)(getView().findViewById(R.id.cardyellow));
         redCard = (CheckBox) (getView().findViewById(R.id.cardred));
         defensiveStrategy = (RadioGroup) (getView().findViewById(R.id.defensiveStrategyStrength));
@@ -169,7 +173,7 @@ public class MatchEntry extends Fragment {
                 } else {
                     int gears1 = Integer.parseInt(String.valueOf(gears.getText()));
                     gears1--;
-                    gears.setText(String.valueOf(gears1));
+                    gears.setText(String.valueOf(Math.abs(gears1)));
                 }
             }
         });
@@ -193,7 +197,7 @@ public class MatchEntry extends Fragment {
                 } else {
                     int gears1 = Integer.parseInt(String.valueOf(autoGears.getText()));
                     gears1--;
-                    autoGears.setText(String.valueOf(gears1));
+                    autoGears.setText(String.valueOf(Math.abs(gears1)));
                 }
             }
         });
@@ -205,7 +209,7 @@ public class MatchEntry extends Fragment {
                 } else {
                     int gears1 = Integer.parseInt(String.valueOf(ballsShot.getText()));
                     gears1--;
-                    ballsShot.setText(String.valueOf(gears1));
+                    ballsShot.setText(String.valueOf(Math.abs(gears1)));
                 }
             }
         });
@@ -240,7 +244,30 @@ public class MatchEntry extends Fragment {
                 } else {
                     int gears1 = Integer.parseInt(String.valueOf(autoBallsShot.getText()));
                     gears1--;
-                    autoBallsShot.setText(String.valueOf(gears1));
+                    autoBallsShot.setText(String.valueOf(Math.abs(gears1)));
+                }
+            }
+        });
+        plusFoulPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (foulPoints.getText().toString().equals("")) {
+                    foulPoints.setText("1");
+                } else {
+                    int gears1 = Integer.parseInt(String.valueOf(foulPoints.getText()));
+                    gears1++;
+                    foulPoints.setText(String.valueOf(gears1));
+                }
+            }
+        });
+        minusFoulPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (foulPoints.getText().toString().equals("")) {
+                } else {
+                    int gears1 = Integer.parseInt(String.valueOf(foulPoints.getText()));
+                    gears1--;
+                    foulPoints.setText(String.valueOf(Math.abs(gears1)));
                 }
             }
         });
