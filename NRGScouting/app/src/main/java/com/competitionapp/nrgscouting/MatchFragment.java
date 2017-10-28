@@ -222,7 +222,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
-        if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && sharedPref.getString("SAVED_VERSION", null) != MainActivity.CURRENT_VERSION)) {
+        if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && !sharedPref.getString("SAVED_VERSION", null).equals(MainActivity.CURRENT_VERSION))) {
             if(sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
