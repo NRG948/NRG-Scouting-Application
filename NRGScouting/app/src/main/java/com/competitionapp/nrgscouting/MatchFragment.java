@@ -190,7 +190,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 "\nAuto Balls Scored: " + entry.autoBallsShot +
                 "\nTele-Op Gears Retrieved: " + entry.gearsRetrieved +
                 "\nTele-Op Balls Scored: " + entry.ballsShot +
-                "\nFoul Points Awarded: " + entry.foulPoints +
+                "\nGracious Playstyle: " + entry.rating + "/5.0" +
                 "\nDefensive Strategy: " + MatchEntry.strategyStrengthFromInt(entry.defensiveStrategy) +
                 "\nDeath: " + boolToString(entry.death) +
                 "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
@@ -222,7 +222,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
-        if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && sharedPref.getString("SAVED_VERSION", null) != MainActivity.CURRENT_VERSION)) {
+        if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && Math.abs(sharedPref.getFloat("SAVED_VERSION", 0f) - MainActivity.CURRENT_VERSION) > 0.001f)) {
             if(sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
@@ -235,7 +235,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.clear();
                                 editor.commit();
-                                editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+                                editor.putFloat("SAVED_VERSION", MainActivity.CURRENT_VERSION);
                                 editor.commit();
                             }
                         })

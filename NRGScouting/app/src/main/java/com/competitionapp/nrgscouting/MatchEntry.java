@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class MatchEntry extends Fragment {
     private EditText ballsShot;
     private EditText autoGears;
     private EditText autoBallsShot;
+    private RatingBar rating;
     private CheckBox death;
     private CheckBox baseline;
     private CheckBox ropeClimb;
@@ -70,8 +72,6 @@ public class MatchEntry extends Fragment {
     private CheckBox chainProblems;
     private CheckBox disconnectivity;
     private CheckBox otherProblems;
-
-    private EditText foulPoints;
 
     private static ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
 
@@ -121,8 +121,6 @@ public class MatchEntry extends Fragment {
         chainProblems = (CheckBox) (getView().findViewById(R.id.chain));
         disconnectivity = (CheckBox) (getView().findViewById(R.id.disconnection));
         otherProblems = (CheckBox) (getView().findViewById(R.id.otherProblems));
-        foulPoints = (EditText) (getView().findViewById(R.id.foulPoints));
-
 
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -274,10 +272,9 @@ public class MatchEntry extends Fragment {
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), death.isChecked(), baseline.isChecked(),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getNumStars(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), strategyButtonIndex,
-                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked(),
-                Integer.parseInt(String.valueOf((foulPoints.getText()))));
+                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         final PrintStream printer = new PrintStream(entryFile);
             /**
              * Process 1 should run before Process 2
@@ -307,10 +304,9 @@ public class MatchEntry extends Fragment {
         newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
-                Integer.parseInt(String.valueOf(autoBallsShot.getText())), death.isChecked(), baseline.isChecked(),
+                Integer.parseInt(String.valueOf(autoBallsShot.getText())), rating.getRating(), death.isChecked(), baseline.isChecked(),
                 ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), strategyButtonIndex,
-                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked(),
-                Integer.parseInt(String.valueOf(foulPoints.getText())));
+                chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked());
         mainSave();
         displayQRCode(newEntry);
     }
@@ -335,7 +331,7 @@ public class MatchEntry extends Fragment {
         editor.putInt(keyName + ":index", entryList.size() - 1);
         editor.putInt("DefaultTeamPosition", position.getSelectedItemPosition());
 
-        editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+        editor.putFloat("SAVED_VERSION", MainActivity.CURRENT_VERSION);
 
         editor.apply();
         Toast.makeText(this.getContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
@@ -362,8 +358,7 @@ public class MatchEntry extends Fragment {
     public String getCode(Entry a){
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
-                +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.redCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy)
-                +twoDigitization(a.foulPoints);
+                +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.redCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
     }
 
 
@@ -411,10 +406,8 @@ public class MatchEntry extends Fragment {
             newEntry.ballsShot = Integer.parseInt(balls[1]);
             String[] autoBalls = properties[4].split(":");
             newEntry.autoBallsShot = Integer.parseInt(autoBalls[1]);
-
-            String[] foulPoints = properties[5].split(":");
-            newEntry.foulPoints = Integer.parseInt(foulPoints[1]);
-
+            String[] rating = properties[5].split(":");
+            newEntry.rating = Double.parseDouble(rating[1].replaceAll(".0",""));
             String[] death = properties[6].split(":");
             newEntry.death = Boolean.parseBoolean(death[1]);
             String[] baseline = properties[7].split(":");
@@ -438,7 +431,6 @@ public class MatchEntry extends Fragment {
             newEntry.disconnectivity=Boolean.parseBoolean(disconnectivity[1]);
             String[] other = properties[16].split(":");
             newEntry.otherProblems=Boolean.parseBoolean(other[1]);
-
             //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
             listOfEntriesInFile.add(newEntry);
         }

@@ -259,7 +259,7 @@ public class SpecialistEntry extends Fragment {
         editor.putString(keyName, entry.toString());
         editor.putInt(keyName + ":index", entryList.size() - 1);
         editor.putInt("DefaultTeamPosition", positions.getSelectedItemPosition());
-        editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+        editor.putFloat("SAVED_VERSION", MainActivity.CURRENT_VERSION);
 
         Toast.makeText(getActivity().getApplicationContext(), "New entry '" + keyName + "' saved.", Toast.LENGTH_LONG).show();
 
