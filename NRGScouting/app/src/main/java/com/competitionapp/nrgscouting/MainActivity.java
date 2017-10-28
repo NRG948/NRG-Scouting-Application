@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     RefreshableFragment currentFragment;
     FragmentType currentType;
 
-    public static float CURRENT_VERSION = 1.2f;
+    public static String CURRENT_VERSION = "1.2_1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
