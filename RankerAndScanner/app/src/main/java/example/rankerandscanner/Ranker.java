@@ -9,28 +9,27 @@ import java.util.ArrayList;
 public class Ranker {
 	ArrayList<Team> sortedListOfTeams = new ArrayList<Team>();
 	// Auto [Red1,Red2,Red3,Blue1,Blue2,Blue3]
-	int[] expectedTotalBallsScoredAuto = { (20*6), (20*6), (20*6), (20*6), (20*6), (20*6) };// Our expectation
+	int[] expectedTotalBallsScoredAuto = { (15), (15), (15), (15), (15), (15) };// Our expectation
 																// for
 																// them(Currently
 																// random
 																// numbers)
 	int[] expectedTotalGearsAuto = { 1, 1, 1, 1, 1, 1 };
-	int expectedTotalBallsScoredTeleop = 40;// Our expectation for them
+	int expectedTotalBallsScoredTeleop = 15;// Our expectation for them
 	int expectedTotalGearsTeleop = 5;
-	double[] ballsScoredWeightAuto = { 2, 2, 2, 2, 2, 2 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
+	double[] ballsScoredWeightAuto = { 6, 6, 6, 6, 6, 6 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	double[] gearsOnHookWeightAuto = { 10, 10, 10, 10, 10, 10};
-	double crossedBaseLineWeight = 5;
+	double crossedBaseLineWeight = 8;
 	// TELEOP WEIGHTAGES
-	double climbsRopeWeight = 20;
-	double ballsScoredWeightTeleop = 30;
-	double gearsWeightTeleop = 50;
-	double totalDeathsWeight = -20;
-	double totalYellowCardsWeight = -5;
-	double totalRedCardsWeight = -20;
-	int totalDefenseWeight = 15;
-	double totalChainProblemsWeight = -5;
-	double totalDisconnectivityWeight = -10;
-	double totalOtherProblemsWeight = -5;
+	double climbsRopeWeight = 30;
+	double ballsScoredWeightTeleop = 10;
+	double gearsWeightTeleop = 20;
+	double totalDeathsWeight = -15;
+	double totalYellowCardsWeight = -20;
+	int totalDefenseWeight = 8;
+	double totalChainProblemsWeight = -15;
+	double totalDisconnectivityWeight = -15;
+	double totalOtherProblemsWeight = -15;
 	// FINAL WEIGHTAGES
 	double teleopScoreWeight = 70;
 	double autonomousScoreWeight = 30;
@@ -57,7 +56,6 @@ public class Ranker {
 		return ((team.totalDeaths / team.getTotalMatchesPlayedInAllPositions()) * totalDeathsWeight)
 				+ ((team.totalClimbsRopeMatches / team.getTotalMatchesPlayedInAllPositions()) * climbsRopeWeight)
 				+ ((team.totalYellowCards / team.getTotalMatchesPlayedInAllPositions()) * totalYellowCardsWeight)
-				+ ((team.totalRedCards / team.getTotalMatchesPlayedInAllPositions()) * totalRedCardsWeight)
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
 				+ ((team.totalDefense / team.getTotalMatchesPlayedInAllPositions()) * totalDefenseWeight)

@@ -165,7 +165,7 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
 
         return "Position: " + entry.position +
                 "\nPilot Fouls: " + entry.pilotFouls +
-                "\nIntentional Fouls: " + entry.intentFouls +
+                "\nFoul Points Awarded to Other Alliance: " + entry.intentFouls +
                 "\nDriver Skill: " + entry.driverSkill + "/5.0" +
                 "\nRetrieved Gear in Auto: " + entry.autoGear +
                 "\nAuto Gear Comments: " + entry.autoGearComment +

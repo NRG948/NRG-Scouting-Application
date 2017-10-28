@@ -31,7 +31,6 @@ public class Team implements Comparable<Team>{
     int totalBallsScoredTeleop;
     int totalGearsRetrievedTeleop;
     int totalYellowCards;
-    int totalRedCards;
     int totalDefense;
     int totalChainProblems;
     int totalDisconnectivity;

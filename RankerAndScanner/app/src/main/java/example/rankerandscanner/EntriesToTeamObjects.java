@@ -30,8 +30,6 @@ public class EntriesToTeamObjects {
         leftOffAtIndex+=1;
         entry.yellowCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
-        entry.redCard = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
-        leftOffAtIndex+=1;
         entry.chainProblems = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
         leftOffAtIndex+=1;
         entry.disconnectivity = (QRString.substring(leftOffAtIndex, leftOffAtIndex + 1).equals("T")) ? true : false;
@@ -127,7 +125,6 @@ public class EntriesToTeamObjects {
         b.totalCrossesBaseLineMatches += (a.crossedBaseline) ? 1 : 0;
         b.totalClimbsRopeMatches += (a.climbsRope)?1:0;
         b.totalYellowCards += (a.yellowCard)? 1 : 0;
-        b.totalRedCards += (a.redCard)? 1 : 0;
         b.totalDefense += a.defensiveStrategy;
         b.totalChainProblems += (a.chainProblems)? 1 : 0;
         b.totalDisconnectivity += (a.disconnectivity)? 1 : 0;

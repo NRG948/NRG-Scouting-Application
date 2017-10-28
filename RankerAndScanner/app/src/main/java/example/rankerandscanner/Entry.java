@@ -13,7 +13,6 @@ public class Entry {
     boolean crossedBaseline;
     boolean climbsRope;
     boolean yellowCard;
-    boolean redCard;
     boolean chainProblems;
     boolean disconnectivity;
     boolean otherProblems;
