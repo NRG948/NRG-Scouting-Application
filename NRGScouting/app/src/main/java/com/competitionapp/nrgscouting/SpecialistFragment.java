@@ -173,7 +173,10 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
                 "\nReliability: "+ entry.reliability + "/5.0" +
                 "\nAntagonism: " + entry.antagonism + "/5.0" +
                 "\nRope Drop Time: " + entry.ropeDropTime +
-                "\nAdditional Comments: " + entry.specComments;
+                "\nAdditional Comments: " + entry.specComments +
+                "\nReason for Yellow Card: " + entry.Yellow +
+                "\nReason for Red Card: " + entry.Red +
+                "\nReason for Death: " + entry.Death;
     }
 
     @Override

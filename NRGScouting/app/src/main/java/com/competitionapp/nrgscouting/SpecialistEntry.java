@@ -48,6 +48,9 @@ public class SpecialistEntry extends Fragment {
     private RatingBar reliabilityBar;
     private RatingBar antagonism;
     private TextView specComments;
+    private TextView Yellow;
+    private TextView Red;
+    private TextView Death;
     private Button back;
     private Button save;
     private long lastPause;
@@ -81,7 +84,9 @@ public class SpecialistEntry extends Fragment {
         reliabilityBar = (RatingBar) rootView.findViewById(R.id.ReliabilityRatingBar);
         antagonism = (RatingBar) rootView.findViewById(R.id.AntRatingBar);
         specComments = (EditText) rootView.findViewById(R.id.SpecComments);
-        
+        Yellow = (EditText) rootView.findViewById(R.id.Yellow);
+        Red = (EditText) rootView.findViewById(R.id.Red);
+        Death = (EditText) rootView.findViewById(R.id.Death);
 
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,7 +236,9 @@ public class SpecialistEntry extends Fragment {
         entry.antagonism = antagonism.getRating();
         entry.ropeDropTime = getTimeFromChronometer(timer);
         entry.specComments = String.valueOf(this.specComments.getText());
-
+        entry.Yellow = String.valueOf(this.Yellow.getText());
+        entry.Red = String.valueOf(this.Red.getText());
+        entry.Death = String.valueOf(this.Death.getText());
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
