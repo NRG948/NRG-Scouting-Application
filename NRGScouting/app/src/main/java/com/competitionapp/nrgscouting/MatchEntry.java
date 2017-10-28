@@ -105,7 +105,6 @@ public class MatchEntry extends Fragment {
         ropeClimb = (CheckBox) (getView().findViewById((R.id.ropeClimb)));
         baseline = (CheckBox) (getView().findViewById(R.id.baseline));
         death = (CheckBox) (getView().findViewById((R.id.death)));
-        rating = (RatingBar) (getView().findViewById(R.id.sportsmanship));
         save = (Button) (getView().findViewById(R.id.save));
         back = (Button) (getView().findViewById(R.id.back));
         plusGears = (Button) (getView().findViewById(R.id.plusGears));
