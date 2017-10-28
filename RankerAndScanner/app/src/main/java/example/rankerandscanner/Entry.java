@@ -9,7 +9,6 @@ public class Entry {
     int ballsShot;
     int autoGearsRetrieved;
     int autoBallsShot;
-    double rating;
     boolean death;//True if it died
     boolean crossedBaseline;
     boolean climbsRope;

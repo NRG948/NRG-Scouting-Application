@@ -363,7 +363,11 @@ public class MatchEntry extends Fragment {
     public String getCode(Entry a){
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
 <<<<<<< HEAD
+<<<<<<< HEAD
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+rating.getRating()+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
+=======
+                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
+>>>>>>> parent of 4fb94f7... Revert "Working On Launching..."
                 +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.redCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
 =======
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
