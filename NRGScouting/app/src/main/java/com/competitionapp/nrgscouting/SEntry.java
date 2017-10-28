@@ -20,9 +20,6 @@ public class SEntry {
     double antagonism;
     double ropeDropTime;
     String specComments = "";
-    String Yellow = "";
-    String Red = "";
-    String Death ="";
 
     public SEntry(Position pos, String name, int match, int pFouls, int iFouls, double dSkill,
                   boolean aGear, String aGearComment, double GPRating, double reliability,
@@ -40,9 +37,6 @@ public class SEntry {
         this.antagonism = antagonism;
         this.ropeDropTime = ropeDropTime;
         this.specComments = specComments;
-        this.Yellow = Yellow;
-        this.Red = Red;
-        this.Death = Death;
     }
 
     @Override
@@ -50,7 +44,7 @@ public class SEntry {
         return "match:" + matchNumber + "\tposition:" + position + "\tName:" + teamName + "\tpilotFouls:" + pilotFouls + "\tintentFouls:" + intentFouls
                 + "\tdriverSkill:" + driverSkill + "\tautoGear:" + autoGear + "\tautoGearComment:" + autoGearComment + "\tGPRating:" + GPRating +
                 "\treliability:" + reliability + "\tantagonism:" + antagonism + "\tropeDropTime:" + ropeDropTime +
-                "\tspecComments:" + specComments + "\tYellow:" + Yellow + "\tRed:" + Red + "\tDeath:" + Death + "\tn";
+                "\tspecComments:" + specComments + "\tn";
     }
 
     public static SEntry Deserialize(String input) {
@@ -78,21 +72,6 @@ public class SEntry {
             entry.specComments = String.valueOf(properties[12].split(":")[1]);
         } else {
             entry.specComments = "";
-        }
-        if(properties[13].split(":")[0].length() < properties[13].length() - 1) {
-            entry.Yellow = String.valueOf(properties[13].split(":")[1]);
-        } else {
-            entry.Yellow = "";
-        }
-        if(properties[14].split(":")[0].length() < properties[14].length() - 1) {
-            entry.Red = String.valueOf(properties[14].split(":")[1]);
-        } else {
-            entry.Red = "";
-        }
-        if(properties[15].split(":")[0].length() < properties[15].length() - 1) {
-            entry.Death = String.valueOf(properties[15].split(":")[1]);
-        } else {
-            entry.Death = "";
         }
 
         return entry;
