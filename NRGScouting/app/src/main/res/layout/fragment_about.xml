@@ -274,6 +274,16 @@
 
             android:layout_margin="30dp"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "Privacy Policy: https://docs.google.com/document/d/1OW5Kwyd_dZzIFfcDLG89rP2tq8D2dPDET4M3a1b7dOI/edit?usp=sharing"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_margin="0dp" />
     </LinearLayout>
 
 </ScrollView>
