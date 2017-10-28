@@ -20,8 +20,9 @@ public class Ranker {
 	double[] ballsScoredWeightAuto = { 2, 2, 2, 2, 2, 2 };// [Red1,Red2,Red3,Blue1,Blue2,Blue3]
 	double[] gearsOnHookWeightAuto = { 10, 10, 10, 10, 10, 10};
 	double crossedBaseLineWeight = 5;
+    double climbsRopeWeight = 20;
 	// TELEOP WEIGHTAGES
-	double climbsRopeWeight = 20;
+	double ratingWeight=15;
 	double ballsScoredWeightTeleop = 30;
 	double gearsWeightTeleop = 50;
 	double totalDeathsWeight = -20;
@@ -60,6 +61,7 @@ public class Ranker {
 				+ ((team.totalRedCards / team.getTotalMatchesPlayedInAllPositions()) * totalRedCardsWeight)
 				+ ((team.totalBallsScoredTeleop / expectedTotalBallsScoredTeleop) * ballsScoredWeightTeleop)
 				+ ((team.totalGearsRetrievedTeleop / expectedTotalGearsTeleop) * gearsWeightTeleop)
+				+ ((team.totalRating / (5.0 * team.getTotalMatchesPlayedInAllPositions())) * ratingWeight)
 				+ ((team.totalDefense / team.getTotalMatchesPlayedInAllPositions()) * totalDefenseWeight)
 				+ ((team.totalChainProblems / team.getTotalMatchesPlayedInAllPositions()) * totalChainProblemsWeight)
 				+ ((team.totalDisconnectivity/ team.getTotalMatchesPlayedInAllPositions()) * totalDisconnectivityWeight)

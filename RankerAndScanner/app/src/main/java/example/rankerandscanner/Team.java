@@ -11,6 +11,7 @@ public class Team implements Comparable<Team>{
     int totalMatchesPlayedInBlue1;
     int totalMatchesPlayedInBlue2;
     int totalMatchesPlayedInBlue3;
+    double totalRating;
     double rankScore;
     int totalBallsScoredRed1Auto;
     int totalBallsScoredRed2Auto;
