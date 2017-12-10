@@ -3,7 +3,7 @@ package example.rankerandscanner;
 import java.util.ArrayList;
 
 /**
- * Created by valli on 7/19/17. Revised/Approved by Acchin 10/22/17
+ * Created by valli on 7/19/17. 
  */
 
 public class Ranker {
