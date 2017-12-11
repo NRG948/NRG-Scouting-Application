@@ -2,6 +2,7 @@ package com.competitionapp.nrgscouting;
 
 /**
  * Created by Peyton Lee on 9/21/2017.
+ * ***Verified and Approved***
  */
 
 public class SEntry {
