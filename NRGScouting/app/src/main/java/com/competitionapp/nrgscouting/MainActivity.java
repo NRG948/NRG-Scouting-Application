@@ -28,7 +28,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-
+//***Verified and Approved***
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
