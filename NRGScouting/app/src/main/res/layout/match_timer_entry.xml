@@ -170,9 +170,10 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_drop_cube"
+                    android:drawableTop="@drawable/ic_timer"
                     android:drawableTint="@color/colorWhite"
                     android:text="Time Start"
+                    android:textSize="20dp"
                     android:textColor="@color/colorWhite"
                     />
 
