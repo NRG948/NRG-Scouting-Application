@@ -42,18 +42,17 @@
 
             android:paddingEnd="40dp"
             android:paddingStart="40dp"
-            android:progress="50"
+            android:progress="100"
             android:progressTint="@color/colorAccent"
             android:visibility="visible" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:textSize="30dp"
             android:backgroundTint="@color/colorAccent"
             android:text="EAT POWERCUBE"
-            android:drawableLeft="@drawable/ic_assignment"
-
             android:textColor="@color/colorWhite" />
 
         <LinearLayout
@@ -85,7 +84,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_add_item"
+                    android:drawableTop="@drawable/ic_scale"
                     android:drawableTint="@color/colorWhite"
                     android:text="Claimed Scale"
                     android:textColor="@color/colorWhite"
@@ -137,13 +136,12 @@
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_force_powerup"
+                    android:backgroundTint="@color/colorLightGray"
                     android:drawableTint="@color/colorWhite"
+                    android:drawableTop="@drawable/ic_force_powerup"
+                    android:gravity="center_horizontal"
                     android:text="Force Used"
-                    android:textColor="@color/colorWhite"
-                    />
+                    android:textColor="@color/colorWhite" />
 
             </LinearLayout>
 
