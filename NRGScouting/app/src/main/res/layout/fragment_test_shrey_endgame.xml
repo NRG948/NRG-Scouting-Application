@@ -1,0 +1,330 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/matchEntry"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.competitionapp.nrgscouting.EndgameEntry">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match Number: "
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:layout_marginTop="0dp"
+                />
+
+            <EditText
+                android:id="@+id/matchNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:hint="(Type here)"
+                android:inputType="number"
+
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <Spinner
+        android:id="@+id/teamPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems"
+
+        />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Defensive Strategy"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Defensive Strategy Strength:"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/defensiveStrategyStrength"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            >
+
+            <RadioButton
+                android:id="@+id/defensiveStrategyWeak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weak"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                />
+
+            <RadioButton
+                android:id="@+id/defensiveStrategyAverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                />
+
+            <RadioButton
+                android:id="@+id/defensiveStrategyStrong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strong"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                />
+
+        </RadioGroup>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="End-Game"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            />
+
+        <CheckBox
+            android:id="@+id/death"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Death"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"/>
+
+        <CheckBox
+            android:id="@+id/soloClimb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Solo Climb"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+        <CheckBox
+            android:id="@+id/astClimb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Assisted Climb"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+        <CheckBox
+            android:id="@+id/needAstClimb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Needed Assisted Climb"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+        <CheckBox
+            android:id="@+id/needLevitate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Needed Levitate"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fouls"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tech Fouls:"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/plusTechFouls"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="+"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/techFouls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:text="0"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/minusTechFouls"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="-"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Fouls:"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/plusFouls"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/colorAccent"
+                android:elevation="0dp"
+                android:text="+"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/fouls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="numberDecimal"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
+
+            <Button
+                android:id="@+id/minusFouls"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="-"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Penalties:"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/plusPenalties"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorAccent"
+                android:text="+"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/penalties"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="number"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/minusPenalties"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorAccent"
+                android:text="-"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cardyellow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Received Yellow Card"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cardred"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Received Red Card"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>
