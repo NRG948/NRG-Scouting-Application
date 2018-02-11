@@ -5,7 +5,7 @@ android:id="@+id/matchEntry"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.competitionapp.nrgscouting.MatchEntry">
-<LinearLayout
+<!--<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -116,6 +116,7 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
 
                 />
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/textView3"
@@ -456,5 +457,5 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             android:textSize="20sp" />
 
     </LinearLayout>
-</LinearLayout>
+</LinearLayout>-->
 </ScrollView>

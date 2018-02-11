@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, TeamSearchPop.class), 0);
+                startActivityForResult(new Intent(MainActivity.this, TabbedActivity.class), 0);
             }
         });
 
