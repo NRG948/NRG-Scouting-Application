@@ -20,6 +20,8 @@ import android.view.View;
 
 public class TabbedActivity extends AppCompatActivity implements ActivityUtility{
 
+    Entry newEntry = new Entry();
+
     ViewPager viewPager;
     MatchTabFragmentAdapter tabAdapter;
 
@@ -32,8 +34,8 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_timer));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_picked_cube));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_drop_cube));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_assignment2));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_edit));
 
 
 
@@ -46,6 +48,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                setActionBarTitle("Match Entry");
             }
 
             @Override
@@ -77,8 +80,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     MatchTimerEntry matchTimerEntry0 = new MatchTimerEntry();
                     return matchTimerEntry0;
                 case 1:
-                    MatchTimerEntry matchTimerEntry1 = new MatchTimerEntry();
-                    return matchTimerEntry1;
+                    return new EndgameEntry();
                 case 2:
                     MatchEntry matchTimerEntry2 = new MatchEntry();
                     return matchTimerEntry2;

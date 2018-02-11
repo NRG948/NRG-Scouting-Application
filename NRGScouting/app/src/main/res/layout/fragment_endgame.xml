@@ -3,7 +3,7 @@
     android:id="@+id/matchEntry"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.competitionapp.nrgscouting.MatchEntry">
+    tools:context="com.competitionapp.nrgscouting.EndgameEntry">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,11 +116,11 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
         <CheckBox
-            android:id="@+id/powerClimb"
+            android:id="@+id/needLevitate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="Powerup Climb"
+            android:text="Needed Levitate"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
