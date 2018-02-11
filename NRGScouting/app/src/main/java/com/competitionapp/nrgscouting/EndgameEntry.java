@@ -52,7 +52,7 @@ public class EndgameEntry extends Fragment {
         astClimb = (CheckBox) getView().findViewById(R.id.astClimb);
         needAstClimb = (CheckBox) getView().findViewById(R.id.needAstClimb);
         needLevitate = (CheckBox) getView().findViewById(R.id.needLevitate);
-        soloClimb = (CheckBox) getView().findViewById(R.id.defensiveStrategyStrength);
+        soloClimb = (CheckBox) getView().findViewById(R.id.soloClimb);
         cardYellow = (CheckBox) getView().findViewById(R.id.cardyellow);
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
 

@@ -66,7 +66,7 @@ public class Entry {
             jsonObject.put("needLevitate", needLevitate);
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
-            
+
             jsonObject.put("numTE", timeEvents.size());
             for(int i = 0; i < timeEvents.size(); i++) {
                 jsonObject.put("TE" + i + "_0", timeEvents.get(i).timestamp);
