@@ -4,28 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.competitionapp.nrgscouting.EndgameEntry">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginLeft="10sp"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="15dp"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Match Number: "
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
                 android:layout_marginTop="0dp"
-                />
+                android:text="Match Number: "
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/matchNumber"
@@ -38,27 +36,32 @@
                 android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="0dp"
+            android:text="Team Name"
+            android:textSize="18sp" />
         <Spinner
-        android:id="@+id/teamPosition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnerItems"
+            android:id="@+id/teamPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinnerItems"
 
-        />
+            />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="Defensive Strategy"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,12 +71,11 @@
             android:textSize="16sp" />
 
         <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/defensiveStrategyStrength"
-            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
-            >
+            android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/defensiveStrategyWeak"
@@ -81,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text="Weak"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/defensiveStrategyAverage"
@@ -90,8 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="Average"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/defensiveStrategyStrong"
@@ -99,33 +99,30 @@
                 android:layout_height="wrap_content"
                 android:text="Strong"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
         </RadioGroup>
-
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="End-Game"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            />
+            android:textStyle="bold" />
 
         <CheckBox
             android:id="@+id/death"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Death"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
-            android:layout_marginTop="5dp"/>
+            android:textSize="16sp" />
 
         <CheckBox
             android:id="@+id/soloClimb"
@@ -135,6 +132,7 @@
             android:text="Solo Climb"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+
         <CheckBox
             android:id="@+id/astClimb"
             android:layout_width="match_parent"
@@ -143,6 +141,7 @@
             android:text="Assisted Climb"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+
         <CheckBox
             android:id="@+id/needAstClimb"
             android:layout_width="match_parent"
@@ -151,6 +150,7 @@
             android:text="Needed Assisted Climb"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+
         <CheckBox
             android:id="@+id/needLevitate"
             android:layout_width="match_parent"
@@ -163,46 +163,46 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="Fouls"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="15dp"
 
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tech Fouls:"
-            android:textSize="16sp"
             android:layout_marginTop="15dp"
-            />
+            android:text="Tech Fouls:"
+            android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/plusTechFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/colorAccent"
                 android:text="+"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/techFouls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
-                android:text="0"
                 android:inputType="number"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -210,12 +210,12 @@
                 android:id="@+id/minusTechFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/colorAccent"
                 android:text="-"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_gravity="center"
 
                 />
 
@@ -227,6 +227,7 @@
             android:layout_marginTop="0dp"
             android:text="Fouls:"
             android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -265,6 +266,7 @@
 
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -272,6 +274,7 @@
             android:layout_marginTop="0dp"
             android:text="Penalties:"
             android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -325,6 +328,16 @@
             android:text="Received Red Card"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+        <EditText
+            android:id="@+id/Notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:hint="Things not included in end-game"
+            android:inputType="text"
+
+            android:textColor="@color/colorPrimaryDark" />
+
 
     </LinearLayout>
 </ScrollView>

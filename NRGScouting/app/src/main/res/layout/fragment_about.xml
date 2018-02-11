@@ -180,6 +180,17 @@
 
             android:layout_margin="0dp"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shrey Aeron"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:gravity="center"
+
+            android:layout_margin="0dp"
+            />
 
         <TextView
             android:layout_width="match_parent"
