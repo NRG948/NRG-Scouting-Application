@@ -53,7 +53,8 @@
             android:textSize="30dp"
             android:backgroundTint="@color/colorAccent"
             android:text="EAT POWERCUBE"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:id="@+id/eat_powercube"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +78,7 @@
                 android:drawableTint="@color/colorWhite"
                 android:text="Claimed Ally Switch"
                 android:textColor="@color/colorWhite"
-                />
+                android:id="@+id/ally_switch"/>
 
                 <Button
                     android:layout_width="100dp"
@@ -88,7 +89,7 @@
                     android:drawableTint="@color/colorWhite"
                     android:text="Claimed Scale"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/claimed_scale"/>
 
                 <Button
                     android:layout_width="100dp"
@@ -99,7 +100,7 @@
                     android:drawableTint="@color/colorWhite"
                     android:text="Claimed Opp. Switch"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/opp_switch"/>
 
             </LinearLayout>
 
@@ -120,7 +121,7 @@
                     android:drawableTint="@color/colorWhite"
                     android:text="Boost Used"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/boost_used"/>
 
                 <Button
                     android:layout_width="100dp"
@@ -131,7 +132,7 @@
                     android:drawableTint="@color/colorWhite"
                     android:text="Cube Dropped"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/cube_dropped"/>
 
                 <Button
                     android:layout_width="100dp"
@@ -141,7 +142,8 @@
                     android:drawableTop="@drawable/ic_force_powerup"
                     android:gravity="center_horizontal"
                     android:text="Force Used"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/force_used"/>
 
             </LinearLayout>
 
@@ -161,7 +163,7 @@
                     android:drawableTint="@color/colorWhite"
                     android:text="Climb Start"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/climb_start"/>
 
                 <Button
                     android:layout_width="200dp"
@@ -173,7 +175,7 @@
                     android:text="Time Start"
                     android:textSize="20dp"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:id="@+id/time_start"/>
 
             </LinearLayout>
 
