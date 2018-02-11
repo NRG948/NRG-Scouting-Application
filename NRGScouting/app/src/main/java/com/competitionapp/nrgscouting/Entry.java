@@ -29,6 +29,13 @@ public class Entry {
         BOOST_6,
         FORCE_7,
     }
+    public enum CubeDropType {
+        NONE_0,
+        ALLY_SWITCH_1,
+        OPP_SWITCH_2,
+        SCALE_3,
+        EXCHANGE_4,
+    }
 
     int position;
     String teamName = "";
@@ -71,7 +78,7 @@ public class Entry {
             for(int i = 0; i < timeEvents.size(); i++) {
                 jsonObject.put("TE" + i + "_0", timeEvents.get(i).timestamp);
                 jsonObject.put("TE" + i + "_1", eventTypeToInt(timeEvents.get(i).type));
-                jsonObject.put("TE" + i + "_2", timeEvents.get(i).cubeDropType);
+                jsonObject.put("TE" + i + "_2", cubeDropTypeToInt(timeEvents.get(i).cubeDropType));
             }
 
         } catch (JSONException e) {
@@ -102,7 +109,7 @@ public class Entry {
                 entry.timeEvents.add(new TimeEvent(
                         jsonObject.getInt("TE"+i+"_0"),
                         intToEventType(jsonObject.getInt("TE"+i+"_1")),
-                        jsonObject.getInt("TE"+i+"_2")
+                        intToCubeDropType(jsonObject.getInt("TE"+i+"_2"))
                 ));
             }
 
@@ -116,6 +123,11 @@ public class Entry {
 
     public Entry(){
 
+    }
+
+    public void addTimeEvent(int timestamp, EventType eventType, CubeDropType cubeDropType) {
+        timeEvents.add(new TimeEvent(timestamp, eventType, cubeDropType));
+        return;
     }
 
     public static int eventTypeToInt(EventType eventType) {
@@ -146,13 +158,35 @@ public class Entry {
         return EventType.PICKED_CUBE_0;
     }
 
+    public static int cubeDropTypeToInt(CubeDropType cubeDropType) {
+        switch (cubeDropType) {
+            case NONE_0:return 0;
+            case ALLY_SWITCH_1:return 1;
+            case OPP_SWITCH_2:return 2;
+            case SCALE_3:return 3;
+            case EXCHANGE_4:return 4;
+        }
+        return 0;
+    }
+
+    public static CubeDropType intToCubeDropType(int input) {
+        switch (input) {
+            case 0: return CubeDropType.NONE_0;
+            case 1: return CubeDropType.ALLY_SWITCH_1;
+            case 2: return CubeDropType.OPP_SWITCH_2;
+            case 3: return CubeDropType.SCALE_3;
+            case 4: return CubeDropType.EXCHANGE_4;
+        }
+        return CubeDropType.NONE_0;
+    }
+
     public static class TimeEvent {
 
         public int timestamp;
         public EventType type;
-        public int cubeDropType;
+        public CubeDropType cubeDropType;
 
-        public TimeEvent(int timestamp, EventType eventType, int cubeDropType) {
+        public TimeEvent(int timestamp, EventType eventType, CubeDropType cubeDropType) {
             this.timestamp = timestamp;
             this.type = eventType;
             this.cubeDropType = cubeDropType;
