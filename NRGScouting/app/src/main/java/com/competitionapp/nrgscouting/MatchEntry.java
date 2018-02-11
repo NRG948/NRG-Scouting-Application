@@ -271,6 +271,9 @@ public class MatchEntry extends Fragment {
         View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
         int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
 
+        newOne = new Entry();
+
+        /*
         newOne = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
@@ -278,6 +281,7 @@ public class MatchEntry extends Fragment {
                 ropeClimb.isChecked(),yellowCard.isChecked(), redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked(),
                 Integer.parseInt(String.valueOf((foulPoints.getText()))));
+                */
         final PrintStream printer = new PrintStream(entryFile);
             /**
              * Process 1 should run before Process 2
@@ -304,6 +308,7 @@ public class MatchEntry extends Fragment {
         View radioButton = defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId());
         int strategyButtonIndex = defensiveStrategy.indexOfChild(radioButton);
 
+        /*
         newEntry = new Entry(getPosition(position.getSelectedItemPosition()), String.valueOf(teamName),
                 Integer.parseInt(String.valueOf(matchNumber.getText())), Integer.parseInt(String.valueOf(gears.getText())),
                 Integer.parseInt(String.valueOf(ballsShot.getText())), Integer.parseInt(String.valueOf(autoGears.getText())),
@@ -311,6 +316,7 @@ public class MatchEntry extends Fragment {
                 ropeClimb.isChecked(),yellowCard.isChecked(),redCard.isChecked(), strategyButtonIndex,
                 chainProblems.isChecked(), disconnectivity.isChecked(), otherProblems.isChecked(),
                 Integer.parseInt(String.valueOf(foulPoints.getText())));
+                */
         mainSave();
         displayQRCode(newEntry);
     }
@@ -360,10 +366,12 @@ public class MatchEntry extends Fragment {
 
 
     public String getCode(Entry a){
+        /*
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
                 +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
-
+        */
+        return "";
     }
 
 
@@ -398,6 +406,7 @@ public class MatchEntry extends Fragment {
             }
         }
         for (String line : lineList) {
+            /*
             String[] properties = line.split("\t");
             Entry newEntry = new Entry();
             //USE AN INITIALIZER TO DO THE THING DONE BELOW USING A LOOP AND WITH A LOT LESS CODE
@@ -441,6 +450,7 @@ public class MatchEntry extends Fragment {
 
             //ADD THE NEW ENTRY IN THE LINE TO THE LISTOFENTRIES ARRAYLIST OBJECT
             listOfEntriesInFile.add(newEntry);
+            */
         }
         return listOfEntriesInFile;
     }
@@ -451,6 +461,7 @@ public class MatchEntry extends Fragment {
         else { return "Strong";}
     }
 
+    /*
     public Entry.Position getPosition (int row){
         if (row == 0)
             return Entry.Position.RED1;
@@ -479,6 +490,7 @@ public class MatchEntry extends Fragment {
             return Entry.Position.BLUE2;
         return Entry.Position.BLUE3;
     }
+    */
 
 
     public static String getFileContent(File file) throws FileNotFoundException{

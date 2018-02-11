@@ -159,9 +159,12 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     }
 
     public String getCode(Entry a){
+        /*
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
                 +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
                 +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
+        */
+        return "";
     }
 
     public String twoDigitization(int number){
@@ -184,6 +187,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         //First big chance for a setting! Either as printed (see here) or as source
         //
 
+        /*
         return "Team: " + entry.teamName +
                 "\nMatch: " + entry.matchNumber +
                 "\nAuto Gears Retrieved : " + entry.autoGearsRetrieved +
@@ -200,6 +204,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 "\nChain Problems: " + boolToString(entry.chainProblems) +
                 "\nDisconnectivity: " + boolToString(entry.disconnectivity) +
                 "\nOther Problems: " + boolToString(entry.otherProblems);
+                */
+        return "";
     }
 
     public static String boolToString(boolean bool) {

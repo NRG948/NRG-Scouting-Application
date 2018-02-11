@@ -11,6 +11,42 @@
         android:layout_marginLeft="10sp"
         >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match Number: "
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:layout_marginTop="0dp"
+                />
+
+            <EditText
+                android:id="@+id/matchNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:hint="(Type here)"
+                android:inputType="number"
+
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <Spinner
+        android:id="@+id/teamPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems"
+
+        />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -149,7 +185,7 @@
             android:orientation="horizontal"
             >
             <Button
-                android:id="@+id/plusAutoGears"
+                android:id="@+id/plusTechFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/colorAccent"
@@ -161,7 +197,7 @@
                 />
 
             <EditText
-                android:id="@+id/autoGearsRetrieved"
+                android:id="@+id/techFouls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
@@ -171,7 +207,7 @@
                 android:textColor="@color/colorPrimaryDark" />
 
             <Button
-                android:id="@+id/minusAutoGears"
+                android:id="@+id/minusTechFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/colorAccent"
@@ -197,7 +233,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/plusAutoBallsShot"
+                android:id="@+id/plusFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/colorAccent"
@@ -207,7 +243,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/autoBallsShot"
+                android:id="@+id/fouls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
@@ -218,7 +254,7 @@
 
 
             <Button
-                android:id="@+id/minusAutoBallsShot"
+                android:id="@+id/minusFouls"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/colorAccent"
@@ -242,7 +278,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/plusGears"
+                android:id="@+id/plusPenalties"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -253,7 +289,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/gearsRetrieved"
+                android:id="@+id/penalties"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
@@ -263,7 +299,7 @@
                 android:textColor="@color/colorPrimaryDark" />
 
             <Button
-                android:id="@+id/minusGears"
+                android:id="@+id/minusPenalties"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"

@@ -82,7 +82,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                 case 1:
                     return new EndgameEntry();
                 case 2:
-                    MatchEntry matchTimerEntry2 = new MatchEntry();
+                    MatchFragment matchTimerEntry2 = new MatchFragment();
                     return matchTimerEntry2;
             }
             return null;
