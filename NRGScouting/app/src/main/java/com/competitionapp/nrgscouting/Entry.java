@@ -37,7 +37,10 @@ public class Entry {
         EXCHANGE_4,
     }
 
-    int position;
+    //RED1 = 0, RED2 = 1, RED3 = 2
+    //BLUE1 = 3, BLUE2 = 4, BLUE3 = 5
+    //Based on position in the dropdown
+    int position = 0;
     String teamName = "";
     int matchNumber = 0;
     int defensiveStrategy = 1;
@@ -49,6 +52,10 @@ public class Entry {
     boolean cardRed = false;
 
     ArrayList<TimeEvent> timeEvents = new ArrayList<TimeEvent>();
+    //IMPORTANT NOTES FOR SAVING!!!
+    //TE_0 is the timestamp of the timeEvent
+    //TE_1 is the eventType
+    //TE_2 is the type of cube drop (0 if not applicable)
 
     @Override
     public String toString(){

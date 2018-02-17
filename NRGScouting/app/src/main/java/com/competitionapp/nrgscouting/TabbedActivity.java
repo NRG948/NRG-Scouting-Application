@@ -2,7 +2,9 @@ package com.competitionapp.nrgscouting;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Peyton Lee on 2/9/2018.
@@ -24,6 +31,9 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
     ViewPager viewPager;
     MatchTabFragmentAdapter tabAdapter;
+
+    MatchTimerEntry matchTimerEntry;
+    EndgameEntry endgameEntry;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,13 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 setActionBarTitle("Match Entry");
+
+                //Anytime a tab is switched, sync endgameEntry to object.
+                if(endgameEntry != null) {
+                    endgameEntry.saveToEntry(newEntry);
+                    saveEntryToPrefs(false);
+                }
+
             }
 
             @Override
@@ -61,13 +78,51 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
             }
         });
+
+
     }
+
+    public void saveEntryToPrefs() {
+        saveEntryToPrefs(false);
+    }
+
+    public void saveEntryToPrefs(boolean showMessage) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String keyName = getKeyName(newEntry);
+
+        Set<String> entryList;
+
+        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+            entryList = sharedPref.getStringSet("MatchEntryList", null);
+            entryList.add(keyName);
+        } else {
+            entryList = new HashSet<String>(Arrays.asList(new String[]{keyName}));
+        }
+
+        editor.putStringSet("MatchEntryList", entryList);
+        editor.putString(keyName, newEntry.toString());
+        editor.putInt(keyName + ":index", entryList.size() - 1);
+        editor.putInt("DefaultTeamPosition", newEntry.position);
+
+        //editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+        editor.apply();
+
+        if(showMessage) {
+            Toast.makeText(this, "Saved entry for " + newEntry.teamName + "/Match " + newEntry.matchNumber, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public String getKeyName(Entry entry) {
+        return "entry_" + entry.teamName + "_" + entry.matchNumber;
+    }
+
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
-    public static class MatchTabFragmentAdapter extends FragmentPagerAdapter {
+    public class MatchTabFragmentAdapter extends FragmentPagerAdapter {
 
         public MatchTabFragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -77,10 +132,11 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    MatchTimerEntry matchTimerEntry0 = new MatchTimerEntry();
-                    return matchTimerEntry0;
+                    matchTimerEntry = new MatchTimerEntry();
+                    return matchTimerEntry;
                 case 1:
-                    return new EndgameEntry();
+                    endgameEntry = new EndgameEntry();
+                    return endgameEntry;
                 case 2:
                     MatchTimerEntry matchTimerEntry2 = new MatchTimerEntry();
                     return matchTimerEntry2;
