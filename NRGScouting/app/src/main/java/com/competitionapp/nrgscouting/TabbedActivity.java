@@ -34,6 +34,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
     MatchTimerEntry matchTimerEntry;
     EndgameEntry endgameEntry;
+    EventListEntry eventListEntry;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +64,12 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                 //Anytime a tab is switched, sync endgameEntry to object.
                 if(endgameEntry != null) {
                     endgameEntry.saveToEntry(newEntry);
-                    saveEntryToPrefs(false);
+                }
+                if(eventListEntry != null) {
+                    eventListEntry.timeEventList = newEntry.timeEvents;
                 }
 
+                saveEntryToPrefs(false);
             }
 
             @Override
@@ -138,8 +142,8 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     endgameEntry = new EndgameEntry();
                     return endgameEntry;
                 case 2:
-                    MatchTimerEntry matchTimerEntry2 = new MatchTimerEntry();
-                    return matchTimerEntry2;
+                    eventListEntry = new EventListEntry();
+                    return eventListEntry;
             }
             return null;
         }

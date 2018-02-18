@@ -64,7 +64,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(matchTeams[position])
-                        .setMessage(entryToReadableString(matchEntries.get(position)))
+                        .setMessage(matchEntries.get(pos).toString())
                         .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -179,33 +179,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             team+="0";
         }
         return team+=number;
-    }
-
-    public static String entryToReadableString(Entry entry) {
-
-        //
-        //First big chance for a setting! Either as printed (see here) or as source
-        //
-
-        /*
-        return "Team: " + entry.teamName +
-                "\nMatch: " + entry.matchNumber +
-                "\nAuto Gears Retrieved : " + entry.autoGearsRetrieved +
-                "\nAuto Balls Scored: " + entry.autoBallsShot +
-                "\nTele-Op Gears Retrieved: " + entry.gearsRetrieved +
-                "\nTele-Op Balls Scored: " + entry.ballsShot +
-                "\nFoul Points Awarded: " + entry.foulPoints +
-                "\nDefensive Strategy: " + MatchEntry.strategyStrengthFromInt(entry.defensiveStrategy) +
-                "\nDeath: " + boolToString(entry.death) +
-                "\nCrossed Baseline: " + boolToString(entry.crossedBaseline) +
-                "\nClimbs Rope: " + boolToString(entry.climbsRope)+
-                "\nYellow Card: "+ boolToString(entry.yellowCard) +
-                "\nRed Card: " + boolToString(entry.redCard) +
-                "\nChain Problems: " + boolToString(entry.chainProblems) +
-                "\nDisconnectivity: " + boolToString(entry.disconnectivity) +
-                "\nOther Problems: " + boolToString(entry.otherProblems);
-                */
-        return "";
     }
 
     public static String boolToString(boolean bool) {

@@ -4,10 +4,42 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
     >
 
-    
+    <ImageView
+        android:id="@+id/eventIcon"
+        android:layout_width="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_drop_cube"
+        android:tint="@color/colorAccent" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventName"
+            android:text="Dropped Cube"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventTimestamp"
+            android:text="2:00.04"
+            />
+
+    </LinearLayout>
 
 
 </LinearLayout>

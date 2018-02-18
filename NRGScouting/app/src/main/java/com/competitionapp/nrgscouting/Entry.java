@@ -26,8 +26,10 @@ public class Entry {
         ALLY_END_3,
         OPP_START_4,
         OPP_END_5,
-        BOOST_6,
-        FORCE_7,
+        SCALE_START_6,
+        SCALE_END_7,
+        BOOST_8,
+        FORCE_9,
     }
     public enum CubeDropType {
         NONE_0,
@@ -145,8 +147,10 @@ public class Entry {
             case ALLY_END_3: return 3;
             case OPP_START_4: return 4;
             case OPP_END_5: return 5;
-            case BOOST_6: return 6;
-            case FORCE_7: return 7;
+            case SCALE_START_6: return 6;
+            case SCALE_END_7: return 7;
+            case BOOST_8: return 8;
+            case FORCE_9: return 9;
         }
         return 0;
     }
@@ -159,8 +163,10 @@ public class Entry {
             case 3: return EventType.ALLY_END_3;
             case 4: return EventType.OPP_START_4;
             case 5: return EventType.OPP_END_5;
-            case 6: return EventType.BOOST_6;
-            case 7: return EventType.FORCE_7;
+            case 6: return EventType.SCALE_START_6;
+            case 7: return EventType.SCALE_END_7;
+            case 8: return EventType.BOOST_8;
+            case 9: return EventType.FORCE_9;
         }
         return EventType.PICKED_CUBE_0;
     }
