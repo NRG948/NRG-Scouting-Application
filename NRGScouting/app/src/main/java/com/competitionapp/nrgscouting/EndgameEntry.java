@@ -9,14 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Peyton Lee on 2/10/2018.
  */
 
 public class EndgameEntry extends Fragment {
+    EditText matchNumber;
     Spinner teamPosition;
     RadioGroup defensiveStrategy;
     CheckBox death;
@@ -46,6 +50,8 @@ public class EndgameEntry extends Fragment {
             teamPosition.setSelection(sharedPref.getInt("DefaultTeamPosition", 0));
         }
 
+        matchNumber = (EditText) getView().findViewById(R.id.matchNumber);
+
         defensiveStrategy = (RadioGroup) getView().findViewById(R.id.defensiveStrategyStrength);
         death = (CheckBox) getView().findViewById(R.id.death);
         soloClimb = (CheckBox) getView().findViewById(R.id.soloClimb);
@@ -61,6 +67,11 @@ public class EndgameEntry extends Fragment {
 
     public Entry saveToEntry(Entry entry) {
 
+        try {
+            entry.matchNumber = Integer.parseInt(String.valueOf(matchNumber.getText()));
+        } catch (NumberFormatException p_ex) {
+            entry.matchNumber = 0;
+        }
         entry.defensiveStrategy = defensiveStrategy.indexOfChild(
                 defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId()));
         entry.death = death.isChecked();

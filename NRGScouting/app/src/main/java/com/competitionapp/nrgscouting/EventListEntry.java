@@ -9,9 +9,12 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ public class EventListEntry extends Fragment {
     public ArrayList<Entry.TimeEvent> timeEventList = new ArrayList<Entry.TimeEvent>();
     ListView eventListView;
     TimeEventAdapter timeEventAdapter;
+    Button save;
+    Button back;
 
     @Nullable
     @Override
@@ -50,7 +55,41 @@ public class EventListEntry extends Fragment {
         timeEventAdapter = new TimeEventAdapter(this.getContext(), timeEventList);
         eventListView.setAdapter(timeEventAdapter);
 
+        if(timeEventList.isEmpty()) {
+            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.VISIBLE);
+        } else {
+            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.GONE);
+        }
+
+        save = (Button) getView().findViewById(R.id.save);
+        back = (Button) getView().findViewById(R.id.back);
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    //Toast.makeText(getActivity(), "Trying to save...", Toast.LENGTH_SHORT);
+                    ((TabbedActivity) getActivity()).saveAndExit();
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+
     }
+
+    public void UpdateView() {
+        if(timeEventList.isEmpty()) {
+            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.VISIBLE);
+        } else {
+            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.GONE);
+        }
+        timeEventAdapter = new TimeEventAdapter(this.getContext(), timeEventList);
+        eventListView.setAdapter(timeEventAdapter);
+    }
+
 
     public String convertTimeToText(int timestamp) {
         String min = "0";
@@ -70,7 +109,7 @@ public class EventListEntry extends Fragment {
 
     public String formatToLength(String input, int length) {
         for(int i = length - input.length(); i > 0; i--) {
-            input += "0";
+            input = "0" + input;
         }
         return input;
     }
@@ -155,6 +194,9 @@ public class EventListEntry extends Fragment {
                     eventIcon.setImageResource(R.drawable.ic_force_powerup);
                     eventName.setText("Used Force Powerup");
                     break;
+                case CLIMB_START_10:
+                    eventIcon.setImageResource(R.drawable.ic_climb);
+                    eventName.setText("Started Climbing");
             }
 
             return convertView;

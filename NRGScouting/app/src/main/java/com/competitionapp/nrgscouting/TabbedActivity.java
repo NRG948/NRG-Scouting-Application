@@ -1,6 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.View;
@@ -53,6 +55,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         tabAdapter = new MatchTabFragmentAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.tabViewPager);
         viewPager.setAdapter(tabAdapter);
+        viewPager.setOffscreenPageLimit(2);
 
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -67,6 +70,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                 }
                 if(eventListEntry != null) {
                     eventListEntry.timeEventList = newEntry.timeEvents;
+                    eventListEntry.UpdateView();
                 }
 
                 saveEntryToPrefs(false);
@@ -84,6 +88,42 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         });
 
 
+    }
+
+    public boolean saveAndExit() {
+
+        if(printErrors().equals("")) {
+            saveEntryToPrefs(true);
+
+            return true;
+        }
+
+        //Print error message
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Uh oh!");
+        builder.setCancelable(true);
+        builder.setMessage("There's some errors that need to be fixed before this entry can be saved:\n\n" + printErrors());
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog ad = builder.create();
+        ad.show();
+
+        return false;
+    }
+
+    public String printErrors() {
+        String error = "";
+
+        if(endgameEntry == null || endgameEntry == null) {return "";}
+        if(newEntry.matchNumber <= 0) { error += "-Invalid Match Number\n";}
+        if(endgameEntry.defensiveStrategy.getCheckedRadioButtonId() == -1) { error += "-No Defensive Strategy Selected\n";}
+
+        return error;
     }
 
     public void saveEntryToPrefs() {

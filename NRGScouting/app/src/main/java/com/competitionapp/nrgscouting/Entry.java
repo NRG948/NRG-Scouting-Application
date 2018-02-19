@@ -30,6 +30,7 @@ public class Entry {
         SCALE_END_7,
         BOOST_8,
         FORCE_9,
+        CLIMB_START_10
     }
     public enum CubeDropType {
         NONE_0,
@@ -151,6 +152,7 @@ public class Entry {
             case SCALE_END_7: return 7;
             case BOOST_8: return 8;
             case FORCE_9: return 9;
+            case CLIMB_START_10: return 10;
         }
         return 0;
     }
@@ -167,6 +169,7 @@ public class Entry {
             case 7: return EventType.SCALE_END_7;
             case 8: return EventType.BOOST_8;
             case 9: return EventType.FORCE_9;
+            case 10: return EventType.CLIMB_START_10;
         }
         return EventType.PICKED_CUBE_0;
     }
