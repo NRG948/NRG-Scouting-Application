@@ -11,41 +11,12 @@
         android:layout_marginLeft="10sp"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Number: "
-                android:layout_gravity="center_vertical"
-                android:textSize="18sp"
-                android:layout_marginTop="0dp"
-                />
-
-            <EditText
-                android:id="@+id/matchNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="8"
-                android:hint="(Type here)"
-                android:inputType="number"
-
-                android:textColor="@color/colorPrimaryDark" />
-
-        </LinearLayout>
-
         <Spinner
         android:id="@+id/teamPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/spinnerItems"
-
-        />
+            android:layout_marginTop="15dp" />
 
 
         <TextView
@@ -184,17 +155,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-            <Button
-                android:id="@+id/plusTechFouls"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
 
             <EditText
                 android:id="@+id/techFouls"
@@ -206,16 +166,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
-            <Button
-                android:id="@+id/minusTechFouls"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
 
                 />
 
@@ -232,16 +182,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/plusFouls"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:elevation="0dp"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
             <EditText
                 android:id="@+id/fouls"
                 android:layout_width="wrap_content"
@@ -251,17 +191,6 @@
                 android:text="0"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
-
-
-            <Button
-                android:id="@+id/minusFouls"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -277,16 +206,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/plusPenalties"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/colorAccent"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/penalties"
@@ -298,16 +217,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
-            <Button
-                android:id="@+id/minusPenalties"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/colorAccent"
-                android:text="-"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <CheckBox

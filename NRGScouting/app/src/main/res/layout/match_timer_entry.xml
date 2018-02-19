@@ -1,187 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.competitionapp.nrgscouting.MatchTimerEntry"
-    >
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <Chronometer
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainTimer"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorLightGray"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="200"
+        android:layout_marginTop="70dp"
+        android:paddingEnd="40dp"
+        android:paddingStart="40dp"
+        android:progress="100"
+        android:progressTint="@color/colorAccent"
+        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="130dp"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="2:15"
-                android:textSize="50dp" />
+            <Button
+                android:id="@+id/ally_switch"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_switch"
+                android:gravity="center_horizontal"
+                android:text="Claimed Ally Switch"
+                android:textColor="@color/colorWhite" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:textSize="25dp"
-                android:text=".25" />
+            <Button
+                android:id="@+id/claimed_scale"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_scale"
+                android:gravity="center_horizontal"
+                android:text="Claimed Scale"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/opp_switch"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_switch"
+                android:gravity="center_horizontal"
+                android:text="Claimed Opp. Switch"
+                android:textColor="@color/colorWhite" />
 
         </LinearLayout>
 
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="200"
-
-            android:paddingEnd="40dp"
-            android:paddingStart="40dp"
-            android:progress="100"
-            android:progressTint="@color/colorAccent"
-            android:visibility="visible" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="30dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="EAT POWERCUBE"
-            android:textColor="@color/colorWhite"
-            android:id="@+id/eat_powercube"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <Button
+            <Button
+                android:id="@+id/boost_used"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
                 android:backgroundTint="@color/colorAccent"
-                android:drawableTop="@drawable/ic_switch"
                 android:drawableTint="@color/colorWhite"
-                android:text="Claimed Ally Switch"
+                android:drawableTop="@drawable/ic_boost_powerup"
+                android:gravity="center_horizontal"
+                android:text="Boost Used"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/cube_dropped"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_drop_cube"
+                android:gravity="center_horizontal"
+                android:text="Cube Dropped"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/force_used"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorLightGray"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_force_powerup"
+                android:gravity="center_horizontal"
+                android:text="Force Used"
+                android:textColor="@color/colorWhite" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/climb_start"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_climb"
+                android:gravity="center_horizontal"
+                android:text="Climb Start"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/time_start"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:drawableTint="@color/colorWhite"
+                android:drawableTop="@drawable/ic_timer"
+                android:gravity="center_horizontal"
+                android:text="Time Start"
                 android:textColor="@color/colorWhite"
-                android:id="@+id/ally_switch"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_scale"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Claimed Scale"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/claimed_scale"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_switch"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Claimed Opp. Switch"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/opp_switch"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_boost_powerup"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Boost Used"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/boost_used"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_drop_cube"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Cube Dropped"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/cube_dropped"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/colorLightGray"
-                    android:drawableTint="@color/colorWhite"
-                    android:drawableTop="@drawable/ic_force_powerup"
-                    android:gravity="center_horizontal"
-                    android:text="Force Used"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/force_used"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_climb"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Climb Start"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/climb_start"/>
-
-                <Button
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:drawableTop="@drawable/ic_timer"
-                    android:drawableTint="@color/colorWhite"
-                    android:text="Time Start"
-                    android:textSize="20dp"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/time_start"/>
-
-            </LinearLayout>
+                android:textSize="20dp" />
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 </RelativeLayout>
