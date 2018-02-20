@@ -1,6 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -137,46 +138,54 @@ public class EventListEntry extends Fragment {
             TextView timestamp = (TextView) convertView.findViewById(R.id.eventTimestamp);
             //NEEDS TO BE FORMATTED
             timestamp.setText(convertTimeToText(timeEvent.timestamp));
+            eventIcon.setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
             switch (timeEvent.type) {
                 case PICKED_CUBE_0:
                     eventIcon.setImageResource(R.drawable.ic_picked_cube);
                     eventName.setText("Gained Cube");
                     break;
                 case DROPPED_CUBE_1:
-                    eventIcon.setImageResource(R.drawable.ic_drop_cube);
                     switch (timeEvent.cubeDropType) {
                         case NONE_0:
                             eventName.setText("Dropped Cube (None)");
+                            eventIcon.setImageResource(R.drawable.ic_drop_cube);
                             break;
                         case ALLY_SWITCH_1:
                             eventName.setText("Dropped Cube (Ally Switch)");
+                            eventIcon.setImageResource(R.drawable.ic_switch);
                             break;
                         case OPP_SWITCH_2:
                             eventName.setText("Dropped Cube (Opponent Switch)");
+                            eventIcon.setImageResource(R.drawable.ic_switch);
                             break;
                         case SCALE_3:
                             eventName.setText("Dropped Cube (Scale)");
+                            eventIcon.setImageResource(R.drawable.ic_scale);
                             break;
                         case EXCHANGE_4:
                             eventName.setText("Dropped Cube (Exchange)");
-                            break;
+                            eventIcon.setImageResource(R.drawable.ic_exchange);
                     }
                     break;
                 case ALLY_START_2:
                     eventIcon.setImageResource(R.drawable.ic_switch);
                     eventName.setText("Claimed Ally Switch");
+                    eventIcon.setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.MULTIPLY);
                     break;
                 case ALLY_END_3:
                     eventIcon.setImageResource(R.drawable.ic_switch);
                     eventName.setText("Lost Ally Switch");
+                    eventIcon.setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.SRC_IN);
                     break;
                 case OPP_START_4:
                     eventIcon.setImageResource(R.drawable.ic_switch);
                     eventName.setText("Claimed Opponent Switch");
+                    eventIcon.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
                     break;
                 case OPP_END_5:
                     eventIcon.setImageResource(R.drawable.ic_switch);
                     eventName.setText("Lost Opponent Switch");
+                    eventIcon.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
                     break;
                 case SCALE_START_6:
                     eventIcon.setImageResource(R.drawable.ic_scale);

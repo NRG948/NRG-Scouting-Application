@@ -106,9 +106,9 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/match_button"
                 android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_drop_cube"
+                android:drawableTop="@drawable/ic_picked_cube"
                 android:gravity="center_horizontal"
-                android:text="Cube Dropped"
+                android:text="Cube Picked"
                 android:textColor="@color/colorWhite" />
 
             <Button

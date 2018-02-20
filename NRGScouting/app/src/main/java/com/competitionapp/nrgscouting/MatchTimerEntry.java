@@ -1,10 +1,12 @@
 package com.competitionapp.nrgscouting;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.os.Handler;
@@ -179,13 +182,87 @@ public class MatchTimerEntry extends Fragment {
             public void onClick(View view) {
                 if(timerIsRunning) {
                     if (hasCube) {
-                        long timePressed = SystemClock.elapsedRealtime();
+                        final long timePressed = SystemClock.elapsedRealtime();
                         hasCube = false;
+                        cubeDrop.setText("Picked Up Cube");
+                        cubeDrop.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.ic_picked_cube,0 ,0);
                         //Show additional selection screen
+
+                        final AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        final View alertView = factory.inflate(R.layout.cube_drop_select, null);
+                        alertadd.setView(alertView);
+                        alertadd.setTitle("Cube Drop Location");
+                        alertadd.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dlg, int nothing) {
+                                //CANCEL DIALOG
+                                dlg.cancel();
+                            }
+                        });
+                        alertadd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                //On cancelling, reset as if button was not pressed.
+                                hasCube = true;
+                                cubeDrop.setText("Dropped Cube");
+                                cubeDrop.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.ic_drop_cube ,0 ,0);
+                            }
+                        });
+                        final AlertDialog alertDialog = alertadd.create();
+                        alertDialog.show();
+
+                        Button dropAllySwitch = (Button) alertView.findViewById(R.id.cubeDrop_ally_switch);
+                        Button dropNone = (Button) alertView.findViewById(R.id.cubeDrop_none);
+                        Button dropOppSwitch = (Button) alertView.findViewById(R.id.cubeDrop_opp_switch);
+                        Button dropExchange = (Button) alertView.findViewById(R.id.cubeDrop_exchange);
+                        Button dropScale = (Button) alertView.findViewById(R.id.cubeDrop_scale);
+
+                        dropNone.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                logTimerEvent(Entry.EventType.DROPPED_CUBE_1,
+                                        Entry.CubeDropType.NONE_0, getTimeStampFromInput(timePressed));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        dropAllySwitch.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                logTimerEvent(Entry.EventType.DROPPED_CUBE_1,
+                                        Entry.CubeDropType.ALLY_SWITCH_1, getTimeStampFromInput(timePressed));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        dropOppSwitch.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                logTimerEvent(Entry.EventType.DROPPED_CUBE_1,
+                                        Entry.CubeDropType.OPP_SWITCH_2, getTimeStampFromInput(timePressed));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        dropScale.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                logTimerEvent(Entry.EventType.DROPPED_CUBE_1,
+                                        Entry.CubeDropType.SCALE_3, getTimeStampFromInput(timePressed));
+                                alertDialog.dismiss();
+                            }
+                        });
+                        dropExchange.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                logTimerEvent(Entry.EventType.DROPPED_CUBE_1,
+                                        Entry.CubeDropType.EXCHANGE_4, getTimeStampFromInput(timePressed));
+                                alertDialog.dismiss();
+                            }
+                        });
 
                     } else {
                         hasCube = true;
                         logTimerEvent(Entry.EventType.PICKED_CUBE_0);
+                        cubeDrop.setText("Dropped Cube");
+                        cubeDrop.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.ic_drop_cube ,0 ,0);
                     }
                     ListElementsArrayList.add(timer.getText().toString());
                 }
@@ -243,6 +320,10 @@ public class MatchTimerEntry extends Fragment {
 
     public void logTimerEvent(Entry.EventType type, Entry.CubeDropType cubeType) {
         ((TabbedActivity) getActivity()).newEntry.timeEvents.add(new Entry.TimeEvent(getCurrentTimeStamp(), type, cubeType));
+    }
+
+    public void logTimerEvent(Entry.EventType type, Entry.CubeDropType cubeType, int timestamp) {
+        ((TabbedActivity) getActivity()).newEntry.timeEvents.add(new Entry.TimeEvent(timestamp, type, cubeType));
     }
 
     public int getCurrentTimeStamp() {

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/cubeDrop_scale"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_scale"
+        android:layout_gravity="center_horizontal"
+        android:text="Scale"
+        android:textColor="@color/colorWhite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cubeDrop_ally_switch"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/match_button"
+            android:drawableTint="@color/colorWhite"
+            android:drawableTop="@drawable/ic_switch"
+            android:gravity="center_horizontal"
+            android:text="Ally Switch"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/cubeDrop_none"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/match_button"
+            android:drawableTint="@color/colorWhite"
+            android:drawableTop="@drawable/ic_cancel"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:text="None"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/cubeDrop_opp_switch"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/match_button"
+            android:drawableTint="@color/colorWhite"
+            android:drawableTop="@drawable/ic_switch"
+            android:gravity="center_horizontal"
+            android:text="Opp. Switch"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cubeDrop_exchange"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_exchange"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:text="Exchange"
+        android:textColor="@color/colorWhite" />
+
+
+</LinearLayout>
