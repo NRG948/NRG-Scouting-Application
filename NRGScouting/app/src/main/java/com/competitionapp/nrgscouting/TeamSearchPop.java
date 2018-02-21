@@ -23,6 +23,8 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
+    boolean isEdit = false;
+
     String[] teams = {"360 - The Revolution", "488 - Team XBot", "492 - Titan Robotics Club", "568 - Nerds of the North",
             "753 - High Desert Droids", "847 - PHRED", "948 - NRG (Newport Robotics Group)", "949 - Wolverine Robotics",
             "955 - CV Robotics", "957 - SWARM", "997 - Spartan Robotics", "1258 - SeaBot", "1294 - Top Gun", "1318 - Issaquah Robotics Society",
@@ -66,12 +68,15 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
         lv = (ListView)findViewById(R.id.teams_list);
         sv = (SearchView)findViewById(R.id.searchView);
 
+        isEdit = getIntent().getBooleanExtra("isEdit",false);
+
 
         adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        /*
                         MatchEntry matchEntry = new MatchEntry();
                         matchEntry.teamName=(String)((AppCompatTextView)(view)).getText();
                         android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -80,6 +85,15 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
                         fragmentTransaction.commit();
                         lv.setVisibility(View.GONE);
                         sv.setVisibility(View.GONE);
+                        */
+
+                        String teamName=(String)((AppCompatTextView)(view)).getText();
+                        Intent intent = new Intent(TeamSearchPop.this, TabbedActivity.class);
+                        intent.putExtra("isEdit", isEdit);
+                        intent.putExtra("teamName", teamName);
+
+                        startActivityForResult(intent, 0);
+
                     }
                 });
 
@@ -100,38 +114,40 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
     }
 
-    public void finishActivity() {
-        Intent intent = new Intent();
-        setResult(RESULT_OK,intent );
-        finish();
-    }
-
     @Override
-    public void onBackPressed() {
-        if(lv.getVisibility()==View.GONE) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data.getIntExtra("status", 1) == -1) {
+            //ERROR!!!
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Discard Entry");
+            builder.setTitle("Uh oh!");
             builder.setCancelable(true);
-            builder.setMessage("Are you sure you want to delete this entry's data?");
-            builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+            if(!isEdit) {
+                builder.setMessage("There was an error loading the team name. Try again, please!");
+            } else {
+                builder.setMessage("There was an error loading this entry. Sorry about that!");
+            }
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
             });
-            builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(TeamSearchPop.this, "Entry discarded.", Toast.LENGTH_SHORT).show();
-                    finishActivity();
-                }
-            });
-
             AlertDialog ad = builder.create();
             ad.show();
         } else {
-            finishActivity();
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public void setActionBarTitle(String title) {

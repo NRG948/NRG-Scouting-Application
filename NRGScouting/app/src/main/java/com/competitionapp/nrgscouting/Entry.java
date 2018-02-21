@@ -50,6 +50,7 @@ public class Entry {
     boolean death = false;
     boolean soloClimb = false;
     boolean astClimb = false;
+    boolean needAstClimb = false;
     boolean needLevitate = false;
     boolean cardYellow = false;
     boolean cardRed = false;
@@ -80,6 +81,7 @@ public class Entry {
             jsonObject.put("death", position);
             jsonObject.put("soloClimb", soloClimb);
             jsonObject.put("astClimb", astClimb);
+            jsonObject.put("needAstClimb", needAstClimb);
             jsonObject.put("needLevitate", needLevitate);
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
@@ -110,6 +112,7 @@ public class Entry {
             entry.death = jsonObject.getBoolean("death");
             entry.soloClimb = jsonObject.getBoolean("soloClimb");
             entry.astClimb = jsonObject.getBoolean("astClimb");
+            entry.needAstClimb = jsonObject.getBoolean("needAstClimb");
             entry.needLevitate = jsonObject.getBoolean("needLevitate");
             entry.cardYellow = jsonObject.getBoolean("cardYellow");
             entry.cardRed = jsonObject.getBoolean("cardRed");

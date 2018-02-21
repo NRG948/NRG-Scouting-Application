@@ -30,6 +30,7 @@ import java.util.Set;
 public class TabbedActivity extends AppCompatActivity implements ActivityUtility{
 
     Entry newEntry = new Entry();
+    Boolean isEdit = false;
 
     ViewPager viewPager;
     MatchTabFragmentAdapter tabAdapter;
@@ -42,7 +43,26 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabbed_view_layout);
 
-        setActionBarTitle("Match Entry");
+        Intent loadIntent = getIntent();
+
+        if(loadIntent.getBooleanExtra("isEdit", false)) {
+            isEdit = true;
+            //LOAD ENTRY FROM STORAGE
+        } else {
+            newEntry.teamName = getIntent().getStringExtra("teamName");
+        }
+
+        if(newEntry.teamName == null) {
+            //RETURN TO PREVIOUS PAGE + PRINT ERROR MESSAGE
+
+            Intent intent = new Intent();
+            intent.putExtra("status", -1);
+            setResult(RESULT_CANCELED, intent);
+            finish();
+
+        }
+
+        setActionBarTitle("Match Entry - " + newEntry.teamName);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
@@ -148,12 +168,13 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         editor.putString(keyName, newEntry.toString());
         editor.putInt(keyName + ":index", entryList.size() - 1);
         editor.putInt("DefaultTeamPosition", newEntry.position);
+        editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
 
         //editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
         editor.apply();
 
         if(showMessage) {
-            Toast.makeText(this, "Saved entry for " + newEntry.teamName + "/Match " + newEntry.matchNumber, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Saved entry for " + newEntry.teamName + ": Match " + newEntry.matchNumber, Toast.LENGTH_LONG).show();
         }
     }
 

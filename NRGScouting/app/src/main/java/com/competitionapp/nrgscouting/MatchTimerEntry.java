@@ -63,7 +63,6 @@ public class MatchTimerEntry extends Fragment {
 
     public long startTime = 0;
     public long savedTime = 0;
-    Button[] buttonList;
 
     @Nullable
     @Override

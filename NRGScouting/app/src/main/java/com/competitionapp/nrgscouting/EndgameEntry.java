@@ -62,6 +62,19 @@ public class EndgameEntry extends Fragment {
         cardYellow = (CheckBox) getView().findViewById(R.id.cardyellow);
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
 
+        if(((TabbedActivity) this.getActivity()).isEdit) {
+            TabbedActivity parent = (TabbedActivity) this.getActivity();
+            Entry newEntry = parent.newEntry;
+            //Load data in from newEntry
+            defensiveStrategy.getChildAt(newEntry.defensiveStrategy).setSelected(true);
+            death.setChecked(newEntry.death);
+            soloClimb.setChecked(newEntry.soloClimb);
+            astClimb.setChecked(newEntry.astClimb);
+            needAstClimb.setChecked(newEntry.needAstClimb);
+            cardYellow.setChecked(newEntry.cardYellow);
+            cardRed.setChecked(newEntry.cardRed);
+        }
+
 
     }
 
@@ -70,7 +83,7 @@ public class EndgameEntry extends Fragment {
         try {
             entry.matchNumber = Integer.parseInt(String.valueOf(matchNumber.getText()));
         } catch (NumberFormatException p_ex) {
-            entry.matchNumber = 0;
+            entry.matchNumber = -1;
         }
         entry.defensiveStrategy = defensiveStrategy.indexOfChild(
                 defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId()));

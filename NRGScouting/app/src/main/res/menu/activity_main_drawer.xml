@@ -8,10 +8,6 @@
             android:icon="@drawable/ic_match"
             android:title="Match Scouting" />
         <item
-            android:id="@+id/nav_spec"
-            android:icon="@drawable/ic_specialist"
-            android:title="Specialist Scouting" />
-        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"
             android:title="About" />

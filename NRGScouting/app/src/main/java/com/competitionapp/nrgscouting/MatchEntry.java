@@ -318,7 +318,7 @@ public class MatchEntry extends Fragment {
                 Integer.parseInt(String.valueOf(foulPoints.getText())));
                 */
         mainSave();
-        displayQRCode(newEntry);
+        //displayQRCode(newEntry);
     }
 
 
@@ -348,6 +348,7 @@ public class MatchEntry extends Fragment {
     }
 
 
+    /*
     public void displayQRCode(Entry entry){
         String code=getCode(entry);
         AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
@@ -362,7 +363,7 @@ public class MatchEntry extends Fragment {
         });
 
         alertadd.show();
-    }
+    }*/
 
 
     public String getCode(Entry a){

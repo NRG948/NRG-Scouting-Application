@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
     FloatingActionButton fab;
-    FloatingActionButton fab2;
     RefreshableFragment currentFragment;
-    FragmentType currentType;
 
     public static String CURRENT_VERSION = "2.5_0";
 
@@ -45,13 +43,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
 
         //Set about frag initially when app opens
         final MatchFragment matchFragment = new MatchFragment();
 
         currentFragment = matchFragment;
-        currentType = FragmentType.MATCH;
 
         final android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
@@ -59,23 +55,18 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fab2.hide();
         /*MatchFragment mat = (MatchFragment) getSupportFragmentManager().findFragmentByTag("mat");
         mat.refreshEntryList();*/
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, TabbedActivity.class), 0);
+                Intent intent = new Intent(MainActivity.this, TeamSearchPop.class);
+                intent.putExtra("isEdit", false);
+                startActivityForResult(intent, 0);
             }
         });
 
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, TeamSearchPopSpec.class), 0);
-            }
-        });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -85,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         setActionBarTitle("Match Scouting");
     }
+
     public static void cacheSaver(String fileString) throws FileNotFoundException{
         File cacheDir=new File("/storage/emulated/0/Hi");
         cacheDir.mkdirs();
@@ -124,7 +116,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        //automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -167,68 +159,35 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_clearMemory:
-                if(currentType.equals(FragmentType.MATCH)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Delete ALL stored match entries?");
-                    builder.setMessage("Warning: This cannot be undone!");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Delete ALL stored match entries?");
+                builder.setMessage("Warning: This cannot be undone!");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if (sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putStringSet("MatchEntryList", null);
+                            editor.commit();
+                            Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
                         }
-                    });
-                    builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
 
-                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            if (sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putStringSet("MatchEntryList", null);
-                                editor.commit();
-                                Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
-                            }
-
-                            currentFragment.refreshFragment();
-                        }
-                    });
-                    builder.show();
-                    return true;
-                } else if (currentType.equals(FragmentType.SPECIALIST)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Delete ALL stored specialist entries?");
-                    builder.setMessage("Warning: This cannot be undone!");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            if (sharedPreferences.contains("SpecialistEntryList") && sharedPreferences.getStringSet("SpecialistEntryList", null) != null) {
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putStringSet("SpecialistEntryList", null);
-                                editor.commit();
-                                Toast.makeText(MainActivity.this, (String) "Cleared all stored specialist entries.", Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(MainActivity.this, (String) "No stored specialist entries found.", Toast.LENGTH_LONG).show();
-                            }
-
-                            currentFragment.refreshFragment();
-                        }
-                    });
-                    builder.show();
-                    return true;
-                }
-
+                        currentFragment.refreshFragment();
+                    }
+                });
+                builder.show();
+                return true;
         }
 
         //noinspection SimplifiableIfStatement
@@ -239,30 +198,16 @@ public class MainActivity extends AppCompatActivity
     public String RetrieveDataFromPrefs() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if(currentType.equals(FragmentType.MATCH)) {
-            if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
-                String printList = "";
+        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+            String printList = "";
 
-                for (String x : sharedPref.getStringSet("MatchEntryList", null)) {
-                    if (sharedPref.contains(x)) {
-                        printList += sharedPref.getString(x, "");
-                    }
+            for (String x : sharedPref.getStringSet("MatchEntryList", null)) {
+                if (sharedPref.contains(x)) {
+                    printList += sharedPref.getString(x, "");
                 }
-
-                return printList;
             }
-        } else if (currentType.equals(FragmentType.SPECIALIST)){
-            if (sharedPref.contains("SpecialistEntryList") && sharedPref.getStringSet("SpecialistEntryList", null) != null) {
-                String printList = "";
 
-                for (String x : sharedPref.getStringSet("SpecialistEntryList", null)) {
-                    if (sharedPref.contains(x)) {
-                        printList += sharedPref.getString(x, "");
-                    }
-                }
-
-                return printList;
-            }
+            return printList;
         }
 
         return "(No data found.)";
@@ -303,14 +248,12 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
 
             currentFragment = matchFragment;
-            currentType = FragmentType.MATCH;
 
             fragmentTransaction.replace(R.id.fragment_container, matchFragment, "mat");
             fragmentTransaction.commit();
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.show();
-            fab2.hide();
 
             setActionBarTitle("Match Scouting");
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -330,31 +273,8 @@ public class MainActivity extends AppCompatActivity
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             fab.hide();
-            fab2.hide();
 
             setActionBarTitle("About");
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.addDrawerListener(toggle);
-            toggle.syncState();
-
-        } else if(id == R.id.nav_spec) {
-            SpecialistFragment specFragment = new SpecialistFragment();
-
-            currentFragment = specFragment;
-            currentType = FragmentType.SPECIALIST;
-
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, specFragment, "spec");
-            fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            fab2.show();
-            fab.hide();
-
-            setActionBarTitle("Specialist Scouting");
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

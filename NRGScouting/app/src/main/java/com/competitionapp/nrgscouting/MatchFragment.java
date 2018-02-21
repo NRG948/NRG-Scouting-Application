@@ -252,6 +252,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             //Do nothing
         }
 
+        
+
         matchEntries = sortEntries(MatchEntry.getAllEntriesInFileIntoObjectForm(matchString));
 
         if(matchEntries.size()>0) {
@@ -265,7 +267,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             listView.setAdapter(teamAdapter);
         }
     }
-
 
     public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
         ArrayList<Entry> sortedEntries = new ArrayList<Entry>();
