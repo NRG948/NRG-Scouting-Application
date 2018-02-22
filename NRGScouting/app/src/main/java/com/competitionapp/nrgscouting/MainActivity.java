@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     RefreshableFragment currentFragment;
 
     public static String CURRENT_VERSION = "2.5_0";
+    public static int EDITING_ENTRY = 1;
+    public static int FINISHED_ENTRY = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setActionBarTitle("Match Scouting");
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+        if(sharedPref.getInt("lastState", 0) == EDITING_ENTRY) {
+            Intent intent = new Intent(MainActivity.this, TabbedActivity.class);
+            intent.putExtra("isEdit", true);
+            intent.putExtra("retrieveFrom", "cachedEntry");
+            startActivityForResult(intent, 0);
+        }
     }
 
     public static void cacheSaver(String fileString) throws FileNotFoundException{

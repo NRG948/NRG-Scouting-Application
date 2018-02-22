@@ -43,6 +43,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     ArrayList<Entry> matchEntries;
     View rootView;
 
+    static String SPLITKEY = "######";
+
     public MatchFragment() {
         // Required empty public constructor
     }
@@ -92,7 +94,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                 if(sharedPreferences.contains("MatchEntryList")) {
                                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                                     Set<String> entryList = sharedPreferences.getStringSet("MatchEntryList",null);
-                                                    String keyName = MatchEntry.getKeyName(entry);
+                                                    String keyName = TabbedActivity.getKeyName(entry);
 
                                                     if(entryList.contains(keyName)) {
                                                         entryList.remove(keyName);
@@ -105,12 +107,12 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                     }
 
                                                     for (int i = pos + 1; i < matchEntries.size(); i++) {
-                                                        editor.putInt(MatchEntry.getKeyName(matchEntries.get(i)) + ":index",
+                                                        editor.putInt(TabbedActivity.getKeyName(matchEntries.get(i)) + ":index",
                                                                 i - 1);
                                                     }
 
                                                     editor.commit();
-                                                    Toast.makeText(getActivity(), (String) "Deleted entry '" + MatchEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), (String) "Deleted entry '" + TabbedActivity.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                                     refreshFragment();
                                                     dialog.dismiss();
                                                 }
@@ -118,7 +120,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                         }).show();
                             }
                         })
-                        .setNeutralButton("Show QR Code", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 /*
@@ -126,7 +128,11 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                 Toast.makeText(getContext(), "Copied to Clipboard.", Toast.LENGTH_SHORT);
                                 */
 
-                                displayQRCode(matchEntries.get(pos));
+                                Intent intent = new Intent(getActivity(), TeamSearchPop.class);
+                                intent.putExtra("isEdit", true);
+                                Entry entry = matchEntries.get(pos);
+                                intent.putExtra("retrieveFrom", TabbedActivity.getKeyName(entry));
+                                startActivityForResult(intent, 0);
 
                             }
                         })
@@ -238,23 +244,9 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         listView.setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.emptyView).setVisibility(View.GONE);
 
-        String matchString = "";
-
-        for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
-            if(sharedPref.contains(x)) {
-                matchString += sharedPref.getString(x, "");
-            }
-        }
-        try {
-            MainActivity.cacheSaver(matchString);
-        }
-        catch(FileNotFoundException e){
-            //Do nothing
-        }
-
-        
-
-        matchEntries = sortEntries(MatchEntry.getAllEntriesInFileIntoObjectForm(matchString));
+        String exportedData = exportEntryData();
+        ArrayList<Entry> entryList = Entry.getEntriesFromString(exportedData);
+        matchEntries = sortEntries(entryList);
 
         if(matchEntries.size()>0) {
             matchTeams = new String[matchEntries.size()];
@@ -268,6 +260,25 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         }
     }
 
+    public String exportEntryData() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String matchString = "";
+
+        for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
+            if(sharedPref.contains(x)) {
+                matchString += sharedPref.getString(x, "") + SPLITKEY;
+            }
+        }
+        try {
+            MainActivity.cacheSaver(matchString);
+        }
+        catch(FileNotFoundException e){
+            //Do nothing
+        }
+        //Remove last " ||||| "
+        return matchString.substring(0, matchString.length() - SPLITKEY.length());
+    }
+
     public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
         ArrayList<Entry> sortedEntries = new ArrayList<Entry>();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
@@ -278,8 +289,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         }
 
         for (Entry x : originalEntries) {
-            if(sharedPref.contains(MatchEntry.getKeyName(x) + ":index")) {
-                int index = sharedPref.getInt(MatchEntry.getKeyName(x) + ":index", 0);
+            if(sharedPref.contains(TabbedActivity.getKeyName(x) + ":index")) {
+                int index = sharedPref.getInt(TabbedActivity.getKeyName(x) + ":index", 0);
                 if(index < sortedEntries.size() && index >= 0 && sortedEntries.get(index) == null) {
                     sortedEntries.set(index, x);
                 } else {
@@ -296,7 +307,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 if(!indexlessEntries.isEmpty() && sortedEntries.get(i) == null) {
                     int unsortedIndex = indexlessEntries.size() - 1;
                     sortedEntries.set(i, indexlessEntries.get(unsortedIndex));
-                    editor.putInt(MatchEntry.getKeyName(indexlessEntries.get(unsortedIndex)) + ":index", i);
+                    editor.putInt(TabbedActivity.getKeyName(indexlessEntries.get(unsortedIndex)) + ":index", i);
 
                     indexlessEntries.remove(unsortedIndex);
                 }

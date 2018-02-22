@@ -61,21 +61,18 @@ public class EndgameEntry extends Fragment {
         soloClimb = (CheckBox) getView().findViewById(R.id.soloClimb);
         cardYellow = (CheckBox) getView().findViewById(R.id.cardyellow);
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
+    }
 
-        if(((TabbedActivity) this.getActivity()).isEdit) {
-            TabbedActivity parent = (TabbedActivity) this.getActivity();
-            Entry newEntry = parent.newEntry;
-            //Load data in from newEntry
-            defensiveStrategy.getChildAt(newEntry.defensiveStrategy).setSelected(true);
-            death.setChecked(newEntry.death);
-            soloClimb.setChecked(newEntry.soloClimb);
-            astClimb.setChecked(newEntry.astClimb);
-            needAstClimb.setChecked(newEntry.needAstClimb);
-            cardYellow.setChecked(newEntry.cardYellow);
-            cardRed.setChecked(newEntry.cardRed);
-        }
+    public void loadFromEntry (Entry newEntry) {
+        matchNumber.setText(String.valueOf(newEntry.matchNumber));
 
-
+        defensiveStrategy.check(defensiveStrategy.getChildAt(newEntry.defensiveStrategy).getId());
+        death.setChecked(newEntry.death);
+        soloClimb.setChecked(newEntry.soloClimb);
+        astClimb.setChecked(newEntry.astClimb);
+        needAstClimb.setChecked(newEntry.needAstClimb);
+        cardYellow.setChecked(newEntry.cardYellow);
+        cardRed.setChecked(newEntry.cardRed);
     }
 
     public Entry saveToEntry(Entry entry) {

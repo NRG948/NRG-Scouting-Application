@@ -31,6 +31,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
     Entry newEntry = new Entry();
     Boolean isEdit = false;
+    Boolean loadFromCache = false;
 
     ViewPager viewPager;
     MatchTabFragmentAdapter tabAdapter;
@@ -45,9 +46,20 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
         Intent loadIntent = getIntent();
 
-        if(loadIntent.getBooleanExtra("isEdit", false)) {
+        if(loadIntent.getBooleanExtra("isEdit", false) && loadIntent.hasExtra("retrieveFrom"))  {
             isEdit = true;
             //LOAD ENTRY FROM STORAGE
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+            if(sharedPref.contains(loadIntent.getStringExtra("retrieveFrom"))) {
+                newEntry = Entry.retrieveFromString(sharedPref.getString(loadIntent.getStringExtra("retrieveFrom"), ""));
+                loadFromCache = true;
+            } else {
+                Intent intent = new Intent();
+                intent.putExtra("status", -1);
+                setResult(RESULT_CANCELED, intent);
+                finish();
+                return;
+            }
         } else {
             newEntry.teamName = getIntent().getStringExtra("teamName");
         }
@@ -59,7 +71,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
             intent.putExtra("status", -1);
             setResult(RESULT_CANCELED, intent);
             finish();
-
+            return;
         }
 
         setActionBarTitle("Match Entry - " + newEntry.teamName);
@@ -82,10 +94,14 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                setActionBarTitle("Match Entry");
+                setActionBarTitle("Match Entry - " + newEntry.teamName);
 
                 //Anytime a tab is switched, sync endgameEntry to object.
                 if(endgameEntry != null) {
+                    if(loadFromCache) {
+                        endgameEntry.loadFromEntry(newEntry);
+                        loadFromCache = false;
+                    }
                     endgameEntry.saveToEntry(newEntry);
                 }
                 if(eventListEntry != null) {
@@ -93,7 +109,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     eventListEntry.UpdateView();
                 }
 
-                saveEntryToPrefs(false);
+                cacheEntry();
             }
 
             @Override
@@ -106,15 +122,16 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
             }
         });
-
-
     }
 
     public boolean saveAndExit() {
 
         if(printErrors().equals("")) {
             saveEntryToPrefs(true);
-
+            Intent intent = new Intent();
+            intent.putExtra("status", 1);
+            setResult(RESULT_OK, intent);
+            finish();
             return true;
         }
 
@@ -146,6 +163,14 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         return error;
     }
 
+    public void cacheEntry() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("cachedEntry", newEntry.toString());
+        editor.putInt("lastState", MainActivity.EDITING_ENTRY);
+        editor.apply();
+    }
+
     public void saveEntryToPrefs() {
         saveEntryToPrefs(false);
     }
@@ -169,6 +194,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         editor.putInt(keyName + ":index", entryList.size() - 1);
         editor.putInt("DefaultTeamPosition", newEntry.position);
         editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+        editor.putInt("lastState", MainActivity.FINISHED_ENTRY);
 
         //editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
         editor.apply();
@@ -178,7 +204,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         }
     }
 
-    public String getKeyName(Entry entry) {
+    public static String getKeyName(Entry entry) {
         return "entry_" + entry.teamName + "_" + entry.matchNumber;
     }
 

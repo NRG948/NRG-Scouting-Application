@@ -70,6 +70,13 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
         isEdit = getIntent().getBooleanExtra("isEdit",false);
 
+        if(isEdit && getIntent().hasExtra("retrieveFrom")) {
+            Intent intent = new Intent(TeamSearchPop.this, TabbedActivity.class);
+            intent.putExtra("isEdit", true);
+            intent.putExtra("retrieveFrom", getIntent().getStringExtra("retrieveFrom"));
+            startActivityForResult(intent, 0);
+        }
+
 
         adapter = new ArrayAdapter<String>(TeamSearchPop.this, android.R.layout.simple_list_item_1, teams);
         lv.setAdapter(adapter);
@@ -89,7 +96,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
 
                         String teamName=(String)((AppCompatTextView)(view)).getText();
                         Intent intent = new Intent(TeamSearchPop.this, TabbedActivity.class);
-                        intent.putExtra("isEdit", isEdit);
+                        intent.putExtra("isEdit", false);
                         intent.putExtra("teamName", teamName);
 
                         startActivityForResult(intent, 0);

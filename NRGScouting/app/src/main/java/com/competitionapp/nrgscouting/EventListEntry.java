@@ -1,6 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -78,6 +79,14 @@ public class EventListEntry extends Fragment {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("status", 1);
+                getActivity().setResult(getActivity().RESULT_OK, intent);
+                getActivity().finish();
+            }
+        });
 
     }
 

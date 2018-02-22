@@ -78,7 +78,7 @@ public class Entry {
             jsonObject.put("matchNumber", matchNumber);
             jsonObject.put("position", position);
             jsonObject.put("defensiveStrategy", 1);
-            jsonObject.put("death", position);
+            jsonObject.put("death", death);
             jsonObject.put("soloClimb", soloClimb);
             jsonObject.put("astClimb", astClimb);
             jsonObject.put("needAstClimb", needAstClimb);
@@ -141,6 +141,16 @@ public class Entry {
     public void addTimeEvent(int timestamp, EventType eventType, CubeDropType cubeDropType) {
         timeEvents.add(new TimeEvent(timestamp, eventType, cubeDropType));
         return;
+    }
+
+    public static ArrayList<Entry> getEntriesFromString(String input) {
+        String[] splitInput = input.split(MatchFragment.SPLITKEY);
+        ArrayList<Entry> entryList = new ArrayList<Entry>();
+        for(String x : splitInput) {
+            entryList.add(Entry.retrieveFromString(x));
+        }
+
+        return entryList;
     }
 
     public static int eventTypeToInt(EventType eventType) {
