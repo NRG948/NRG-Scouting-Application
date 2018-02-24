@@ -47,6 +47,7 @@ public class Entry {
     String teamName = "";
     int matchNumber = 0;
     int defensiveStrategy = 1;
+    int penalties = 0;
     boolean death = false;
     boolean soloClimb = false;
     boolean astClimb = false;
@@ -83,6 +84,7 @@ public class Entry {
             jsonObject.put("astClimb", astClimb);
             jsonObject.put("needAstClimb", needAstClimb);
             jsonObject.put("needLevitate", needLevitate);
+            jsonObject.put("penalties", penalties);
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
 
@@ -114,6 +116,7 @@ public class Entry {
             entry.astClimb = jsonObject.getBoolean("astClimb");
             entry.needAstClimb = jsonObject.getBoolean("needAstClimb");
             entry.needLevitate = jsonObject.getBoolean("needLevitate");
+            entry.penalties = jsonObject.getInt("penalties");
             entry.cardYellow = jsonObject.getBoolean("cardYellow");
             entry.cardRed = jsonObject.getBoolean("cardRed");
 

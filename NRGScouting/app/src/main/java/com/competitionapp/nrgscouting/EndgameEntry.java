@@ -21,6 +21,7 @@ import static java.lang.Integer.parseInt;
 
 public class EndgameEntry extends Fragment {
     EditText matchNumber;
+    EditText penalities;
     Spinner teamPosition;
     RadioGroup defensiveStrategy;
     CheckBox death;
@@ -51,6 +52,7 @@ public class EndgameEntry extends Fragment {
         }
 
         matchNumber = (EditText) getView().findViewById(R.id.matchNumber);
+        penalities = (EditText) getView().findViewById(R.id.penalties);
 
         defensiveStrategy = (RadioGroup) getView().findViewById(R.id.defensiveStrategyStrength);
         death = (CheckBox) getView().findViewById(R.id.death);
@@ -65,6 +67,7 @@ public class EndgameEntry extends Fragment {
 
     public void loadFromEntry (Entry newEntry) {
         matchNumber.setText(String.valueOf(newEntry.matchNumber));
+        penalities.setText(String.valueOf(newEntry.penalties));
 
         defensiveStrategy.check(defensiveStrategy.getChildAt(newEntry.defensiveStrategy).getId());
         death.setChecked(newEntry.death);
@@ -79,8 +82,10 @@ public class EndgameEntry extends Fragment {
 
         try {
             entry.matchNumber = Integer.parseInt(String.valueOf(matchNumber.getText()));
+            entry.penalties = Integer.parseInt(String.valueOf(penalities.getText()));
         } catch (NumberFormatException p_ex) {
             entry.matchNumber = -1;
+            entry.penalties = -1;
         }
         entry.defensiveStrategy = defensiveStrategy.indexOfChild(
                 defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId()));

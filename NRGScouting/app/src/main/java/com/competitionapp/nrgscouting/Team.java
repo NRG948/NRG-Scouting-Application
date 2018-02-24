@@ -4,9 +4,11 @@ package com.competitionapp.nrgscouting;
  * Created by valli on 7/19/17.
  */
 
-public class Team {
+import android.support.annotation.NonNull;
+
+public class Team implements Comparable<Team>{
     String name;
-    int totalMatchesPlayedInAllPositions;
+    private int totalMatchesPlayedInAllPositions;
     int totalMatchesPlayedInRed1;
     int totalMatchesPlayedInRed2;
     int totalMatchesPlayedInRed3;
@@ -14,8 +16,6 @@ public class Team {
     int totalMatchesPlayedInBlue2;
     int totalMatchesPlayedInBlue3;
     double rankScore;
-    //Auto                             [0,1,2,3,4,5] [Red1,Red2,Red3,Blue1,Blue2,Blue3]
-    int[] expectedTotalBallsScoredAuto={2,3,4,5,6,7};//Our expectation for them(Currently random numbers)
     int totalBallsScoredRed1Auto;
     int totalBallsScoredRed2Auto;
     int totalBallsScoredRed3Auto;
@@ -23,22 +23,30 @@ public class Team {
     int totalBallsScoredBlue2Auto;
     int totalBallsScoredBlue3Auto;
     int totalCrossesBaseLineMatches;
+    int totalClimbsRopeMatches;
     int totalGearsOnHookAutoMatchesRed1;
     int totalGearsOnHookAutoMatchesRed2;
     int totalGearsOnHookAutoMatchesRed3;
     int totalGearsOnHookAutoMatchesBlue1;
     int totalGearsOnHookAutoMatchesBlue2;
     int totalGearsOnHookAutoMatchesBlue3;
-    int totalDeathsAutoMatches;
     //Tele-operated
-    int totalDeathsTeleopMatches;
-    int expectedTotalBallsScoredTeleop;//Our expectation for them
+    int totalDeaths;
     int totalBallsScoredTeleop;
-    int totalRedOrYellowCardsMatches;
-    int totalDefenseMatches;
-    int totalChainProblemsMatches;
-    int noConflictBetweenTeams;//1 or 0(True or false)
-    int shooterRobot;//1 or 0(True or false)
-    int gearScoringRobot;//1 or 0(True or false)
+    int totalGearsRetrievedTeleop;
+    int totalYellowCards;
+    int totalDefense;
+    int totalChainProblems;
+    int totalDisconnectivity;
+    int totalOtherProblems;
 
-}
+
+    @Override
+    public int compareTo(@NonNull Team team) {
+        return (int)(team.rankScore-this.rankScore);
+    }
+    public int getTotalMatchesPlayedInAllPositions() {
+        return totalMatchesPlayedInAllPositions;
+    }public void setTotalMatchesPlayedInAllPositions(int totalMatchesPlayedInAllPositions) {
+        this.totalMatchesPlayedInAllPositions = totalMatchesPlayedInAllPositions;
+    }}
