@@ -81,10 +81,7 @@ public class EventListEntry extends Fragment {
 
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("status", 1);
-                getActivity().setResult(getActivity().RESULT_OK, intent);
-                getActivity().finish();
+                getActivity().onBackPressed();
             }
         });
 

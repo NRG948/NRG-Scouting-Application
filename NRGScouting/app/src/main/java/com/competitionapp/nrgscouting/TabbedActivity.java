@@ -208,6 +208,43 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         return "entry_" + entry.teamName + "_" + entry.matchNumber;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit Without Saving?");
+        builder.setCancelable(true);
+        if(isEdit) {
+            builder.setMessage("Are you sure you want to discard edits to this entry? No changes will be saved!");
+        } else {
+            builder.setMessage("Are you sure you want to discard this entry? All data may be lost!");
+        }
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                cacheEntry();
+
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("lastState", MainActivity.FINISHED_ENTRY);
+                editor.apply();
+
+                Intent intent = new Intent();
+                intent.putExtra("status", 1);
+                setResult(TabbedActivity.RESULT_OK, intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog ad = builder.create();
+        ad.show();
+    }
+
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);

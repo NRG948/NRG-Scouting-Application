@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,11 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 //***Verified and Approved***
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
@@ -165,6 +172,58 @@ public class MainActivity extends AppCompatActivity
                 textView.setTextIsSelectable(true);
                 textView.setMovementMethod(new ScrollingMovementMethod());
                 return true;
+            case R.id.action_import:
+                final AlertDialog.Builder alertadd = new AlertDialog.Builder(this);
+                LayoutInflater factory = LayoutInflater.from(this);
+                final View alertView = factory.inflate(R.layout.import_dialog, null);
+                alertadd.setView(alertView);
+                alertadd.setTitle("Import Entries");
+                alertadd.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertadd.setPositiveButton("Import", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText importText = (EditText) alertView.findViewById(R.id.import_text);
+                        String input = String.valueOf(importText.getText());
+                        ArrayList<Entry> importedEntries = Entry.getEntriesFromString(input);
+
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        Set<String> entryList;
+                        int count = 0;
+
+                        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+                            entryList = sharedPref.getStringSet("MatchEntryList", null);
+                        } else {
+                            entryList = new HashSet<String>();
+                        }
+                        //ADD FANCY STUFF HERE LATER!!!!!!!!!
+                        for(Entry x : importedEntries) {
+                            String keyName = TabbedActivity.getKeyName(x);
+                            if(!entryList.contains(String.valueOf(keyName))) {
+                                entryList.add(keyName);
+                            } else { count++; }
+                            editor.putString(keyName, x.toString());
+                            editor.putInt(keyName + ":index", entryList.size() - 1);
+                        }
+                        editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+                        editor.putStringSet("MatchEntryList", entryList);
+                        editor.apply();
+
+                        MainActivity.this.currentFragment.refreshFragment();
+
+                        Toast.makeText(MainActivity.this,
+                                "Added " + String.valueOf(importedEntries.size()) + " new entries, replaced " + count + " entries", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+                final AlertDialog alertDialog = alertadd.create();
+                alertDialog.show();
+                return true;
             case R.id.action_settings:
                 Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
                 return true;
@@ -198,6 +257,7 @@ public class MainActivity extends AppCompatActivity
                 });
                 builder.show();
                 return true;
+
         }
 
         //noinspection SimplifiableIfStatement
@@ -207,20 +267,21 @@ public class MainActivity extends AppCompatActivity
 
     public String RetrieveDataFromPrefs() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String matchString = "";
 
-        if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
-            String printList = "";
-
-            for (String x : sharedPref.getStringSet("MatchEntryList", null)) {
-                if (sharedPref.contains(x)) {
-                    printList += sharedPref.getString(x, "");
-                }
+        for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
+            if(sharedPref.contains(x)) {
+                matchString += sharedPref.getString(x, "") + MatchFragment.SPLITKEY;
             }
-
-            return printList;
         }
-
-        return "(No data found.)";
+        try {
+            MainActivity.cacheSaver(matchString);
+        }
+        catch(FileNotFoundException e){
+            //Do nothing
+        }
+        //Remove last " ||||| "
+        return matchString.substring(0, matchString.length() - MatchFragment.SPLITKEY.length());
     }
 
     public void copyToClipboard(String copy) {
@@ -275,21 +336,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_about) {
 
-            About abfragment = new About();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, abfragment);
-            fragmentTransaction.commit();
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            fab.hide();
+            Intent intent = new Intent(MainActivity.this, About.class);
+            startActivityForResult(intent, 0);
 
-            setActionBarTitle("About");
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.addDrawerListener(toggle);
-            toggle.syncState();
+        } else {
+            //Leaderboard page
 
         }
 
