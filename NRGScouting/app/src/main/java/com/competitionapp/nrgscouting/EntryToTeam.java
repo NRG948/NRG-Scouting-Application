@@ -1,21 +1,28 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Acchindra Thev on 2/26/18.
  */
 
 public class EntryToTeam extends Fragment {
-        String teamName;
 
+    String teamName = "";
 //       AUTONOMOUS
     int autoExchange = 0;
     int autoDropScale = 0;
@@ -56,15 +63,81 @@ public class EntryToTeam extends Fragment {
     int redCard;
     int numTE;
 
-// __________________________________________________________________________________________________________________________
-// __________________________________________________________________________________________________________________________
-// __________________________________________________________________________________________________________________________
 
     ArrayList<Entry> listOfEntriesInFile=new ArrayList<Entry>();
-    static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
+    ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
+    //list of team names to display
+    ArrayList<String> matchTeams = new ArrayList<String>();
+    ArrayAdapter<String> teamAdapter;
+    View rootView;
+    ListView listView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_match, container, false);
+        listView = (ListView)rootView.findViewById(R.id.teams);
+        listView.setEmptyView(rootView.findViewById(R.id.emptyView));
+
+        return rootView;
+    }
+
+    public void refreshFragment() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+        if (!sharedPref.contains("MatchEntryList") || sharedPref.getStringSet("MatchEntryList", null) == null) {
+            listView.setVisibility(View.GONE);
+            rootView.findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
+            return;
+        }
+
+        listView.setVisibility(View.VISIBLE);
+        rootView.findViewById(R.id.emptyView).setVisibility(View.GONE);
+
+        String exportedData = MatchFragment.exportEntryData(getActivity());
+        ArrayList<Entry> entryList = Entry.getEntriesFromString(exportedData);
+        listOfEntriesInFile = entryList;
+        combineTeams();
+        Algorithm ranker = new ScaleAlgorithm();
+
+        for(Team a: teams){
+            a.rankScore = ranker.rankScore(ranker.teleopScore(),ranker.autonomousScore());
+        }
+
+        Collections.sort(teams);
+        for(Team x : teams) {
+            //x.teamName
+        }
+
+        if(teams.size()>0) {
+            teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
+            listView.setAdapter(teamAdapter);
+        }
+    }
+
+    /*
+    public void rank(View v){
+        textView=(TextView)findViewById(R.id.text_view);
+        EntryToTeam.teams=new ArrayList<>();
+        EntryToTeam.combineTeams();
+        Algorithm ranker = new Algorithm();
+        for(Team a:EntryToTeam.teams){
+            a.rankScore = ranker.rankScore(ranker.teleopScore(),ranker.autonomousScore());
+        }
+        Collections.sort(EntryToTeam.teams);
+        String toDisplay="";
+        for(Team a:EntryToTeam.teams){
+            toDisplay+="Team:"+a.teamName+" Score:"+a.rankScore+"\n";
+        }
+        textView.setMovementMethod(new ScrollingMovementMethod());
+        textView.setLines(100);
+        textView.setText(toDisplay);
+        System.out.print(EntryToTeam.teams);
+    }
+    */
 
     public void setValues(Team a) {
-        a.teamName = teamName;
+        a.teamName = this.teamName;
         a.totalAutoExchange += autoExchange;
         a.totalAutoDropScale += autoDropScale;
         a.totalAutoDropOpp += autoDropOpp;
@@ -127,11 +200,12 @@ public class EntryToTeam extends Fragment {
         return null;
     }
 
+
     public void addEntry(Entry entry) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
             if(sharedPref.contains(String.valueOf(entry))) {
                 try {
-                    JSONObject jsonObject = new JSONObject(String.valueOf(entry));
+                    JSONObject jsonObject = new JSONObject(entry.toString());
                     teamName = jsonObject.getString("teamName");
                     defense = jsonObject.getInt("defensiveStrategy");
                     death = jsonObject.getBoolean("death")? 1 : 0;
@@ -236,4 +310,5 @@ public class EntryToTeam extends Fragment {
                 combineTeams();
             }
     }
+
 }

@@ -1,5 +1,6 @@
 package com.competitionapp.nrgscouting;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -246,7 +247,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         listView.setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.emptyView).setVisibility(View.GONE);
 
-        String exportedData = exportEntryData();
+        String exportedData = exportEntryData(getActivity());
         ArrayList<Entry> entryList = Entry.getEntriesFromString(exportedData);
         matchEntries = sortEntries(entryList);
 
@@ -262,8 +263,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         }
     }
 
-    public String exportEntryData() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+    public static String exportEntryData(Activity context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         String matchString = "";
 
         for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
@@ -319,6 +320,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         Collections.reverse(sortedEntries);
         return sortedEntries;
     }
+
     public void rank(View v){
 //        textView=(TextView)findViewById(R.id.text_view);
 //        EntryToTeam.teams=new ArrayList<>();

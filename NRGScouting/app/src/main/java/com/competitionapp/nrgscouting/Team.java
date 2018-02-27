@@ -52,6 +52,12 @@ public class Team implements Comparable<Team>{
 
     @Override
     public int compareTo(@NonNull Team team) {
-        return (int)(team.rankScore+this.rankScore);
+        if(team.rankScore > this.rankScore) {
+            return -1;
+        } else if (team.rankScore == this.rankScore) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }
