@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
 import android.os.Environment;
@@ -316,5 +318,23 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         }
         Collections.reverse(sortedEntries);
         return sortedEntries;
+    }
+    public void rank(View v){
+//        textView=(TextView)findViewById(R.id.text_view);
+//        EntryToTeam.teams=new ArrayList<>();
+//        EntryToTeam.combineTeams();
+//        Algorithm ranker = new Algorithm();
+//        for(Team a:EntryToTeam.teams){
+//            a.rankScore = ranker.rankScore(ranker.teleopScore(),ranker.autonomousScore());
+//        }
+//        Collections.sort(EntryToTeam.teams);
+//        String toDisplay="";
+//        for(Team a:EntryToTeam.teams){
+//            toDisplay+="Team:"+a.teamName+" Score:"+a.rankScore+"\n";
+//        }
+//        textView.setMovementMethod(new ScrollingMovementMethod());
+//        textView.setLines(100);
+//        textView.setText(toDisplay);
+//        System.out.print(EntryToTeam.teams);
     }
 }

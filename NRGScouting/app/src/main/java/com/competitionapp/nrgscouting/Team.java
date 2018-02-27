@@ -7,46 +7,51 @@ package com.competitionapp.nrgscouting;
 import android.support.annotation.NonNull;
 
 public class Team implements Comparable<Team>{
-    String name;
-    private int totalMatchesPlayedInAllPositions;
-    int totalMatchesPlayedInRed1;
-    int totalMatchesPlayedInRed2;
-    int totalMatchesPlayedInRed3;
-    int totalMatchesPlayedInBlue1;
-    int totalMatchesPlayedInBlue2;
-    int totalMatchesPlayedInBlue3;
+    String teamName;
     double rankScore;
-    int totalBallsScoredRed1Auto;
-    int totalBallsScoredRed2Auto;
-    int totalBallsScoredRed3Auto;
-    int totalBallsScoredBlue1Auto;
-    int totalBallsScoredBlue2Auto;
-    int totalBallsScoredBlue3Auto;
-    int totalCrossesBaseLineMatches;
-    int totalClimbsRopeMatches;
-    int totalGearsOnHookAutoMatchesRed1;
-    int totalGearsOnHookAutoMatchesRed2;
-    int totalGearsOnHookAutoMatchesRed3;
-    int totalGearsOnHookAutoMatchesBlue1;
-    int totalGearsOnHookAutoMatchesBlue2;
-    int totalGearsOnHookAutoMatchesBlue3;
-    //Tele-operated
-    int totalDeaths;
-    int totalBallsScoredTeleop;
-    int totalGearsRetrievedTeleop;
-    int totalYellowCards;
+
+    //       AUTONOMOUS
+    int totalAutoExchange = 0;
+    int totalAutoDropScale = 0;
+    int totalAutoDropOpp = 0;
+    int totalAutoDropAlly = 0;
+    int totalAutoDropNone = 0;
+    int totalAutoCube = 0;
+    int totalAutoScaleEnd = 0;
+    int totalAutoAllyStart = 0;
+    int totalAutoAllyEnd = 0;
+    int totalAutoOppStart = 0;
+    int totalAutoOppEnd = 0;
+    int totalAutoScaleStart = 0;
+    //       Tele-Op
+    int totalAllyStart = 0;
+    int totalAllyEnd = 0;
+    int totalOppStart = 0;
+    int totalOppEnd = 0;
+    int totalScaleStart = 0;
+    int totalScaleEnd = 0;
+    int totalCube = 0;
+    int totalExchange = 0;
+    int totalDropScale = 0;
+    int totalDropOpp = 0;
+    int totalDropAlly = 0;
+    int totalDropNone = 0;
+    int totalBoost = 0;
+    int totalForce = 0;
+    //       Endgame
     int totalDefense;
-    int totalChainProblems;
-    int totalDisconnectivity;
-    int totalOtherProblems;
+    int totalDeath;
+    int totalSoloClimb;
+    int totalAstClimb;
+    int totalNeededAstClimb;
+    int totalLevitate;
+    int totalPenalties;
+    int totalYellowCard;
+    int totalRedCard;
 
 
     @Override
     public int compareTo(@NonNull Team team) {
-        return (int)(team.rankScore-this.rankScore);
+        return (int)(team.rankScore+this.rankScore);
     }
-    public int getTotalMatchesPlayedInAllPositions() {
-        return totalMatchesPlayedInAllPositions;
-    }public void setTotalMatchesPlayedInAllPositions(int totalMatchesPlayedInAllPositions) {
-        this.totalMatchesPlayedInAllPositions = totalMatchesPlayedInAllPositions;
-    }}
+}

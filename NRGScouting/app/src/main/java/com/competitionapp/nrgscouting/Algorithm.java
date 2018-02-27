@@ -8,9 +8,8 @@ import java.util.ArrayList;
  * Created by Acchindra Thev on 2/22/18.
  */
 
-public class Algorithm extends EntryToAlgorithm{
-    static ArrayList<EntryToAlgorithm> teams = new ArrayList<EntryToAlgorithm>();//List of summed up team data
-
+public class Algorithm extends Team{
+    
     //Auto
     int autoAllySwitch = 2; // Score per second for possesion of ally switch during auto.
     int autoScale = 4; // Score per second for possesion of scale during auto.
