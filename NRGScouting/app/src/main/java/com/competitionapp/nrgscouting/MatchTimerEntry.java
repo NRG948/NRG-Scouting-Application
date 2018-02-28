@@ -21,8 +21,12 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Handler;
+
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -40,7 +44,7 @@ import java.util.concurrent.TimeUnit;
 public class MatchTimerEntry extends Fragment {
     private String[] ListElements = new String[] {  };
     private List <String> ListElementsArrayList ;
-    private Chronometer timer;
+    private TextView timer;
     private Button allySwitch;
     boolean claimedAllySwitch = false;
     private Button oppSwitch;
@@ -59,10 +63,41 @@ public class MatchTimerEntry extends Fragment {
     boolean climbStartPressed = false;
 
     private Button start;
+    ProgressBar progressBar;
+    boolean progressBarSwitched = false;
     boolean timerIsRunning = false;
-
     public long startTime = 0;
     public long savedTime = 0;
+
+    Handler handler = new Handler();
+    Runnable updateTimerThread = new Runnable() {
+        @Override
+        public void run() {
+            long currentTimeInMilliseconds = (SystemClock.elapsedRealtime() - startTime) + savedTime;
+            timer.setText(EventListEntry.convertTimeToText((int) currentTimeInMilliseconds));
+
+            progressBar.setProgress((int) currentTimeInMilliseconds);
+            handler.postDelayed(updateTimerThread, 20);
+
+            /*
+            if(!progressBarSwitched && currentTimeInMilliseconds > 15000) {
+                progressBarSwitched = true;
+                progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.colorAccent),
+                        android.graphics.PorterDuff.Mode.MULTIPLY);
+            }*/
+
+            if(currentTimeInMilliseconds >= 135000) {
+                if(start != null) {
+                    start.setEnabled(false);
+                    start.setText("Start Timer");
+                }
+                timerIsRunning = false;
+                timer.setText(EventListEntry.convertTimeToText(135000));
+                savedTime = 135000;
+                handler.removeCallbacks(updateTimerThread);
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -74,7 +109,7 @@ public class MatchTimerEntry extends Fragment {
 
     @Override
     public void onStart() {
-        timer = (Chronometer) (getView()).findViewById(R.id.mainTimer);
+        timer = (TextView) (getView()).findViewById(R.id.mainTimer);
         allySwitch = (Button)(getView().findViewById(R.id.ally_switch));
         oppSwitch = (Button)(getView().findViewById(R.id.opp_switch));
         scale = (Button)(getView().findViewById(R.id.claimed_scale));
@@ -83,10 +118,16 @@ public class MatchTimerEntry extends Fragment {
         forceUsed = (Button)(getView().findViewById(R.id.force_used));
         climbStart = (Button)(getView().findViewById(R.id.climb_start));
         start = (Button)(getView().findViewById(R.id.time_start));
+        progressBar = (ProgressBar) (getView().findViewById(R.id.progressbar));
+
+        /*
+        if((SystemClock.elapsedRealtime() - startTime) + savedTime < 15000) {
+            progressBarSwitched = false;
+        }*/
 
         updateButtonEnabled();
 
-        timer.setBase(SystemClock.elapsedRealtime() - 150000*0);
+        //timer.setBase(SystemClock.elapsedRealtime() - 150000*0);
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
 
@@ -94,14 +135,16 @@ public class MatchTimerEntry extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!timerIsRunning) {
-                    timer.setBase(SystemClock.elapsedRealtime() - (150*1000*0 - savedTime));
-                    timer.start();
+                    //timer.setBase(SystemClock.elapsedRealtime() - (150*1000*0 - savedTime));
+                    //timer.start();
+                    handler.postDelayed(updateTimerThread, 0);
                     startTime = SystemClock.elapsedRealtime();
                     start.setText("Pause Timer");
                     timerIsRunning = true;
                     updateButtonEnabled();
                 } else {
-                    timer.stop();
+                    //timer.stop();
+                    handler.removeCallbacks(updateTimerThread);
                     timerIsRunning = false;
                     savedTime += SystemClock.elapsedRealtime() - startTime;
                     start.setText("Start Timer");

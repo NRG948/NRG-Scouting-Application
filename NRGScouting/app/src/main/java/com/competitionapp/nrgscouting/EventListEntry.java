@@ -98,7 +98,7 @@ public class EventListEntry extends Fragment {
     }
 
 
-    public String convertTimeToText(int timestamp) {
+    public static String convertTimeToText(int timestamp) {
         String min = "0";
         String sec = "00";
         String mSec = "000";
@@ -114,7 +114,7 @@ public class EventListEntry extends Fragment {
         return "" + min +":" + formatToLength(sec, 2) + "." + formatToLength(mSec, 2);
     }
 
-    public String formatToLength(String input, int length) {
+    public static String formatToLength(String input, int length) {
         for(int i = length - input.length(); i > 0; i--) {
             input = "0" + input;
         }
