@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -326,7 +327,7 @@ public class MainActivity extends AppCompatActivity
             setSupportActionBar(toolbar);
             fab.show();
 
-            setActionBarTitle("Match Scouting");
+            setActionBarTitle("Scouting");
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -334,14 +335,9 @@ public class MainActivity extends AppCompatActivity
             toggle.syncState();
 
 
-        } else if (id == R.id.nav_about) {
-
-            Intent intent = new Intent(MainActivity.this, About.class);
+        } else if (id == R.id.nav_leader){
+            Intent intent = new Intent(MainActivity.this, rankScreen.class);
             startActivityForResult(intent, 0);
-
-        } else {
-            //Leaderboard page
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
