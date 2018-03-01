@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.competitionapp.nrgscouting.rankScreen">
+
+
+    <ListView
+        android:id="@+id/teams"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="20dp"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="90dp"
+            android:textColor="@color/colorLightGray"
+            android:textAlignment="center"
+            android:text="Sorry, there's nothing here yet! Try adding an entry first!"
+            />
+
+        <Button
+            android:id="@+id/Rank"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Rank"
+            android:onClick="rank" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

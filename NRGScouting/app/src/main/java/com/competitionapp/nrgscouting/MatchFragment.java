@@ -321,22 +321,4 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         return sortedEntries;
     }
 
-    public void rank(View v){
-//        textView=(TextView)findViewById(R.id.text_view);
-//        EntryToTeam.teams=new ArrayList<>();
-//        EntryToTeam.combineTeams();
-//        Algorithm ranker = new Algorithm();
-//        for(Team a:EntryToTeam.teams){
-//            a.rankScore = ranker.rankScore(ranker.teleopScore(),ranker.autonomousScore());
-//        }
-//        Collections.sort(EntryToTeam.teams);
-//        String toDisplay="";
-//        for(Team a:EntryToTeam.teams){
-//            toDisplay+="Team:"+a.teamName+" Score:"+a.rankScore+"\n";
-//        }
-//        textView.setMovementMethod(new ScrollingMovementMethod());
-//        textView.setLines(100);
-//        textView.setText(toDisplay);
-//        System.out.print(EntryToTeam.teams);
-    }
 }
