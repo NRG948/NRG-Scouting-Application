@@ -100,7 +100,6 @@ public class RankScreen extends Fragment implements RefreshableFragment{
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_ranking, parent, false);
             }
 
-            ((TextView) convertView.findViewById(R.id.rankingScoreText)).setText(cutToSize(String.valueOf(team.getRankScore()), 8));
             ((TextView) convertView.findViewById(R.id.rankingTeamNameText)).setText(team.teamName);
             ((TextView) convertView.findViewById(R.id.rankingNumberText)).setText(String.valueOf(position + 1));
 
