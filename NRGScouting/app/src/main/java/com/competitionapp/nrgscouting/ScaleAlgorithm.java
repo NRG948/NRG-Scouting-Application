@@ -1,7 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 /**
- * Created by acchindrathev on 2/24/18.
+ * Created by Acchindra Thev on 2/24/18.
  */
 
 public class ScaleAlgorithm extends Algorithm {

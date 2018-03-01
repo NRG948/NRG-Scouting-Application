@@ -86,14 +86,14 @@ public class MatchTimerEntry extends Fragment {
                         android.graphics.PorterDuff.Mode.MULTIPLY);
             }*/
 
-            if(currentTimeInMilliseconds >= 135000) {
+            if(currentTimeInMilliseconds >= 150000) {
                 if(start != null) {
                     start.setEnabled(false);
                     start.setText("Start Timer");
                 }
                 timerIsRunning = false;
-                timer.setText(EventListEntry.convertTimeToText(135000));
-                savedTime = 135000;
+                timer.setText(EventListEntry.convertTimeToText(150000));
+                savedTime = 150000;
                 handler.removeCallbacks(updateTimerThread);
             }
         }

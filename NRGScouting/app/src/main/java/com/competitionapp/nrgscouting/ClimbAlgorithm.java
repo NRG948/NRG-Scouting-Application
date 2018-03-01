@@ -1,7 +1,7 @@
 package com.competitionapp.nrgscouting;
 
 /**
- * Created by acchindrathev on 2/24/18.
+ * Created by Acchindra Thev on 2/24/18.
  */
 
 public class ClimbAlgorithm extends Algorithm {
@@ -9,5 +9,4 @@ public class ClimbAlgorithm extends Algorithm {
     int astClimb = 90;
     int neededAstClimb = 10;
     int levitate = 20;
-
 }

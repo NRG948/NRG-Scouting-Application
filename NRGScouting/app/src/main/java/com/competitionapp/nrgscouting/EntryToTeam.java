@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by Acchindra Thev on 2/26/18.
+ * Created by Acchindra Thev on 2/22/18.
  */
 
 public class EntryToTeam {
@@ -28,45 +28,6 @@ public class EntryToTeam {
 
     public static void setValues(Team a, Entry b) {
         a.teamName = b.teamName;
-        /*
-        a.totalAutoExchange += autoExchange;
-        a.totalAutoDropScale += autoDropScale;
-        a.totalAutoDropOpp += autoDropOpp;
-        a.totalAutoDropAlly += autoDropAlly;
-        a.totalAutoDropNone += autoDropNone;
-        a.totalAutoCube += autoCube;
-        a.totalAutoScaleEnd += autoScaleEnd;
-        a.totalAutoAllyStart += autoAllyStart;
-        a.totalAutoAllyEnd += autoAllyEnd;
-        a.totalAutoOppStart += autoOppStart;
-        a.totalAutoOppEnd += autoOppEnd;
-        a.totalAutoScaleStart += autoScaleStart;
-        //       Tele-Op
-        a.totalAllyStart += allyStart;
-        a.totalAllyEnd += allyEnd;
-        a.totalOppStart += oppStart;
-        a.totalOppEnd += oppEnd;
-        a.totalScaleStart += scaleStart;
-        a.totalScaleEnd += scaleEnd;
-        a.totalCube += cube;
-        a.totalExchange += exchange;
-        a.totalDropScale += dropScale;
-        a.totalDropOpp += dropOpp;
-        a.totalDropAlly += dropAlly;
-        a.totalDropNone += dropNone;
-        a.totalBoost += boost;
-        a.totalForce += force;
-        //       Endgame
-        a.totalDefense += defense;
-        a.totalDeath += death;
-        a.totalSoloClimb += soloClimb;
-        a.totalAstClimb += astClimb;
-        a.totalNeededAstClimb += neededAstClimb;
-        a.totalLevitate += levitate;
-        a.totalPenalties += penalties;
-        a.totalYellowCard += yellowCard;
-        a.totalRedCard += redCard;
-        */
     }
 
     public static ArrayList<Team> combineTeams(ArrayList<Team> teams, ArrayList<Entry> entryList) {
