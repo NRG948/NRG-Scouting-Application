@@ -1,5 +1,6 @@
 package com.competitionapp.nrgscouting;
 
+import android.graphics.drawable.Icon;
 import android.support.annotation.NonNull;
 
 import org.json.JSONException;
@@ -81,7 +82,9 @@ public class Algorithm{
     int redCard;
     int numTE;
 
-    
+    public String rankType() {
+        return "None";
+    }
     
     public double autonomousScore() {
         return  ((autoAllyEnd - autoAllyStart)*autoAllySwitchWeight) + ((autoScaleEnd-autoScaleStart)*autoScaleWeight) + ((autoOppEnd-autoOppStart)*autoOppSwitchWeight)+

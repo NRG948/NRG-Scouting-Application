@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.competitionapp.nrgscouting.RankScreen"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    android:screenOrientation="portrait">
+    tools:context="com.competitionapp.nrgscouting.RankScreen">
 
     <TextView
-        android:id="@+id/algorithm_type"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/colorLightGray"
+        android:text="Sorting By: "
+        android:textColor="@color/colorAccent"
         android:textAlignment="center"
-        android:text="Sorry, there's nothing here yet! Try adding an entry first!"
+        android:id="@+id/sortingTypeText"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
         />
 
     <ListView
         android:id="@+id/teams"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
         />
 
 
@@ -37,18 +36,29 @@
         android:layout_margin="20dp"
         >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:layout_marginTop="90dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorLightGray"
+            android:textAlignment="center"
+            android:text=":("
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/colorLightGray"
             android:textAlignment="center"
             android:text="Sorry, there's nothing here yet! Try adding an entry first!"
             />
 
 
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

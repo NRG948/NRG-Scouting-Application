@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -27,12 +26,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -258,7 +254,26 @@ public class MainActivity extends AppCompatActivity
                 });
                 builder.show();
                 return true;
-
+            case R.id.sort_switch:
+                ((RankScreen) currentFragment).ranker = new SwitchAlgorithm();
+                currentFragment.refreshFragment();
+                item.setChecked(true);
+                return true;
+            case R.id.sort_climb:
+                ((RankScreen) currentFragment).ranker = new ClimbAlgorithm();
+                currentFragment.refreshFragment();
+                item.setChecked(true);
+                return true;
+            case R.id.sort_defense:
+                ((RankScreen) currentFragment).ranker = new DefensiveAlgorithm();
+                currentFragment.refreshFragment();
+                item.setChecked(true);
+                return true;
+            case R.id.sort_scale:
+                ((RankScreen) currentFragment).ranker = new ScaleAlgorithm();
+                item.setChecked(true);
+                currentFragment.refreshFragment();
+                return true;
         }
 
         //noinspection SimplifiableIfStatement
@@ -336,8 +351,25 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_leader){
-            Intent intent = new Intent(MainActivity.this, rankScreen.class);
-            startActivityForResult(intent, 0);
+            fab.hide();
+            RankScreen rankScreen = new RankScreen();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+
+            currentFragment = rankScreen;
+
+            fragmentTransaction.replace(R.id.fragment_container, rankScreen, "mat");
+            fragmentTransaction.commit();
+            //toolbar = (Toolbar)findViewById(R.id.toolbar);
+            //setSupportActionBar(toolbar);
+
+            setActionBarTitle("Ranking");
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

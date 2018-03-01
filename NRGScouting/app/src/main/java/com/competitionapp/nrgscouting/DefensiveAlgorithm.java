@@ -5,5 +5,13 @@ package com.competitionapp.nrgscouting;
  */
 
 public class DefensiveAlgorithm extends Algorithm {
-    int totalDefenseWeight = 40;
+
+    public DefensiveAlgorithm() {
+        this.DefenseWeight = 40;
+    }
+
+    @Override
+    public String rankType() {
+        return "Defense";
+    }
 }

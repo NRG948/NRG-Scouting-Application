@@ -32,14 +32,6 @@
             android:name=".TeamSearchPop"
             android:label="Match Scout Team Search"
             android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".TeamSearchPopSpec"
-            android:label="Specialist Scout Team Search"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".rankScreen"
-            android:label="@string/title_activity_rank_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

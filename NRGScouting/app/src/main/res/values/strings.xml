@@ -23,5 +23,5 @@
         <item name="blue3">Blue 3</item>
     </string-array>
     <string name="title_activity_match">MatchActivity</string>
-    <string name="title_activity_rank_screen">rankScreen</string>
+    <string name="title_activity_rank_screen">RankScreen</string>
 </resources>

@@ -12,6 +12,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.view.LayoutInflater;
@@ -56,6 +58,8 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_match, container, false);
+
+        setHasOptionsMenu(true);
 
         //List initializations
         listView= (ListView)rootView.findViewById(R.id.teams);
@@ -148,6 +152,13 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         refreshFragment();
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menu.clear();
+        inflater.inflate(R.menu.main, menu);
     }
 
     public void displayQRCode(Entry entry){

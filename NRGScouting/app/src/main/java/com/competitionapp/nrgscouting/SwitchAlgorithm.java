@@ -5,10 +5,18 @@ package com.competitionapp.nrgscouting;
  */
 
 public class SwitchAlgorithm extends Algorithm {
-    int autoAllySwitch = 4;
-    int autoOppSwitch = 8;
-    double autoCube = -0.5;
-    int allySwitch = 2;
-    int oppSwitch = 4;
-    int cube = -1;
+
+    public SwitchAlgorithm() {
+        this.autoAllySwitchWeight = 4;
+        this.autoOppSwitchWeight = 8;
+        this.autoCubeWeight = -0.5;
+        this.allySwitchWeight = 2;
+        this.oppSwitchWeight = 4;
+        this.cubeWeight = -1;
+    }
+
+    @Override
+    public String rankType() {
+        return "Switch";
+    }
 }

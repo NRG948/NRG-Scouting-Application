@@ -5,7 +5,15 @@ package com.competitionapp.nrgscouting;
  */
 
 public class ScaleAlgorithm extends Algorithm {
-    int autoScale = 8;
-    int scale = 4;
+
+    public ScaleAlgorithm() {
+        this.autoScaleWeight = 8;
+        this.scaleWeight = 4;
+    }
+
+    @Override
+    public String rankType() {
+        return "Scale";
+    }
 
 }

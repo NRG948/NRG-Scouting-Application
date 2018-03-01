@@ -1,12 +1,13 @@
 package com.competitionapp.nrgscouting;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,53 +15,104 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class rankScreen extends AppCompatActivity {
+public class RankScreen extends Fragment implements RefreshableFragment{
     
     ArrayList<Entry> entryList=new ArrayList<Entry>();
     static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
     ListView listView;
-    ArrayAdapter<String> teamAdapter;
+    TeamScoreAdapter teamAdapter;
     String[] teamScores = new String[0];
     View rootView;
+    Algorithm ranker = new SwitchAlgorithm();
+    TextView rankType;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.leaderboard);
-
-        listView = (ListView)findViewById(R.id.teams);
-        teamAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teamScores);
+        rootView = inflater.inflate(R.layout.fragment_rank_screen, container, false);
+        listView = (ListView)rootView.findViewById(R.id.teams);
+        teamAdapter = new TeamScoreAdapter(getContext(), teams);
         listView.setAdapter(teamAdapter);
-        rank();
+        rankType = (TextView)rootView.findViewById(R.id.sortingTypeText);
+
+        refreshFragment();
+        setHasOptionsMenu(true);
+        return rootView;
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
     }
 
-    public void rank() {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_algorithm, menu);
+    }
 
+    @Override
+    public void refreshFragment() {
         teams=new ArrayList<>();
 
-        String exportedData = MatchFragment.exportEntryData(this);
+        String exportedData = MatchFragment.exportEntryData(this.getActivity());
         entryList = Entry.getEntriesFromString(exportedData);
 
-
         EntryToTeam.combineTeams(teams, entryList);
-        Algorithm ranker = new Algorithm();
         for(Team a:teams){
             a.scoreEntries(ranker);
         }
         Collections.sort(teams);
+        Collections.reverse(teams);
 
+        /*
         teamScores = new String[teams.size()];
 
         String toDisplay="";
         for(int i = 0; i < teams.size(); i++){
             teamScores[i] = "Team:"+teams.get(i).teamName+" Score:"+teams.get(i).getRankScore()+"\n";
+        }*/
+
+        teamAdapter = new TeamScoreAdapter(getContext(), teams);
+        listView.setAdapter(teamAdapter);
+        rankType.setText("Ranking Type: " + ranker.rankType());
+    }
+
+    public class TeamScoreAdapter extends ArrayAdapter<Team> {
+
+        ArrayList<Team> teamList;
+
+        public TeamScoreAdapter(Context context, ArrayList<Team> teams) {
+            super(context, 0, teams);
+            this.teamList = teams;
         }
 
-        System.out.print(teams);
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Get the data item for this position
+            if (teamList.size() <= position) {
+                return null;
+            }
+            Team team = teamList.get(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_ranking, parent, false);
+            }
+
+            ((TextView) convertView.findViewById(R.id.rankingScoreText)).setText(cutToSize(String.valueOf(team.getRankScore()), 8));
+            ((TextView) convertView.findViewById(R.id.rankingTeamNameText)).setText(team.teamName);
+            ((TextView) convertView.findViewById(R.id.rankingNumberText)).setText(String.valueOf(position + 1));
+
+            return convertView;
+        }
+
+        public String cutToSize(String input, int length) {
+            if(input.length() <= length) {
+                return input;
+            } else {
+                return input.substring(0, length);
+            }
+        }
     }
 }
