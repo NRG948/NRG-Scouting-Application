@@ -1,7 +1,9 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,8 +24,8 @@ public class RankScreen extends Fragment implements RefreshableFragment{
     static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
     ListView listView;
     TeamScoreAdapter teamAdapter;
-    String[] teamScores = new String[0];
     View rootView;
+    LinearLayout emptyView;
     Algorithm ranker = new SwitchAlgorithm();
     TextView rankType;
 
@@ -32,6 +35,7 @@ public class RankScreen extends Fragment implements RefreshableFragment{
         super.onCreate(savedInstanceState);
         rootView = inflater.inflate(R.layout.fragment_rank_screen, container, false);
         listView = (ListView)rootView.findViewById(R.id.teams);
+        emptyView = (LinearLayout)rootView.findViewById(R.id.emptyView);
         teamAdapter = new TeamScoreAdapter(getContext(), teams);
         listView.setAdapter(teamAdapter);
         rankType = (TextView)rootView.findViewById(R.id.sortingTypeText);
@@ -55,6 +59,16 @@ public class RankScreen extends Fragment implements RefreshableFragment{
     @Override
     public void refreshFragment() {
         teams=new ArrayList<>();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+        if (!sharedPref.contains("MatchEntryList") || sharedPref.getStringSet("MatchEntryList", null) == null) {
+            listView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            listView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
 
         String exportedData = MatchFragment.exportEntryData(this.getActivity());
         entryList = Entry.getEntriesFromString(exportedData);
@@ -65,15 +79,8 @@ public class RankScreen extends Fragment implements RefreshableFragment{
         }
         Collections.sort(teams);
         Collections.reverse(teams);
-
-        /*
-        teamScores = new String[teams.size()];
-
-        String toDisplay="";
-        for(int i = 0; i < teams.size(); i++){
-            teamScores[i] = "Team:"+teams.get(i).teamName+" Score:"+teams.get(i).getRankScore()+"\n";
-        }*/
-
+        emptyView.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
         teamAdapter = new TeamScoreAdapter(getContext(), teams);
         listView.setAdapter(teamAdapter);
         rankType.setText("Ranking Type: " + ranker.rankType());

@@ -290,7 +290,11 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             //Do nothing
         }
         //Remove last " ||||| "
-        return matchString.substring(0, matchString.length() - SPLITKEY.length());
+        if(matchString.length() > SPLITKEY.length()) {
+            return matchString.substring(0, matchString.length() - SPLITKEY.length());
+        } else {
+            return null;
+        }
     }
 
     public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
