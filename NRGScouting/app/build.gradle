@@ -7,8 +7,8 @@ android {
         applicationId "com.competitionapp.nrgscouting"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 3
-        versionName "2.5"
+        versionCode 4
+        versionName "3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

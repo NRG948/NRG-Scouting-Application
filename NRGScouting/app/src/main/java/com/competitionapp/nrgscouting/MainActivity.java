@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     RefreshableFragment currentFragment;
 
-    public static String CURRENT_VERSION = "2.5_0";
+    public static String CURRENT_VERSION = "3.0_0";
     public static int EDITING_ENTRY = 1;
     public static int FINISHED_ENTRY = 0;
 
@@ -363,7 +363,7 @@ public class MainActivity extends AppCompatActivity
             //toolbar = (Toolbar)findViewById(R.id.toolbar);
             //setSupportActionBar(toolbar);
 
-            setActionBarTitle("Ranking");
+            setActionBarTitle("Rankings");
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

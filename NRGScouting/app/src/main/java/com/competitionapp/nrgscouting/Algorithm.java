@@ -120,44 +120,44 @@ public class Algorithm{
             for (int i = 0; i < numTE; i++) {
                 if (jsonObject.getInt("TE" + i + "_0") <= 15000) {
                     if (jsonObject.getInt("TE" + i + "_1") == 2) {
-                        autoAllyStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoAllyStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 3) {
-                        autoAllyEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoAllyEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 4) {
-                        autoOppStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoOppStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 5) {
-                        autoOppEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoOppEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 6) {
-                        autoScaleStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoScaleStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 7) {
-                        autoScaleEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoScaleEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 0) {
-                        autoCube += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoCube += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoCube = autoCube / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
-                        autoDropNone += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoDropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoDropNone = autoDropNone / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
-                        autoDropAlly += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoDropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoDropAlly = autoDropAlly / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
-                        autoDropOpp += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoDropOpp += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoDropOpp = autoDropOpp / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
-                        autoDropScale += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoDropScale += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoDropScale = autoDropScale / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        autoExchange += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        autoExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoExchange = autoExchange / 2;
                         }
@@ -165,33 +165,33 @@ public class Algorithm{
                 } else {
 
                     if (jsonObject.getInt("TE" + i + "_1") == 2) {
-                        allyStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        allyStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 3) {
-                        allyEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        allyEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 4) {
-                        oppStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        oppStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 5) {
-                        oppEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        oppEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 6) {
-                        scaleStart += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        scaleStart += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 7) {
-                        scaleEnd += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        scaleEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 0) {
-                        cube += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        cube += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
-                        dropNone += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        dropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
-                        dropAlly += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        dropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
-                        dropOpp += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        dropOpp += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
-                        dropScale += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        dropScale += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        exchange += (jsonObject.getInt("TE" + i + "_0")/10000);
+                        exchange += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 8) {
-                        boost = (jsonObject.getInt("TE" + i + "_0")/10000);
+                        boost = (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if (jsonObject.getInt("TE" + i + "_1") == 9) {
-                        force = (jsonObject.getInt("TE" + i + "_0")/10000);
+                        force = (jsonObject.getInt("TE" + i + "_0")/1000);
                     }
                 }
             }
