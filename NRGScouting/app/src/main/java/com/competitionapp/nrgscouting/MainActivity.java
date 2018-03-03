@@ -289,6 +289,9 @@ public class MainActivity extends AppCompatActivity
     public String RetrieveDataFromPrefs() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String matchString = "";
+        if(!sharedPref.contains("MatchEntryList")) {
+            return "";
+        }
 
         for(String x : sharedPref.getStringSet("MatchEntryList", null)) {
             if(sharedPref.contains(x)) {

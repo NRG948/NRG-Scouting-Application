@@ -180,6 +180,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         boolean claimedScale = false;
         boolean hasCube = false;
         int lastTime = 0;
+        boolean autoCheckpoint = false;
         for(int i = 0; i < entry.timeEvents.size(); i++) {
             Entry.TimeEvent x = entry.timeEvents.get(i);
 
@@ -247,37 +248,42 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     claimedScale = false;
                 }
             }else if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
-                if (hasCube) {
+                if (!hasCube) {
                     entry.timeEvents.remove(i);
                     i--;
                 } else {
                     hasCube = false;
                 }
             }else if(x.type.equals(Entry.EventType.PICKED_CUBE_0)) {
-                if (!hasCube) {
+                if (hasCube) {
                     entry.timeEvents.remove(i);
                     i--;
                 } else {
                     hasCube = true;
                 }
             }
-            if(x.timestamp >= 15000 && (lastTime <= 15000 || i == entry.timeEvents.size() - 1)){
+
+            if(!autoCheckpoint && ((lastTime < 15000 && x.timestamp > 15001) || ((i == entry.timeEvents.size() - 1) && x.timestamp < 15000))){
+                autoCheckpoint = true;
+                int j = 0;
+                if(i == entry.timeEvents.size() - 1) {j = 1;}
                 if(claimedAllySwitch) {
-                    entry.timeEvents.set(i+1, new Entry.TimeEvent(15000, Entry.EventType.ALLY_END_3, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.set(i+2, new Entry.TimeEvent(15001, Entry.EventType.ALLY_START_2, Entry.CubeDropType.NONE_0));
-                    i+=2;
+                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.ALLY_END_3, Entry.CubeDropType.NONE_0));
+                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.ALLY_START_2, Entry.CubeDropType.NONE_0));
+                    i+= 1 + j;
                 }
                 if(claimedOppSwitch) {
-                    entry.timeEvents.set(i+1, new Entry.TimeEvent(15000, Entry.EventType.ALLY_END_3, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.set(i+2, new Entry.TimeEvent(15001, Entry.EventType.ALLY_START_2, Entry.CubeDropType.NONE_0));
-                    i+=2;
+                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.OPP_END_5, Entry.CubeDropType.NONE_0));
+                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.OPP_START_4, Entry.CubeDropType.NONE_0));
+                    i+= 1 + j;
                 }
                 if(claimedScale) {
-                    entry.timeEvents.set(i+1, new Entry.TimeEvent(15000, Entry.EventType.SCALE_END_7, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.set(i+2, new Entry.TimeEvent(15001, Entry.EventType.SCALE_START_6, Entry.CubeDropType.NONE_0));
-                    i+=2;
+                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.SCALE_END_7, Entry.CubeDropType.NONE_0));
+                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.SCALE_START_6, Entry.CubeDropType.NONE_0));
+                    i+= 1+j;
                 }
             }
+
             lastTime = x.timestamp;
         }
 
@@ -302,7 +308,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
     }
 
     public void saveEntryToPrefs(boolean showMessage) {
-        //newEntry = formatEntry(newEntry);
+        newEntry = formatEntry(newEntry);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
         String keyName = getKeyName(newEntry);
