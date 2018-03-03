@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     RefreshableFragment currentFragment;
 
-    public static String CURRENT_VERSION = "3.0_0";
+    public static String CURRENT_VERSION = "3.5_0";
     public static int EDITING_ENTRY = 1;
     public static int FINISHED_ENTRY = 0;
 
