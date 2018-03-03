@@ -1,5 +1,6 @@
 package com.competitionapp.nrgscouting;
 
+import android.support.annotation.NonNull;
 import android.util.EventLog;
 import android.widget.Toast;
 
@@ -217,7 +218,7 @@ public class Entry {
         return CubeDropType.NONE_0;
     }
 
-    public static class TimeEvent {
+    public static class TimeEvent implements Comparable<TimeEvent>{
 
         public int timestamp;
         public EventType type;
@@ -227,6 +228,17 @@ public class Entry {
             this.timestamp = timestamp;
             this.type = eventType;
             this.cubeDropType = cubeDropType;
+        }
+
+        @Override
+        public int compareTo(@NonNull TimeEvent timeEvent) {
+            if(timeEvent.timestamp > this.timestamp) {
+                return -1;
+            } else if (timeEvent.timestamp == this.timestamp) {
+                return 0;
+            } else {
+                return 1;
+            }
         }
 
     }

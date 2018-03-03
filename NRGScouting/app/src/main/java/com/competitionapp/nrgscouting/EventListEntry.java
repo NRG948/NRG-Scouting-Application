@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -93,6 +94,7 @@ public class EventListEntry extends Fragment {
         } else {
             ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.GONE);
         }
+        Collections.sort(timeEventList);
         timeEventAdapter = new TimeEventAdapter(this.getContext(), timeEventList);
         eventListView.setAdapter(timeEventAdapter);
     }

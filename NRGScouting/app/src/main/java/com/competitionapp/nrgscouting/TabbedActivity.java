@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -181,6 +182,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         boolean hasCube = false;
         int lastTime = 0;
         boolean autoCheckpoint = false;
+        Collections.sort(entry.timeEvents);
         for(int i = 0; i < entry.timeEvents.size(); i++) {
             Entry.TimeEvent x = entry.timeEvents.get(i);
 
