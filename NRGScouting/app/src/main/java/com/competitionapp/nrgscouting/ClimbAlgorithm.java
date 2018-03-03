@@ -7,8 +7,8 @@ package com.competitionapp.nrgscouting;
 public class ClimbAlgorithm extends Algorithm {
 
     public ClimbAlgorithm() {
-        this.soloClimbWeight = 60;
-        this.astClimbWeight = 90;
+        this.soloClimbWeight = 30;
+        this.astClimbWeight = 60;
         this.neededAstClimbWeight = 10;
         this.levitateWeight = 20;
     }

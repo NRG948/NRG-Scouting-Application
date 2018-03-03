@@ -15,26 +15,26 @@ import java.util.ArrayList;
 public class Algorithm{
     
     //Auto
-    int autoAllySwitchWeight = 2; // Score per second for possesion of ally switch during auto.
-    int autoScaleWeight = 4; // Score per second for possesion of scale during auto.
-    int autoOppSwitchWeight = 4; // Score per second for possesion of opp switch during auto.
+    int autoAllySwitchWeight = 0; // Score per second for possesion of ally switch during auto.
+    int autoScaleWeight = 0; // Score per second for possesion of scale during auto.
+    int autoOppSwitchWeight = 0; // Score per second for possesion of opp switch during auto.
     double autoCubeWeight = -0.5;
 
     //Tele-Op
-    int allySwitchWeight = 1; // Score per second for possesion of ally switch during teleop.
-    int scaleWeight = 2; // Score per second for possesion of scale during teleop.
-    int oppSwitchWeight = 2; // Score per second for possesion of opponent switch during teleop.
+    int allySwitchWeight = 0; // Score per second for possesion of ally switch during teleop.
+    int scaleWeight = 0; // Score per second for possesion of scale during teleop.
+    int oppSwitchWeight = 0; // Score per second for possesion of opponent switch during teleop.
     int forceWeight = 10; //Set Score.
     int boostWeight = 10; //Set Score.
     int cubeWeight = -1;
 
     //Endgame
-    int DefenseWeight = 15;
+    int DefenseWeight = 0;
     int DeathsWeight = -20;
-    int soloClimbWeight = 30;
-    int astClimbWeight = 60;
-    int neededAstClimbWeight = 10;
-    int levitateWeight = 20;
+    int soloClimbWeight = 0;
+    int astClimbWeight = 0;
+    int neededAstClimbWeight = 0;
+    int levitateWeight = 0;
     int penaltiesWeight = -1;
     int yellowCardWeight = -20;
     int redCardWeight = -40;

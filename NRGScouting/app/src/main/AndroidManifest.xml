@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".TeamSearchPop"
-            android:label="Match Scout Team Search"
+            android:label="Team Search"
             android:screenOrientation="portrait"></activity>
     </application>
 

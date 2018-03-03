@@ -6,22 +6,22 @@
         <item
             android:id="@+id/sort_switch"
             android:orderInCategory="1"
-            android:title="Switch"
+            android:title="Switch Ranker"
             android:checked="true"
             />
 
         <item android:id="@+id/sort_scale"
-            android:title="Scale"
+            android:title="Scale Ranker"
             android:orderInCategory="2" />
 
         <item
             android:id="@+id/sort_defense"
-            android:title="Defense"
+            android:title="Defense Ranker"
             android:orderInCategory="3" />
 
         <item
             android:id="@+id/sort_climb"
-            android:title="Climbing"
+            android:title="Climbing Ranker"
             android:orderInCategory="4" />
 
     </group>
