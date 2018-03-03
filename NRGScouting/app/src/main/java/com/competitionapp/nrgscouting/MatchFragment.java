@@ -161,23 +161,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         inflater.inflate(R.menu.main, menu);
     }
 
-    public void displayQRCode(Entry entry){
-        String code=getCode(entry);
-        AlertDialog.Builder alertadd = new AlertDialog.Builder(getContext());
-        LayoutInflater factory = LayoutInflater.from(getContext());
-        final View view = factory.inflate(R.layout.qr, null);
-        ((ImageView)(view.findViewById(R.id.qrCodeImageView))).setImageBitmap(QRCodeGenerator.qrCodeMapFor(code));
-        alertadd.setView(view);
-        alertadd.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        alertadd.show();
-    }
-
     public String getCode(Entry a){
         /*
         return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
