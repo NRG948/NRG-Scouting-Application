@@ -23,13 +23,6 @@ import java.util.Collections;
 
 public class EntryToTeam {
 
-    String teamName = "";
-
-
-    public static void setValues(Team a, Entry b) {
-        a.teamName = b.teamName;
-    }
-
     public static ArrayList<Team> combineTeams(ArrayList<Team> teams, ArrayList<Entry> entryList) {
         for (Entry a : entryList) {
             Team matchingTeam = teamNameThatMatches(a, teams);

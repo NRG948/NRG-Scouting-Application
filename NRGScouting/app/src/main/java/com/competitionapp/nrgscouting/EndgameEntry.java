@@ -65,11 +65,6 @@ public class EndgameEntry extends Fragment {
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
     }
 
-    public void onCheckboxClicked(View view) {
-        saveToEntry(((TabbedActivity) getActivity()).newEntry);
-        ((TabbedActivity) getActivity()).cacheEntry();
-    }
-
     public void loadFromEntry (Entry newEntry) {
         matchNumber.setText(String.valueOf(newEntry.matchNumber));
         penalities.setText(String.valueOf(newEntry.penalties));

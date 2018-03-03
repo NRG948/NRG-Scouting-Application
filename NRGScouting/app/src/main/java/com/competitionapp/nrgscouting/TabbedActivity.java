@@ -305,9 +305,6 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         return entry;
     }
 
-    public void saveEntryToPrefs() {
-        saveEntryToPrefs(false);
-    }
 
     public void saveEntryToPrefs(boolean showMessage) {
         newEntry = formatEntry(newEntry);
