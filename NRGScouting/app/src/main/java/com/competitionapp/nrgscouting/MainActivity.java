@@ -242,6 +242,11 @@ public class MainActivity extends AppCompatActivity
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         if (sharedPreferences.contains("MatchEntryList") && sharedPreferences.getStringSet("MatchEntryList", null) != null) {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
+                            for(String x : sharedPreferences.getStringSet("MatchEntryList", null)) {
+                                if(sharedPreferences.contains(x)) {
+                                    editor.remove(x);
+                                }
+                            }
                             editor.putStringSet("MatchEntryList", null);
                             editor.commit();
                             Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();

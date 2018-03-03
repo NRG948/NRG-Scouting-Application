@@ -65,15 +65,21 @@ public class EndgameEntry extends Fragment {
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
     }
 
+    public void onCheckboxClicked(View view) {
+        saveToEntry(((TabbedActivity) getActivity()).newEntry);
+        ((TabbedActivity) getActivity()).cacheEntry();
+    }
+
     public void loadFromEntry (Entry newEntry) {
         matchNumber.setText(String.valueOf(newEntry.matchNumber));
         penalities.setText(String.valueOf(newEntry.penalties));
-
+        teamPosition.setVerticalScrollbarPosition(newEntry.position);
         defensiveStrategy.check(defensiveStrategy.getChildAt(newEntry.defensiveStrategy).getId());
         death.setChecked(newEntry.death);
         soloClimb.setChecked(newEntry.soloClimb);
         astClimb.setChecked(newEntry.astClimb);
         needAstClimb.setChecked(newEntry.needAstClimb);
+        needLevitate.setChecked(newEntry.needLevitate);
         cardYellow.setChecked(newEntry.cardYellow);
         cardRed.setChecked(newEntry.cardRed);
     }
@@ -87,11 +93,13 @@ public class EndgameEntry extends Fragment {
             entry.matchNumber = -1;
             entry.penalties = -1;
         }
+        entry.position = teamPosition.getSelectedItemPosition();
         entry.defensiveStrategy = defensiveStrategy.indexOfChild(
                 defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId()));
         entry.death = death.isChecked();
         entry.soloClimb = soloClimb.isChecked();
         entry.astClimb = astClimb.isChecked();
+        entry.needAstClimb = needAstClimb.isChecked();
         entry.needLevitate = needLevitate.isChecked();
         entry.cardYellow = cardYellow.isChecked();
         entry.cardRed = cardRed.isChecked();

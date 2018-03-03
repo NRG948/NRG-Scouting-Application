@@ -56,9 +56,10 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             "5468 - Chaos Theory", "5495 - Aluminati", "5588 - Holy Names Academy", "5683 - RAVE", "5748 - Octo π Rates",
             "5803 - Apex Robotics", "5827 - Code Purple", "5920 - VIKotics", "5937 - MI-Robotics", "5941 - SPQL",
             "5942 - Warriors", "5956 - Falcons", "5970 - BeaverTronics", "5975 - Beta Blues", "5977 - Rosemary Anderson H S/POIC",
-            "6076 - Mustangs", "6129 - Shadle Park", "6343 - Steel Ridge Robotics", "6350 - The Enumclaw Hornets",
+            "6076 - Mustangs", "6129 - Shadle Park", "6343 - Steel Ridge Robotics", "6350 - J.E.D.I.",
             "6437 - The Pacific Quakers", "6442 - Modern Americans", "6443 - Falcons", "6445 - CTEC Robotics",
-            "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics"};
+            "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics",
+            "6959 - Centralia Circuit Breakers #6959"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -77,7 +77,7 @@ public class MatchTimerEntry extends Fragment {
             timer.setText(EventListEntry.convertTimeToText((int) currentTimeInMilliseconds));
 
             progressBar.setProgress((int) currentTimeInMilliseconds);
-            handler.postDelayed(updateTimerThread, 20);
+            handler.postDelayed(updateTimerThread, 30);
 
             /*
             if(!progressBarSwitched && currentTimeInMilliseconds > 15000) {
@@ -94,12 +94,67 @@ public class MatchTimerEntry extends Fragment {
                 timerIsRunning = false;
                 timer.setText(EventListEntry.convertTimeToText(150000));
                 savedTime = 150000;
+                ((TabbedActivity) getActivity()).cacheEntry();
                 handler.removeCallbacks(updateTimerThread);
             }
         }
     };
 
-    @Nullable
+    public void loadFromEntry (Entry newEntry) {
+        savedTime = newEntry.timestamp;
+        if(savedTime >= 150000) {
+            timer.setText(EventListEntry.convertTimeToText(150000));
+            savedTime = 150000;
+            ((TabbedActivity) getActivity()).newEntry.timestamp = 150000;
+        } else {
+            timer.setText(EventListEntry.convertTimeToText(newEntry.timestamp));
+        }
+        for(Entry.TimeEvent x : newEntry.timeEvents) {
+            if(x.type.equals(Entry.EventType.BOOST_8)) {
+                this.boostPressed = true;
+                this.boost.setEnabled(false);
+            } else if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
+                this.climbStartPressed = true;
+                this.climbStart.setEnabled(false);
+            }else if(x.type.equals(Entry.EventType.FORCE_9)) {
+                this.forcePressed = true;
+                this.forceUsed.setEnabled(false);
+            } else if(x.type.equals(Entry.EventType.ALLY_START_2)) {
+                claimedAllySwitch = true;
+            }else if(x.type.equals(Entry.EventType.ALLY_END_3)) {
+                claimedAllySwitch = false;
+            }else if(x.type.equals(Entry.EventType.OPP_START_4)) {
+                claimedOppSwitch = true;
+            }else if(x.type.equals(Entry.EventType.OPP_END_5)) {
+                claimedOppSwitch = false;
+            }else if(x.type.equals(Entry.EventType.SCALE_START_6)) {
+                claimedScale = true;
+            }else if(x.type.equals(Entry.EventType.SCALE_END_7)) {
+                claimedScale = false;
+            }else if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
+                hasCube = false;
+            }else if(x.type.equals(Entry.EventType.PICKED_CUBE_0)) {
+                hasCube = true;
+            }
+        }
+
+        if(claimedScale) {
+            scale.setText("Lost Scale");
+        }
+        if(claimedAllySwitch) {
+            allySwitch.setText("Lost Ally Switch");
+        }
+        if(claimedOppSwitch) {
+            oppSwitch.setText("Lost Opp. Switch");
+        }
+        if(hasCube) {
+            cubeDrop.setText("Dropped Cube");
+            cubeDrop.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.ic_drop_cube ,0 ,0);
+        }
+    }
+
+
+        @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -120,14 +175,11 @@ public class MatchTimerEntry extends Fragment {
         start = (Button)(getView().findViewById(R.id.time_start));
         progressBar = (ProgressBar) (getView().findViewById(R.id.progressbar));
 
-        /*
-        if((SystemClock.elapsedRealtime() - startTime) + savedTime < 15000) {
-            progressBarSwitched = false;
-        }*/
+        if(((TabbedActivity) getActivity()).isEdit) {
+            loadFromEntry(((TabbedActivity) getActivity()).newEntry);
+        }
 
         updateButtonEnabled();
-
-        //timer.setBase(SystemClock.elapsedRealtime() - 150000*0);
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
 
@@ -362,10 +414,14 @@ public class MatchTimerEntry extends Fragment {
 
     public void logTimerEvent(Entry.EventType type, Entry.CubeDropType cubeType) {
         ((TabbedActivity) getActivity()).newEntry.timeEvents.add(new Entry.TimeEvent(getCurrentTimeStamp(), type, cubeType));
+        ((TabbedActivity) getActivity()).newEntry.timestamp = getCurrentTimeStamp();
+        ((TabbedActivity) getActivity()).cacheEntry();
     }
 
     public void logTimerEvent(Entry.EventType type, Entry.CubeDropType cubeType, int timestamp) {
         ((TabbedActivity) getActivity()).newEntry.timeEvents.add(new Entry.TimeEvent(timestamp, type, cubeType));
+        ((TabbedActivity) getActivity()).newEntry.timestamp = getCurrentTimeStamp();
+        ((TabbedActivity) getActivity()).cacheEntry();
     }
 
     public int getCurrentTimeStamp() {

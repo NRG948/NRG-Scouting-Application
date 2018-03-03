@@ -56,6 +56,8 @@ public class Entry {
     boolean cardYellow = false;
     boolean cardRed = false;
 
+    int timestamp = 0;
+
     ArrayList<TimeEvent> timeEvents = new ArrayList<TimeEvent>();
     //IMPORTANT NOTES FOR SAVING!!!
     //TE_0 is the timestamp of the timeEvent
@@ -87,6 +89,8 @@ public class Entry {
             jsonObject.put("penalties", penalties);
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
+            jsonObject.put("timestamp", timestamp);
+
 
             jsonObject.put("numTE", timeEvents.size());
             for(int i = 0; i < timeEvents.size(); i++) {
@@ -119,6 +123,7 @@ public class Entry {
             entry.penalties = jsonObject.getInt("penalties");
             entry.cardYellow = jsonObject.getBoolean("cardYellow");
             entry.cardRed = jsonObject.getBoolean("cardRed");
+            entry.timestamp = jsonObject.getInt("timestamp");
 
             int numTE = jsonObject.getInt("numTE");
             for (int i = 0; i < numTE; i++) {
