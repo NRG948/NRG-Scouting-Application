@@ -161,45 +161,6 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         inflater.inflate(R.menu.main, menu);
     }
 
-    public String getCode(Entry a){
-        /*
-        return (a.position)+teamAndMatchNumber(a.teamName.substring(0,a.teamName.indexOf("-")-1))+teamAndMatchNumber(Integer.toString(a.matchNumber).substring(0,Integer.toString(a.matchNumber).length()))
-                +twoDigitization(a.gearsRetrieved)+twoDigitization(a.ballsShot)+twoDigitization(a.autoGearsRetrieved)+twoDigitization(a.autoBallsShot)+(a.crossedBaseline?"T":"F")+(a.climbsRope?"T":"F")
-                +(a.death?"T":"F")+(a.yellowCard?"T":"F")+(a.chainProblems?"T":"F")+(a.disconnectivity?"T":"F")+(a.otherProblems?"T":"F")+twoDigitization(a.defensiveStrategy);
-        */
-        return "";
-    }
-
-    public String twoDigitization(int number){
-        return (Integer.toString(number).length()==2)?(Integer.toString(number)):("0"+number);
-    }
-
-
-    public String teamAndMatchNumber(String number){
-        int zeroesToAdd=5-(number.length());
-        String team="";
-        for(int i=0;i<zeroesToAdd;i++){
-            team+="0";
-        }
-        return team+=number;
-    }
-
-    public static String boolToString(boolean bool) {
-        if(bool) { return "Yes"; }
-        else { return "No"; }
-    }
-
-    public void copyToClipboard(String copy) {
-        int sdk = android.os.Build.VERSION.SDK_INT;
-        if(sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(copy);
-        } else {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText("?", copy);
-            clipboard.setPrimaryClip(clip);
-        }
-    }
 
     public void refreshFragment () {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());

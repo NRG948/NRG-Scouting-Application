@@ -67,14 +67,6 @@ public class Entry {
 
     @Override
     public String toString(){
-        /*
-        return "match:"+matchNumber+"\t"+"gearsRet:"+gearsRetrieved+"\t"+"autoGearsRet:"+autoGearsRetrieved+"\t"+"ballsShot:"+ballsShot+"\t"
-                +"autoBallsShot:"+autoBallsShot+"\t"+"foulPoints:" + foulPoints + "\t" +"death:"+death+"\t"+"crossedBaseline:"+crossedBaseline+"\t"
-                +"climbsRope:"+climbsRope+"\t"+"Name:"+teamName+"\t"+"position:"+position+"\t"+"yellowCard:"+yellowCard+ "\t"
-                + "redCard:" + redCard + "\t" + "defensiveStrategy:" + defensiveStrategy + "\t"
-                + "chainProblems:" + chainProblems + "\t" + "disconnectivity:" + disconnectivity + "\t"
-                + "otherProblems:" + otherProblems + "\t" + "n";
-                */
 
         JSONObject jsonObject = new JSONObject();
         try {

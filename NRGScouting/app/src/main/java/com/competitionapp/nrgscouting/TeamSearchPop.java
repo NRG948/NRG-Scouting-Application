@@ -84,16 +84,6 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        /*
-                        MatchEntry matchEntry = new MatchEntry();
-                        matchEntry.teamName=(String)((AppCompatTextView)(view)).getText();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction =
-                                getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.special_container, matchEntry);
-                        fragmentTransaction.commit();
-                        lv.setVisibility(View.GONE);
-                        sv.setVisibility(View.GONE);
-                        */
 
                         String teamName=(String)((AppCompatTextView)(view)).getText();
                         Intent intent = new Intent(TeamSearchPop.this, TabbedActivity.class);
