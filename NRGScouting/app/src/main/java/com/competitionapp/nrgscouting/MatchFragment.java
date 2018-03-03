@@ -119,7 +119,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                                     }
 
                                                     editor.commit();
-                                                    Toast.makeText(getActivity(), (String) "Deleted entry '" + TabbedActivity.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), "Deleted entry '" + TabbedActivity.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                                     refreshFragment();
                                                     dialog.dismiss();
                                                 }

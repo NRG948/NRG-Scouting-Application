@@ -58,9 +58,9 @@ public class EventListEntry extends Fragment {
         eventListView.setAdapter(timeEventAdapter);
 
         if(timeEventList.isEmpty()) {
-            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.VISIBLE);
+            getView().findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
         } else {
-            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.GONE);
+            getView().findViewById(R.id.emptyView).setVisibility(View.GONE);
         }
 
         save = (Button) getView().findViewById(R.id.save);
@@ -89,9 +89,9 @@ public class EventListEntry extends Fragment {
 
     public void UpdateView() {
         if(timeEventList.isEmpty()) {
-            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.VISIBLE);
+            getView().findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
         } else {
-            ((LinearLayout) getView().findViewById(R.id.emptyView)).setVisibility(View.GONE);
+            getView().findViewById(R.id.emptyView).setVisibility(View.GONE);
         }
         timeEventAdapter = new TimeEventAdapter(this.getContext(), timeEventList);
         eventListView.setAdapter(timeEventAdapter);

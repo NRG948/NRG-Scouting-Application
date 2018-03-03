@@ -7,6 +7,6 @@ package com.competitionapp.nrgscouting;
 
 public interface RefreshableFragment {
 
-    public void refreshFragment ();
+    void refreshFragment();
 
 }

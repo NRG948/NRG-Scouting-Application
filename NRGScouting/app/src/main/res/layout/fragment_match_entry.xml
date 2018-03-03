@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/matchEntry"
-android:layout_width="match_parent"
+    android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.competitionapp.nrgscouting.MatchEntry">
 <LinearLayout
@@ -119,7 +118,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
 
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
@@ -166,7 +164,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -313,7 +310,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
         >
 
         <RadioButton
-            android:id="@+id/defensiveStrategyWeak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weak"
@@ -322,7 +318,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             />
         
         <RadioButton
-            android:id="@+id/defensiveStrategyAverage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Average"
@@ -331,7 +326,6 @@ tools:context="com.competitionapp.nrgscouting.MatchEntry">
             />
 
         <RadioButton
-            android:id="@+id/defensiveStrategyStrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Strong"

@@ -6,5 +6,5 @@ package com.competitionapp.nrgscouting;
 
 public interface ActivityUtility {
 
-    public void setActionBarTitle(String title);
+    void setActionBarTitle(String title);
 }

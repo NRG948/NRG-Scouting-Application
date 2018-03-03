@@ -7,7 +7,8 @@ package com.competitionapp.nrgscouting;
 
 public class SEntry {
 
-    enum Position{RED1,RED2,RED3,BLUE1,BLUE2,BLUE3};
+    enum Position{RED1,RED2,RED3,BLUE1,BLUE2,BLUE3}
+
     Position position;
     String teamName;
     int matchNumber;

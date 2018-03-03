@@ -33,7 +33,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/pilotFoulsDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -81,7 +80,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -98,7 +96,6 @@
         </LinearLayout>
 
     <TextView
-        android:id="@+id/driveSkillDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -113,7 +110,6 @@
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/autoGearComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -138,7 +134,6 @@
         android:hint="ex: Super efficient gear handling, very accurate." />
 
     <TextView
-        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -153,7 +148,6 @@
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/ReliabilityComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -167,7 +161,6 @@
         android:stepSize="0.5" />
 
     <TextView
-        android:id="@+id/ant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Antagonism:"
@@ -182,7 +175,6 @@
 
 
     <TextView
-        android:id="@+id/ropeDropTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -229,7 +221,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/adComments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Additional Comments:"
@@ -247,7 +238,6 @@
         android:hint="ex: Extremely fast, very deft handling."/>
 
     <TextView
-        android:id="@+id/YellowReason"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reason for Yellow Card:"
@@ -265,7 +255,6 @@
         android:hint="Leave blank if no yellow card received!"/>
 
     <TextView
-        android:id="@+id/RedReason"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reason for Red Card:"
@@ -283,7 +272,6 @@
         android:hint="Leave blank if no red card received!"/>
 
     <TextView
-        android:id="@+id/DeathReason"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reason for Death:"

@@ -122,7 +122,7 @@ public class SpecialistFragment extends Fragment implements RefreshableFragment{
                                 }
 
                                 editor.commit();
-                                Toast.makeText(getActivity(), (String) "Deleted entry '" + SpecialistEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Deleted entry '" + SpecialistEntry.getKeyName(entry)+"'.", Toast.LENGTH_LONG).show();
                                 refreshFragment();
                                 dialog.dismiss();
                             }

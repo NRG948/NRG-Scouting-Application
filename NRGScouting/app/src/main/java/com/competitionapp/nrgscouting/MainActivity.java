@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
                 alertDialog.show();
                 return true;
             case R.id.action_settings:
-                Toast.makeText(MainActivity.this, (String) "No settings yet.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "No settings yet.", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_clearMemory:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -249,9 +249,9 @@ public class MainActivity extends AppCompatActivity
                             }
                             editor.putStringSet("MatchEntryList", null);
                             editor.commit();
-                            Toast.makeText(MainActivity.this, (String) "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Cleared all stored match entries.", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MainActivity.this, (String) "No stored match entries found.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "No stored match entries found.", Toast.LENGTH_LONG).show();
                         }
 
                         currentFragment.refreshFragment();
