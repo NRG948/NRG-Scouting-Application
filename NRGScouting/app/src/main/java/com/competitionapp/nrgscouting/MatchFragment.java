@@ -161,12 +161,15 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
         inflater.inflate(R.menu.main, menu);
     }
 
+    public void refreshFragment() {
+        refreshFragment(false);
+    }
 
-    public void refreshFragment () {
+    public void refreshFragment (Boolean forceRefresh) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
         if(!sharedPref.contains("SAVED_VERSION") || (sharedPref.contains("SAVED_VERSION") && !sharedPref.getString("SAVED_VERSION", null).equals(MainActivity.CURRENT_VERSION))) {
-            if(sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
+            if(!forceRefresh && sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle("Uh Oh!")
@@ -185,11 +188,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                         .setNeutralButton("Ignore", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-                                SharedPreferences.Editor editor = sharedPref.edit();
-                                editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
-                                editor.commit();
-                                refreshFragment();
+                                refreshFragment(true);
                             }
                         })
                         .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
@@ -226,6 +225,10 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             teamAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, matchTeams);
             listView.setAdapter(teamAdapter);
         }
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+        editor.commit();
     }
 
     public static String exportEntryData(Activity context) {
