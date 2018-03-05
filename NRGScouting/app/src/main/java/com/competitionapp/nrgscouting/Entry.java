@@ -148,7 +148,10 @@ public class Entry {
         String[] splitInput = input.split(MatchFragment.SPLITKEY);
         ArrayList<Entry> entryList = new ArrayList<Entry>();
         for(String x : splitInput) {
-            entryList.add(Entry.retrieveFromString(x));
+            Entry entry = Entry.retrieveFromString(x);
+            if(!entry.teamName.equals("")) {
+                entryList.add(entry);
+            }
         }
 
         return entryList;
@@ -186,6 +189,30 @@ public class Entry {
             case 10: return EventType.CLIMB_START_10;
         }
         return EventType.PICKED_CUBE_0;
+    }
+
+    public static String getEventName(TimeEvent timeEvent) {
+        switch (timeEvent.type) {
+            case PICKED_CUBE_0: return "Gained Cube";
+            case DROPPED_CUBE_1:
+                switch(timeEvent.cubeDropType) {
+                    case NONE_0: return "Dropped Cube (None)";
+                    case ALLY_SWITCH_1: return "Dropped Cube (Ally Switch)";
+                    case OPP_SWITCH_2: return "Dropped Cube (Opponent Switch)";
+                    case SCALE_3: return "Dropped Cube (Scale)";
+                    case EXCHANGE_4: return "Dropped Cube (Exchange)";
+                }
+            case ALLY_START_2: return "Claimed Ally Switch";
+            case ALLY_END_3: return "Lost Ally Switch";
+            case OPP_START_4: return "Claimed Opponent Switch";
+            case OPP_END_5: return "Lost Opponent Switch";
+            case SCALE_START_6: return "Claimed Scale";
+            case SCALE_END_7: return "Lost Scale";
+            case BOOST_8: return "Boost Powerup";
+            case FORCE_9: return "Force Powerup";
+            case CLIMB_START_10: return "Started Climbing";
+        }
+        return "";
     }
 
     public static int cubeDropTypeToInt(CubeDropType cubeDropType) {

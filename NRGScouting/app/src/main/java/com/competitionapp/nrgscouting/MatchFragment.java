@@ -170,7 +170,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                         .setTitle("Uh Oh!")
-                        .setMessage("Your entries are saved in a format from an older version. Clear entries?")
+                        .setMessage("Your entries are saved in a format from an older version, and loading them may crash the app. Clear entries?")
                         .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -180,6 +180,16 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                                 editor.commit();
                                 editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
                                 editor.commit();
+                            }
+                        })
+                        .setNeutralButton("Ignore", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("SAVED_VERSION", MainActivity.CURRENT_VERSION);
+                                editor.commit();
+                                refreshFragment();
                             }
                         })
                         .setNegativeButton("Exit", new DialogInterface.OnClickListener() {

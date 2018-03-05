@@ -1,15 +1,18 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -57,6 +60,40 @@ public class EventListEntry extends Fragment {
         eventListView = (ListView) this.getView().findViewById(R.id.timeEventList);
         timeEventAdapter = new TimeEventAdapter(this.getContext(), timeEventList);
         eventListView.setAdapter(timeEventAdapter);
+
+        eventListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                        .setTitle("Delete Event")
+                        .setMessage("Are you sure you want to delete this event?\n" + Entry.getEventName(timeEventList.get(position))
+                                + " @ " + convertTimeToText(timeEventList.get(position).timestamp))
+                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Entry newEntry = ((TabbedActivity) getActivity()).newEntry;
+                                if(newEntry.timeEvents.size() > position) {
+                                    newEntry.timeEvents.remove(position);
+                                }
+                                ((TabbedActivity) getActivity()).cacheEntry();
+                                Collections.sort(newEntry.timeEvents);
+                                timeEventList = newEntry.timeEvents;
+                                UpdateView();
+                                Toast.makeText(getActivity(), "Deleted event '" + Entry.getEventName(timeEventList.get(position))
+                                        + " @ " + convertTimeToText(timeEventList.get(position).timestamp) + "'", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+
+                return false;
+            }
+        });
 
         if(timeEventList.isEmpty()) {
             getView().findViewById(R.id.emptyView).setVisibility(View.VISIBLE);
