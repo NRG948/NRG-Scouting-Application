@@ -14,7 +14,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by valli on 8/2/17. ***Verified and Approved*** 
+ * Created by valli on 8/2/17.
  * Represents a Entry that can be written to the memory card
  */
 
