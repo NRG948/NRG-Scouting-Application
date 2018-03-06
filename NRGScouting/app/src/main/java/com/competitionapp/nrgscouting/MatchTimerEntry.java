@@ -45,23 +45,8 @@ public class MatchTimerEntry extends Fragment {
     private String[] ListElements = new String[] {  };
     private List <String> ListElementsArrayList ;
     private TextView timer;
-    private Button allySwitch;
-    boolean claimedAllySwitch = false;
-    private Button oppSwitch;
-    boolean claimedOppSwitch = false;
-    private Button scale;
-    boolean claimedScale = false;
     private Button cubeDrop;
     boolean hasCube = false;
-
-    private Button forceUsed;
-    boolean forcePressed = false;
-    private Button boost;
-    boolean boostPressed = false;
-
-    private Button climbStart;
-    boolean climbStartPressed = false;
-
     private Button start;
     ProgressBar progressBar;
     boolean progressBarSwitched = false;
@@ -110,42 +95,11 @@ public class MatchTimerEntry extends Fragment {
             timer.setText(EventListEntry.convertTimeToText(newEntry.timestamp));
         }
         for(Entry.TimeEvent x : newEntry.timeEvents) {
-            if(x.type.equals(Entry.EventType.BOOST_8)) {
-                this.boostPressed = true;
-                this.boost.setEnabled(false);
-            } else if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
-                this.climbStartPressed = true;
-                this.climbStart.setEnabled(false);
-            }else if(x.type.equals(Entry.EventType.FORCE_9)) {
-                this.forcePressed = true;
-                this.forceUsed.setEnabled(false);
-            } else if(x.type.equals(Entry.EventType.ALLY_START_2)) {
-                claimedAllySwitch = true;
-            }else if(x.type.equals(Entry.EventType.ALLY_END_3)) {
-                claimedAllySwitch = false;
-            }else if(x.type.equals(Entry.EventType.OPP_START_4)) {
-                claimedOppSwitch = true;
-            }else if(x.type.equals(Entry.EventType.OPP_END_5)) {
-                claimedOppSwitch = false;
-            }else if(x.type.equals(Entry.EventType.SCALE_START_6)) {
-                claimedScale = true;
-            }else if(x.type.equals(Entry.EventType.SCALE_END_7)) {
-                claimedScale = false;
-            }else if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
+            if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
                 hasCube = false;
             }else if(x.type.equals(Entry.EventType.PICKED_CUBE_0)) {
                 hasCube = true;
             }
-        }
-
-        if(claimedScale) {
-            scale.setText("Lost Scale");
-        }
-        if(claimedAllySwitch) {
-            allySwitch.setText("Lost Ally Switch");
-        }
-        if(claimedOppSwitch) {
-            oppSwitch.setText("Lost Opp. Switch");
         }
         if(hasCube) {
             cubeDrop.setText("Dropped Cube");
@@ -165,13 +119,7 @@ public class MatchTimerEntry extends Fragment {
     @Override
     public void onStart() {
         timer = (TextView) (getView()).findViewById(R.id.mainTimer);
-        allySwitch = (Button)(getView().findViewById(R.id.ally_switch));
-        oppSwitch = (Button)(getView().findViewById(R.id.opp_switch));
-        scale = (Button)(getView().findViewById(R.id.claimed_scale));
-        boost = (Button)(getView().findViewById(R.id.boost_used));
         cubeDrop = (Button)(getView().findViewById(R.id.cube_dropped));
-        forceUsed = (Button)(getView().findViewById(R.id.force_used));
-        climbStart = (Button)(getView().findViewById(R.id.climb_start));
         start = (Button)(getView().findViewById(R.id.time_start));
         progressBar = (ProgressBar) (getView().findViewById(R.id.progressbar));
 
@@ -201,72 +149,6 @@ public class MatchTimerEntry extends Fragment {
                     savedTime += SystemClock.elapsedRealtime() - startTime;
                     start.setText("Start Timer");
                     updateButtonEnabled();
-                }
-            }
-        });
-
-        allySwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning) {
-                    if(!claimedAllySwitch) {
-                        //Newly claimed Ally Switch
-                        allySwitch.setText("Lost Ally Switch");
-                        logTimerEvent(Entry.EventType.ALLY_START_2);
-                        claimedAllySwitch = true;
-                    } else {
-                        allySwitch.setText("Claimed Ally Switch");
-                        logTimerEvent(Entry.EventType.ALLY_END_3);
-                        claimedAllySwitch = false;
-                    }
-                }
-            }
-        });
-
-        oppSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning) {
-                    if(!claimedOppSwitch) {
-                        //Newly claimed Ally Switch
-                        oppSwitch.setText("Lost Opp. Switch");
-                        logTimerEvent(Entry.EventType.OPP_START_4);
-                        claimedOppSwitch = true;
-                    } else {
-                        oppSwitch.setText("Claimed Opp. Switch");
-                        logTimerEvent(Entry.EventType.OPP_END_5);
-                        claimedOppSwitch = false;
-                    }
-                }
-            }
-        });
-
-        scale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning) {
-                    if(!claimedScale) {
-                        //Newly claimed Ally Switch
-                        scale.setText("Lost Scale");
-                        logTimerEvent(Entry.EventType.SCALE_START_6);
-                        claimedScale = true;
-                    } else {
-                        scale.setText("Claimed Scale");
-                        logTimerEvent(Entry.EventType.SCALE_END_7);
-                        claimedScale = false;
-                    }
-                }
-
-            }
-        });
-
-        boost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning && !boostPressed) {
-                    logTimerEvent(Entry.EventType.BOOST_8);
-                    boostPressed = true;
-                    boost.setEnabled(false);
                 }
             }
         });
@@ -364,47 +246,14 @@ public class MatchTimerEntry extends Fragment {
             }
         });
 
-        forceUsed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning && !forcePressed) {
-                    logTimerEvent(Entry.EventType.FORCE_9);
-                    forcePressed = true;
-                    forceUsed.setEnabled(false);
-                }
-            }
-        });
-        
-        climbStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(timerIsRunning && !climbStartPressed) {
-                    logTimerEvent(Entry.EventType.CLIMB_START_10);
-                    climbStartPressed = true;
-                    climbStart.setEnabled(false);
-                }
-            }
-        });
         super.onStart();
     }
 
     public void updateButtonEnabled() {
         if(timerIsRunning) {
-            allySwitch.setEnabled(true);
-            oppSwitch.setEnabled(true);
-            scale.setEnabled(true);
             cubeDrop.setEnabled(true);
-            if(forcePressed) {forceUsed.setEnabled(false);} else {forceUsed.setEnabled(true);}
-            if(climbStartPressed) {climbStart.setEnabled(false);} else {climbStart.setEnabled(true);}
-            if(boostPressed) {boost.setEnabled(false);} else {boost.setEnabled(true);}
         } else {
-            allySwitch.setEnabled(false);
-            oppSwitch.setEnabled(false);
-            scale.setEnabled(false);
             cubeDrop.setEnabled(false);
-            forceUsed.setEnabled(false);
-            climbStart.setEnabled(false);
-            boost.setEnabled(false);
         }
     }
 

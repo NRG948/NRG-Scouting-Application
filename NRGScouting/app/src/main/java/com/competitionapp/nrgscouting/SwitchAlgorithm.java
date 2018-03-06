@@ -11,6 +11,7 @@ public class SwitchAlgorithm extends Algorithm {
         this.autoOppSwitchWeight = 8;
         this.allySwitchWeight = 2;
         this.oppSwitchWeight = 4;
+        this.dropNoneScore = noneScore += ((dropNone - cube) / numDropNone);
     }
 
     @Override

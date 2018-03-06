@@ -23,15 +23,6 @@ public class Entry {
     public enum EventType {
         PICKED_CUBE_0,
         DROPPED_CUBE_1,
-        ALLY_START_2,
-        ALLY_END_3,
-        OPP_START_4,
-        OPP_END_5,
-        SCALE_START_6,
-        SCALE_END_7,
-        BOOST_8,
-        FORCE_9,
-        CLIMB_START_10
     }
     public enum CubeDropType {
         NONE_0,
@@ -158,15 +149,6 @@ public class Entry {
         switch (eventType) {
             case PICKED_CUBE_0: return 0;
             case DROPPED_CUBE_1: return 1;
-            case ALLY_START_2: return 2;
-            case ALLY_END_3: return 3;
-            case OPP_START_4: return 4;
-            case OPP_END_5: return 5;
-            case SCALE_START_6: return 6;
-            case SCALE_END_7: return 7;
-            case BOOST_8: return 8;
-            case FORCE_9: return 9;
-            case CLIMB_START_10: return 10;
         }
         return 0;
     }
@@ -175,15 +157,6 @@ public class Entry {
         switch (input) {
             case 0: return EventType.PICKED_CUBE_0;
             case 1: return EventType.DROPPED_CUBE_1;
-            case 2: return EventType.ALLY_START_2;
-            case 3: return EventType.ALLY_END_3;
-            case 4: return EventType.OPP_START_4;
-            case 5: return EventType.OPP_END_5;
-            case 6: return EventType.SCALE_START_6;
-            case 7: return EventType.SCALE_END_7;
-            case 8: return EventType.BOOST_8;
-            case 9: return EventType.FORCE_9;
-            case 10: return EventType.CLIMB_START_10;
         }
         return EventType.PICKED_CUBE_0;
     }

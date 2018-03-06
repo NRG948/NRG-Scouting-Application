@@ -173,12 +173,6 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
     }
 
     public Entry formatEntry(Entry entry) {
-        boolean boost = false;
-        boolean climbStart = false;
-        boolean force = false;
-        boolean claimedAllySwitch = false;
-        boolean claimedOppSwitch = false;
-        boolean claimedScale = false;
         boolean hasCube = false;
         int lastTime = 0;
         boolean autoCheckpoint = false;
@@ -186,70 +180,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
         for(int i = 0; i < entry.timeEvents.size(); i++) {
             Entry.TimeEvent x = entry.timeEvents.get(i);
 
-            if(x.type.equals(Entry.EventType.BOOST_8)) {
-                if(boost) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    boost = true;
-                }
-            } else if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
-                if(climbStart) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    climbStart = true;
-                }
-            }else if(x.type.equals(Entry.EventType.FORCE_9)) {
-                if (force) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    force = true;
-                }
-            } else if(x.type.equals(Entry.EventType.ALLY_START_2)) {
-                if (claimedAllySwitch) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedAllySwitch = true;
-                }
-            }else if(x.type.equals(Entry.EventType.ALLY_END_3)) {
-                if (!claimedAllySwitch) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedAllySwitch = false;
-                }
-            }else if(x.type.equals(Entry.EventType.OPP_START_4)) {
-                if (claimedOppSwitch) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedOppSwitch = true;
-                }
-            }else if(x.type.equals(Entry.EventType.OPP_END_5)) {
-                if (!claimedOppSwitch) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedOppSwitch = false;
-                }
-            }else if(x.type.equals(Entry.EventType.SCALE_START_6)) {
-                if (claimedScale) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedScale = true;
-                }
-            }else if(x.type.equals(Entry.EventType.SCALE_END_7)) {
-                if (!claimedScale) {
-                    entry.timeEvents.remove(i);
-                    i--;
-                } else {
-                    claimedScale = false;
-                }
-            }else if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
+            if(x.type.equals(Entry.EventType.DROPPED_CUBE_1)) {
                 if (!hasCube) {
                     entry.timeEvents.remove(i);
                     i--;
@@ -264,40 +195,8 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     hasCube = true;
                 }
             }
-
-            if(!autoCheckpoint && ((lastTime < 15000 && x.timestamp > 15001) || ((i == entry.timeEvents.size() - 1) && x.timestamp < 15000))){
-                autoCheckpoint = true;
-                int j = 0;
-                if(i == entry.timeEvents.size() - 1) {j = 1;}
-                if(claimedAllySwitch) {
-                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.ALLY_END_3, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.ALLY_START_2, Entry.CubeDropType.NONE_0));
-                    i+= 1 + j;
-                }
-                if(claimedOppSwitch) {
-                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.OPP_END_5, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.OPP_START_4, Entry.CubeDropType.NONE_0));
-                    i+= 1 + j;
-                }
-                if(claimedScale) {
-                    entry.timeEvents.add(i+j, new Entry.TimeEvent(15000, Entry.EventType.SCALE_END_7, Entry.CubeDropType.NONE_0));
-                    entry.timeEvents.add(i+j+1, new Entry.TimeEvent(15001, Entry.EventType.SCALE_START_6, Entry.CubeDropType.NONE_0));
-                    i+= 1+j;
-                }
-            }
-
-            lastTime = x.timestamp;
         }
 
-        if(claimedAllySwitch) {
-            entry.addTimeEvent(150000, Entry.EventType.ALLY_END_3, Entry.CubeDropType.NONE_0);
-        }
-        if(claimedOppSwitch) {
-            entry.addTimeEvent(150000, Entry.EventType.OPP_END_5, Entry.CubeDropType.NONE_0);
-        }
-        if(claimedScale) {
-            entry.addTimeEvent(150000, Entry.EventType.SCALE_END_7, Entry.CubeDropType.NONE_0);
-        }
         if(hasCube) {
             entry.addTimeEvent(150000, Entry.EventType.DROPPED_CUBE_1, Entry.CubeDropType.NONE_0);
         }

@@ -33,130 +33,30 @@
         android:progressTint="@color/colorAccent"
         android:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="130dp"
-        >
+    <Button
+        android:id="@+id/time_start"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/progressbar"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_timer"
+        android:gravity="center_horizontal"
+        android:text="Time Start"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/ally_switch"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_switch"
-                android:gravity="center_horizontal"
-                android:text="Claimed Ally Switch"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/claimed_scale"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_scale"
-                android:gravity="center_horizontal"
-                android:text="Claimed Scale"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/opp_switch"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_switch"
-                android:gravity="center_horizontal"
-                android:text="Claimed Opp. Switch"
-                android:textColor="@color/colorWhite" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/boost_used"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_boost_powerup"
-                android:gravity="center_horizontal"
-                android:text="Boost Used"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/cube_dropped"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_picked_cube"
-                android:gravity="center_horizontal"
-                android:text="Cube Picked"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/force_used"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_force_powerup"
-                android:gravity="center_horizontal"
-                android:text="Force Used"
-                android:textColor="@color/colorWhite" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/climb_start"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_climb"
-                android:gravity="center_horizontal"
-                android:text="Climb Start"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/time_start"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/match_button"
-                android:drawableTint="@color/colorWhite"
-                android:drawableTop="@drawable/ic_timer"
-                android:gravity="center_horizontal"
-                android:text="Time Start"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/cube_dropped"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_picked_cube"
+        android:text="Cube Picked"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp" />
 
 </RelativeLayout>

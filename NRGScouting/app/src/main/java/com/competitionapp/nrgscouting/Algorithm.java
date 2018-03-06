@@ -81,6 +81,9 @@ public class Algorithm{
     int yellowCard;
     int redCard;
     int numTE;
+    int numDropNone = 0;
+    int noneScore = 0;
+    int dropNoneScore = 0;
 
     public String rankType() {
         return "None";
@@ -95,7 +98,7 @@ public class Algorithm{
         return  ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (neededAstClimbWeight*neededAstClimb) +
                 (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb) + (DeathsWeight*death) + (DefenseWeight*defense) + (boostWeight*boost) +
                 (forceWeight*force) + ((allyEnd - allyStart)*allySwitchWeight) + ((oppEnd-oppStart)*oppSwitchWeight) + ((scaleEnd - scaleStart)*scaleWeight)+
-                (((exchange+dropScale+dropOpp+dropAlly+dropNone) - cube)*cubeWeight));
+                (((exchange+dropScale+dropOpp+dropAlly+dropNone) - cube)*cubeWeight) + (noneScore));
     }
 
     public double rankScore(Entry entry) {
@@ -179,6 +182,8 @@ public class Algorithm{
                     } else if (jsonObject.getInt("TE" + i + "_1") == 0) {
                         cube += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
+                        noneScore += ((dropNone - cube) / numDropNone);
+                        numDropNone += 1;
                         dropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
                         dropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);

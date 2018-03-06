@@ -175,45 +175,6 @@ public class EventListEntry extends Fragment {
                             eventIcon.setImageResource(R.drawable.ic_exchange);
                     }
                     break;
-                case ALLY_START_2:
-                    eventIcon.setImageResource(R.drawable.ic_switch);
-                    eventName.setText("Claimed Ally Switch");
-                    eventIcon.setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.MULTIPLY);
-                    break;
-                case ALLY_END_3:
-                    eventIcon.setImageResource(R.drawable.ic_switch);
-                    eventName.setText("Lost Ally Switch");
-                    eventIcon.setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.SRC_IN);
-                    break;
-                case OPP_START_4:
-                    eventIcon.setImageResource(R.drawable.ic_switch);
-                    eventName.setText("Claimed Opponent Switch");
-                    eventIcon.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
-                    break;
-                case OPP_END_5:
-                    eventIcon.setImageResource(R.drawable.ic_switch);
-                    eventName.setText("Lost Opponent Switch");
-                    eventIcon.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                    break;
-                case SCALE_START_6:
-                    eventIcon.setImageResource(R.drawable.ic_scale);
-                    eventName.setText("Claimed Scale");
-                    break;
-                case SCALE_END_7:
-                    eventIcon.setImageResource(R.drawable.ic_scale);
-                    eventName.setText("Lost Scale");
-                    break;
-                case BOOST_8:
-                    eventIcon.setImageResource(R.drawable.ic_boost_powerup);
-                    eventName.setText("Used Boost Powerup");
-                    break;
-                case FORCE_9:
-                    eventIcon.setImageResource(R.drawable.ic_force_powerup);
-                    eventName.setText("Used Force Powerup");
-                    break;
-                case CLIMB_START_10:
-                    eventIcon.setImageResource(R.drawable.ic_climb);
-                    eventName.setText("Started Climbing");
             }
 
             return convertView;
