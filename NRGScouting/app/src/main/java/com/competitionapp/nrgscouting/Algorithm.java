@@ -15,17 +15,9 @@ import java.util.ArrayList;
 public class Algorithm{
     
     //Auto
-    int autoAllySwitchWeight = 0; // Score per second for possesion of ally switch during auto.
-    int autoScaleWeight = 0; // Score per second for possesion of scale during auto.
-    int autoOppSwitchWeight = 0; // Score per second for possesion of opp switch during auto.
     double autoCubeWeight = -0.5;
 
     //Tele-Op
-    int allySwitchWeight = 0; // Score per second for possesion of ally switch during teleop.
-    int scaleWeight = 0; // Score per second for possesion of scale during teleop.
-    int oppSwitchWeight = 0; // Score per second for possesion of opponent switch during teleop.
-    int forceWeight = 10; //Set Score.
-    int boostWeight = 10; //Set Score.
     int cubeWeight = -1;
 
     //Endgame
@@ -43,33 +35,22 @@ public class Algorithm{
     int autonomousScoreWeight = 30;
 
     //       AUTONOMOUS
-    int autoExchange = 0;
+    int autoCube = 0;
+    int autoDropExchange = 0;
     int autoDropScale = 0;
     int autoDropOpp = 0;
     int autoDropAlly = 0;
     int autoDropNone = 0;
-    int autoCube = 0;
-    int autoScaleEnd = 0;
-    int autoAllyStart = 0;
-    int autoAllyEnd = 0;
-    int autoOppStart = 0;
-    int autoOppEnd = 0;
-    int autoScaleStart = 0;
+   
     //       Tele-Op
-    int allyStart = 0;
-    int allyEnd = 0;
-    int oppStart = 0;
-    int oppEnd = 0;
-    int scaleStart = 0;
-    int scaleEnd = 0;
+    
     int cube = 0;
-    int exchange = 0;
+    int dropExchange = 0;
     int dropScale = 0;
     int dropOpp = 0;
     int dropAlly = 0;
     int dropNone = 0;
-    int boost = 0;
-    int force = 0;
+   
     //       Endgame
     int defense;
     int death;
@@ -81,9 +62,7 @@ public class Algorithm{
     int yellowCard;
     int redCard;
     int numTE;
-    int numDropNone = 0;
-    int noneScore = 0;
-    int dropNoneScore = 0;
+    
 
     public String rankType() {
         return "None";
@@ -122,19 +101,7 @@ public class Algorithm{
 
             for (int i = 0; i < numTE; i++) {
                 if (jsonObject.getInt("TE" + i + "_0") <= 15000) {
-                    if (jsonObject.getInt("TE" + i + "_1") == 2) {
-                        autoAllyStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 3) {
-                        autoAllyEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 4) {
-                        autoOppStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 5) {
-                        autoOppEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 6) {
-                        autoScaleStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 7) {
-                        autoScaleEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 0) {
+                      if (jsonObject.getInt("TE" + i + "_1") == 0) {
                         autoCube += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoCube = autoCube / 2;
@@ -160,30 +127,15 @@ public class Algorithm{
                             autoDropScale = autoDropScale / 2;
                         }
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        autoExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
+                        autoDropExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
                             autoExchange = autoExchange / 2;
                         }
                     }
                 } else {
-
-                    if (jsonObject.getInt("TE" + i + "_1") == 2) {
-                        allyStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 3) {
-                        allyEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 4) {
-                        oppStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 5) {
-                        oppEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 6) {
-                        scaleStart += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 7) {
-                        scaleEnd += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 0) {
+                    if (jsonObject.getInt("TE" + i + "_1") == 0) {
                         cube += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
-                        noneScore += ((dropNone - cube) / numDropNone);
-                        numDropNone += 1;
                         dropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
                         dropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);
@@ -192,12 +144,8 @@ public class Algorithm{
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
                         dropScale += (jsonObject.getInt("TE" + i + "_0")/1000);
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        exchange += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 8) {
-                        boost = (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if (jsonObject.getInt("TE" + i + "_1") == 9) {
-                        force = (jsonObject.getInt("TE" + i + "_0")/1000);
-                    }
+                        dropExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
+                    } 
                 }
             }
         } catch (JSONException e) {
