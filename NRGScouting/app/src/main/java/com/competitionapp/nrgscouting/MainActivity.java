@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-//***Verified and Approved***
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityUtility{
     Toolbar toolbar = null;
@@ -186,12 +185,17 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         EditText importText = (EditText) alertView.findViewById(R.id.import_text);
                         String input = String.valueOf(importText.getText());
+                        if(input.equals("") || Entry.getEntriesFromString(input).isEmpty()) {
+                            Toast.makeText(MainActivity.this, "No entries added.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         ArrayList<Entry> importedEntries = Entry.getEntriesFromString(input);
 
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPref.edit();
                         Set<String> entryList;
-                        int count = 0;
+                        int countReplaced = 0;
+                        int countSame = 0;
 
                         if (sharedPref.contains("MatchEntryList") && sharedPref.getStringSet("MatchEntryList", null) != null) {
                             entryList = sharedPref.getStringSet("MatchEntryList", null);
@@ -203,7 +207,13 @@ public class MainActivity extends AppCompatActivity
                             String keyName = TabbedActivity.getKeyName(x);
                             if(!entryList.contains(String.valueOf(keyName))) {
                                 entryList.add(keyName);
-                            } else { count++; }
+                            } else {
+                                if(sharedPref.contains(keyName) && x.toString().equals(Entry.retrieveFromString(sharedPref.getString(keyName, "")).toString())) {
+                                    countSame++;
+                                } else {
+                                    countReplaced++;
+                                }
+                            }
                             editor.putString(keyName, x.toString());
                             editor.putInt(keyName + ":index", entryList.size() - 1);
                         }
@@ -213,8 +223,13 @@ public class MainActivity extends AppCompatActivity
 
                         MainActivity.this.currentFragment.refreshFragment();
 
-                        Toast.makeText(MainActivity.this,
-                                "Added " + String.valueOf(importedEntries.size()) + " new entries, replaced " + count + " entries", Toast.LENGTH_LONG).show();
+                        if(countSame == 0) {
+                            Toast.makeText(MainActivity.this,
+                                    "Added " + String.valueOf(importedEntries.size() - countReplaced) + " new entries, replaced " + countReplaced + " entries.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.this,
+                                    "Added " + String.valueOf(importedEntries.size() - countReplaced - countSame) + " new entries, replaced " + countReplaced + " entries.\n(" + countSame +" entries were the same.)", Toast.LENGTH_LONG).show();
+                        }
 
                     }
                 });
