@@ -175,15 +175,6 @@ public class Entry {
                     case SCALE_3: return "Dropped Cube (Scale)";
                     case EXCHANGE_4: return "Dropped Cube (Exchange)";
                 }
-            case ALLY_START_2: return "Claimed Ally Switch";
-            case ALLY_END_3: return "Lost Ally Switch";
-            case OPP_START_4: return "Claimed Opponent Switch";
-            case OPP_END_5: return "Lost Opponent Switch";
-            case SCALE_START_6: return "Claimed Scale";
-            case SCALE_END_7: return "Lost Scale";
-            case BOOST_8: return "Boost Powerup";
-            case FORCE_9: return "Force Powerup";
-            case CLIMB_START_10: return "Started Climbing";
         }
         return "";
     }

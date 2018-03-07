@@ -2,7 +2,7 @@ package com.competitionapp.nrgscouting;
 
 /**
  * Created by valli on 7/19/17.
- * Remade by Peyton Lee 2/28/18.
+ * Remade by Acchindra Thev and Peyton Lee 2/28/18.
  */
 
 import android.support.annotation.NonNull;

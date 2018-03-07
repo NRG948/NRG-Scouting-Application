@@ -69,15 +69,13 @@ public class Algorithm{
     }
     
     public double autonomousScore() {
-        return  ((autoAllyEnd - autoAllyStart)*autoAllySwitchWeight) + ((autoScaleEnd-autoScaleStart)*autoScaleWeight) + ((autoOppEnd-autoOppStart)*autoOppSwitchWeight)+
-                (((autoExchange+autoDropScale+autoDropOpp+autoDropAlly+autoDropNone) - autoCube)*autoCubeWeight);
+        return (((autoDropExchange+autoDropScale+autoDropOpp+autoDropAlly+autoDropNone) - autoCube)*autoCubeWeight);
     }
 
     public double teleopScore() {
         return  ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (neededAstClimbWeight*neededAstClimb) +
-                (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb) + (DeathsWeight*death) + (DefenseWeight*defense) + (boostWeight*boost) +
-                (forceWeight*force) + ((allyEnd - allyStart)*allySwitchWeight) + ((oppEnd-oppStart)*oppSwitchWeight) + ((scaleEnd - scaleStart)*scaleWeight)+
-                (((exchange+dropScale+dropOpp+dropAlly+dropNone) - cube)*cubeWeight) + (noneScore));
+                (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb) + (DeathsWeight*death) + (DefenseWeight*defense) +
+                (((dropExchange+dropScale+dropOpp+dropAlly+dropNone) - cube)*cubeWeight));
     }
 
     public double rankScore(Entry entry) {
@@ -129,7 +127,7 @@ public class Algorithm{
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
                         autoDropExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoExchange = autoExchange / 2;
+                            autoDropExchange = autoDropExchange / 2;
                         }
                     }
                 } else {
