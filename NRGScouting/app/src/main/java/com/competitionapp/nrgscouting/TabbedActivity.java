@@ -159,7 +159,6 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
 
         if(endgameEntry == null || endgameEntry == null) {return "";}
         if(newEntry.matchNumber <= 0) { error += "-Invalid Match Number\n";}
-        if(endgameEntry.defensiveStrategy.getCheckedRadioButtonId() == -1) { error += "-No Defensive Strategy Selected\n";}
 
         return error;
     }

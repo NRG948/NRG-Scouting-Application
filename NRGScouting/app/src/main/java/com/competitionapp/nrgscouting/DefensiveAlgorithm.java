@@ -7,7 +7,7 @@ package com.competitionapp.nrgscouting;
 public class DefensiveAlgorithm extends Algorithm {
 
     public DefensiveAlgorithm() {
-        this.DefenseWeight = 40;
+        this.DefenseWeight = 10;
     }
 
     @Override

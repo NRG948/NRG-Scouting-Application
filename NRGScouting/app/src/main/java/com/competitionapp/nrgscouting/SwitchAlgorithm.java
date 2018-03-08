@@ -7,11 +7,7 @@ package com.competitionapp.nrgscouting;
 public class SwitchAlgorithm extends Algorithm {
 
     public SwitchAlgorithm() {
-        this.autoAllySwitchWeight = 4;
-        this.autoOppSwitchWeight = 8;
-        this.allySwitchWeight = 2;
-        this.oppSwitchWeight = 4;
-        this.dropNoneScore = noneScore += ((dropNone - cube) / numDropNone);
+        this.switchScoreWeight = -1;
     }
 
     @Override

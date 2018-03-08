@@ -10,7 +10,8 @@ public class ClimbAlgorithm extends Algorithm {
         this.soloClimbWeight = 30;
         this.astClimbWeight = 60;
         this.neededAstClimbWeight = 10;
-        this.levitateWeight = 20;
+        this.levitateWeight = 0;
+        this.platform = 10;
     }
 
     @Override

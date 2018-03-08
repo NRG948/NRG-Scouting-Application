@@ -13,46 +13,29 @@ import java.util.ArrayList;
  */
 
 public class Algorithm{
-    
-    //Auto
-    double autoCubeWeight = -0.5;
 
-    //Tele-Op
-    int cubeWeight = -1;
-
-    //Endgame
     int DefenseWeight = 0;
     int DeathsWeight = -20;
     int soloClimbWeight = 0;
     int astClimbWeight = 0;
+    int baselineWeight = 10;
+    int platformWeight = 0;
     int neededAstClimbWeight = 0;
     int levitateWeight = 0;
     int penaltiesWeight = -1;
     int yellowCardWeight = -20;
     int redCardWeight = -40;
-    // FINAL WEIGHTAGES
-    int teleopScoreWeight = 70;
-    int autonomousScoreWeight = 30;
+    int switchScoreWeight = 0;
+    int scaleScoreWeight = 0;
 
-    //       AUTONOMOUS
-    int autoCube = 0;
-    int autoDropExchange = 0;
-    int autoDropScale = 0;
-    int autoDropOpp = 0;
-    int autoDropAlly = 0;
-    int autoDropNone = 0;
-   
-    //       Tele-Op
-    
-    int cube = 0;
-    int dropExchange = 0;
-    int dropScale = 0;
-    int dropOpp = 0;
-    int dropAlly = 0;
-    int dropNone = 0;
-   
+    //       Total Timings
+    int toNone;
+    int toAlly;
+    int toOpp;
+    int toScale;
+    int toExchange;
     //       Endgame
-    int defense;
+    double defense;
     int death;
     int soloClimb;
     int astClimb;
@@ -61,32 +44,25 @@ public class Algorithm{
     int penalties;
     int yellowCard;
     int redCard;
+    int baseline;
+    int platform;
     int numTE;
-    
 
     public String rankType() {
         return "None";
     }
-    
-    public double autonomousScore() {
-        return (((autoDropExchange+autoDropScale+autoDropOpp+autoDropAlly+autoDropNone) - autoCube)*autoCubeWeight);
-    }
-
-    public double teleopScore() {
-        return  ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (neededAstClimbWeight*neededAstClimb) +
-                (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb) + (DeathsWeight*death) + (DefenseWeight*defense) +
-                (((dropExchange+dropScale+dropOpp+dropAlly+dropNone) - cube)*cubeWeight));
-    }
 
     public double rankScore(Entry entry) {
         addEntry(entry);
-        return ((teleopScore()/100.0) * teleopScoreWeight) + ((autonomousScore()/100.0) * autonomousScoreWeight);
+        return ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (-1*toNone) +
+                (toExchange/2) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
+                (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + (toAlly + toOpp)*switchScoreWeight + toScale*scaleScoreWeight);
     }
 
     public void addEntry(Entry entry) {
         try {
             JSONObject jsonObject = new JSONObject(entry.toString());
-            defense = jsonObject.getInt("defensiveStrategy");
+            defense = jsonObject.getDouble("rate");
             death = jsonObject.getBoolean("death") ? 1 : 0;
             soloClimb = jsonObject.getBoolean("soloClimb") ? 1 : 0;
             astClimb = jsonObject.getBoolean("astClimb") ? 1 : 0;
@@ -95,55 +71,70 @@ public class Algorithm{
             yellowCard = jsonObject.getBoolean("cardYellow") ? 1 : 0;
             redCard = jsonObject.getBoolean("cardRed") ? 1 : 0;
             penalties = jsonObject.getInt("penalties");
+            baseline = jsonObject.getBoolean("baseline") ? 1 : 0;
+            platform = jsonObject.getBoolean("platform") ? 1 : 0;
             numTE = jsonObject.getInt("numTE");
 
-            for (int i = 0; i < numTE; i++) {
-                if (jsonObject.getInt("TE" + i + "_0") <= 15000) {
-                      if (jsonObject.getInt("TE" + i + "_1") == 0) {
-                        autoCube += (jsonObject.getInt("TE" + i + "_0")/1000);
-                        if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoCube = autoCube / 2;
-                        }
-                    } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
-                        autoDropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
-                        if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoDropNone = autoDropNone / 2;
-                        }
+            for (int i = 1; i <=numTE; i++) {
+
+                if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
+
+                    if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
+                        toNone += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
-                        autoDropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoDropAlly = autoDropAlly / 2;
+                            toAlly += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/4;
                         }
+                        toAlly += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
-                        autoDropOpp += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoDropOpp = autoDropOpp / 2;
+                            toOpp += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/4;
                         }
+                        toOpp += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
-                        autoDropScale += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoDropScale = autoDropScale / 2;
+                            toScale += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/4;
                         }
+                        toScale += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        autoDropExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            autoDropExchange = autoDropExchange / 2;
+                            toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/4;
                         }
+                        toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        i++;
                     }
+
                 } else {
-                    if (jsonObject.getInt("TE" + i + "_1") == 0) {
-                        cube += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
-                        dropNone += (jsonObject.getInt("TE" + i + "_0")/1000);
+
+                    if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
+                        toNone += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
-                        dropAlly += (jsonObject.getInt("TE" + i + "_0")/1000);
+                        toAlly += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
-                        dropOpp += (jsonObject.getInt("TE" + i + "_0")/1000);
+                        toOpp += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
-                        dropScale += (jsonObject.getInt("TE" + i + "_0")/1000);
+                        toScale += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        i++;
+
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        dropExchange += (jsonObject.getInt("TE" + i + "_0")/1000);
-                    } 
+                        toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        i++;
+                    }
+
                 }
             }
         } catch (JSONException e) {

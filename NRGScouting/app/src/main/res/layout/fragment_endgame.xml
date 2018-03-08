@@ -46,58 +46,29 @@
             android:layout_marginTop="15dp" />
 
 
-        <TextView
+        <CheckBox
+            android:id="@+id/baseline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Defensive Strategy"
+            android:text="Crossed Baseline"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            />
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="Defensive Strategy Strength:"
             android:textSize="16sp" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
+        <RatingBar
+            android:id="@+id/rate"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/defensiveStrategyStrength"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            >
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weak"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Average"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Strong"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                />
-
-        </RadioGroup>
+            android:rating="0"
+            android:stepSize="0.5" />
 
 
 
@@ -147,11 +118,19 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
         <CheckBox
+            android:id="@+id/platform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="On Platform"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+        <CheckBox
             android:id="@+id/needLevitate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="Needed Levitate"
+            android:text="Didn't Climb"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
@@ -172,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Penalties to Opposite Alliance:"
+            android:text="Fouls:"
             android:textSize="16sp"
             />
         <LinearLayout
@@ -208,7 +187,23 @@
             android:layout_height="wrap_content"
             android:text="Received Red Card"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Extra Comments:" />
+
+        <EditText
+            android:id="@+id/comments"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:maxLines="4"
+            android:maxLength="2000"
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="Type Here!"
             android:layout_marginBottom="40dp"/>
 
     </LinearLayout>

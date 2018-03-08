@@ -37,10 +37,13 @@ public class Entry {
     //Based on position in the dropdown
     int position = 0;
     String teamName = "";
+    String comments = "";
     int matchNumber = 0;
-    int defensiveStrategy = 1;
+    double rate = 0;
     int penalties = 0;
+    boolean baseline = false;
     boolean death = false;
+    boolean platform = false;
     boolean soloClimb = false;
     boolean astClimb = false;
     boolean needAstClimb = false;
@@ -64,9 +67,11 @@ public class Entry {
             jsonObject.put("teamName", teamName);
             jsonObject.put("matchNumber", matchNumber);
             jsonObject.put("position", position);
-            jsonObject.put("defensiveStrategy", 1);
+            jsonObject.put("rate", rate);
+            jsonObject.put("platform", platform);
             jsonObject.put("death", death);
             jsonObject.put("soloClimb", soloClimb);
+            jsonObject.put("baseline", baseline);
             jsonObject.put("astClimb", astClimb);
             jsonObject.put("needAstClimb", needAstClimb);
             jsonObject.put("needLevitate", needLevitate);
@@ -82,6 +87,7 @@ public class Entry {
                 jsonObject.put("TE" + i + "_1", eventTypeToInt(timeEvents.get(i).type));
                 jsonObject.put("TE" + i + "_2", cubeDropTypeToInt(timeEvents.get(i).cubeDropType));
             }
+            jsonObject.put("comments", comments);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -96,9 +102,10 @@ public class Entry {
             JSONObject jsonObject = new JSONObject(input);
 
             entry.position = jsonObject.getInt("position");
+            entry.baseline = jsonObject.getBoolean("baseline");
             entry.teamName = jsonObject.getString("teamName");
             entry.matchNumber = jsonObject.getInt("matchNumber");
-            entry.defensiveStrategy = jsonObject.getInt("defensiveStrategy");
+            entry.rate = jsonObject.getDouble("rate");
             entry.death = jsonObject.getBoolean("death");
             entry.soloClimb = jsonObject.getBoolean("soloClimb");
             entry.astClimb = jsonObject.getBoolean("astClimb");
@@ -108,6 +115,7 @@ public class Entry {
             entry.cardYellow = jsonObject.getBoolean("cardYellow");
             entry.cardRed = jsonObject.getBoolean("cardRed");
             entry.timestamp = jsonObject.getInt("timestamp");
+            entry.platform = jsonObject.getBoolean("platform");
 
             int numTE = jsonObject.getInt("numTE");
             for (int i = 0; i < numTE; i++) {
@@ -117,7 +125,7 @@ public class Entry {
                         intToCubeDropType(jsonObject.getInt("TE"+i+"_2"))
                 ));
             }
-
+            entry.comments = jsonObject.getString("comments");
         } catch (JSONException e) {
             e.printStackTrace();
         }

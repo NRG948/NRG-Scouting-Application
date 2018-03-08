@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 
 import static java.lang.Integer.parseInt;
@@ -22,8 +23,9 @@ import static java.lang.Integer.parseInt;
 public class EndgameEntry extends Fragment {
     EditText matchNumber;
     EditText penalities;
+    EditText comments;
     Spinner teamPosition;
-    RadioGroup defensiveStrategy;
+    RatingBar rate;
     CheckBox death;
     CheckBox soloClimb;
     CheckBox astClimb;
@@ -31,6 +33,8 @@ public class EndgameEntry extends Fragment {
     CheckBox needLevitate;
     CheckBox cardYellow;
     CheckBox cardRed;
+    CheckBox baseline;
+    CheckBox platform;
 
     @Nullable
     @Override
@@ -53,8 +57,9 @@ public class EndgameEntry extends Fragment {
 
         matchNumber = (EditText) getView().findViewById(R.id.matchNumber);
         penalities = (EditText) getView().findViewById(R.id.penalties);
-
-        defensiveStrategy = (RadioGroup) getView().findViewById(R.id.defensiveStrategyStrength);
+        comments = (EditText) getView().findViewById(R.id.comments);
+        baseline = (CheckBox) getView().findViewById(R.id.baseline);
+        rate = (RatingBar) getView().findViewById(R.id.rate);
         death = (CheckBox) getView().findViewById(R.id.death);
         soloClimb = (CheckBox) getView().findViewById(R.id.soloClimb);
         astClimb = (CheckBox) getView().findViewById(R.id.astClimb);
@@ -62,14 +67,18 @@ public class EndgameEntry extends Fragment {
         needLevitate = (CheckBox) getView().findViewById(R.id.needLevitate);
         soloClimb = (CheckBox) getView().findViewById(R.id.soloClimb);
         cardYellow = (CheckBox) getView().findViewById(R.id.cardyellow);
+        platform = (CheckBox) getView().findViewById(R.id.platform);
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
     }
 
     public void loadFromEntry (Entry newEntry) {
         matchNumber.setText(String.valueOf(newEntry.matchNumber));
+        comments.setText(String.valueOf(newEntry.comments));
         penalities.setText(String.valueOf(newEntry.penalties));
+        baseline.setChecked(newEntry.baseline);
+        platform.setChecked(newEntry.platform);
         teamPosition.setVerticalScrollbarPosition(newEntry.position);
-        defensiveStrategy.check(defensiveStrategy.getChildAt(newEntry.defensiveStrategy).getId());
+        rate.setRating((float)newEntry.rate);
         death.setChecked(newEntry.death);
         soloClimb.setChecked(newEntry.soloClimb);
         astClimb.setChecked(newEntry.astClimb);
@@ -84,16 +93,19 @@ public class EndgameEntry extends Fragment {
         try {
             entry.matchNumber = Integer.parseInt(String.valueOf(matchNumber.getText()));
             entry.penalties = Integer.parseInt(String.valueOf(penalities.getText()));
+            entry.rate = Double.parseDouble(String.valueOf(rate.getRating()));
         } catch (NumberFormatException p_ex) {
             entry.matchNumber = -1;
             entry.penalties = -1;
+            entry.rate = -1;
         }
+        entry.comments = String.valueOf(comments.getText());
         entry.position = teamPosition.getSelectedItemPosition();
-        entry.defensiveStrategy = defensiveStrategy.indexOfChild(
-                defensiveStrategy.findViewById(defensiveStrategy.getCheckedRadioButtonId()));
         entry.death = death.isChecked();
         entry.soloClimb = soloClimb.isChecked();
         entry.astClimb = astClimb.isChecked();
+        entry.baseline = baseline.isChecked();
+        entry.platform = platform.isChecked();
         entry.needAstClimb = needAstClimb.isChecked();
         entry.needLevitate = needLevitate.isChecked();
         entry.cardYellow = cardYellow.isChecked();
