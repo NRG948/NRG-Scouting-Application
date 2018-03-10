@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class rankScreen extends Fragment implements RefreshableFragment{
+public class RankScreen extends Fragment implements RefreshableFragment{
     
     ArrayList<Entry> entryList=new ArrayList<Entry>();
     static ArrayList<Team> teams = new ArrayList<Team>();//List of summed up team data
