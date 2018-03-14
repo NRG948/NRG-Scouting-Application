@@ -44,6 +44,17 @@
         android:layout_height="wrap_content"
         android:entries="@array/spinnerItems"
             android:layout_marginTop="15dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="In-Game"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            />
 
 
         <CheckBox
@@ -69,7 +80,14 @@
             android:layout_height="wrap_content"
             android:rating="0"
             android:stepSize="0.5" />
-
+        <CheckBox
+            android:id="@+id/death"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Death"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"/>
 
 
         <TextView
@@ -84,14 +102,6 @@
             android:layout_marginTop="15dp"
             />
 
-        <CheckBox
-            android:id="@+id/death"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Death"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
-            android:layout_marginTop="5dp"/>
 
         <CheckBox
             android:id="@+id/soloClimb"
@@ -100,7 +110,8 @@
             android:checked="false"
             android:text="Solo Climb"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"/>
         <CheckBox
             android:id="@+id/astClimb"
             android:layout_width="match_parent"
