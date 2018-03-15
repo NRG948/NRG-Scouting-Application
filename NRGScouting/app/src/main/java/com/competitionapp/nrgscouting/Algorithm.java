@@ -22,7 +22,7 @@ public class Algorithm{
     int platformWeight = 0;
     int neededAstClimbWeight = 0;
     int levitateWeight = 0;
-    int penaltiesWeight = -1;
+    int penaltiesWeight = -5;
     int yellowCardWeight = -20;
     int redCardWeight = -40;
     int switchScoreWeight = 0;
@@ -86,7 +86,7 @@ public class Algorithm{
             platform = jsonObject.getBoolean("platform") ? 1 : 0;
             numTE = jsonObject.getInt("numTE");
 
-            for (int i = 1; i <=numTE; i++) {
+            for (int i = 1; i <= numTE; i++) {
 
                 if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
 
