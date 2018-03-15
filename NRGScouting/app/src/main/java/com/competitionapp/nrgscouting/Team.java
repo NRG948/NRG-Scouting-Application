@@ -24,9 +24,9 @@ public class Team implements Comparable<Team>{
     }
 
     public void scoreEntries(Algorithm ranker) {
-        teamEntryScores.clear();
-        for(int i = 0; i < teamEntryList.size(); i++) {
-            teamEntryScores.add(ranker.rankScore(teamEntryList.get(i)));
+        this.teamEntryScores.clear();
+        for(int i = 0; i < this.teamEntryList.size(); i++) {
+            this.teamEntryScores.add(ranker.rankScore(teamEntryList.get(i)));
         }
     }
 
