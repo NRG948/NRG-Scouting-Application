@@ -54,6 +54,9 @@ public class MatchTimerEntry extends Fragment {
     public long startTime = 0;
     public long savedTime = 0;
 
+    private Button climbStart;
+    boolean climbStartPressed = false;
+
     Handler handler = new Handler();
     Runnable updateTimerThread = new Runnable() {
         @Override
@@ -99,6 +102,10 @@ public class MatchTimerEntry extends Fragment {
                 hasCube = false;
             }else if(x.type.equals(Entry.EventType.PICKED_CUBE_0)) {
                 hasCube = true;
+            }
+            if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
+                this.climbStartPressed = true;
+                this.climbStart.setEnabled(false);
             }
         }
         if(hasCube) {

@@ -90,6 +90,8 @@ public class Algorithm{
 
                 if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
 
+
+
                     if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
                         toNone += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
                         i++;

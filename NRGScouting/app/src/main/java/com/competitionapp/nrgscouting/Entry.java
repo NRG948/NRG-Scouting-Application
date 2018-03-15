@@ -23,6 +23,7 @@ public class Entry {
     public enum EventType {
         PICKED_CUBE_0,
         DROPPED_CUBE_1,
+        CLIMB_START_10
     }
     public enum CubeDropType {
         NONE_0,
@@ -160,6 +161,7 @@ public class Entry {
         switch (eventType) {
             case PICKED_CUBE_0: return 0;
             case DROPPED_CUBE_1: return 1;
+            case CLIMB_START_10: return 10;
         }
         return 0;
     }
@@ -168,6 +170,7 @@ public class Entry {
         switch (input) {
             case 0: return EventType.PICKED_CUBE_0;
             case 1: return EventType.DROPPED_CUBE_1;
+            case 10: return EventType.CLIMB_START_10;
         }
         return EventType.PICKED_CUBE_0;
     }
@@ -183,6 +186,7 @@ public class Entry {
                     case SCALE_3: return "Dropped Cube (Scale)";
                     case EXCHANGE_4: return "Dropped Cube (Exchange)";
                 }
+            case CLIMB_START_10: return "Started Climbing";
         }
         return "";
     }
