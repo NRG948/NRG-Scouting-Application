@@ -60,6 +60,17 @@ public class Algorithm{
     }
 
     public void addEntry(Entry entry) {
+        this.defense = 0;
+        this.soloClimb = 0;
+        this.astClimb = 0;
+        this.neededAstClimb = 0;
+        this.levitate = 0;
+        this.penalties = 0;
+        this.yellowCard = 0;
+        this.redCard = 0;
+        this.platform = 0;
+        this.numTE = 0;
+
         try {
             JSONObject jsonObject = new JSONObject(entry.toString());
             defense = jsonObject.getDouble("rate");
