@@ -172,6 +172,7 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
     }
 
     public Entry formatEntry(Entry entry) {
+        boolean climbStart = false;
         boolean hasCube = false;
         int lastTime = 0;
         boolean autoCheckpoint = false;
@@ -192,6 +193,13 @@ public class TabbedActivity extends AppCompatActivity implements ActivityUtility
                     i--;
                 } else {
                     hasCube = true;
+                }
+            } else if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
+                if(climbStart) {
+                   entry.timeEvents.remove(i);
+                    i--;
+                } else {
+                   climbStart = true;
                 }
             }
         }

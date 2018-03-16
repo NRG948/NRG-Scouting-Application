@@ -39,6 +39,8 @@
         android:layout_width="400dp"
         android:layout_height="80dp"
         android:layout_marginTop="200dp"
+        android:layout_toEndOf="@+id/climb_start"
+        android:layout_toRightOf="@+id/climb_start"
         android:backgroundTint="@color/match_button"
         android:drawableTint="@color/colorWhite"
         android:drawableTop="@drawable/ic_picked_cube"
@@ -59,5 +61,21 @@
         android:text="Time Start"
         android:textColor="@color/colorWhite"
         android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/climb_start"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignBottom="@+id/cube_dropped"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_climb"
+        android:gravity="center_horizontal"
+        android:text="Climb Start"
+        android:textColor="@color/colorWhite"
+        android:textSize="11dp" />
+
 
 </RelativeLayout>

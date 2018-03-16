@@ -189,6 +189,10 @@ public class EventListEntry extends Fragment {
                     eventIcon.setImageResource(R.drawable.ic_picked_cube);
                     eventName.setText("Gained Cube");
                     break;
+                case CLIMB_START_10:
+                    eventIcon.setImageResource(R.drawable.ic_climb);
+                    eventName.setText("Started Climbing");
+                    break;
                 case DROPPED_CUBE_1:
                     switch (timeEvent.cubeDropType) {
                         case NONE_0:

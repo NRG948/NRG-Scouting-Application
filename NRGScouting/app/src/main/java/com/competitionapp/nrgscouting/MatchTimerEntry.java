@@ -102,8 +102,7 @@ public class MatchTimerEntry extends Fragment {
                 hasCube = false;
             }else if(x.type.equals(Entry.EventType.PICKED_CUBE_0)) {
                 hasCube = true;
-            }
-            if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
+            }else if(x.type.equals(Entry.EventType.CLIMB_START_10)) {
                 this.climbStartPressed = true;
                 this.climbStart.setEnabled(false);
             }
@@ -126,6 +125,7 @@ public class MatchTimerEntry extends Fragment {
     @Override
     public void onStart() {
         timer = (TextView) (getView()).findViewById(R.id.mainTimer);
+        climbStart = (Button)(getView().findViewById(R.id.climb_start));
         cubeDrop = (Button)(getView().findViewById(R.id.cube_dropped));
         start = (Button)(getView().findViewById(R.id.time_start));
         progressBar = (ProgressBar) (getView().findViewById(R.id.progressbar));
@@ -241,6 +241,7 @@ public class MatchTimerEntry extends Fragment {
                             }
                         });
 
+
                     } else {
                         hasCube = true;
                         logTimerEvent(Entry.EventType.PICKED_CUBE_0);
@@ -253,13 +254,26 @@ public class MatchTimerEntry extends Fragment {
             }
         });
 
+        climbStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(timerIsRunning && !climbStartPressed) {
+                    logTimerEvent(Entry.EventType.CLIMB_START_10);
+                    climbStartPressed = true;
+                    climbStart.setEnabled(false);
+                }
+            }
+        });
+
         super.onStart();
     }
 
     public void updateButtonEnabled() {
         if(timerIsRunning) {
             cubeDrop.setEnabled(true);
+            if(climbStartPressed) {climbStart.setEnabled(false);} else {climbStart.setEnabled(true);}
         } else {
+            climbStart.setEnabled(false);
             cubeDrop.setEnabled(false);
         }
     }
