@@ -27,8 +27,6 @@ public class Algorithm{
     int redCardWeight = -40;
     int switchScoreWeight = 0;
     int scaleScoreWeight = 0;
-    int scaleScore = 0;
-    int switchScore = 0;
 
     //       Total Timings
     int toNone = 0;
@@ -49,6 +47,8 @@ public class Algorithm{
     int baseline;
     int platform;
     int numTE;
+    int scaleScore = 0;
+    int switchScore = 0;
 
     public String rankType() {
         return "None";
@@ -62,6 +62,12 @@ public class Algorithm{
     }
 
     public void addEntry(Entry entry) {
+        this.toNone = 0;
+        this.toAlly = 0;
+        this.toOpp = 0;
+        this.toScale = 0;
+        this.toExchange = 0;
+
         this.defense = 0;
         this.soloClimb = 0;
         this.astClimb = 0;
@@ -72,6 +78,9 @@ public class Algorithm{
         this.redCard = 0;
         this.platform = 0;
         this.numTE = 0;
+
+        scaleScore = 0;
+        switchScore = 0;
 
         try {
             JSONObject jsonObject = new JSONObject(entry.toString());
