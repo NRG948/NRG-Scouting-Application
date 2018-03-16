@@ -97,8 +97,7 @@ public class Algorithm{
             platform = jsonObject.getBoolean("platform") ? 1 : 0;
             numTE = jsonObject.getInt("numTE");
 
-            int temp = numTE -1;
-            for (int i = 1; i < numTE; i++) {
+            for (int i = 1; i <= numTE; i++) {
 
                 if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
 
@@ -158,69 +157,10 @@ public class Algorithm{
                 }
             }
 
-            // TEMP
-            if (jsonObject.getInt("TE" + (temp) + "_0") <= 15000) {
-
-                if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 0)) {
-                    toNone += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/2;
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 1)) {
-                    if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                        toAlly += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/4;
-                    }
-                    toAlly += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/2;
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 2)) {
-                    if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                        toOpp += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/4;
-                    }
-                    toOpp += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/2;
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 3)) {
-                    if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                        toScale += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/4;
-                    }
-                    toScale += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp-1) + "_0") / 1000))/2;
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 4)) {
-                    toExchange += 10;
-
-                }
-
-            } else {
-
-                if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 0)) {
-                    toNone += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp - 1) + "_0") / 1000));
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 1)) {
-                    toAlly += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp - 1) + "_0") / 1000));
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 2)) {
-                    toOpp += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp - 1) + "_0") / 1000));
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 3)) {
-                    toScale += ((jsonObject.getInt("TE" + temp + "_0") / 1000) - (jsonObject.getInt("TE" + (temp - 1) + "_0") / 1000));
-
-
-                } else if ((jsonObject.getInt("TE" + temp + "_1") == 1) && (jsonObject.getInt("TE" + temp + "_2") == 4)) {
-                    toExchange += 10;
-
-                }
-
-            }
-
-
-
             if (toAlly+toOpp > 0){
                 switchScore += (100 - (toAlly+toOpp));
-            } else if (toScale > 0){
+            }
+            if (toScale > 0){
                 scaleScore += (100 - toScale);
             }
         } catch (JSONException e) {
