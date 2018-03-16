@@ -57,7 +57,7 @@ public class Algorithm{
     public double rankScore(Entry entry) {
         addEntry(entry);
         return ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (-1*toNone) +
-                (toExchange/2) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
+                (toExchange) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
                 (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + switchScore*switchScoreWeight + scaleScore*scaleScoreWeight);
     }
 
@@ -97,11 +97,9 @@ public class Algorithm{
             platform = jsonObject.getBoolean("platform") ? 1 : 0;
             numTE = jsonObject.getInt("numTE");
 
-            for (int i = 1; i <= numTE; i++) {
+            for (int i = 1; i < numTE; i++) {
 
                 if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
-
-
 
                     if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 0)) {
                         toNone += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
@@ -129,10 +127,7 @@ public class Algorithm{
                         i++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
-                            toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/4;
-                        }
-                        toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
+                        toExchange += 10;
                         i++;
                     }
 
@@ -155,7 +150,7 @@ public class Algorithm{
                         i++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        toExchange += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
+                        toExchange += 10;
                         i++;
                     }
 
