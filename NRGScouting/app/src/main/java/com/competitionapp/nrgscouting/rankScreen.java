@@ -1,15 +1,18 @@
 package com.competitionapp.nrgscouting;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,6 +42,29 @@ public class RankScreen extends Fragment implements RefreshableFragment{
         teamAdapter = new TeamScoreAdapter(getContext(), teams);
         listView.setAdapter(teamAdapter);
         rankType = (TextView)rootView.findViewById(R.id.sortingTypeText);
+
+        int i = ((MainActivity) this.getActivity()).algorithmPos;
+        Menu menu = ((MainActivity) this.getActivity()).menu;
+
+        switch (i) {
+            case 0:
+                //switch ranker
+                //menu.getItem(R.id.sort_switch).setChecked(true);
+                ranker = new SwitchAlgorithm();
+                break;
+            case 1:
+                //menu.getItem(R.id.sort_scale).setChecked(true);
+                ranker = new ScaleAlgorithm();
+                break;
+            case 2:
+                //menu.getItem(R.id.sort_defense).setChecked(true);
+                ranker = new DefensiveAlgorithm();
+                break;
+            case 3:
+                //\menu.getItem(R.id.sort_climb).setChecked(true);
+                ranker = new ClimbAlgorithm();
+                break;
+        }
 
         refreshFragment();
         setHasOptionsMenu(true);
@@ -84,6 +110,82 @@ public class RankScreen extends Fragment implements RefreshableFragment{
         teamAdapter = new TeamScoreAdapter(getContext(), teams);
         listView.setAdapter(teamAdapter);
         rankType.setText("Ranking Type: " + ranker.rankType());
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
+                LayoutInflater factory = LayoutInflater.from(getActivity());
+                final View alertView = factory.inflate(R.layout.rank_entry_dialog, null);
+                alertadd.setView(alertView);
+                alertadd.setTitle(teams.get(position).teamName + " Entries");
+                alertadd.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ListView entryListView = (ListView) alertView.findViewById(R.id.rank_entry_listview);
+                EntryAdapter entryAdapter = new EntryAdapter(getContext(), teams.get(position).teamEntryList);
+                entryListView.setAdapter(entryAdapter);
+
+                final AlertDialog alertDialog = alertadd.create();
+                alertDialog.show();
+                return false;
+            }
+        });
+    }
+
+    public class EntryAdapter extends ArrayAdapter<Entry> {
+
+        ArrayList<Entry> entryAdapterList;
+
+        public EntryAdapter(Context context, ArrayList<Entry> entries) {
+            super(context, 0, entries);
+            this.entryAdapterList = entries;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Get the data item for this position
+            if (entryAdapterList.size() <= position) {
+                return null;
+            }
+            Entry entry = entryAdapterList.get(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_rank_entry, parent, false);
+            }
+
+            ((TextView) convertView.findViewById(R.id.rankingEntryMatchNumber)).setText("Match Number: " + String.valueOf(entry.matchNumber) + ", " + Entry.positionToString(entry.position));
+            ((TextView) convertView.findViewById(R.id.rankingEntryDefenseScore)).setText(String.valueOf(entry.rate) + "/5");
+            ((TextView) convertView.findViewById(R.id.rankingEntryClimbData)).setText(
+                    "Crossed Baseline: " + convertBoolToText(entry.baseline) + "\n"
+                    + "Death: " + convertBoolToText(entry.death) + "\n"
+                    + "Solo Climb: " + convertBoolToText(entry.soloClimb) + "\n"
+                    + "Assisted Climb: " + convertBoolToText(entry.astClimb) + "\n"
+                    + "Needed Assisted Climb: " + convertBoolToText(entry.needAstClimb) + "\n"
+                    + "On Platform: " + convertBoolToText(entry.platform) + "\n"
+                    + "Didn't Climb: " + convertBoolToText(entry.needLevitate)
+            );
+            ((TextView) convertView.findViewById(R.id.rankingEntryFouls)).setText(String.valueOf(entry.penalties));
+            ((TextView) convertView.findViewById(R.id.rankingEntryPenaltyCard)).setText(
+                    "Received Red Card: " + convertBoolToText(entry.cardRed) + "\n"
+                    + "Received Yellow Card: " + convertBoolToText(entry.cardYellow)
+            );
+            ((TextView) convertView.findViewById(R.id.rankingEntryComments)).setText(entry.comments);
+
+            return convertView;
+        }
+
+        public String convertBoolToText(Boolean input) {
+            if(input) {
+                return "Yes";
+            } else {
+                return "No";
+            }
+        }
     }
 
     public class TeamScoreAdapter extends ArrayAdapter<Team> {

@@ -237,4 +237,22 @@ public class Entry {
         }
 
     }
+
+    public static String positionToString(int position) {
+        switch (position) {
+            case 0:
+                return "Red 1";
+            case 1:
+                return "Red 2";
+            case 2:
+                return "Red 3";
+            case 3:
+                return "Blue 1";
+            case 4:
+                return "Blue 2";
+            case 5:
+                return "Blue 3";
+        }
+        return "";
+    }
 }

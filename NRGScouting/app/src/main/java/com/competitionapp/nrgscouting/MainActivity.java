@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity
     public static int EDITING_ENTRY = 1;
     public static int FINISHED_ENTRY = 0;
 
+    public Menu menu;
+
+    public int algorithmPos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -278,21 +283,25 @@ public class MainActivity extends AppCompatActivity
                 ((RankScreen) currentFragment).ranker = new SwitchAlgorithm();
                 currentFragment.refreshFragment();
                 item.setChecked(true);
+                algorithmPos = 0;
                 return true;
             case R.id.sort_climb:
                 ((RankScreen) currentFragment).ranker = new ClimbAlgorithm();
                 currentFragment.refreshFragment();
                 item.setChecked(true);
+                algorithmPos = 3;
                 return true;
             case R.id.sort_defense:
                 ((RankScreen) currentFragment).ranker = new DefensiveAlgorithm();
                 currentFragment.refreshFragment();
                 item.setChecked(true);
+                algorithmPos = 2;
                 return true;
             case R.id.sort_scale:
                 ((RankScreen) currentFragment).ranker = new ScaleAlgorithm();
                 item.setChecked(true);
                 currentFragment.refreshFragment();
+                algorithmPos = 1;
                 return true;
         }
 
