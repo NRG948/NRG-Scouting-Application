@@ -27,13 +27,15 @@ public class Algorithm{
     int redCardWeight = -40;
     int switchScoreWeight = 0;
     int scaleScoreWeight = 0;
+    int scaleScore = 0;
+    int switchScore = 0;
 
     //       Total Timings
-    int toNone;
-    int toAlly;
-    int toOpp;
-    int toScale;
-    int toExchange;
+    int toNone = 0;
+    int toAlly = 0;
+    int toOpp = 0;
+    int toScale = 0;
+    int toExchange = 0;
     //       Endgame
     double defense;
     int death;
@@ -56,7 +58,7 @@ public class Algorithm{
         addEntry(entry);
         return ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (-1*toNone) +
                 (toExchange/2) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
-                (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + (toAlly + toOpp)*switchScoreWeight + toScale*scaleScoreWeight);
+                (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + switchScore*switchScoreWeight + scaleScore*scaleScoreWeight);
     }
 
     public void addEntry(Entry entry) {
@@ -149,6 +151,11 @@ public class Algorithm{
                     }
 
                 }
+            }
+            if (toAlly+toOpp > 0){
+                switchScore += (100 - (toAlly+toOpp));
+            } else if (toScale > 0){
+                scaleScore += (100 - toScale);
             }
         } catch (JSONException e) {
             e.printStackTrace();

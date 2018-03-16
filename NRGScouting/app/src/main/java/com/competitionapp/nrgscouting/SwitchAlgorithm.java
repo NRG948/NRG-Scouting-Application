@@ -7,7 +7,7 @@ package com.competitionapp.nrgscouting;
 public class SwitchAlgorithm extends Algorithm {
 
     public SwitchAlgorithm() {
-        this.switchScoreWeight = -1;
+        this.switchScoreWeight = 1;
     }
 
     @Override

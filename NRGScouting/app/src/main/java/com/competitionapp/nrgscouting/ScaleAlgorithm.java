@@ -7,7 +7,7 @@ package com.competitionapp.nrgscouting;
 public class ScaleAlgorithm extends Algorithm {
 
     public ScaleAlgorithm() {
-        this.scaleScoreWeight = -1;
+        this.scaleScoreWeight = 1;
     }
     @Override
     public String rankType() {
