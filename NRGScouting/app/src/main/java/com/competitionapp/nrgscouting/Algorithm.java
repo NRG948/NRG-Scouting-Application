@@ -49,6 +49,7 @@ public class Algorithm{
     int numTE;
     int scaleScore = 0;
     int switchScore = 0;
+    int startClimb=0;
 
     public String rankType() {
         return "None";
@@ -95,7 +96,7 @@ public class Algorithm{
             penalties = jsonObject.getInt("penalties");
             baseline = jsonObject.getBoolean("baseline") ? 1 : 0;
             platform = jsonObject.getBoolean("platform") ? 1 : 0;
-            numTE = jsonObject.getInt("numTE");
+            numTE = jsonObject.getInt("numTE") - jsonObject.getInt("startClimb");
 
             for (int i = 1; i <= numTE; i++) {
 

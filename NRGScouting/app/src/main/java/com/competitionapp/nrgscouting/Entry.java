@@ -51,6 +51,7 @@ public class Entry {
     boolean needLevitate = false;
     boolean cardYellow = false;
     boolean cardRed = false;
+    int startClimb = 0;
 
     int timestamp = 0;
 
@@ -80,6 +81,7 @@ public class Entry {
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
             jsonObject.put("timestamp", timestamp);
+            jsonObject.put("startClimb", startClimb);
 
 
             jsonObject.put("numTE", timeEvents.size());
@@ -117,8 +119,9 @@ public class Entry {
             entry.cardRed = jsonObject.getBoolean("cardRed");
             entry.timestamp = jsonObject.getInt("timestamp");
             entry.platform = jsonObject.getBoolean("platform");
+            entry.startClimb = jsonObject.getInt("startClimb");
 
-            int numTE = jsonObject.getInt("numTE");
+            int numTE = jsonObject.getInt("numTE") - jsonObject.getInt("startClimb");
             for (int i = 0; i < numTE; i++) {
                 entry.timeEvents.add(new TimeEvent(
                         jsonObject.getInt("TE"+i+"_0"),
