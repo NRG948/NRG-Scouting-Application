@@ -47,6 +47,9 @@ public class Algorithm{
     int baseline;
     int platform;
     int numTE;
+    int numAlly = 0;
+    int numOpp = 0;
+    int numScale = 0;
     int scaleScore = 0;
     int switchScore = 0;
 
@@ -78,6 +81,9 @@ public class Algorithm{
         this.redCard = 0;
         this.platform = 0;
         this.numTE = 0;
+        this.numAlly = 0;
+        this.numOpp = 0;
+        this.numScale = 0;
 
         scaleScore = 0;
         switchScore = 0;
@@ -97,7 +103,12 @@ public class Algorithm{
             platform = jsonObject.getBoolean("platform") ? 1 : 0;
             numTE = jsonObject.getInt("numTE");
 
-            for (int i = 1; i <= numTE; i++) {
+            for (int i = 0; i < numTE; i++) {
+                if (jsonObject.getInt("TE" + i + "_1") == 10){
+                    numTE--;
+                }
+            }
+                for (int i = 1; i <= numTE; i++) {
 
                 if (jsonObject.getInt("TE" + (i-1) + "_0") <= 15000) {
 
@@ -111,6 +122,7 @@ public class Algorithm{
                         }
                         toAlly += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
                         i++;
+                        numAlly++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
                          if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
@@ -118,6 +130,7 @@ public class Algorithm{
                         }
                         toOpp += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
                         i++;
+                        numOpp++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
                         if ((jsonObject.getInt("position") == 1) || (jsonObject.getInt("position") == 4)) {
@@ -125,6 +138,7 @@ public class Algorithm{
                         }
                         toScale += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i-1) + "_0") / 1000))/2;
                         i++;
+                        numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
                         toExchange += 10;
@@ -140,14 +154,17 @@ public class Algorithm{
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 1)) {
                         toAlly += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
                         i++;
+                        numAlly++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 2)) {
                         toOpp += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
                         i++;
+                        numOpp++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 3)) {
                         toScale += ((jsonObject.getInt("TE" + i + "_0") / 1000) - (jsonObject.getInt("TE" + (i - 1) + "_0") / 1000));
                         i++;
+                        numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
                         toExchange += 10;
@@ -157,12 +174,31 @@ public class Algorithm{
                 }
             }
 
+            if(numAlly == 0){
+                numAlly++;
+            }
+            if(numOpp == 0){
+                numOpp++;
+            }
+            if(numScale == 0){
+                numScale++;
+            }
+            if(numAlly > 0){
+                toAlly = toAlly/numAlly;
+            }
+            if(numOpp > 0){
+                toOpp = toOpp/numOpp;
+            }
+            if(numScale > 0){
+                toScale = toScale/numScale;
+            }
             if (toAlly+toOpp > 0){
-                switchScore += (100 - (toAlly+toOpp));
+                switchScore += (60 - (toAlly+toOpp));
             }
             if (toScale > 0){
-                scaleScore += (100 - toScale);
+                scaleScore += (60 - toScale);
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
