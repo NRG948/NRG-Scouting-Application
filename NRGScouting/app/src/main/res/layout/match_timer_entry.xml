@@ -54,6 +54,8 @@
         android:layout_height="80dp"
         android:layout_below="@+id/progressbar"
         android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/climb_start"
+        android:layout_toRightOf="@+id/climb_start"
         android:backgroundTint="@color/match_button"
         android:drawableTint="@color/colorWhite"
         android:drawableTop="@drawable/ic_timer"
@@ -76,6 +78,21 @@
         android:text="Climb Start"
         android:textColor="@color/colorWhite"
         android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/time_start"
+        android:backgroundTint="@color/match_button"
+        android:drawableTint="@color/colorWhite"
+        android:drawableTop="@drawable/ic_exchange"
+        android:gravity="center_horizontal"
+        android:text="Time Reset"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp" />
 
 
 </RelativeLayout>

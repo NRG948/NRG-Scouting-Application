@@ -61,10 +61,11 @@ public class Algorithm{
         addEntry(entry);
         return ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (-1*toNone) +
                 (toExchange) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
-                (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + switchScore*switchScoreWeight + scaleScore*scaleScoreWeight);
+                (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + (switchScore*switchScoreWeight) + (scaleScore*scaleScoreWeight));
     }
 
     public void addEntry(Entry entry) {
+
         this.toNone = 0;
         this.toAlly = 0;
         this.toOpp = 0;
