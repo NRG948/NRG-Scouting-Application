@@ -35,10 +35,10 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             "2521 - SERT", "2522 - Royal Robotics", "2550 - Skynet", "2555 - RoboRams", "2557 - SOTAbots", "2605 - Sehome Seamonsters",
             "2635 - Lake Monsters", "2733 - Pigmice", "2811 - StormBots", "2898 - Flying Hedgehogs", "2903 - NeoBots",
             "2906 - Sentinel Prime Robotics", "2907 - Lion Robotics", "2910 - Jack in the Bot", "2915 - Pandamonium",
-            "2923 - Aggies", "2926 - Robo Sparks", "2928 - Viking Robotics", "2929 - JAGBOTS", "2930 - Sonic Squirrels",
+            "2923 - Aggies", "2926 - Robo Sparks", "2927 - Pi Rho Techs", "2928 - Viking Robotics", "2929 - JAGBOTS", "2930 - Sonic Squirrels",
             "2942 - Panda ER", "2944 - Titanium Tigers", "2976 - Spartabots", "2980 - The Whidbey Island Wild Cats",
             "2990 - Hotwire", "3024 - My Favorite Team", "3049 - BremerTron", "3070 - Team Pronto", "3131 - Gladiators",
-            "3218 - Panther Robotics", "3219 - TREAD", "3220 - Mechanics of Mayhem", "3223 - Robotics Of Central Kitsap",
+            "3218 - Panther Robotics", "3219 - TREAD", "3220 - Mechanics of Mayhem", "3223 - Robotics Of Central Kitsap", "3237 - Event Horizon",
             "3238 - Cyborg Ferrets", "3268 - Vahallabots", "3393 - Horns of Havoc", "3574 - HIGH TEKERZ", "3575 - Okanogan FFA",
             "3588 - the Talon", "3636 - Generals", "3663 - CPR - Cedar Park Robotics", "3673 - C.Y.B.O.R.G. Seagulls",
             "3674 - 4-H / CAM Academy CloverBots", "3684 - Electric Eagles", "3693 - GearHead Pirates", "3711 - Iron Mustang",
@@ -57,7 +57,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             "5803 - Apex Robotics", "5827 - Code Purple", "5920 - VIKotics", "5937 - MI-Robotics", "5941 - SPQL",
             "5942 - Warriors", "5956 - Falcons", "5970 - BeaverTronics", "5975 - Beta Blues", "5977 - Rosemary Anderson H S/POIC",
             "6076 - Mustangs", "6129 - Shadle Park", "6343 - Steel Ridge Robotics", "6350 - J.E.D.I.",
-            "6437 - The Pacific Quakers", "6442 - Modern Americans", "6443 - Falcons", "6445 - CTEC Robotics",
+            "6437 - The Pacific Quakers", "6442 - Modern Americans", "6443 - AEMBOT", "6445 - CTEC Robotics",
             "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics",
             "6845 - River Bots", "6959 - Centralia Circuit Breakers #6959", "7034 - 2B Determined", "7118 - ScotBots"};
 
