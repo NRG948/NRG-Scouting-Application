@@ -51,7 +51,10 @@ public class Entry {
     boolean needLevitate = false;
     boolean cardYellow = false;
     boolean cardRed = false;
-
+    boolean autoSwitch = false;
+    boolean autoScale = false;
+    boolean autoFarSwitch = false;
+    boolean autoFarScale = false;
     int timestamp = 0;
 
     ArrayList<TimeEvent> timeEvents = new ArrayList<TimeEvent>();
@@ -79,6 +82,10 @@ public class Entry {
             jsonObject.put("penalties", penalties);
             jsonObject.put("cardYellow", cardYellow);
             jsonObject.put("cardRed", cardRed);
+            jsonObject.put("autoSwitch", autoSwitch);
+            jsonObject.put("autoScale", autoScale);
+            jsonObject.put("autoFarSwitch", autoFarSwitch);
+            jsonObject.put("autoFarScale", autoFarScale);
             jsonObject.put("timestamp", timestamp);
 
 
@@ -115,6 +122,10 @@ public class Entry {
             entry.penalties = jsonObject.getInt("penalties");
             entry.cardYellow = jsonObject.getBoolean("cardYellow");
             entry.cardRed = jsonObject.getBoolean("cardRed");
+            entry.autoSwitch = jsonObject.getBoolean("autoSwitch");
+            entry.autoScale = jsonObject.getBoolean("autoScale");
+            entry.autoFarSwitch = jsonObject.getBoolean("autoFarSwitch");
+            entry.autoFarScale = jsonObject.getBoolean("autoFarScale");
             entry.timestamp = jsonObject.getInt("timestamp");
             entry.platform = jsonObject.getBoolean("platform");
 

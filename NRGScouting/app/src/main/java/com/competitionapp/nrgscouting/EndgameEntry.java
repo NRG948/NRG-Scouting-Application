@@ -35,6 +35,10 @@ public class EndgameEntry extends Fragment {
     CheckBox cardRed;
     CheckBox baseline;
     CheckBox platform;
+    CheckBox autoSwitch;
+    CheckBox autoScale;
+    CheckBox autoFarSwitch;
+    CheckBox autoFarScale;
 
     @Nullable
     @Override
@@ -69,6 +73,10 @@ public class EndgameEntry extends Fragment {
         cardYellow = (CheckBox) getView().findViewById(R.id.cardyellow);
         platform = (CheckBox) getView().findViewById(R.id.platform);
         cardRed = (CheckBox) getView().findViewById(R.id.cardred);
+        autoSwitch = (CheckBox) getView().findViewById(R.id.autoSwitch);
+        autoScale = (CheckBox) getView().findViewById(R.id.autoScale);
+        autoFarSwitch = (CheckBox) getView().findViewById(R.id.autoFarSwitch);
+        autoFarScale = (CheckBox) getView().findViewById(R.id.autoFarScale);
     }
 
     public void loadFromEntry (Entry newEntry) {
@@ -86,6 +94,10 @@ public class EndgameEntry extends Fragment {
         needLevitate.setChecked(newEntry.needLevitate);
         cardYellow.setChecked(newEntry.cardYellow);
         cardRed.setChecked(newEntry.cardRed);
+        autoSwitch.setChecked(newEntry.autoSwitch);
+        autoScale.setChecked(newEntry.autoScale);
+        autoFarSwitch.setChecked(newEntry.autoFarSwitch);
+        autoFarScale.setChecked(newEntry.autoFarScale);
     }
 
     public Entry saveToEntry(Entry entry) {
@@ -110,6 +122,10 @@ public class EndgameEntry extends Fragment {
         entry.needLevitate = needLevitate.isChecked();
         entry.cardYellow = cardYellow.isChecked();
         entry.cardRed = cardRed.isChecked();
+        entry.autoSwitch = autoSwitch.isChecked();
+        entry.autoScale = autoScale.isChecked();
+        entry.autoFarSwitch = autoFarSwitch.isChecked();
+        entry.autoFarScale = autoFarScale.isChecked();
         return entry;
     }
 

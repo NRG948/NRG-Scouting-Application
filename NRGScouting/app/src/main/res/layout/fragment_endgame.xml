@@ -47,6 +47,65 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Autonomous"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            />
+        <CheckBox
+            android:id="@+id/baseline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crossed Baseline"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"/>
+        <CheckBox
+            android:id="@+id/autoSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Switch"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            />
+        <CheckBox
+            android:id="@+id/autoScale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scale"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            />
+        <CheckBox
+            android:id="@+id/autoFarSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Far Switch"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            />
+        <CheckBox
+            android:id="@+id/autoFarScale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Far Scale"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="In-Game"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
@@ -57,14 +116,6 @@
             />
 
 
-        <CheckBox
-            android:id="@+id/baseline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crossed Baseline"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
-            android:layout_marginTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
