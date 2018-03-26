@@ -53,6 +53,7 @@ public class MatchTimerEntry extends Fragment {
     boolean timerIsRunning = false;
     public long startTime = 0;
     public long savedTime = 0;
+    private Button reset;
 
     private Button climbStart;
     boolean climbStartPressed = false;
@@ -129,6 +130,7 @@ public class MatchTimerEntry extends Fragment {
         cubeDrop = (Button)(getView().findViewById(R.id.cube_dropped));
         start = (Button)(getView().findViewById(R.id.time_start));
         progressBar = (ProgressBar) (getView().findViewById(R.id.progressbar));
+        reset = (Button)(getView().findViewById(R.id.reset));
 
         if(((TabbedActivity) getActivity()).isEdit) {
             loadFromEntry(((TabbedActivity) getActivity()).newEntry);
@@ -157,8 +159,24 @@ public class MatchTimerEntry extends Fragment {
                     start.setText("Start Timer");
                     updateButtonEnabled();
                 }
+
             }
         });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(timerIsRunning || savedTime>0) {
+                    handler.removeCallbacks(updateTimerThread);
+                    timerIsRunning = false;
+                    savedTime = 0;
+                    timer.setText(EventListEntry.convertTimeToText(0));
+                    updateButtonEnabled();
+                    start.setText("Start Timer");
+
+                }
+            }
+    });
 
         cubeDrop.setOnClickListener(new View.OnClickListener() {
             @Override
