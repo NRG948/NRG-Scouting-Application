@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     RefreshableFragment currentFragment;
 
-    public static String CURRENT_VERSION = "4.0_0";
+    public static String CURRENT_VERSION = "4.5_0";
     public static int EDITING_ENTRY = 1;
     public static int FINISHED_ENTRY = 0;
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        setActionBarTitle("Match Scouting");
+        setActionBarTitle("Scouting");
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         if(sharedPref.getInt("lastState", 0) == EDITING_ENTRY) {

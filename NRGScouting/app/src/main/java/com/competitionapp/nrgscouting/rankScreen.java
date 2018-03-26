@@ -170,12 +170,16 @@ public class RankScreen extends Fragment implements RefreshableFragment{
             ((TextView) convertView.findViewById(R.id.rankingEntryDefenseScore)).setText(String.valueOf(entry.rate) + "/5");
             ((TextView) convertView.findViewById(R.id.rankingEntryClimbData)).setText(
                     "Crossed Baseline: " + convertBoolToText(entry.baseline) + "\n"
+                    + "Switch Autnomous: " + convertBoolToText(entry.autoSwitch) + "\n"
+                            + "Scale Autnomous: " + convertBoolToText(entry.autoScale) + "\n"
+                            + "Far Switch Autnomous: " + convertBoolToText(entry.autoFarSwitch) + "\n"
+                            + "Far Scale Autnomous: " + convertBoolToText(entry.autoFarScale) + "\n" + "\n"
                     + "Death: " + convertBoolToText(entry.death) + "\n"
                     + "Solo Climb: " + convertBoolToText(entry.soloClimb) + "\n"
                     + "Assisted Climb: " + convertBoolToText(entry.astClimb) + "\n"
                     + "Needed Assisted Climb: " + convertBoolToText(entry.needAstClimb) + "\n"
                     + "On Platform: " + convertBoolToText(entry.platform) + "\n"
-                    + "Didn't Climb: " + convertBoolToText(entry.needLevitate)
+                    + "Climb: " + convertBoolToText(entry.needLevitate)
             );
             ((TextView) convertView.findViewById(R.id.rankingEntryFouls)).setText(String.valueOf(entry.penalties));
             ((TextView) convertView.findViewById(R.id.rankingEntryPenaltyCard)).setText(
@@ -189,10 +193,10 @@ public class RankScreen extends Fragment implements RefreshableFragment{
             if(eventTimings.get(4) != null && !eventTimings.get(4).isEmpty()) {
                 climbTime = (Float) (eventTimings.get(4).get(0)/1000f);
             }
-            String climbString = "Avg. Unused Cube: " + getAverageValue(eventTimings.get(0)) + " sec." +
-                    "\nAvg. Switch Time: " + getAverageValue(eventTimings.get(1)) + " sec." +
-                    "\nAvg. Scale Time: " + getAverageValue(eventTimings.get(2)) + " sec." +
-                    "\nAvg. Exchange Time: " + getAverageValue(eventTimings.get(3)) + " sec.";
+            String climbString = "Avg. Unused Cube Time: " + getAverageValue(eventTimings.get(0)) + " sec." +
+                    "\nAvg. Cube To Switch Time: " + getAverageValue(eventTimings.get(1)) + " sec." +
+                    "\nAvg. Cube To Scale Time: " + getAverageValue(eventTimings.get(2)) + " sec." +
+                    "\nAvg. Cube To Exchange Time: " + getAverageValue(eventTimings.get(3)) + " sec.";
             if(Math.abs(climbTime - 0f) <= 0.0001f || !entry.soloClimb) {
                 climbString += "\nClimb Time: " + "N/A";
             } else {
