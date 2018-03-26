@@ -137,6 +137,14 @@ public class RankScreen extends Fragment implements RefreshableFragment{
         });
     }
 
+    public String cutToSize(String input, int length) {
+        if(input.length() <= length) {
+            return input;
+        } else {
+            return input.substring(0, length);
+        }
+    }
+
     public class EntryAdapter extends ArrayAdapter<Entry> {
 
         ArrayList<Entry> entryAdapterList;
@@ -176,7 +184,36 @@ public class RankScreen extends Fragment implements RefreshableFragment{
             );
             ((TextView) convertView.findViewById(R.id.rankingEntryComments)).setText(entry.comments);
 
+            ArrayList<ArrayList<Integer>> eventTimings = Entry.getTimeEvents(entry);
+            Float climbTime = 0f;
+            if(eventTimings.get(4) != null && !eventTimings.get(4).isEmpty()) {
+                climbTime = (Float) (eventTimings.get(4).get(0)/1000f);
+            }
+            String climbString = "Avg. Unused Cube: " + getAverageValue(eventTimings.get(0)) + " sec." +
+                    "\nAvg. Switch Time: " + getAverageValue(eventTimings.get(1)) + " sec." +
+                    "\nAvg. Scale Time: " + getAverageValue(eventTimings.get(2)) + " sec." +
+                    "\nAvg. Exchange Time: " + getAverageValue(eventTimings.get(3)) + " sec.";
+            if(Math.abs(climbTime - 0f) <= 0.0001f || !entry.soloClimb) {
+                climbString += "\nClimb Time: " + "N/A";
+            } else {
+                climbString += "\nClimb Time: " + cutToSize(String.valueOf(climbTime), 8) + " sec.";
+            }
+            ((TextView) convertView.findViewById(R.id.rankingEntryAverageTimings)).setText(climbString);
+
+
             return convertView;
+        }
+
+        public String getAverageValue(ArrayList<Integer> input) {
+            if(input == null|| input.isEmpty()) {
+                return "N/A";
+            }
+            float output = 0;
+            for(int x : input) {
+                output += x;
+            }
+            output = output/1000f;
+            return cutToSize(String.valueOf((Float) (output/input.size())), 8);
         }
 
         public String convertBoolToText(Boolean input) {
@@ -214,14 +251,6 @@ public class RankScreen extends Fragment implements RefreshableFragment{
             ((TextView) convertView.findViewById(R.id.rankingNumberText)).setText(String.valueOf(position + 1));
 
             return convertView;
-        }
-
-        public String cutToSize(String input, int length) {
-            if(input.length() <= length) {
-                return input;
-            } else {
-                return input.substring(0, length);
-            }
         }
     }
 }

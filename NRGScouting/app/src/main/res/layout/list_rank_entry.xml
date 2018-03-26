@@ -53,6 +53,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:id="@+id/rankingEntryAverageTimings"
+            android:text="Avg. Time Here"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:id="@+id/rankingEntryClimbData"
             android:text="4.5/5"
             android:textSize="15dp"

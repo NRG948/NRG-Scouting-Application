@@ -256,6 +256,7 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
 
     public ArrayList<Entry> sortEntries(ArrayList<Entry> originalEntries) {
         ArrayList<Entry> sortedEntries = new ArrayList<Entry>();
+        /*
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         ArrayList<Entry> indexlessEntries = new ArrayList<Entry>();
 
@@ -275,7 +276,9 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
                 indexlessEntries.add(x);
             }
         }
+        */
 
+        /*
         if(!indexlessEntries.isEmpty()) {
             SharedPreferences.Editor editor = sharedPref.edit();
             for(int i = sortedEntries.size() - 1; i >= 0; i--) {
@@ -290,6 +293,13 @@ public class MatchFragment extends Fragment implements RefreshableFragment{
             editor.apply();
         }
         Collections.reverse(sortedEntries);
+        */
+
+        //Remove this line to stop sorting by match number
+        sortedEntries = originalEntries;
+        Collections.sort(sortedEntries);
+        Collections.reverse(sortedEntries);
+
         return sortedEntries;
     }
 

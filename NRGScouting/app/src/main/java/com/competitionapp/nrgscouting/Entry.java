@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Represents a Entry that can be written to the memory card
  */
 
-public class Entry {
+public class Entry implements Comparable<Entry>{
 
     public enum EventType {
         PICKED_CUBE_0,
@@ -53,6 +53,8 @@ public class Entry {
     boolean cardRed = false;
 
     int timestamp = 0;
+
+    static int TOTAL_MATCH_TIME = 150000;
 
     ArrayList<TimeEvent> timeEvents = new ArrayList<TimeEvent>();
     //IMPORTANT NOTES FOR SAVING!!!
@@ -134,6 +136,48 @@ public class Entry {
         return entry;
     }
 
+    public static ArrayList<ArrayList<Integer>> getTimeEvents(Entry entry) {
+        //Returns an array of ArrayLists of Floats, with each float in each different ArrayList referring to the time for a different event type.
+        //Index Guide: 0 is None, 1 is Switch, 2 is Scale, 3 is Exchange
+        //Index 4 is Climb Time
+        int cubePickedTimeStamp = 0;
+        ArrayList<ArrayList<Integer>> eventTimings = new ArrayList<ArrayList<Integer> >();
+        for(int i = 0; i <=4; i++) {
+            eventTimings.add(new ArrayList<Integer>());
+        }
+
+        for(int i = 0; i < entry.timeEvents.size(); i++) {
+            switch (entry.timeEvents.get(i).type) {
+                case CLIMB_START_10:
+                    eventTimings.get(4).add(TOTAL_MATCH_TIME - entry.timeEvents.get(i).timestamp);
+                    continue;
+                case PICKED_CUBE_0:
+                    cubePickedTimeStamp = entry.timeEvents.get(i).timestamp;
+                    continue;
+                case DROPPED_CUBE_1:
+                    switch(entry.timeEvents.get(i).cubeDropType) {
+                        case NONE_0:
+                            eventTimings.get(0).add(entry.timeEvents.get(i).timestamp - cubePickedTimeStamp);
+                            continue;
+                        case ALLY_SWITCH_1:
+                            eventTimings.get(1).add(entry.timeEvents.get(i).timestamp - cubePickedTimeStamp);
+                            continue;
+                        case OPP_SWITCH_2:
+                            eventTimings.get(1).add(entry.timeEvents.get(i).timestamp - cubePickedTimeStamp);
+                            continue;
+                        case SCALE_3:
+                            eventTimings.get(2).add(entry.timeEvents.get(i).timestamp - cubePickedTimeStamp);
+                            continue;
+                        case EXCHANGE_4:
+                            eventTimings.get(3).add(entry.timeEvents.get(i).timestamp - cubePickedTimeStamp);
+                            continue;
+                    }
+            }
+        }
+
+        return eventTimings;
+    }
+
 
     public Entry(){
 
@@ -155,6 +199,16 @@ public class Entry {
         }
 
         return entryList;
+    }
+
+    @Override
+    public int compareTo(@NonNull Entry o) {
+        if(o.matchNumber > this.matchNumber) {
+            return -1;
+        } else if (o.matchNumber < this.matchNumber) {
+            return 1;
+        }
+        return 0;
     }
 
     public static int eventTypeToInt(EventType eventType) {
