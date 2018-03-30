@@ -167,6 +167,7 @@ public class MatchTimerEntry extends Fragment {
             @Override
             public void onClick(View view) {
                 if(timerIsRunning || savedTime>0) {
+                    progressBar.setProgress(0);
                     handler.removeCallbacks(updateTimerThread);
                     timerIsRunning = false;
                     savedTime = 0;
