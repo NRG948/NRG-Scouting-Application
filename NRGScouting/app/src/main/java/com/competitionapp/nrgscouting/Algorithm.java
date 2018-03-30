@@ -142,7 +142,7 @@ public class Algorithm{
                         numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        toExchange += 10;
+                        toExchange += 5;
                         i++;
                     }
 
@@ -168,7 +168,7 @@ public class Algorithm{
                         numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        toExchange += 10;
+                        toExchange += 5;
                         i++;
                     }
 
