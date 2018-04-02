@@ -58,7 +58,7 @@ public class TeamSearchPop extends AppCompatActivity implements ActivityUtility{
             "5942 - Warriors", "5956 - Falcons", "5970 - BeaverTronics", "5975 - Beta Blues", "5977 - Rosemary Anderson H S/POIC",
             "6076 - Mustangs", "6129 - Shadle Park", "6343 - Steel Ridge Robotics", "6350 - J.E.D.I.",
             "6437 - The Pacific Quakers", "6442 - Modern Americans", "6443 - AEMBOT", "6445 - CTEC Robotics",
-            "6456 - Oregon Trail Academy Wi-Fires", "6465 - Decipher", "6503 - Iron Dragon", "6696 - Cardinal Dynamics",
+            "6456 - Oregon Trail Academy Wi-Fires", "6465 - Mystic Biscuit", "6503 - Iron Dragon", "6696 - Cardinal Dynamics", "6831 - A-05 Annex",
             "6845 - River Bots", "6959 - Centralia Circuit Breakers", "7034 - 2B Determined", "7118 - ScotBots"};
 
     @Override
