@@ -165,15 +165,15 @@ public class RankScreen extends Fragment implements RefreshableFragment{
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_rank_entry, parent, false);
             }
-            
-            //Choose if robot climbed based on climbData
+
             String test = "fail";
-            if(entry.soloClimb==true||entry.astClimb==true){
+            if(entry.soloClimb==true){
                 test=convertBoolToText(entry.soloClimb);
-            else {
-                test = "No";
             }
-       
+            else if (entry.astClimb==true) {
+                test = convertBoolToText(entry.astClimb);
+            }
+
             ((TextView) convertView.findViewById(R.id.rankingEntryMatchNumber)).setText("Match Number: " + String.valueOf(entry.matchNumber) + ", " + Entry.positionToString(entry.position));
             ((TextView) convertView.findViewById(R.id.rankingEntryDefenseScore)).setText(String.valueOf(entry.rate) + "/5");
             ((TextView) convertView.findViewById(R.id.rankingEntryClimbData)).setText(
