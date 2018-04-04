@@ -84,8 +84,7 @@ public class EventListEntry extends Fragment {
                                 Collections.sort(newEntry.timeEvents);
                                 timeEventList = newEntry.timeEvents;
                                 UpdateView();
-                                Toast.makeText(getActivity(), "Deleted event '" + Entry.getEventName(timeEventList.get(position))
-                                        + " @ " + convertTimeToText(timeEventList.get(position).timestamp) + "'", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Deleted Timestamp!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         })

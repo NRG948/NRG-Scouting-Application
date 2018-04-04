@@ -57,10 +57,14 @@ public class RankScreen extends Fragment implements RefreshableFragment{
                 ranker = new ScaleAlgorithm();
                 break;
             case 2:
+                //menu.getItem(R.id.sort_exchange).setChecked(true);
+                ranker = new ExchangeAlgorithm();
+                break;
+            case 3:
                 //menu.getItem(R.id.sort_defense).setChecked(true);
                 ranker = new DefensiveAlgorithm();
                 break;
-            case 3:
+            case 4:
                 //\menu.getItem(R.id.sort_climb).setChecked(true);
                 ranker = new ClimbAlgorithm();
                 break;
@@ -179,7 +183,7 @@ public class RankScreen extends Fragment implements RefreshableFragment{
                     + "Assisted Climb: " + convertBoolToText(entry.astClimb) + "\n"
                     + "Needed Assisted Climb: " + convertBoolToText(entry.needAstClimb) + "\n"
                     + "On Platform: " + convertBoolToText(entry.platform) + "\n"
-                    + "Climb: " + convertBoolToText(entry.needLevitate)
+                    + "Didn't Climb: " + convertBoolToText(entry.needLevitate)
             );
             ((TextView) convertView.findViewById(R.id.rankingEntryFouls)).setText(String.valueOf(entry.penalties));
             ((TextView) convertView.findViewById(R.id.rankingEntryPenaltyCard)).setText(

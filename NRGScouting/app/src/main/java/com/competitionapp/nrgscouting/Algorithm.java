@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Acchindra Thev on 2/22/18.
  */
 
-public class Algorithm{
+public class Algorithm {
 
     int DefenseWeight = 0;
     int DeathsWeight = -20;
@@ -27,6 +27,7 @@ public class Algorithm{
     int redCardWeight = -40;
     int switchScoreWeight = 0;
     int scaleScoreWeight = 0;
+    int exhangeScoreWeight = 0;
 
     //       Total Timings
     int toNone = 0;
@@ -60,7 +61,7 @@ public class Algorithm{
     public double rankScore(Entry entry) {
         addEntry(entry);
         return ((redCardWeight*redCard) + (yellowCardWeight*yellowCard) + (penaltiesWeight*penalties) + (levitateWeight*levitate) + (-1*toNone) +
-                (toExchange) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
+                (toExchange*exhangeScoreWeight) + (neededAstClimbWeight*neededAstClimb) + (platform*platformWeight) + (astClimbWeight*astClimb) + (soloClimbWeight*soloClimb)+
                 (baseline*baselineWeight)+ (DeathsWeight*death) + (DefenseWeight*defense) + (switchScore*switchScoreWeight) + (scaleScore*scaleScoreWeight));
     }
 
@@ -142,7 +143,7 @@ public class Algorithm{
                         numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        toExchange += 5;
+                        toExchange += 10;
                         i++;
                     }
 
@@ -168,7 +169,7 @@ public class Algorithm{
                         numScale++;
 
                     } else if ((jsonObject.getInt("TE" + i + "_1") == 1) && (jsonObject.getInt("TE" + i + "_2") == 4)) {
-                        toExchange += 5;
+                        toExchange += 10;
                         i++;
                     }
 

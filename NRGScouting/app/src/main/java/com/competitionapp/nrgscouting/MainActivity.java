@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     RefreshableFragment currentFragment;
 
-    public static String CURRENT_VERSION = "4.5_0";
+    public static String CURRENT_VERSION = "5.0_0";
     public static int EDITING_ENTRY = 1;
     public static int FINISHED_ENTRY = 0;
 
@@ -241,9 +241,6 @@ public class MainActivity extends AppCompatActivity
                 final AlertDialog alertDialog = alertadd.create();
                 alertDialog.show();
                 return true;
-            case R.id.action_settings:
-                Toast.makeText(MainActivity.this, "No settings yet.", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.action_clearMemory:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete ALL stored match entries?");
@@ -289,19 +286,25 @@ public class MainActivity extends AppCompatActivity
                 ((RankScreen) currentFragment).ranker = new ClimbAlgorithm();
                 currentFragment.refreshFragment();
                 item.setChecked(true);
-                algorithmPos = 3;
+                algorithmPos = 4;
                 return true;
             case R.id.sort_defense:
                 ((RankScreen) currentFragment).ranker = new DefensiveAlgorithm();
                 currentFragment.refreshFragment();
                 item.setChecked(true);
-                algorithmPos = 2;
+                algorithmPos = 3;
                 return true;
             case R.id.sort_scale:
                 ((RankScreen) currentFragment).ranker = new ScaleAlgorithm();
                 item.setChecked(true);
                 currentFragment.refreshFragment();
                 algorithmPos = 1;
+                return true;
+            case R.id.sort_exchange:
+                ((RankScreen) currentFragment).ranker = new ExchangeAlgorithm();
+                currentFragment.refreshFragment();
+                item.setChecked(true);
+                algorithmPos = 2;
                 return true;
         }
 
