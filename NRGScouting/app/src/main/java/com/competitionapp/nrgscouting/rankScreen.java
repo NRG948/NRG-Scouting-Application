@@ -166,6 +166,14 @@ public class RankScreen extends Fragment implements RefreshableFragment{
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_rank_entry, parent, false);
             }
 
+            String test = "fail";
+            if(entry.soloClimb==true){
+                test=convertBoolToText(entry.soloClimb);
+            }
+            else if (entry.astClimb==true) {
+                test = convertBoolToText(entry.astClimb);
+            }
+
             ((TextView) convertView.findViewById(R.id.rankingEntryMatchNumber)).setText("Match Number: " + String.valueOf(entry.matchNumber) + ", " + Entry.positionToString(entry.position));
             ((TextView) convertView.findViewById(R.id.rankingEntryDefenseScore)).setText(String.valueOf(entry.rate) + "/5");
             ((TextView) convertView.findViewById(R.id.rankingEntryClimbData)).setText(
@@ -179,8 +187,9 @@ public class RankScreen extends Fragment implements RefreshableFragment{
                     + "Assisted Climb: " + convertBoolToText(entry.astClimb) + "\n"
                     + "Needed Assisted Climb: " + convertBoolToText(entry.needAstClimb) + "\n"
                     + "On Platform: " + convertBoolToText(entry.platform) + "\n"
-                    + "Climb: " + convertBoolToText(entry.needLevitate)
-            );
+                    + "Climb: " + test);
+
+            ;
             ((TextView) convertView.findViewById(R.id.rankingEntryFouls)).setText(String.valueOf(entry.penalties));
             ((TextView) convertView.findViewById(R.id.rankingEntryPenaltyCard)).setText(
                     "Received Red Card: " + convertBoolToText(entry.cardRed) + "\n"
